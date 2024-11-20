@@ -74,7 +74,7 @@ export default function Home() {
           (transfer) =>
             `${emojis[hashStringToNumber(transfer.debtor, emojisLength)]} ${transfer.debtor} debe $${formatAmount(transfer.amount)} a ${transfer.creditor} ${emojis[hashStringToNumber(transfer.creditor, emojisLength)]}`,
         ),
-        '\nhttps://splitify.app',
+        '\nhttps://splitify-theta.vercel.app',
       ].join('\n'),
     )
 
