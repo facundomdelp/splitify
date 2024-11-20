@@ -1,101 +1,195 @@
-import Image from "next/image";
+'use client'
+
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { EMOJIS } from '@/lib/emojis'
+import { calculateTransfers } from '@/lib/functions/calculateTransfers'
+import { copyToClipboard } from '@/lib/functions/copyToClipboard'
+import { formatAmount } from '@/lib/functions/formatAmount'
+import { hashStringToNumber } from '@/lib/functions/hashStringToNumber'
+import useLocalStorage from '@/lib/hooks/useLocalStore'
+import { Expenses, Transfer } from '@/types'
+import { CheckIcon, Clipboard, Plus } from 'lucide-react'
+import { useMemo, useState } from 'react'
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [amount, setAmount] = useState(0)
+  const [name, setName] = useState('')
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+  const [participants, setParticipants] = useLocalStorage<Expenses>('participants', {})
+  const [transfers, setTransfers] = useLocalStorage<Transfer[]>('transfers', [])
+
+  const [copied, setCopied] = useState(false)
+
+  const handleAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+
+    if (value.startsWith('0') && value.length > 1) {
+      e.target.value = value.slice(1)
+    }
+
+    const amount = parseFloat(value)
+    const max = parseFloat(e.target.max)
+    const min = parseFloat(e.target.min)
+    const step = parseFloat(e.target.step)
+
+    if (!amount) {
+      setAmount(0)
+    }
+
+    if (amount >= min && amount <= max && (amount % step === 0 || (amount * 100) % (step * 100) === 0)) {
+      setAmount(amount)
+    }
+  }
+
+  const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    const maxLength = e.target.maxLength
+
+    if (value.length <= maxLength) {
+      setName(e.target.value)
+    }
+  }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    if (!name.trim()) return
+
+    setParticipants({ ...participants, [name.trim()]: amount })
+
+    setName('')
+    setAmount(0)
+  }
+
+  const handleCalculateTransfers = () => {
+    setTransfers(calculateTransfers(participants))
+    setParticipants({})
+  }
+
+  const handleCopyToClipboard = () => {
+    copyToClipboard(
+      [
+        ...transfers.map(
+          (transfer) =>
+            `${emojis[hashStringToNumber(transfer.debtor, emojisLength)]} ${transfer.debtor} debe $${formatAmount(transfer.amount)} a ${transfer.creditor} ${emojis[hashStringToNumber(transfer.creditor, emojisLength)]}`,
+        ),
+        '\nhttps://splitify.app',
+      ].join('\n'),
+    )
+
+    setCopied(true)
+    setTimeout(() => setCopied(false), 3000)
+  }
+
+  const emojis = useMemo(() => Object.keys(EMOJIS), [])
+  const emojisLength = useMemo(() => Object.keys(EMOJIS).length, [])
+
+  return (
+    <main className='my-8 mx-4 flex flex-col gap-8 w-full'>
+      <section className='flex flex-col gap-2'>
+        <p className='text-sm'>Añadir participante</p>
+        <form className='flex gap-4 flex-wrap' onSubmit={handleSubmit}>
+          <Input
+            className='min-w-40 flex-1'
+            name='name'
+            maxLength={30}
+            onChange={handleName}
+            value={name}
+            disabled={transfers.length > 0}
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+
+          <div className='flex gap-4 ml-auto'>
+            <div className='relative min-w-20 max-w-24 flex-1'>
+              <span className='absolute left-2 top-1/2 -translate-y-1/2 text-gray-500 text-sm leading-4'>$</span>
+              <Input
+                className='pl-6 text-sm'
+                type='number'
+                name='amount'
+                max={10000000}
+                min={0}
+                step={0.01}
+                onChange={handleAmount}
+                value={amount}
+                disabled={transfers.length > 0}
+              />
+            </div>
+            <Button
+              size='icon'
+              className='min-w-10 ml-auto'
+              type='submit'
+              disabled={name === '' || transfers.length > 0}
+            >
+              <Plus />
+            </Button>
+          </div>
+        </form>
+      </section>
+
+      {!transfers.length ? (
+        <>
+          <section className='text-sm h-full flex flex-col'>
+            <h2 className='text-lg font-bold'>Participantes</h2>
+            {Object.keys(participants).length ? (
+              <ul className='mt-4 flex flex-col gap-3'>
+                {Object.entries(participants)
+                  .toReversed()
+                  .map(([name, amount], index) => (
+                    <li key={index}>
+                      {emojis[hashStringToNumber(name, emojisLength)]} {name}: ${amount.toFixed(2)}
+                    </li>
+                  ))}
+              </ul>
+            ) : (
+              <p className='m-auto text-gray-500'>¡Ingresa un Participante para comenzar!</p>
+            )}
+          </section>
+
+          <section className='mt-auto flex'>
+            <Button
+              className='flex-1'
+              onClick={handleCalculateTransfers}
+              disabled={Object.values(participants).length < 2}
+            >
+              Calcular Saldos
+            </Button>
+          </section>
+        </>
+      ) : (
+        <>
+          <section className='text-sm'>
+            <div className='flex gap-5 items-center'>
+              <h2 className='text-lg font-bold'>Saldos</h2>
+              {copied ? (
+                <div className='flex gap-1 items-center ml-auto'>
+                  <CheckIcon className='size-[18px] ml-auto' />
+                  <p className='text-sm font-medium'>¡Copiado!</p>
+                </div>
+              ) : (
+                <button className='flex gap-1 items-center ml-auto' onClick={handleCopyToClipboard}>
+                  <Clipboard className='size-[18px] ml-auto' />
+                  <p className='text-sm font-medium'>Copiar</p>
+                </button>
+              )}
+            </div>
+            <ul className='mt-4 flex flex-col gap-3'>
+              {transfers.map((transfer, index) => (
+                <li key={index}>
+                  {`${emojis[hashStringToNumber(transfer.debtor, emojisLength)]} ${transfer.debtor} debe `}
+                  <strong className='font-semibold'>${formatAmount(transfer.amount)}</strong>
+                  {` a ${transfer.creditor} ${emojis[hashStringToNumber(transfer.creditor, emojisLength)]}`}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className='mt-auto flex'>
+            <Button className='flex-1' onClick={() => setTransfers([])}>
+              Limpiar
+            </Button>
+          </section>
+        </>
+      )}
+    </main>
+  )
 }
