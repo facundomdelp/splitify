@@ -7,7 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'Simplifica tus gastos en grupo con Splitify',
     start_url: '/',
     display: 'standalone',
-    background_color: '#ffffff',
+    background_color: '#052E16',
     theme_color: '#22C55E',
     icons: [
       {
