@@ -6,11 +6,12 @@ import './globals.css'
 const montserrat = Montserrat({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Splitify',
+  title: 'Splitify App',
   description: 'Simplifica tus gastos en grupo con Splitify',
 }
 
 const MOBILE_BREAKPOINT = 600
+const LOGO_WIDTH = 100
 
 export default function RootLayout({
   children,
@@ -22,7 +23,7 @@ export default function RootLayout({
       <body className={`${montserrat} antialiased bg-dark text-white relative min-h-full flex flex-col`}>
         <header className='w-full bg-green-500 flex justify-center items-center h-20 shadow-md rounded-b-sm'>
           <div className={`w-[${MOBILE_BREAKPOINT.toString()}px] flex justify-center items-center mt-2`}>
-            <Image src='/Splitify.png' alt='Splitify' width={100} height={40} />
+            <Image src='/Splitify.png' alt='Splitify' width={LOGO_WIDTH} height={LOGO_WIDTH / (10 / 3)} />
           </div>
         </header>
         <div className='text-dark flex justify-center flex-1'>
