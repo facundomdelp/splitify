@@ -83,7 +83,7 @@ export const useCopyTransfersToClipboard = ({ transfers }: { transfers: Transfer
           (transfer) =>
             `${getEmojiFromString(transfer.debtor)} ${transfer.debtor} debe $${formatAmount(transfer.amount)} a ${transfer.creditor} ${getEmojiFromString(transfer.creditor)}`,
         ),
-        '\nhttps://splitify.me/share',
+        '\nhttps://splitify.me',
       ].join('\n'),
     )
 

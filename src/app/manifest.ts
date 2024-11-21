@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Splitify App',
+    name: 'Splitify',
     short_name: 'Splitify',
     description: 'Simplifica tus gastos en grupo con Splitify',
     start_url: '/',
