@@ -1,3 +1,9 @@
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  manifest: null,
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
