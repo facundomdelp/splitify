@@ -2,88 +2,18 @@
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { EMOJIS } from '@/lib/emojis'
-import { calculateTransfers } from '@/lib/functions/calculateTransfers'
-import { copyToClipboard } from '@/lib/functions/copyToClipboard'
 import { formatAmount } from '@/lib/functions/formatAmount'
-import { hashStringToNumber } from '@/lib/functions/hashStringToNumber'
-import useLocalStorage from '@/lib/hooks/useLocalStore'
-import { Expenses, Transfer } from '@/types'
 import { CheckIcon, Clipboard, Plus } from 'lucide-react'
-import { useMemo, useState } from 'react'
+import { useCalculateTransfers, useCopyTransfersToClipboard, useHandleParticipantsForm } from './hooks'
+import { getEmojiFromString } from '@/lib/functions/getEmojiFromString'
 
 export default function Home() {
-  const [amount, setAmount] = useState(0)
-  const [name, setName] = useState('')
+  const { participants, setParticipants, name, amount, handleAmount, handleName, handleSubmit } =
+    useHandleParticipantsForm()
 
-  const [participants, setParticipants] = useLocalStorage<Expenses>('participants', {})
-  const [transfers, setTransfers] = useLocalStorage<Transfer[]>('transfers', [])
+  const { transfers, setTransfers, handleCalculateTransfers } = useCalculateTransfers({ participants, setParticipants })
 
-  const [copied, setCopied] = useState(false)
-
-  const handleAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
-
-    if (value.startsWith('0') && value.length > 1) {
-      e.target.value = value.slice(1)
-    }
-
-    const amount = parseFloat(value)
-    const max = parseFloat(e.target.max)
-    const min = parseFloat(e.target.min)
-    const step = parseFloat(e.target.step)
-
-    if (!amount) {
-      setAmount(0)
-    }
-
-    if (amount >= min && amount <= max && (amount % step === 0 || (amount * 100) % (step * 100) === 0)) {
-      setAmount(amount)
-    }
-  }
-
-  const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
-    const maxLength = e.target.maxLength
-
-    if (value.length <= maxLength) {
-      setName(e.target.value)
-    }
-  }
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
-    if (!name.trim()) return
-
-    setParticipants({ ...participants, [name.trim()]: amount })
-
-    setName('')
-    setAmount(0)
-  }
-
-  const handleCalculateTransfers = () => {
-    setTransfers(calculateTransfers(participants))
-    setParticipants({})
-  }
-
-  const emojis = useMemo(() => Object.keys(EMOJIS), [])
-  const emojisLength = useMemo(() => Object.keys(EMOJIS).length, [])
-
-  const handleCopyToClipboard = () => {
-    copyToClipboard(
-      [
-        ...transfers.map(
-          (transfer) =>
-            `${emojis[hashStringToNumber(transfer.debtor, emojisLength)]} ${transfer.debtor} debe $${formatAmount(transfer.amount)} a ${transfer.creditor} ${emojis[hashStringToNumber(transfer.creditor, emojisLength)]}`,
-        ),
-        '\nhttps://splitify-theta.vercel.app',
-      ].join('\n'),
-    )
-
-    setCopied(true)
-    setTimeout(() => setCopied(false), 3000)
-  }
+  const { handleCopyToClipboard, copied } = useCopyTransfersToClipboard({ transfers })
 
   return (
     <main className='my-8 mx-4 flex flex-col gap-8 w-full'>
@@ -136,7 +66,7 @@ export default function Home() {
                   .toReversed()
                   .map(([name, amount], index) => (
                     <li key={index}>
-                      {emojis[hashStringToNumber(name, emojisLength)]} {name}: ${amount.toFixed(2)}
+                      {getEmojiFromString(name)} {name}: ${amount.toFixed(2)}
                     </li>
                   ))}
               </ul>
@@ -175,9 +105,9 @@ export default function Home() {
             <ul className='mt-4 flex flex-col gap-3'>
               {transfers.map((transfer, index) => (
                 <li key={index}>
-                  {`${emojis[hashStringToNumber(transfer.debtor, emojisLength)]} ${transfer.debtor} debe `}
+                  {`${getEmojiFromString(transfer.debtor)} ${transfer.debtor} debe `}
                   <strong className='font-semibold'>${formatAmount(transfer.amount)}</strong>
-                  {` a ${transfer.creditor} ${emojis[hashStringToNumber(transfer.creditor, emojisLength)]}`}
+                  {` a ${transfer.creditor} ${getEmojiFromString(transfer.creditor)}`}
                 </li>
               ))}
             </ul>

@@ -1,7 +1,7 @@
-import React from 'react'
+import { useCallback, useState } from 'react'
 
-const useLocalStorage = <T>(key: string, initialValue?: T): [T, React.Dispatch<React.SetStateAction<T>>] => {
-  const [storedValue, setStoredValue] = React.useState(() => {
+export const useLocalStorage = <T>(key: string, initialValue?: T): [T, React.Dispatch<React.SetStateAction<T>>] => {
+  const [storedValue, setStoredValue] = useState(() => {
     try {
       const item = window.localStorage.getItem(key)
       return item ? JSON.parse(item) : initialValue
@@ -10,7 +10,7 @@ const useLocalStorage = <T>(key: string, initialValue?: T): [T, React.Dispatch<R
     }
   })
 
-  const setValue: React.Dispatch<React.SetStateAction<T>> = React.useCallback(
+  const setValue: React.Dispatch<React.SetStateAction<T>> = useCallback(
     (value) => {
       try {
         setStoredValue((prev: T) => {
@@ -27,5 +27,3 @@ const useLocalStorage = <T>(key: string, initialValue?: T): [T, React.Dispatch<R
 
   return [storedValue, setValue]
 }
-
-export default useLocalStorage
