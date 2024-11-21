@@ -32,7 +32,7 @@ const Transfers = ({ transfers, setTransfers }: Props) => {
         </div>
         <ul className='mt-4 flex flex-col gap-3 min-w-0'>
           {transfers.map((transfer, index) => (
-            <li key={index} className='flex items-center min-w-0 flex-wrap gap-1'>
+            <li key={index} className='flex items-center min-w-0 flex-wrap'>
               <div className='flex items-center min-w-0 gap-1'>
                 <p className='mr-1'>{getEmojiFromString(transfer.debtor)}</p>
                 <p className='text-ellipsis whitespace-nowrap overflow-hidden min-w-0'>{transfer.debtor}</p>

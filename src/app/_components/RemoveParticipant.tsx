@@ -33,12 +33,12 @@ export const RemoveParticipant = ({ name, participants, setParticipants }: Props
       </DialogTrigger>
       <DialogContent
         onPointerDownOutside={(e) => e.preventDefault()}
-        className='min-w-fit w-[80vw] max-w-[400px] flex justify-center rounded-xl text-gray-700'
+        className='min-w-0 w-[80vw] max-w-[400px] flex justify-center rounded-xl text-gray-700 '
       >
         <DialogHeader>
-          <DialogTitle className='text-center font-normal text-balance leading-7 mt-5'>
+          <DialogTitle className='text-center font-normal text-balance leading-7 mt-5 max-w-full'>
             ¿Quieres eliminar a {getEmojiFromString(name)}
-            <strong className='font-semibold'>{name}</strong> de la lista?
+            <strong className='font-semibold break-all'>{name}</strong> de la lista?
           </DialogTitle>
           <DialogDescription>
             <div className='flex items-center justify-center gap-6 mt-4'>
