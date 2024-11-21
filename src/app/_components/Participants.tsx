@@ -20,7 +20,7 @@ export const Participants = ({ participants, setParticipants, handleCalculateTra
               .toReversed()
               .map(([name, amount], index) => (
                 <li key={index} className='flex items-center min-w-0'>
-                  {getEmojiFromString(name)}
+                  <p className='mr-2'>{getEmojiFromString(name)}</p>
                   <p className='text-ellipsis whitespace-nowrap overflow-hidden min-w-0'>{name}</p>
                   <p className='whitespace-nowrap'>: ${amount.toFixed(2)}</p>
                   <RemoveParticipant name={name} participants={participants} setParticipants={setParticipants} />

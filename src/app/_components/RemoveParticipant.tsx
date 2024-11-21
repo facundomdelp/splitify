@@ -29,7 +29,7 @@ export const RemoveParticipant = ({ name, participants, setParticipants }: Props
   return (
     <Dialog>
       <DialogTrigger>
-        <X className='size-[18px] text-gray-500 ml-2 mt-[0.75px]' />
+        <X className='size-[18px] text-gray-500 ml-2 mt-[1px]' />
       </DialogTrigger>
       <DialogContent
         onPointerDownOutside={(e) => e.preventDefault()}
