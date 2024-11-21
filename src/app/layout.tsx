@@ -26,9 +26,11 @@ export default function RootLayout({
             <Image src='/Splitify.png' alt='Splitify' width={LOGO_WIDTH} height={LOGO_WIDTH / (10 / 3)} />
           </div>
         </header>
+
         <div className='text-dark flex justify-center flex-1'>
           <main className={`w-[${MOBILE_BREAKPOINT.toString()}px] text-gray-600 flex`}>{children}</main>
         </div>
+
         <footer className='w-full bg-green-950 flex justify-center items-center h-20'>
           <div className={`w-[${MOBILE_BREAKPOINT.toString()}px] flex justify-center items-center mt-1`}>
             <Image src='/Isologo.png' alt='Splitify' width={50} height={50} />
