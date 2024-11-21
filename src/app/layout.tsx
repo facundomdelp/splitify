@@ -8,6 +8,7 @@ const montserrat = Montserrat({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Splitify App',
   description: 'Simplifica tus gastos en grupo con Splitify',
+  manifest: null,
 }
 
 const LOGO_WIDTH = 100
