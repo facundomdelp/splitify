@@ -67,6 +67,9 @@ export default function Home() {
     setParticipants({})
   }
 
+  const emojis = useMemo(() => Object.keys(EMOJIS), [])
+  const emojisLength = useMemo(() => Object.keys(EMOJIS).length, [])
+
   const handleCopyToClipboard = () => {
     copyToClipboard(
       [
@@ -81,9 +84,6 @@ export default function Home() {
     setCopied(true)
     setTimeout(() => setCopied(false), 3000)
   }
-
-  const emojis = useMemo(() => Object.keys(EMOJIS), [])
-  const emojisLength = useMemo(() => Object.keys(EMOJIS).length, [])
 
   return (
     <main className='my-8 mx-4 flex flex-col gap-8 w-full'>
@@ -184,7 +184,7 @@ export default function Home() {
           </section>
 
           <section className='mt-auto flex'>
-            <Button className='flex-1' onClick={() => setTransfers([])}>
+            <Button className='flex-1' onClick={() => setTransfers([])} variant='outline'>
               Limpiar
             </Button>
           </section>

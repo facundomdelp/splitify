@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Expenses, Transfer } from '@/types'
 
 export function calculateTransfers(expenses: Expenses): Transfer[] {
@@ -6,42 +5,54 @@ export function calculateTransfers(expenses: Expenses): Transfer[] {
   const peopleCount = Object.keys(expenses).length
   const averageExpense = total / peopleCount
 
+  // Calculate net balances
   const balances: { [person: string]: number } = Object.fromEntries(
     Object.entries(expenses).map(([person, expense]) => [person, Number((averageExpense - expense).toFixed(2))]),
   )
 
-  const debtors: { [person: string]: number } = Object.fromEntries(
-    Object.entries(balances).filter(([_, balance]) => balance > 0),
-  )
+  // Separate debtors and creditors
+  const debtors: { [person: string]: number } = {}
+  const creditors: { [person: string]: number } = {}
 
-  const creditors: { [person: string]: number } = Object.fromEntries(
-    Object.entries(balances)
-      .filter(([_, balance]) => balance < 0)
-      .map(([person, balance]) => [person, Math.abs(balance)]),
-  )
+  Object.entries(balances).forEach(([person, balance]) => {
+    if (balance > 0) {
+      debtors[person] = balance
+    } else if (balance < 0) {
+      creditors[person] = Math.abs(balance)
+    }
+  })
 
   const transfers: Transfer[] = []
 
-  const sortedDebtors = Object.entries(debtors).sort(([_, a], [__, b]) => b - a)
+  // Sort debtors and creditors by absolute amount, largest first
+  const sortedDebtors = Object.entries(debtors).sort(([, a], [, b]) => b - a)
+  const sortedCreditors = Object.entries(creditors).sort(([, a], [, b]) => b - a)
 
-  const sortedCreditors = Object.entries(creditors).sort(([_, a], [__, b]) => b - a)
+  let debtorIndex = 0
+  let creditorIndex = 0
 
-  for (const [debtor, debtorAmount] of sortedDebtors) {
-    if (debtorAmount <= 0) continue
+  // Minimize transfers by matching largest amounts first
+  while (debtorIndex < sortedDebtors.length && creditorIndex < sortedCreditors.length) {
+    const [debtor, debtorAmount] = sortedDebtors[debtorIndex]
+    const [creditor, creditorAmount] = sortedCreditors[creditorIndex]
 
-    for (const [creditor, creditorAmount] of sortedCreditors) {
-      if (creditorAmount <= 0) continue
+    const amount = Math.min(debtorAmount, creditorAmount)
 
-      const amount = Math.min(debtorAmount, creditorAmount)
+    if (amount > 0) {
       transfers.push({
         debtor,
         creditor,
         amount: Number(amount.toFixed(2)),
       })
 
-      debtors[debtor] = Number((debtorAmount - amount).toFixed(2))
-      creditors[creditor] = Number((creditorAmount - amount).toFixed(2))
+      // Update remaining balances
+      sortedDebtors[debtorIndex][1] = Number((debtorAmount - amount).toFixed(2))
+      sortedCreditors[creditorIndex][1] = Number((creditorAmount - amount).toFixed(2))
     }
+
+    // Move to next debtor or creditor based on remaining balance
+    if (sortedDebtors[debtorIndex][1] === 0) debtorIndex++
+    if (sortedCreditors[creditorIndex][1] === 0) creditorIndex++
   }
 
   return transfers
