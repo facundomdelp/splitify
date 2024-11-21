@@ -22,17 +22,17 @@ export default function RootLayout({
     <html lang='en' className='h-full'>
       <body className={`${montserrat} antialiased bg-dark text-white relative min-h-full flex flex-col`}>
         <header className='w-full bg-green-500 flex justify-center items-center h-20 shadow-md rounded-b-sm'>
-          <div className='w-[600px] flex justify-center items-center mt-2'>
+          <div className='max-w-[600px] flex justify-center items-center mt-2'>
             <Image src='/Splitify.png' alt='Splitify' width={LOGO_WIDTH} height={LOGO_WIDTH / (10 / 3)} />
           </div>
         </header>
 
-        <div className='text-dark flex justify-center flex-1'>
-          <main className='w-[600px] text-gray-600 flex'>{children}</main>
+        <div className='text-dark flex justify-center flex-1 w-full min-w-0'>
+          <div className='max-w-[600px] text-gray-600 flex flex-1 min-w-0'>{children}</div>
         </div>
 
         <footer className='w-full bg-green-950 flex justify-center items-center h-16'>
-          <div className='w-[600px] flex justify-center items-center mt-1'>
+          <div className='max-w-[600px] flex justify-center items-center mt-1'>
             <Image src='/Isologo.png' alt='Splitify' width={ISOLOGO_SIZE} height={ISOLOGO_SIZE} />
           </div>
         </footer>

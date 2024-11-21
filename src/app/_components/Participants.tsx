@@ -12,21 +12,23 @@ interface Props {
 export const Participants = ({ participants, setParticipants, handleCalculateTransfers }: Props) => {
   return (
     <>
-      <section className='text-sm h-full flex flex-col'>
+      <section className='text-sm h-full flex flex-col min-w-0'>
         <h2 className='text-lg font-bold'>Participantes</h2>
         {Object.keys(participants).length ? (
           <ul className='mt-4 flex flex-col gap-3'>
             {Object.entries(participants)
               .toReversed()
               .map(([name, amount], index) => (
-                <li key={index} className='flex items-center gap-2'>
-                  {getEmojiFromString(name)} {name}: ${amount.toFixed(2)}
+                <li key={index} className='flex items-center min-w-0'>
+                  {getEmojiFromString(name)}
+                  <p className='text-ellipsis whitespace-nowrap overflow-hidden min-w-0'>{name}</p>
+                  <p className='whitespace-nowrap'>: ${amount.toFixed(2)}</p>
                   <RemoveParticipant name={name} participants={participants} setParticipants={setParticipants} />
                 </li>
               ))}
           </ul>
         ) : (
-          <p className='m-auto text-gray-500'>¡Ingresa un Participante para comenzar!</p>
+          <p className='m-auto text-gray-500 text-center'>¡Ingresa un Participante para comenzar!</p>
         )}
       </section>
 
