@@ -20,7 +20,7 @@ export default function Home() {
           <Input
             className='min-w-40 flex-1'
             name='name'
-            maxLength={30}
+            maxLength={50}
             onChange={handleName}
             value={name}
             disabled={transfers.length > 0}
