@@ -31,7 +31,10 @@ export const RemoveParticipant = ({ name, participants, setParticipants }: Props
       <DialogTrigger>
         <X className='size-[18px] text-gray-500' />
       </DialogTrigger>
-      <DialogContent className='w-fit rounded-xl text-gray-700'>
+      <DialogContent
+        onPointerDownOutside={(e) => e.preventDefault()}
+        className={`min-w-fit w-[80vw] max-w-[400px] flex rounded-xl text-gray-700`}
+      >
         <DialogHeader>
           <DialogTitle className='text-center font-normal text-balance leading-7 mt-3'>
             ¿Quieres eliminar a {getEmojiFromString(name)}
