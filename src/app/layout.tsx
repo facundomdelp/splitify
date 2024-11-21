@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: 'Simplifica tus gastos en grupo con Splitify',
 }
 
-const LOGO_WIDTH = 100
+const LOGO_WIDTH = 120
 const ISOLOGO_SIZE = 40
 
 export default function RootLayout({
