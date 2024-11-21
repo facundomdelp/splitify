@@ -15,7 +15,7 @@ export const useHandleParticipantsForm = () => {
   const handleAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
 
-    if (value.startsWith('0') && value.length > 1) {
+    if (value.startsWith('0') && value.length > 1 && !value.includes('.')) {
       e.target.value = value.slice(1)
     }
 

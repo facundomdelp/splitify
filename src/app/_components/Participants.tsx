@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button'
 import { RemoveParticipant } from './RemoveParticipant'
 import { getEmojiFromString } from '@/lib/functions/getEmojiFromString'
 import { Expenses } from '@/types'
+import { formatAmount } from '@/lib/functions/formatAmount'
 
 interface Props {
   participants: Expenses
@@ -22,7 +23,7 @@ export const Participants = ({ participants, setParticipants, handleCalculateTra
                 <li key={index} className='flex items-center min-w-0'>
                   <p className='mr-2'>{getEmojiFromString(name)}</p>
                   <p className='text-ellipsis whitespace-nowrap overflow-hidden min-w-0'>{name}</p>
-                  <p className='whitespace-nowrap'>: ${amount.toFixed(2)}</p>
+                  <p className='whitespace-nowrap'>: ${formatAmount(amount)}</p>
                   <RemoveParticipant name={name} participants={participants} setParticipants={setParticipants} />
                 </li>
               ))}

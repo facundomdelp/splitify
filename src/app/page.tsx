@@ -33,7 +33,7 @@ export default function Home() {
                 className='pl-6 text-sm'
                 type='number'
                 name='amount'
-                max={10000000}
+                max={1000000000}
                 min={0}
                 step={0.01}
                 onChange={handleAmount}
