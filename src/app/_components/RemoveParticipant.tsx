@@ -48,9 +48,11 @@ export const RemoveParticipant = ({ name, participants, setParticipants }: Props
           </DialogTitle>
           <DialogDescription>
             <div className='flex items-center justify-center gap-6 mt-4'>
-              <Button variant='outline' onClick={handleRemoveParticipant} className='w-20'>
-                Si
-              </Button>
+              <DialogClose asChild>
+                <Button variant='outline' onClick={handleRemoveParticipant} className='w-20'>
+                  Si
+                </Button>
+              </DialogClose>
               <DialogClose asChild>
                 <Button className='w-20'>No</Button>
               </DialogClose>
