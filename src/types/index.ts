@@ -1,5 +1,5 @@
 export interface Expenses {
-  [person: string]: number
+  [participant: string]: number
 }
 
 export interface Transfer {

@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 
 const MOBILE_BREAKPOINT = 600
 const LOGO_WIDTH = 100
+const ISOLOGO_SIZE = 40
 
 export default function RootLayout({
   children,
@@ -31,9 +32,9 @@ export default function RootLayout({
           <main className={`w-[${MOBILE_BREAKPOINT.toString()}px] text-gray-600 flex`}>{children}</main>
         </div>
 
-        <footer className='w-full bg-green-950 flex justify-center items-center h-20'>
+        <footer className='w-full bg-green-950 flex justify-center items-center h-16'>
           <div className={`w-[${MOBILE_BREAKPOINT.toString()}px] flex justify-center items-center mt-1`}>
-            <Image src='/Isologo.png' alt='Splitify' width={50} height={50} />
+            <Image src='/Isologo.png' alt='Splitify' width={ISOLOGO_SIZE} height={ISOLOGO_SIZE} />
           </div>
         </footer>
       </body>
