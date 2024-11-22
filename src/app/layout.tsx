@@ -8,7 +8,7 @@ import './globals.css'
 const montserrat = Montserrat({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Splitify App',
+  title: 'Splitify',
   description: '🤑 Simplifica tus gastos en grupo con Splitify',
 }
 
