@@ -1,8 +1,8 @@
 import { formatAmount } from '@/lib/functions/formatAmount'
 import { getEmojiFromString } from '@/lib/functions/getEmojiFromString'
 import { CheckIcon, Clipboard } from 'lucide-react'
-import { useCopyTransfersToClipboard } from '../hooks'
 import { Transfer } from '@/types'
+import { useCopyTransfersToClipboard } from './hooks'
 
 interface Props {
   transfers: Transfer[]

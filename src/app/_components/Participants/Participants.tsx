@@ -1,7 +1,7 @@
-import { RemoveParticipant } from './RemoveParticipant'
 import { getEmojiFromString } from '@/lib/functions/getEmojiFromString'
 import { Expenses } from '@/types'
 import { formatAmount } from '@/lib/functions/formatAmount'
+import { RemoveParticipant } from './RemoveParticipant'
 
 interface Props {
   participants: Expenses

@@ -1,72 +1,6 @@
 import { calculateTransfers } from '@/lib/functions/calculateTransfers'
-import { copyToClipboard } from '@/lib/functions/copyToClipboard'
-import { formatAmount } from '@/lib/functions/formatAmount'
-import { getEmojiFromString } from '@/lib/functions/getEmojiFromString'
 import { useLocalStorage } from '@/lib/hooks/useLocalStore'
 import { Expenses, Transfer } from '@/types'
-import { useState } from 'react'
-
-export const useHandleParticipantsForm = () => {
-  const [amount, setAmount] = useState(0)
-  const [name, setName] = useState('')
-
-  const [participants, setParticipants] = useLocalStorage<Expenses>('participants', {})
-
-  const handleAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
-
-    if (value.startsWith('0') && value.length > 1 && !value.includes('.')) {
-      e.target.value = value.slice(1)
-    }
-
-    const decimalIndex = value.indexOf('.')
-    if (decimalIndex !== -1 && value.slice(decimalIndex + 1).length > 2) {
-      e.target.value = value.slice(0, decimalIndex + 3)
-      return
-    }
-
-    const amount = parseFloat(value)
-
-    if (!amount) {
-      setAmount(0)
-      return
-    }
-
-    const max = parseFloat(e.target.max)
-    const min = parseFloat(e.target.min)
-    const step = parseFloat(e.target.step)
-
-    if (amount >= min && amount <= max) {
-      const roundedAmount = Number(amount.toFixed(2))
-      const steps = Math.round((roundedAmount - min) / step)
-      const adjustedAmount = Number((min + steps * step).toFixed(2))
-
-      setAmount(adjustedAmount)
-    }
-  }
-
-  const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
-    const maxLength = e.target.maxLength
-
-    if (value.length <= maxLength) {
-      setName(e.target.value)
-    }
-  }
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
-    if (!name.trim()) return
-
-    setParticipants({ ...participants, [name.trim()]: amount })
-
-    setName('')
-    setAmount(0)
-  }
-
-  return { participants, setParticipants, name, amount, handleAmount, handleName, handleSubmit }
-}
 
 export const useCalculateTransfers = ({
   participants,
@@ -83,25 +17,4 @@ export const useCalculateTransfers = ({
   }
 
   return { transfers, setTransfers, handleCalculateTransfers }
-}
-
-export const useCopyTransfersToClipboard = ({ transfers }: { transfers: Transfer[] }) => {
-  const [copied, setCopied] = useState(false)
-
-  const handleCopyToClipboard = () => {
-    copyToClipboard(
-      [
-        ...transfers.map(
-          (transfer) =>
-            `${getEmojiFromString(transfer.debtor)} ${transfer.debtor} debe $${formatAmount(transfer.amount)} a ${transfer.creditor} ${getEmojiFromString(transfer.creditor)}`,
-        ),
-        '\nhttps://splitify.me/share',
-      ].join('\n'),
-    )
-
-    setCopied(true)
-    setTimeout(() => setCopied(false), 3000)
-  }
-
-  return { handleCopyToClipboard, copied }
 }

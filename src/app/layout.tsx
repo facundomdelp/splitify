@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
-import Header from './_components/Header'
-import Footer from './_components/Footer'
+import Header from './_components/Layout/Header'
+import Footer from './_components/Layout/Footer'
 import { GoogleTagManager } from '@next/third-parties/google'
 import './globals.css'
 
