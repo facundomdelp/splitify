@@ -13,8 +13,8 @@ export default function Home() {
   const { transfers, setTransfers, handleCalculateTransfers } = useCalculateTransfers({ participants, setParticipants })
 
   return (
-    <main className='my-8 mx-4 flex flex-col gap-8 flex-1 min-w-0'>
-      <section className='flex flex-col gap-2 min-w-0'>
+    <main className='my-8 mx-4 flex flex-col gap-8 max-w-[600px] text-gray-600 flex-1'>
+      <section className='flex flex-col gap-2'>
         <p className='text-sm'>Añadir participante</p>
         <form className='flex gap-4 flex-wrap' onSubmit={handleSubmit}>
           <Input

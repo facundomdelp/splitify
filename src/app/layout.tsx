@@ -1,17 +1,15 @@
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
-import Image from 'next/image'
+import Header from './_components/Header'
+import Footer from './_components/Footer'
 import './globals.css'
 
 const montserrat = Montserrat({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Splitify App',
-  description: 'Simplifica tus gastos en grupo con Splitify',
+  description: '🤑 Simplifica tus gastos en grupo con Splitify',
 }
-
-const LOGO_WIDTH = 120
-const ISOLOGO_SIZE = 40
 
 export default function RootLayout({
   children,
@@ -21,21 +19,11 @@ export default function RootLayout({
   return (
     <html lang='en' className='h-full'>
       <body className={`${montserrat} antialiased bg-dark text-white relative min-h-full flex flex-col`}>
-        <header className='w-full bg-green-500 flex justify-center items-center h-20 shadow-md rounded-b-sm'>
-          <div className='max-w-[600px] flex justify-center items-center mt-2'>
-            <Image src='/Splitify.png' alt='Splitify' width={LOGO_WIDTH} height={LOGO_WIDTH / (10 / 3)} />
-          </div>
-        </header>
+        <Header />
 
-        <div className='text-dark flex justify-center flex-1 w-full min-w-0'>
-          <div className='max-w-[600px] text-gray-600 flex flex-1 min-w-0'>{children}</div>
-        </div>
+        <div className='text-dark flex justify-center flex-1 w-full min-h-0'>{children}</div>
 
-        <footer className='w-full bg-green-950 flex justify-center items-center h-16'>
-          <div className='max-w-[600px] flex justify-center items-center mt-1'>
-            <Image src='/Isologo.png' alt='Splitify' width={ISOLOGO_SIZE} height={ISOLOGO_SIZE} />
-          </div>
-        </footer>
+        <Footer />
       </body>
     </html>
   )
