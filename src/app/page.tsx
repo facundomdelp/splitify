@@ -3,14 +3,19 @@
 import { Button } from '@/components/ui/button'
 import { Participants } from './_components/Participants/Participants'
 import Transfers from './_components/Transfers'
-import { useCalculateTransfers } from './hooks'
 import ParticipantsForm from './_components/Participants/ParticipantsForm'
 import { useLocalStorage } from '@/lib/hooks/useLocalStore'
-import { Expenses } from '@/types'
+import { Expenses, Transfer } from '@/types'
+import { calculateTransfers } from '@/lib/functions/calculateTransfers'
 
 export default function Home() {
   const [participants, setParticipants] = useLocalStorage<Expenses>('participants', {})
-  const { transfers, setTransfers, handleCalculateTransfers } = useCalculateTransfers({ participants, setParticipants })
+  const [transfers, setTransfers] = useLocalStorage<Transfer[]>('transfers', [])
+
+  const handleCalculateTransfers = () => {
+    setTransfers(calculateTransfers(participants))
+    setParticipants({})
+  }
 
   return (
     <main className='my-8 mx-4 flex flex-col gap-8 max-w-[600px] text-gray-600 flex-1'>
