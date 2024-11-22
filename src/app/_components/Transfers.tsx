@@ -1,4 +1,3 @@
-import { Button } from '@/components/ui/button'
 import { formatAmount } from '@/lib/functions/formatAmount'
 import { getEmojiFromString } from '@/lib/functions/getEmojiFromString'
 import { CheckIcon, Clipboard } from 'lucide-react'
@@ -7,10 +6,9 @@ import { Transfer } from '@/types'
 
 interface Props {
   transfers: Transfer[]
-  setTransfers: React.Dispatch<React.SetStateAction<Transfer[]>>
 }
 
-const Transfers = ({ transfers, setTransfers }: Props) => {
+const Transfers = ({ transfers }: Props) => {
   const { handleCopyToClipboard, copied } = useCopyTransfersToClipboard({ transfers })
 
   return (
@@ -47,12 +45,6 @@ const Transfers = ({ transfers, setTransfers }: Props) => {
             </li>
           ))}
         </ul>
-      </section>
-
-      <section className='mt-auto flex'>
-        <Button className='flex-1' onClick={() => setTransfers([])} variant='outline'>
-          Limpiar
-        </Button>
       </section>
     </>
   )

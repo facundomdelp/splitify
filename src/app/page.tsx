@@ -54,13 +54,30 @@ export default function Home() {
       </section>
 
       {!transfers.length ? (
-        <Participants
-          participants={participants}
-          setParticipants={setParticipants}
-          handleCalculateTransfers={handleCalculateTransfers}
-        />
+        <Participants participants={participants} setParticipants={setParticipants} />
       ) : (
-        <Transfers transfers={transfers} setTransfers={setTransfers} />
+        <Transfers transfers={transfers} />
+      )}
+
+      {!transfers.length ? (
+        <section className='mt-auto flex'>
+          <Button
+            className='flex-1'
+            onClick={handleCalculateTransfers}
+            disabled={
+              Object.values(participants).length < 2 ||
+              Object.values(participants).reduce((cv, acc) => (cv = acc), 0) == 0
+            }
+          >
+            Calcular Saldos
+          </Button>
+        </section>
+      ) : (
+        <section className='mt-auto flex'>
+          <Button className='flex-1' onClick={() => setTransfers([])} variant='outline'>
+            Limpiar
+          </Button>
+        </section>
       )}
     </main>
   )
