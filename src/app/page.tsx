@@ -22,7 +22,7 @@ export default function Home() {
             name='name'
             maxLength={50}
             onChange={handleName}
-            value={name}
+            value={transfers.length > 0 ? '-' : name}
             disabled={transfers.length > 0}
           />
 

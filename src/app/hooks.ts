@@ -17,19 +17,32 @@ export const useHandleParticipantsForm = () => {
 
     if (value.startsWith('0') && value.length > 1 && !value.includes('.')) {
       e.target.value = value.slice(1)
+      console.log('facu')
+    }
+
+    const decimalIndex = value.indexOf('.')
+    if (decimalIndex !== -1 && value.slice(decimalIndex + 1).length > 2) {
+      e.target.value = value.slice(0, decimalIndex + 3)
+      return
     }
 
     const amount = parseFloat(value)
+
+    if (!amount) {
+      setAmount(0)
+      return
+    }
+
     const max = parseFloat(e.target.max)
     const min = parseFloat(e.target.min)
     const step = parseFloat(e.target.step)
 
-    if (!amount) {
-      setAmount(0)
-    }
+    if (amount >= min && amount <= max) {
+      const roundedAmount = Number(amount.toFixed(2))
+      const steps = Math.round((roundedAmount - min) / step)
+      const adjustedAmount = Number((min + steps * step).toFixed(2))
 
-    if (amount >= min && amount <= max && (amount % step === 0 || (amount * 100) % (step * 100) === 0)) {
-      setAmount(amount)
+      setAmount(adjustedAmount)
     }
   }
 

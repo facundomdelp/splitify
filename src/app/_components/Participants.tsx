@@ -34,7 +34,14 @@ export const Participants = ({ participants, setParticipants, handleCalculateTra
       </section>
 
       <section className='mt-auto flex'>
-        <Button className='flex-1' onClick={handleCalculateTransfers} disabled={Object.values(participants).length < 2}>
+        <Button
+          className='flex-1'
+          onClick={handleCalculateTransfers}
+          disabled={
+            Object.values(participants).length < 2 ||
+            Object.values(participants).reduce((cv, acc) => (cv = acc), 0) == 0
+          }
+        >
           Calcular Saldos
         </Button>
       </section>
