@@ -17,7 +17,6 @@ export const useHandleParticipantsForm = () => {
 
     if (value.startsWith('0') && value.length > 1 && !value.includes('.')) {
       e.target.value = value.slice(1)
-      console.log('facu')
     }
 
     const decimalIndex = value.indexOf('.')
