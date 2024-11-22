@@ -14,7 +14,7 @@ export const Participants = ({ participants, setParticipants }: Props) => {
       <section className='text-sm h-full flex flex-col min-w-0'>
         <h2 className='text-lg font-bold'>Participantes</h2>
         {Object.keys(participants).length ? (
-          <ul className='mt-4 flex flex-col gap-3'>
+          <ul className='mt-4 flex flex-col gap-3 min-w-0'>
             {Object.entries(participants)
               .toReversed()
               .map(([name, amount], index) => (
@@ -22,7 +22,12 @@ export const Participants = ({ participants, setParticipants }: Props) => {
                   <p className='mr-2'>{getEmojiFromString(name)}</p>
                   <p className='text-ellipsis whitespace-nowrap overflow-hidden min-w-0'>{name}</p>
                   <p className='whitespace-nowrap'>: ${formatAmount(amount)}</p>
-                  <RemoveParticipant name={name} participants={participants} setParticipants={setParticipants} />
+                  <RemoveParticipant
+                    name={name}
+                    participants={participants}
+                    setParticipants={setParticipants}
+                    className='mx-1'
+                  />
                 </li>
               ))}
           </ul>

@@ -7,6 +7,7 @@ import ParticipantsForm from './_components/Participants/ParticipantsForm'
 import { useLocalStorage } from '@/lib/hooks/useLocalStore'
 import { Expenses, Transfer } from '@/types'
 import { calculateTransfers } from '@/lib/functions/calculateTransfers'
+import { CleanTransfers } from './_components/Transfers/CleanTransfers'
 
 export default function Home() {
   const [participants, setParticipants] = useLocalStorage<Expenses>('participants', {})
@@ -18,7 +19,7 @@ export default function Home() {
   }
 
   return (
-    <main className='my-8 mx-4 flex flex-col gap-8 max-w-[600px] text-gray-600 flex-1'>
+    <main className='my-8 mx-4 flex flex-col gap-8 max-w-[600px] text-gray-600 flex-1 min-w-0'>
       <ParticipantsForm participants={participants} setParticipants={setParticipants} disabled={transfers.length > 0} />
 
       {!transfers.length ? (
@@ -42,9 +43,7 @@ export default function Home() {
         </section>
       ) : (
         <section className='mt-auto flex'>
-          <Button className='flex-1' onClick={() => setTransfers([])} variant='outline'>
-            Limpiar
-          </Button>
+          <CleanTransfers setTransfers={setTransfers} />
         </section>
       )}
     </main>

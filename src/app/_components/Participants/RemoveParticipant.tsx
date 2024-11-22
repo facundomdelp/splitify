@@ -1,16 +1,8 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
-import {
-  DialogHeader,
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogTitle,
-  DialogDescription,
-  DialogClose,
-} from '@/components/ui/dialog'
+import { ConfirmationModal } from '@/components/ConfirmationModal/ConfirmationModal'
 import { getEmojiFromString } from '@/lib/functions/getEmojiFromString'
+import { cn } from '@/lib/utils'
 import { Expenses } from '@/types'
 import { X } from 'lucide-react'
 
@@ -18,9 +10,10 @@ interface Props {
   name: string
   participants: Expenses
   setParticipants: React.Dispatch<React.SetStateAction<Expenses>>
+  className?: string
 }
 
-export const RemoveParticipant = ({ name, participants, setParticipants }: Props) => {
+export const RemoveParticipant = ({ name, participants, setParticipants, className }: Props) => {
   const handleRemoveParticipant = () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { [name]: _, ...remainingParticipants } = participants
@@ -29,39 +22,22 @@ export const RemoveParticipant = ({ name, participants, setParticipants }: Props
   }
 
   return (
-    <Dialog>
-      <DialogTrigger className='h-full flex items-end ml-2'>
-        <X className='size-[18px] text-gray-500' />
-      </DialogTrigger>
-      <DialogContent
-        onPointerDownOutside={(e) => e.preventDefault()}
-        className='min-w-0 w-[80vw] max-w-[400px] flex justify-center rounded-xl text-gray-700 px-5'
-      >
-        <DialogHeader className='min-w-0'>
-          <DialogTitle className='text-center font-normal text-balance leading-7 mt-5 max-w-full gap-1 flex flex-wrap justify-center'>
-            ¿Quieres eliminar a
-            <div className='flex flex-nowrap space-x-1 min-w-0'>
-              <p>{getEmojiFromString(name)}</p>
-              <strong className='font-semibold max-w-full text-ellipsis whitespace-nowrap overflow-hidden block'>
-                {name}
-              </strong>
-            </div>
-            de la lista?
-          </DialogTitle>
-          <DialogDescription>
-            <div className='flex items-center justify-center gap-6 mt-4'>
-              <DialogClose asChild>
-                <Button variant='outline' onClick={handleRemoveParticipant} className='w-20'>
-                  Si
-                </Button>
-              </DialogClose>
-              <DialogClose asChild>
-                <Button className='w-20'>No</Button>
-              </DialogClose>
-            </div>
-          </DialogDescription>
-        </DialogHeader>
-      </DialogContent>
-    </Dialog>
+    <ConfirmationModal
+      title={
+        <>
+          ¿Estas seguro que quieres eliminar a
+          <div className='flex flex-nowrap space-x-1 min-w-0'>
+            <p>{getEmojiFromString(name)}</p>
+            <strong className='font-semibold max-w-full text-ellipsis whitespace-nowrap overflow-hidden block'>
+              {name}
+            </strong>
+          </div>
+          de la lista?
+        </>
+      }
+      onConfirm={handleRemoveParticipant}
+    >
+      <X className={cn('size-[18px] text-gray-500 hover:text-red-800 h-[20px] items-center', className)} />
+    </ConfirmationModal>
   )
 }
