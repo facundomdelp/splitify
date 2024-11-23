@@ -7,8 +7,8 @@ import {
   DialogTrigger,
   DialogContent,
   DialogTitle,
-  DialogDescription,
   DialogClose,
+  DialogFooter,
 } from '@/components/ui/dialog'
 
 interface Props {
@@ -30,18 +30,16 @@ export const ConfirmationModal = ({ children, className, title, onConfirm }: Pro
           <DialogTitle className='text-center font-normal text-balance leading-7 mt-5 max-w-full gap-1 flex flex-wrap justify-center'>
             {title}
           </DialogTitle>
-          <DialogDescription className='flex justify-center'>
-            <div className='flex items-center justify-center gap-5 mt-4 w-48'>
-              <DialogClose asChild>
-                <Button variant='outline' onClick={onConfirm} className='flex-1'>
-                  Si
-                </Button>
-              </DialogClose>
-              <DialogClose asChild>
-                <Button className='flex-1'>No</Button>
-              </DialogClose>
-            </div>
-          </DialogDescription>
+          <DialogFooter className='pt-4 px-6'>
+            <DialogClose asChild>
+              <Button variant='outline' onClick={onConfirm} className='flex-1'>
+                Si
+              </Button>
+            </DialogClose>
+            <DialogClose asChild>
+              <Button className='flex-1'>No</Button>
+            </DialogClose>
+          </DialogFooter>
         </DialogHeader>
       </DialogContent>
     </Dialog>

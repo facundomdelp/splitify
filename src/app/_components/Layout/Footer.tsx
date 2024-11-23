@@ -10,7 +10,7 @@ const Footer = () => {
     <footer className='w-full bg-green-950 flex justify-center items-center flex-shrink-0 py-2 px-3'>
       <div className='max-w-[600px] flex justify-center items-center mt-1 relative flex-1'>
         <Image src='/Isologo.png' alt='Splitify' width={ISOLOGO_SIZE} height={ISOLOGO_SIZE} />
-        <div className='flex gap-1 absolute right-0 bottom-2'>
+        <div className='flex gap-1 absolute right-2 bottom-2'>
           <Link
             href='https://x.com/splitify_me'
             target='_blank'

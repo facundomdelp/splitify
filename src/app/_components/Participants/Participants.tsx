@@ -2,13 +2,15 @@ import { getEmojiFromString } from '@/lib/functions/getEmojiFromString'
 import { Expenses } from '@/types'
 import { formatAmount } from '@/lib/functions/formatAmount'
 import { RemoveParticipant } from './RemoveParticipant'
+import { Button } from '@/components/ui/button'
 
 interface Props {
   participants: Expenses
   setParticipants: React.Dispatch<React.SetStateAction<Expenses>>
+  handleCalculateTransfers: () => void
 }
 
-export const Participants = ({ participants, setParticipants }: Props) => {
+export const Participants = ({ participants, setParticipants, handleCalculateTransfers }: Props) => {
   return (
     <>
       <section className='text-sm h-full flex flex-col min-w-0'>
@@ -34,6 +36,18 @@ export const Participants = ({ participants, setParticipants }: Props) => {
         ) : (
           <p className='m-auto text-gray-500 text-center'>¡Ingresa un Participante para comenzar!</p>
         )}
+      </section>
+
+      <section className='mt-auto flex'>
+        <Button
+          className='flex-1'
+          onClick={handleCalculateTransfers}
+          disabled={
+            Object.values(participants).length < 2 || Object.values(participants).reduce((cv, acc) => cv + acc, 0) === 0
+          }
+        >
+          Calcular Saldos
+        </Button>
       </section>
     </>
   )

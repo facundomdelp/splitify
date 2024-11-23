@@ -1,14 +1,11 @@
-import { copyToClipboard } from '@/lib/functions/copyToClipboard'
 import { formatAmount } from '@/lib/functions/formatAmount'
 import { getEmojiFromString } from '@/lib/functions/getEmojiFromString'
 import { Transfer } from '@/types'
-import { useState } from 'react'
+import { useMemo } from 'react'
 
-export const useCopyTransfersToClipboard = ({ transfers }: { transfers: Transfer[] }) => {
-  const [copied, setCopied] = useState(false)
-
-  const handleCopyToClipboard = () => {
-    copyToClipboard(
+export const useCopyString = ({ transfers }: { transfers: Transfer[] }) => {
+  return useMemo(
+    () =>
       [
         ...transfers.map(
           (transfer) =>
@@ -16,11 +13,6 @@ export const useCopyTransfersToClipboard = ({ transfers }: { transfers: Transfer
         ),
         '\nhttps://splitify.me/share',
       ].join('\n'),
-    )
-
-    setCopied(true)
-    setTimeout(() => setCopied(false), 3000)
-  }
-
-  return { handleCopyToClipboard, copied }
+    [transfers],
+  )
 }
