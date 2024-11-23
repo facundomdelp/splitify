@@ -35,7 +35,7 @@ export default function Home() {
             onClick={handleCalculateTransfers}
             disabled={
               Object.values(participants).length < 2 ||
-              Object.values(participants).reduce((cv, acc) => (cv = acc), 0) == 0
+              Object.values(participants).reduce((cv, acc) => cv + acc, 0) === 0
             }
           >
             Calcular Saldos
