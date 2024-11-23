@@ -25,7 +25,7 @@ export const ConfirmationModal = ({ children, className, title, onConfirm }: Pro
           <DialogTitle className='text-center font-normal text-balance leading-7 mt-5 max-w-full gap-1 flex flex-wrap justify-center'>
             {title}
           </DialogTitle>
-          <DialogFooter className='pt-4 px-6'>
+          <DialogFooter className='pt-4 px-6 flex-row gap-3'>
             <Close asChild>
               <Button variant='outline' onClick={onConfirm} className='flex-1'>
                 Si
