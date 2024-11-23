@@ -4,9 +4,10 @@ import { useState } from 'react'
 interface useParticipantsFormProps {
   participants: Expenses
   setParticipants: React.Dispatch<React.SetStateAction<Expenses>>
+  nameInputRef: React.RefObject<HTMLInputElement>
 }
 
-export const useParticipantsForm = ({ participants, setParticipants }: useParticipantsFormProps) => {
+export const useParticipantsForm = ({ participants, setParticipants, nameInputRef }: useParticipantsFormProps) => {
   const [amount, setAmount] = useState(0)
   const [name, setName] = useState('')
 
@@ -61,6 +62,10 @@ export const useParticipantsForm = ({ participants, setParticipants }: usePartic
 
     setName('')
     setAmount(0)
+
+    if (nameInputRef.current) {
+      nameInputRef.current.focus()
+    }
   }
 
   return { name, handleName, amount, handleAmount, handleSubmit }

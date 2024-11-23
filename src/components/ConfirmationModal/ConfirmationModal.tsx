@@ -1,8 +1,8 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { DialogHeader, Dialog, DialogTrigger, DialogContent, DialogTitle, DialogFooter } from '@/components/ui/dialog'
-import { Close } from '@radix-ui/react-dialog'
+import { DialogHeader, Dialog, DialogContent, DialogTitle, DialogFooter } from '@/components/ui/dialog'
+import { Close, Trigger } from '@radix-ui/react-dialog'
 
 interface Props {
   children: React.ReactNode
@@ -14,7 +14,9 @@ interface Props {
 export const ConfirmationModal = ({ children, className, title, onConfirm }: Props) => {
   return (
     <Dialog>
-      <DialogTrigger className={className}>{children}</DialogTrigger>
+      <Trigger asChild className={className}>
+        {children}
+      </Trigger>
       <DialogContent
         onPointerDownOutside={(e) => e.preventDefault()}
         className='min-w-0 w-[80vw] max-w-[400px] flex justify-center rounded-xl text-gray-700 px-5'

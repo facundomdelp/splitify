@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input'
 import { Expenses } from '@/types'
 import { Plus } from 'lucide-react'
 import { useParticipantsForm } from './hooks'
+import { useRef } from 'react'
 
 interface Props {
   participants: Expenses
@@ -13,9 +14,12 @@ interface Props {
 }
 
 const ParticipantsForm = ({ participants, setParticipants, disabled }: Props) => {
+  const nameInputRef = useRef<HTMLInputElement>(null)
+
   const { name, handleName, amount, handleAmount, handleSubmit } = useParticipantsForm({
     participants,
     setParticipants,
+    nameInputRef,
   })
 
   return (
@@ -25,6 +29,7 @@ const ParticipantsForm = ({ participants, setParticipants, disabled }: Props) =>
         <Input
           className='min-w-40 flex-1'
           name='name'
+          ref={nameInputRef}
           maxLength={50}
           onChange={handleName}
           value={disabled ? '-' : name}
