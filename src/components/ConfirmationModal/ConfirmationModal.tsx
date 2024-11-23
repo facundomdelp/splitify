@@ -1,15 +1,8 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import {
-  DialogHeader,
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogTitle,
-  DialogClose,
-  DialogFooter,
-} from '@/components/ui/dialog'
+import { DialogHeader, Dialog, DialogTrigger, DialogContent, DialogTitle, DialogFooter } from '@/components/ui/dialog'
+import { Close } from '@radix-ui/react-dialog'
 
 interface Props {
   children: React.ReactNode
@@ -31,14 +24,14 @@ export const ConfirmationModal = ({ children, className, title, onConfirm }: Pro
             {title}
           </DialogTitle>
           <DialogFooter className='pt-4 px-6'>
-            <DialogClose asChild>
+            <Close asChild>
               <Button variant='outline' onClick={onConfirm} className='flex-1'>
                 Si
               </Button>
-            </DialogClose>
-            <DialogClose asChild>
+            </Close>
+            <Close asChild>
               <Button className='flex-1'>No</Button>
-            </DialogClose>
+            </Close>
           </DialogFooter>
         </DialogHeader>
       </DialogContent>
