@@ -17,7 +17,7 @@ export default function Home() {
   }
 
   return (
-    <main className='my-8 mx-4 flex flex-col gap-8 max-w-[600px] text-gray-600 flex-1 min-w-0'>
+    <main className='my-8 mx-4 flex flex-col gap-8 max-w-[600px] text-gray-600 flex-1 min-w-0 cursor-default'>
       <ParticipantsForm participants={participants} setParticipants={setParticipants} disabled={transfers.length > 0} />
 
       {!transfers.length ? (
