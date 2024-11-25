@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Expenses } from '@/types'
-import { Plus } from 'lucide-react'
+import { Plus, Undo } from 'lucide-react'
 import { useParticipantsForm } from './hooks'
 import { useRef } from 'react'
 
@@ -11,9 +11,10 @@ interface Props {
   participants: Expenses
   setParticipants: React.Dispatch<React.SetStateAction<Expenses>>
   disabled: boolean
+  onReturn?: () => void
 }
 
-const ParticipantsForm = ({ participants, setParticipants, disabled }: Props) => {
+const ParticipantsForm = ({ participants, setParticipants, disabled, onReturn }: Props) => {
   const nameInputRef = useRef<HTMLInputElement>(null)
 
   const { name, handleName, amount, handleAmount, handleSubmit } = useParticipantsForm({
@@ -51,9 +52,15 @@ const ParticipantsForm = ({ participants, setParticipants, disabled }: Props) =>
               disabled={disabled}
             />
           </div>
-          <Button size='icon' className='min-w-10 ml-auto' type='submit' disabled={name === '' || disabled}>
-            <Plus />
-          </Button>
+          {!onReturn ? (
+            <Button size='icon' className='min-w-10 ml-auto' type='submit' disabled={name === '' || disabled}>
+              <Plus />
+            </Button>
+          ) : (
+            <Button size='icon' className='min-w-10 ml-auto' type='submit' variant='outline' onClick={onReturn}>
+              <Undo />
+            </Button>
+          )}
         </div>
       </form>
     </section>

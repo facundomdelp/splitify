@@ -1,3 +1,5 @@
+'use client'
+
 import { formatAmount } from '@/lib/functions/formatAmount'
 import { getEmojiFromString } from '@/lib/functions/getEmojiFromString'
 import { Transfer } from '@/types'
@@ -8,9 +10,10 @@ import { useCopyString } from './hooks'
 interface Props {
   transfers: Transfer[]
   setTransfers: React.Dispatch<React.SetStateAction<Transfer[]>>
+  onClean?: () => void
 }
 
-const Transfers = ({ transfers, setTransfers }: Props) => {
+const Transfers = ({ transfers, setTransfers, onClean }: Props) => {
   const copyString = useCopyString({ transfers })
 
   return (
@@ -40,7 +43,7 @@ const Transfers = ({ transfers, setTransfers }: Props) => {
       </section>
 
       <section className='mt-auto flex gap-4'>
-        <CleanTransfers setTransfers={setTransfers} className='flex-1 basis-28' />
+        <CleanTransfers setTransfers={setTransfers} onClean={onClean} className='flex-1 basis-28' />
         <CopyToClipboard copyString={copyString} />
       </section>
     </>

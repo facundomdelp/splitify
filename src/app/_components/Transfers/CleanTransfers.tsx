@@ -7,14 +7,20 @@ import { Eraser } from 'lucide-react'
 
 interface Props {
   setTransfers: React.Dispatch<React.SetStateAction<Transfer[]>>
+  onClean?: () => void
   className?: string
 }
 
-export const CleanTransfers = ({ setTransfers, className }: Props) => {
+export const CleanTransfers = ({ setTransfers, onClean, className }: Props) => {
+  const handleOnConfirm = () => {
+    onClean?.()
+    setTransfers([])
+  }
+
   return (
     <ConfirmationModal
       title='¿Estas seguro que quieres limpiar el listado de transferencias?'
-      onConfirm={() => setTransfers([])}
+      onConfirm={handleOnConfirm}
       className={className}
     >
       <Button className='w-full' variant='outline'>

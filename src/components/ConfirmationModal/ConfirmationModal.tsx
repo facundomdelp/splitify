@@ -20,9 +20,13 @@ export const ConfirmationModal = ({ children, className, title, onConfirm }: Pro
       <DialogContent
         onPointerDownOutside={(e) => e.preventDefault()}
         className='min-w-0 w-[80vw] max-w-[400px] flex justify-center rounded-xl text-gray-700 px-5'
+        aria-describedby='confirmation-modal-header'
       >
         <DialogHeader className='min-w-0'>
-          <DialogTitle className='text-center font-normal text-balance leading-7 mt-5 max-w-full gap-1 flex flex-wrap justify-center'>
+          <DialogTitle
+            id='confirmation-modal-header'
+            className='text-center font-normal text-balance leading-7 mt-5 max-w-full gap-1 flex flex-wrap justify-center'
+          >
             {title}
           </DialogTitle>
           <DialogFooter className='pt-4 px-6 flex-row gap-3'>
