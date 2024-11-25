@@ -10,7 +10,6 @@ import { calculateTransfers } from '@/lib/functions/calculateTransfers'
 export default function Home() {
   const [participants, setParticipants] = useLocalStorage<Expenses>('participants', {})
   const [transfers, setTransfers] = useLocalStorage<Transfer[]>('transfers', [])
-  console.log('👽 ~ file: page.tsx:13 ~ Home ~ transfers:', transfers)
 
   const handleCalculateTransfers = () => {
     setTransfers(calculateTransfers(participants))

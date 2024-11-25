@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { DialogHeader, Dialog, DialogContent, DialogTitle, DialogFooter } from '@/components/ui/dialog'
-import { Close, Trigger } from '@radix-ui/react-dialog'
+import { Close, DialogDescription, Trigger } from '@radix-ui/react-dialog'
 
 interface Props {
   children: React.ReactNode
@@ -29,6 +29,7 @@ export const ConfirmationModal = ({ children, className, title, onConfirm }: Pro
           >
             {title}
           </DialogTitle>
+          <DialogDescription className='hidden' />
           <DialogFooter className='pt-4 px-6 flex-row gap-3'>
             <Close asChild>
               <Button variant='outline' onClick={onConfirm} className='flex-1'>
