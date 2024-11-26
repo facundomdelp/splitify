@@ -1,13 +1,14 @@
-import { Expenses } from '@/types'
+import { generateId } from '@/lib/functions/generateId'
+import { Expense } from '@/types'
 import { useState } from 'react'
 
-interface useParticipantsFormProps {
-  participants: Expenses
-  setParticipants: React.Dispatch<React.SetStateAction<Expenses>>
+interface useExpensesFormProps {
+  expenses: Expense[]
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
   nameInputRef: React.RefObject<HTMLInputElement>
 }
 
-export const useParticipantsForm = ({ participants, setParticipants, nameInputRef }: useParticipantsFormProps) => {
+export const useExpensesForm = ({ expenses, setExpenses, nameInputRef }: useExpensesFormProps) => {
   const [amount, setAmount] = useState(0)
   const [name, setName] = useState('')
 
@@ -58,7 +59,8 @@ export const useParticipantsForm = ({ participants, setParticipants, nameInputRe
 
     if (!name.trim()) return
 
-    setParticipants({ ...participants, [name.trim()]: amount })
+    const id = generateId()
+    setExpenses([...expenses, { id, name, amount }])
 
     setName('')
     setAmount(0)
