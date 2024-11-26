@@ -5,7 +5,8 @@ import { Input } from '@/components/ui/input'
 import { Expense } from '@/types'
 import { Plus, Undo } from 'lucide-react'
 import { useExpensesForm } from './hooks'
-import { useRef } from 'react'
+import { useContext, useRef } from 'react'
+import LanguageProvider, { LanguageContext } from '@/context/LanguageContext'
 
 interface Props {
   expenses: Expense[]
@@ -15,6 +16,8 @@ interface Props {
 }
 
 const ExpensesForm = ({ expenses, setExpenses, disabled, onReturn }: Props) => {
+  const { language: l } = useContext(LanguageContext)
+
   const nameInputRef = useRef<HTMLInputElement>(null)
 
   const { name, handleName, amount, handleAmount, handleSubmit } = useExpensesForm({
@@ -25,7 +28,7 @@ const ExpensesForm = ({ expenses, setExpenses, disabled, onReturn }: Props) => {
 
   return (
     <section className='flex flex-col gap-2'>
-      <p className='text-sm'>Añadir participante</p>
+      <p className='text-sm'>{getTranslation('Add participant', l)}</p>
       <form className='flex gap-4 flex-wrap' onSubmit={handleSubmit}>
         <Input
           className='min-w-40 flex-1'
@@ -68,3 +71,15 @@ const ExpensesForm = ({ expenses, setExpenses, disabled, onReturn }: Props) => {
 }
 
 export default ExpensesForm
+
+const TRANSLATIONS = {
+  'Add participant': {
+    es: 'Añadir participante',
+  },
+}
+
+const getTranslation = (key: keyof typeof TRANSLATIONS, lang: LanguageProvider['language']) => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  return TRANSLATIONS[key][lang] || key
+}

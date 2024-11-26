@@ -3,6 +3,7 @@ import { Montserrat } from 'next/font/google'
 import Header from './_components/Layout/Header'
 import Footer from './_components/Layout/Footer'
 import { GoogleTagManager } from '@next/third-parties/google'
+import LanguageProvider from '@/context/LanguageContext'
 import './globals.css'
 
 const montserrat = Montserrat({ subsets: ['latin'] })
@@ -21,11 +22,13 @@ export default function RootLayout({
     <html lang='en' className='h-full'>
       <GoogleTagManager gtmId='GTM-TSLLPXCB' />
       <body className={`${montserrat} antialiased bg-dark text-white relative min-h-full flex flex-col`}>
-        <Header />
+        <LanguageProvider>
+          <Header />
 
-        <div className='text-dark flex justify-center flex-1 w-full min-h-0'>{children}</div>
+          <div className='text-dark flex justify-center flex-1 w-full min-h-0'>{children}</div>
 
-        <Footer />
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   )
