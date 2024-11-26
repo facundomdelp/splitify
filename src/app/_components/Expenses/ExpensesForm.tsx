@@ -28,7 +28,7 @@ const ExpensesForm = ({ expenses, setExpenses, disabled, onReturn }: Props) => {
 
   return (
     <section className='flex flex-col gap-2'>
-      <p className='text-sm'>{getTranslation('Add participant', l)}</p>
+      <p className='text-sm'>{t('Add participant', l)}</p>
       <form className='flex gap-4 flex-wrap' onSubmit={handleSubmit}>
         <Input
           className='min-w-40 flex-1'
@@ -78,7 +78,7 @@ const TRANSLATIONS = {
   },
 }
 
-const getTranslation = (key: keyof typeof TRANSLATIONS, lang: LanguageProvider['language']) => {
+const t = (key: keyof typeof TRANSLATIONS, lang: LanguageProvider['language']) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   return TRANSLATIONS[key][lang] || key

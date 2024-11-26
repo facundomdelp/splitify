@@ -24,7 +24,7 @@ const Transfers = ({ transfers, setTransfers, onClean }: Props) => {
     <>
       <section className='text-sm min-w-0'>
         <div className='flex gap-5 items-center'>
-          <h2 className='text-lg font-bold'>{getTranslation('Balances', l)}</h2>
+          <h2 className='text-lg font-bold'>{t('Balances', l)}</h2>
         </div>
 
         <ul className='mt-4 flex flex-col gap-3 min-w-0'>
@@ -33,11 +33,11 @@ const Transfers = ({ transfers, setTransfers, onClean }: Props) => {
               <div className='flex items-center min-w-0 gap-1 mr-1'>
                 <p className='mr-1'>{getEmojiFromString(transfer.debtor)}</p>
                 <p className='text-ellipsis whitespace-nowrap overflow-hidden min-w-0'>{transfer.debtor}</p>
-                <p className='whitespace-nowrap'>{getTranslation('owes', l)}</p>
+                <p className='whitespace-nowrap'>{t('owes', l)}</p>
                 <strong className='font-semibold whitespace-nowrap'>${formatAmount(transfer.amount)}</strong>
               </div>
               <div className='flex items-center min-w-0 gap-1'>
-                <p className='whitespace-nowrap'>{getTranslation('to', l)}</p>
+                <p className='whitespace-nowrap'>{t('to', l)}</p>
                 <p className='text-ellipsis whitespace-nowrap overflow-hidden min-w-0'>{transfer.creditor}</p>
                 <p className='mr-1'>{getEmojiFromString(transfer.creditor)}</p>
               </div>
@@ -68,7 +68,7 @@ const TRANSLATIONS = {
   },
 }
 
-function getTranslation(key: keyof typeof TRANSLATIONS, lang: LanguageProvider['language']) {
+function t(key: keyof typeof TRANSLATIONS, lang: LanguageProvider['language']) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   return TRANSLATIONS[key][lang] || key

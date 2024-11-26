@@ -18,7 +18,7 @@ export const Expenses = ({ expenses, setExpenses, handleCalculateTransfers }: Pr
   return (
     <>
       <section className='text-sm h-full flex flex-col min-w-0'>
-        <h2 className='text-lg font-bold'>{getTranslation('Participants', l)}</h2>
+        <h2 className='text-lg font-bold'>{t('Participants', l)}</h2>
         {Object.keys(expenses).length ? (
           <ul className='mt-4 flex flex-col gap-3 min-w-0'>
             {expenses.toReversed().map(({ id, name, amount }, index) => (
@@ -31,7 +31,7 @@ export const Expenses = ({ expenses, setExpenses, handleCalculateTransfers }: Pr
             ))}
           </ul>
         ) : (
-          <p className='m-auto text-gray-500 text-center'>{getTranslation('Enter a Participant to get started!', l)}</p>
+          <p className='m-auto text-gray-500 text-center'>{t('Enter a Participant to get started!', l)}</p>
         )}
       </section>
 
@@ -52,7 +52,7 @@ export const Expenses = ({ expenses, setExpenses, handleCalculateTransfers }: Pr
             expenses.reduce((acc, { amount }) => amount + acc, 0) === 0
           }
         >
-          {getTranslation('Calculate Balances', l)}
+          {t('Calculate Balances', l)}
         </Button>
       </section>
     </>
@@ -71,7 +71,7 @@ const TRANSLATIONS = {
   },
 }
 
-function getTranslation(key: keyof typeof TRANSLATIONS, lang: LanguageProvider['language']) {
+function t(key: keyof typeof TRANSLATIONS, lang: LanguageProvider['language']) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   return TRANSLATIONS[key][lang] || key
