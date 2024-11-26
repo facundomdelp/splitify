@@ -60,7 +60,7 @@ export const useExpensesForm = ({ expenses, setExpenses, nameInputRef }: useExpe
     if (!name.trim()) return
 
     const id = generateId()
-    setExpenses([...expenses, { id, name, amount }])
+    setExpenses([...expenses, { id, name: name.trim(), amount }])
 
     setName('')
     setAmount(0)
