@@ -3,22 +3,21 @@
 import { ConfirmationModal } from '@/components/ConfirmationModal/ConfirmationModal'
 import { getEmojiFromString } from '@/lib/functions/getEmojiFromString'
 import { cn } from '@/lib/utils'
-import { Expenses } from '@/types'
+import { Expense } from '@/types'
 import { X } from 'lucide-react'
 
 interface Props {
+  id: string
   name: string
-  participants: Expenses
-  setParticipants: React.Dispatch<React.SetStateAction<Expenses>>
+  expenses: Expense[]
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
   className?: string
 }
 
-export const RemoveParticipant = ({ name, participants, setParticipants, className }: Props) => {
-  const handleRemoveParticipant = () => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { [name]: _, ...remainingParticipants } = participants
-
-    setParticipants(remainingParticipants)
+export const RemoveExpense = ({ id, name, expenses, setExpenses, className }: Props) => {
+  const handleRemoveExpense = () => {
+    const remainingExpenses = expenses.filter(({ id: expenseId }) => expenseId !== id)
+    setExpenses(remainingExpenses)
   }
 
   return (
@@ -35,7 +34,7 @@ export const RemoveParticipant = ({ name, participants, setParticipants, classNa
           de la lista?
         </>
       }
-      onConfirm={handleRemoveParticipant}
+      onConfirm={handleRemoveExpense}
     >
       <X className={cn('size-[18px] text-gray-500 hover:text-red-800 h-[20px] items-center', className)} />
     </ConfirmationModal>

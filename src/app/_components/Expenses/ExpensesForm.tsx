@@ -2,24 +2,24 @@
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Expenses } from '@/types'
+import { Expense } from '@/types'
 import { Plus, Undo } from 'lucide-react'
-import { useParticipantsForm } from './hooks'
+import { useExpensesForm } from './hooks'
 import { useRef } from 'react'
 
 interface Props {
-  participants: Expenses
-  setParticipants: React.Dispatch<React.SetStateAction<Expenses>>
+  expenses: Expense[]
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
   disabled: boolean
   onReturn?: () => void
 }
 
-const ParticipantsForm = ({ participants, setParticipants, disabled, onReturn }: Props) => {
+const ExpensesForm = ({ expenses, setExpenses, disabled, onReturn }: Props) => {
   const nameInputRef = useRef<HTMLInputElement>(null)
 
-  const { name, handleName, amount, handleAmount, handleSubmit } = useParticipantsForm({
-    participants,
-    setParticipants,
+  const { name, handleName, amount, handleAmount, handleSubmit } = useExpensesForm({
+    expenses,
+    setExpenses,
     nameInputRef,
   })
 
@@ -67,4 +67,4 @@ const ParticipantsForm = ({ participants, setParticipants, disabled, onReturn }:
   )
 }
 
-export default ParticipantsForm
+export default ExpensesForm
