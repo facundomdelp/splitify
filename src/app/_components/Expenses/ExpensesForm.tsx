@@ -5,7 +5,8 @@ import { Input } from '@/components/ui/input'
 import { Expense } from '@/types'
 import { Plus, Undo } from 'lucide-react'
 import { useExpensesForm } from './hooks'
-import { useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { Popover, PopoverContent, PopoverTrigger } from '@radix-ui/react-popover'
 
 interface Props {
   expenses: Expense[]
@@ -17,25 +18,72 @@ interface Props {
 const ExpensesForm = ({ expenses, setExpenses, disabled, onReturn }: Props) => {
   const nameInputRef = useRef<HTMLInputElement>(null)
 
-  const { name, handleName, amount, handleAmount, handleSubmit } = useExpensesForm({
-    expenses,
-    setExpenses,
-    nameInputRef,
-  })
+  const [popoverWidth, setPopoverWidth] = useState<number | undefined>()
+
+  const { name, handleName, handleSelectName, amount, handleAmount, handleSubmit, showPopover, setShowPopover } =
+    useExpensesForm({
+      expenses,
+      setExpenses,
+      nameInputRef,
+    })
+
+  const names = useMemo(
+    () =>
+      Array.from(new Set(expenses.map(({ name: expenseName }) => expenseName))).filter((expenseName) =>
+        expenseName.includes(name),
+      ),
+    [expenses, name],
+  )
+
+  useEffect(() => {
+    if (nameInputRef.current) {
+      setPopoverWidth(nameInputRef.current.offsetWidth)
+    }
+  }, [nameInputRef.current?.offsetWidth])
 
   return (
     <section className='flex flex-col gap-2'>
       <p className='text-sm'>Añadir participante</p>
       <form className='flex gap-4 flex-wrap' onSubmit={handleSubmit}>
-        <Input
-          className='min-w-40 flex-1'
-          name='name'
-          ref={nameInputRef}
-          maxLength={50}
-          onChange={handleName}
-          value={disabled ? '-' : name}
-          disabled={disabled}
-        />
+        <Popover open={names.length > 0 && showPopover}>
+          <PopoverTrigger className='flex-1'>
+            <Input
+              className='min-w-40 flex-1'
+              name='name'
+              ref={nameInputRef}
+              maxLength={50}
+              onChange={handleName}
+              value={disabled ? '-' : name}
+              disabled={disabled}
+            />
+          </PopoverTrigger>
+          <PopoverContent
+            className='bg-white shadow-md flex flex-col rounded mt-2 py-1'
+            onOpenAutoFocus={(e) => e.preventDefault()}
+            onCloseAutoFocus={(e) => e.preventDefault()}
+            style={{ width: popoverWidth }}
+          >
+            {names.map((expenseName) => (
+              <button
+                key={expenseName}
+                className='text-xs text-left px-3 py-1 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none'
+                name={expenseName}
+                onClick={(e) => handleSelectName(e)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    handleSelectName(e)
+                  }
+                  if (e.key === 'Escape') {
+                    setShowPopover(false)
+                    nameInputRef.current?.focus()
+                  }
+                }}
+              >
+                {expenseName}
+              </button>
+            ))}
+          </PopoverContent>
+        </Popover>
 
         <div className='flex gap-4 ml-auto'>
           <div className='relative min-w-20 max-w-24 flex-1'>

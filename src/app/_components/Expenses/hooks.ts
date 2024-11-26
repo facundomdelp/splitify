@@ -11,6 +11,7 @@ interface useExpensesFormProps {
 export const useExpensesForm = ({ expenses, setExpenses, nameInputRef }: useExpensesFormProps) => {
   const [amount, setAmount] = useState(0)
   const [name, setName] = useState('')
+  const [showPopover, setShowPopover] = useState(false)
 
   const handleAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
@@ -52,6 +53,23 @@ export const useExpensesForm = ({ expenses, setExpenses, nameInputRef }: useExpe
     if (value.length <= maxLength) {
       setName(e.target.value)
     }
+
+    if (value.trim().length >= 3) {
+      setShowPopover(true)
+    } else {
+      setShowPopover(false)
+    }
+  }
+
+  const handleSelectName = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.KeyboardEvent<HTMLButtonElement>,
+  ) => {
+    e.preventDefault()
+
+    nameInputRef.current?.focus()
+
+    setName(e.currentTarget.name)
+    setShowPopover(false)
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -68,7 +86,9 @@ export const useExpensesForm = ({ expenses, setExpenses, nameInputRef }: useExpe
     if (nameInputRef.current) {
       nameInputRef.current.focus()
     }
+
+    setShowPopover(false)
   }
 
-  return { name, handleName, amount, handleAmount, handleSubmit }
+  return { name, handleName, handleSelectName, amount, handleAmount, handleSubmit, showPopover, setShowPopover }
 }
