@@ -8,8 +8,8 @@ import { useExpensesForm } from './hooks'
 import { useRef } from 'react'
 
 interface Props {
-  expenses: Expense[]
-  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
+  expenses?: Expense[]
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[] | undefined>>
   disabled: boolean
   onReturn?: () => void
 }

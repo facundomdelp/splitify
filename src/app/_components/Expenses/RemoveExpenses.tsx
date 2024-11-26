@@ -10,7 +10,7 @@ interface Props {
   id: string
   name: string
   expenses: Expense[]
-  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[] | undefined>>
   className?: string
 }
 

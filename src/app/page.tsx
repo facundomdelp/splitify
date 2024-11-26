@@ -12,6 +12,8 @@ export default function Home() {
   const [transfers, setTransfers] = useLocalStorage<Transfer[]>('transfers', [])
 
   const handleCalculateTransfers = () => {
+    if (!expenses) return
+
     setTransfers(calculateTransfers(expenses))
   }
 
@@ -24,11 +26,11 @@ export default function Home() {
       <ExpensesForm
         expenses={expenses}
         setExpenses={setExpenses}
-        disabled={transfers.length > 0}
-        onReturn={transfers.length > 0 ? () => setTransfers([]) : undefined}
+        disabled={transfers ? transfers.length > 0 : false}
+        onReturn={transfers && transfers.length > 0 ? () => setTransfers([]) : undefined}
       />
 
-      {!transfers.length ? (
+      {!transfers?.length ? (
         <Expenses expenses={expenses} setExpenses={setExpenses} handleCalculateTransfers={handleCalculateTransfers} />
       ) : (
         <Transfers transfers={transfers} setTransfers={setTransfers} onClean={onClean} />

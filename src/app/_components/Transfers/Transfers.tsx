@@ -9,7 +9,7 @@ import { useCopyString } from './hooks'
 
 interface Props {
   transfers: Transfer[]
-  setTransfers: React.Dispatch<React.SetStateAction<Transfer[]>>
+  setTransfers: React.Dispatch<React.SetStateAction<Transfer[] | undefined>>
   onClean?: () => void
 }
 

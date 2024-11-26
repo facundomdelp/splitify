@@ -6,7 +6,7 @@ import { Transfer } from '@/types'
 import { Eraser } from 'lucide-react'
 
 interface Props {
-  setTransfers: React.Dispatch<React.SetStateAction<Transfer[]>>
+  setTransfers: React.Dispatch<React.SetStateAction<Transfer[] | undefined>>
   onClean?: () => void
   className?: string
 }

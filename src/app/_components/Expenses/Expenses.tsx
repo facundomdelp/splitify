@@ -5,8 +5,8 @@ import { RemoveExpense } from './RemoveExpenses'
 import { Button } from '@/components/ui/button'
 
 interface Props {
-  expenses: Expense[]
-  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
+  expenses?: Expense[]
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[] | undefined>>
   handleCalculateTransfers: () => void
 }
 
@@ -15,7 +15,7 @@ export const Expenses = ({ expenses, setExpenses, handleCalculateTransfers }: Pr
     <>
       <section className='text-sm h-full flex flex-col min-w-0'>
         <h2 className='text-lg font-bold'>Participantes</h2>
-        {Object.keys(expenses).length ? (
+        {expenses && Object.keys(expenses).length ? (
           <ul className='mt-4 flex flex-col gap-3 min-w-0'>
             {expenses.toReversed().map(({ id, name, amount }, index) => (
               <li key={index} className='flex items-center min-w-0'>
@@ -36,16 +36,17 @@ export const Expenses = ({ expenses, setExpenses, handleCalculateTransfers }: Pr
           className='flex-1'
           onClick={handleCalculateTransfers}
           disabled={
-            new Set(expenses.map(({ name }) => name)).size < 2 ||
-            new Set(
-              Object.values(
-                expenses.reduce<Record<string, number>>(
-                  (acc, { amount, name }) => ({ ...acc, [name]: (acc[name] ? acc[name] : 0) + amount }),
-                  {},
+            expenses &&
+            (new Set(expenses.map(({ name }) => name)).size < 2 ||
+              new Set(
+                Object.values(
+                  expenses.reduce<Record<string, number>>(
+                    (acc, { amount, name }) => ({ ...acc, [name]: (acc[name] ? acc[name] : 0) + amount }),
+                    {},
+                  ),
                 ),
-              ),
-            ).size === 1 ||
-            expenses.reduce((acc, { amount }) => amount + acc, 0) === 0
+              ).size === 1 ||
+              expenses.reduce((acc, { amount }) => amount + acc, 0) === 0)
           }
         >
           Calcular Saldos

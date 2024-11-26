@@ -3,8 +3,8 @@ import { Expense } from '@/types'
 import { useState } from 'react'
 
 interface useExpensesFormProps {
-  expenses: Expense[]
-  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
+  expenses?: Expense[]
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[] | undefined>>
   nameInputRef: React.RefObject<HTMLInputElement>
 }
 
@@ -60,7 +60,7 @@ export const useExpensesForm = ({ expenses, setExpenses, nameInputRef }: useExpe
     if (!name.trim()) return
 
     const id = generateId()
-    setExpenses([...expenses, { id, name, amount }])
+    setExpenses?.([...(expenses ?? []), { id, name, amount }])
 
     setName('')
     setAmount(0)
