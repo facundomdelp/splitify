@@ -105,7 +105,7 @@ export const NavBar = ({
           )}
 
           {/* TODO: REMOVE */}
-          <p className='flex-1 flex items-center text-center text-gray-900 px-2 leading-6'>
+          <p className='flex-1 flex items-center text-center text-gray-950 font-light px-2 leading-6'>
             {language?.language === 'es' ? '¿Tenes alguna propuesta?' : 'Do you have any suggestions?'}
             <br />
             {language?.language === 'es'

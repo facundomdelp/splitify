@@ -4,6 +4,7 @@ import Header from './_components/Layout/Header'
 import Footer from './_components/Layout/Footer'
 import { GoogleTagManager } from '@next/third-parties/google'
 import LanguageProvider from '@/context/LanguageContext'
+import Splash from '@/components/Splash'
 import './globals.css'
 
 const montserrat = Montserrat({ subsets: ['latin'] })
@@ -29,6 +30,8 @@ export default function RootLayout({
 
           <Footer />
         </LanguageProvider>
+
+        <Splash />
       </body>
     </html>
   )
