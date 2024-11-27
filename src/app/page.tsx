@@ -4,12 +4,12 @@ import Transfers from './_components/Transfers'
 import ExpensesForm from './_components/Expenses/ExpensesForm'
 import { Expense, Transfer } from '@/types'
 import { calculateTransfers } from '@/lib/functions/calculateTransfers'
-import { useLocalStorage } from '@/lib/hooks/useLocalStorage'
 import { Expenses } from './_components/Expenses/Expenses'
+import { useLocalStorage } from 'usehooks-ts'
 
 export default function Home() {
-  const [expenses, setExpenses] = useLocalStorage<Expense[]>('expenses', [])
-  const [transfers, setTransfers] = useLocalStorage<Transfer[]>('transfers', [])
+  const [expenses, setExpenses] = useLocalStorage<Expense[]>('expenses', [], { initializeWithValue: false })
+  const [transfers, setTransfers] = useLocalStorage<Transfer[]>('transfers', [], { initializeWithValue: false })
 
   const handleCalculateTransfers = () => {
     setTransfers(calculateTransfers(expenses))

@@ -1,8 +1,8 @@
 'use client'
 
-import { useLocalStorage } from '@/lib/hooks/useLocalStorage'
 import { TRANSLATIONS } from '@/translations'
 import React from 'react'
+import { useLocalStorage } from 'usehooks-ts'
 
 interface LanguageProvider {
   language?: 'es' | 'en'
@@ -17,7 +17,9 @@ export const LanguageContext = React.createContext<LanguageProvider>({
 })
 
 const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
-  const [language, setLanguage] = useLocalStorage<LanguageProvider['language']>('language', 'en')
+  const [language, setLanguage] = useLocalStorage<LanguageProvider['language']>('language', 'en', {
+    initializeWithValue: false,
+  })
 
   const t = (key: keyof typeof TRANSLATIONS, variables: { [variable: string]: string } = {}) => {
     const text = TRANSLATIONS[key][language as 'es'] || key
