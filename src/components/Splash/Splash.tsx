@@ -21,7 +21,7 @@ const Splash = () => {
   return (
     isVisible && (
       <div className='absolute inset-0 flex items-center justify-center bg-green-950 text-white z-50'>
-        <div className='text-center animate-slide-up'>
+        <div className='text-center opacity-0 animate-slide-up'>
           <Image src='/Isologo.png' alt='Splitify' width={ISOLOGO_SIZE} height={ISOLOGO_SIZE} />
         </div>
       </div>
