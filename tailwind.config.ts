@@ -57,6 +57,22 @@ export default {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      keyframes: {
+        'slide-up': {
+          from: {
+            transform: 'translateY(30vh)',
+            'transition-delay': '300ms',
+            opacity: '0',
+          },
+          to: {
+            transform: 'translateY(0)',
+            opacity: '1',
+          },
+        },
+      },
+      animation: {
+        'slide-up': 'slide-up 300ms ease-out',
+      },
     },
   },
   plugins: [tailwindcssAnimate],
