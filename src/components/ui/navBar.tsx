@@ -76,7 +76,7 @@ export const NavBar = ({
       <DrawerTitle className='hidden' /> {/* For avoiding console error */}
       <DrawerContent
         className={cn(
-          'overflow-y-auto text-black h-full mr-12 max-w-[350px] overflow-x-hidden border-none',
+          'overflow-y-auto text-black h-full mr-12 max-w-[320px] overflow-x-hidden border-none',
           direction === 'left' ? 'mr-auto rounded-tl-none' : 'ml-auto mr-0 rounded-tr-none',
         )}
       >
