@@ -71,7 +71,7 @@ export default {
         },
       },
       animation: {
-        'slide-up': 'slide-up 300ms ease-out',
+        'slide-up': 'slide-up 200ms ease-out forwards',
       },
     },
   },

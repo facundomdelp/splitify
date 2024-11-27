@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
-const ISOLOGO_SIZE = 180
+const ISOLOGO_SIZE = 200
 const DURATION = 400
 
 const Splash = () => {
