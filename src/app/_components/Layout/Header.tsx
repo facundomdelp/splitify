@@ -2,22 +2,15 @@
 
 import XLogo from '@/components/icons/XLogo'
 import { NavBar } from '@/components/ui/navBar'
-import LanguageProvider, { LanguageContext } from '@/context/LanguageContext'
+import { LanguageContext } from '@/context/LanguageContext'
 import { MailIcon } from 'lucide-react'
 import Image from 'next/image'
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 
 const LOGO_WIDTH = 120
 
 const Header = () => {
   const { setLanguage, language } = useContext(LanguageContext)
-
-  useEffect(() => {
-    if (!language) {
-      const browserLang = navigator.language.split('-')[0]
-      setLanguage((['en', 'es'].includes(browserLang) ? browserLang : 'es') as LanguageProvider['language'])
-    }
-  }, [setLanguage, language])
 
   return (
     <header className='w-full bg-green-500 flex justify-center items-center h-20 shadow-md rounded-b-sm flex-shrink-0 relative'>
