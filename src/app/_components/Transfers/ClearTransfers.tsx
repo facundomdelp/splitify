@@ -23,7 +23,7 @@ export const CleanTransfers = ({ setTransfers, onClean, className }: Props) => {
 
   return (
     <ConfirmationModal
-      title='¿Estas seguro que quieres limpiar el listado de transferencias?'
+      title={t('Are you sure you want to clear the transfer list?')}
       onConfirm={handleOnConfirm}
       className={className}
     >

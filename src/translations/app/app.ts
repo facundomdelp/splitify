@@ -29,6 +29,9 @@ const transfers = {
 }
 
 const clear_transfers = {
+  'Are you sure you want to clear the transfer list?': {
+    es: '¿Estas seguro que quieres limpiar el listado de transferencias?',
+  },
   Clear: {
     es: 'Limpiar',
   },
