@@ -10,7 +10,6 @@ const Splash = () => {
   const [isVisible, setIsVisible] = useState(true)
 
   useEffect(() => {
-    // Hide splash screen after 3 seconds
     const timer = setTimeout(() => {
       setIsVisible(false)
     }, DURATION)
