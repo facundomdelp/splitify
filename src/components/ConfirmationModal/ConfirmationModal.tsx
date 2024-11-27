@@ -2,7 +2,9 @@
 
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogTitle, DialogFooter } from '@/components/ui/dialog'
+import { LanguageContext } from '@/context/LanguageContext'
 import { Close, Trigger } from '@radix-ui/react-dialog'
+import { useContext } from 'react'
 
 interface Props {
   children: React.ReactNode
@@ -11,7 +13,9 @@ interface Props {
   onConfirm: () => void
 }
 
-export const ConfirmationModal = ({ children, className, title, onConfirm }: Props) => {
+const ConfirmationModal = ({ children, className, title, onConfirm }: Props) => {
+  const { t } = useContext(LanguageContext)
+
   return (
     <Dialog>
       <Trigger asChild className={className}>
@@ -27,14 +31,16 @@ export const ConfirmationModal = ({ children, className, title, onConfirm }: Pro
         <DialogFooter className='pt-4 px-6 flex-row gap-3'>
           <Close asChild>
             <Button variant='outline' onClick={onConfirm} className='flex-1'>
-              Si
+              {t('Yes')}
             </Button>
           </Close>
           <Close asChild>
-            <Button className='flex-1'>No</Button>
+            <Button className='flex-1'>{t('No')}</Button>
           </Close>
         </DialogFooter>
       </DialogContent>
     </Dialog>
   )
 }
+
+export default ConfirmationModal

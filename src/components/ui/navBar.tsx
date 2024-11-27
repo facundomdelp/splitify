@@ -28,9 +28,9 @@ export const NavBar = ({
   icon?: ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>>
   logo: React.ReactNode
   language?: {
-    default: string
-    languages: Array<{ slug: LanguageProvider['language']; language: string; src: string }>
-    setLanguage: React.Dispatch<React.SetStateAction<LanguageProvider['language']>>
+    languages: Array<{ slug: Exclude<LanguageProvider['language'], undefined>; language: string; src: string }>
+    language: LanguageProvider['language']
+    setLanguage: LanguageProvider['setLanguage']
   }
   socialMedia?: Array<{
     slug: string
@@ -84,7 +84,10 @@ export const NavBar = ({
 
         <main className='p-8 flex flex-col gap-8 flex-1'>
           {language && language.languages.length > 0 && (
-            <Select defaultValue={language.default}>
+            <Select
+              value={language.language}
+              onValueChange={(value: Exclude<LanguageProvider['language'], undefined>) => language.setLanguage(value)}
+            >
               <SelectTrigger>
                 <SelectValue placeholder='Language' />
               </SelectTrigger>
@@ -103,9 +106,11 @@ export const NavBar = ({
 
           {/* TODO: REMOVE */}
           <p className='flex-1 flex items-center text-center text-gray-900 px-2 leading-6'>
-            ¿Tenes alguna propuesta?
+            {language?.language === 'es' ? '¿Tenes alguna propuesta?' : 'Do you have any suggestions?'}
             <br />
-            ¡Escribinos por X (Twitter) o por Email!
+            {language?.language === 'es'
+              ? '¡Escribinos por X (Twitter) o por Email!'
+              : 'Write to us on X (Twitter) or by Email!'}
           </p>
           {/* TODO: REMOVE */}
 

@@ -13,9 +13,11 @@ const Header = () => {
   const { setLanguage, language } = useContext(LanguageContext)
 
   useEffect(() => {
-    const browserLang = navigator.language.split('-')[0]
-    setLanguage((['en', 'es'].includes(browserLang) ? browserLang : 'es') as LanguageProvider['language'])
-  }, [setLanguage])
+    if (!language) {
+      const browserLang = navigator.language.split('-')[0]
+      setLanguage((['en', 'es'].includes(browserLang) ? browserLang : 'es') as LanguageProvider['language'])
+    }
+  }, [setLanguage, language])
 
   return (
     <header className='w-full bg-green-500 flex justify-center items-center h-20 shadow-md rounded-b-sm flex-shrink-0 relative'>
@@ -27,7 +29,7 @@ const Header = () => {
         logo={<Image src='/Splitify.png' alt='Splitify' width={LOGO_WIDTH} height={LOGO_WIDTH / (10 / 3)} />}
         className='absolute right-4 top-1/2 -translate-y-1/2'
         language={{
-          default: language,
+          language,
           languages: [
             { slug: 'es', language: 'Español', src: '/es.svg' },
             { slug: 'en', language: 'English', src: '/gb.svg' },

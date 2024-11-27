@@ -1,9 +1,9 @@
 import { getEmojiFromString } from '@/lib/functions/getEmojiFromString'
 import { Expense } from '@/types'
 import { formatAmount } from '@/lib/functions/formatAmount'
-import { RemoveExpense } from './RemoveExpenses'
+import { RemoveExpense } from './RemoveExpense'
 import { Button } from '@/components/ui/button'
-import LanguageProvider, { LanguageContext } from '@/context/LanguageContext'
+import { LanguageContext } from '@/context/LanguageContext'
 import { useContext } from 'react'
 
 interface Props {
@@ -13,12 +13,12 @@ interface Props {
 }
 
 export const Expenses = ({ expenses, setExpenses, handleCalculateTransfers }: Props) => {
-  const { language: l } = useContext(LanguageContext)
+  const { t } = useContext(LanguageContext)
 
   return (
     <>
       <section className='text-sm h-full flex flex-col min-w-0'>
-        <h2 className='text-lg font-bold'>{t('Participants', l)}</h2>
+        <h2 className='text-lg font-bold'>{t('Participants')}</h2>
         {Object.keys(expenses).length ? (
           <ul className='mt-4 flex flex-col gap-3 min-w-0'>
             {expenses.toReversed().map(({ id, name, amount }, index) => (
@@ -31,7 +31,7 @@ export const Expenses = ({ expenses, setExpenses, handleCalculateTransfers }: Pr
             ))}
           </ul>
         ) : (
-          <p className='m-auto text-gray-500 text-center'>{t('Enter a Participant to get started!', l)}</p>
+          <p className='m-auto text-gray-500 text-center'>{t('Enter a Participant to get started!')}</p>
         )}
       </section>
 
@@ -52,27 +52,9 @@ export const Expenses = ({ expenses, setExpenses, handleCalculateTransfers }: Pr
             expenses.reduce((acc, { amount }) => amount + acc, 0) === 0
           }
         >
-          {t('Calculate Balances', l)}
+          {t('Calculate Balances')}
         </Button>
       </section>
     </>
   )
-}
-
-const TRANSLATIONS = {
-  Participants: {
-    es: 'Participantes',
-  },
-  'Enter a Participant to get started!': {
-    es: '¡Ingresa un Participante para comenzar!',
-  },
-  'Calculate Balances': {
-    es: ' Calcular Saldos',
-  },
-}
-
-function t(key: keyof typeof TRANSLATIONS, lang: LanguageProvider['language']) {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  return TRANSLATIONS[key][lang] || key
 }
