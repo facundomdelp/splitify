@@ -2,14 +2,17 @@
 
 import { copyToClipboard } from '@/lib/functions/copyToClipboard'
 import { Clipboard, CopyCheck } from 'lucide-react'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Button } from '../ui/button'
+import { LanguageContext } from '@/context/LanguageContext'
 
 interface Props {
   copyString: string
 }
 
 const CopyToClipboard = ({ copyString }: Props) => {
+  const { t } = useContext(LanguageContext)
+
   const [copied, setCopied] = useState(false)
 
   const handleCopyToClipboard = () => {
@@ -24,12 +27,12 @@ const CopyToClipboard = ({ copyString }: Props) => {
       {!copied ? (
         <>
           <Clipboard className='size-[18px]' />
-          <p>Copiar</p>
+          <p>{t('Copy')}</p>
         </>
       ) : (
         <>
           <CopyCheck className='size-[18px]' />
-          <p>¡Copiado!</p>
+          <p>{t('Pasted!')}</p>
         </>
       )}
     </Button>
