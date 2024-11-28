@@ -2334,7 +2334,7 @@ export const EMOJIS = {
   '🚪': ['door ', ' doors'],
   '🕒': ['03:[00 ', ' 15:[00 ', ' 3:[00 ', ' three o’clock'],
   '🎬': ['clapper board ', ' clapper boards'],
-  '🚫': ['forbidden ', ' prohibited'],
+  // '🚫': ['forbidden ', ' prohibited'],
   '🕓': ['04:[00 ', ' 16:[00 ', ' 4:[00 ', ' four o’clock'],
   '🎭': ['theatre ', ' theater ', ' thespians ', ' arts ', ' masks ', ' Broadway ', ' theaters ', ' thespian'],
   // '🇹🇻': ['Tuvalu ', ' Tuvaluan flag'],
