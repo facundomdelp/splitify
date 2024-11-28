@@ -1,8 +1,10 @@
+import { Translations } from '..'
+
 const expenses_form = {
   'Add participant': {
     es: 'Añadir participante',
   },
-}
+} as const satisfies Translations
 
 const expenses = {
   Participants: {
@@ -17,7 +19,7 @@ const expenses = {
   Balances: {
     es: 'Saldos',
   },
-}
+} as const satisfies Translations
 
 const transfers = {
   owes: {
@@ -26,7 +28,7 @@ const transfers = {
   to: {
     es: 'a',
   },
-}
+} as const satisfies Translations
 
 const clear_transfers = {
   'Are you sure you want to clear the transfer list?': {
@@ -35,7 +37,7 @@ const clear_transfers = {
   Clear: {
     es: 'Limpiar',
   },
-}
+} as const satisfies Translations
 
 const remove_expenses = {
   'Are you sure you want to remove': {
@@ -44,7 +46,7 @@ const remove_expenses = {
   'from the list?': {
     es: 'de la lista',
   },
-}
+} as const satisfies Translations
 
 const APP_TRANSLATIONS = {
   ...expenses_form,
@@ -52,6 +54,6 @@ const APP_TRANSLATIONS = {
   ...transfers,
   ...clear_transfers,
   ...remove_expenses,
-}
+} as const satisfies Translations
 
 export default APP_TRANSLATIONS

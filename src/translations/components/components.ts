@@ -1,3 +1,5 @@
+import { Translations } from '..'
+
 const confirmation_modal = {
   Yes: {
     es: 'Si',
@@ -5,7 +7,7 @@ const confirmation_modal = {
   No: {
     es: 'No',
   },
-}
+} as const satisfies Translations
 
 const copy_to_clipboard = {
   Copy: {
@@ -14,11 +16,11 @@ const copy_to_clipboard = {
   'Pasted!': {
     es: '¡Copiado!',
   },
-}
+} as const satisfies Translations
 
 const COMPONENTS_TRANSLATIONS = {
   ...confirmation_modal,
   ...copy_to_clipboard,
-}
+} as const satisfies Translations
 
 export default COMPONENTS_TRANSLATIONS
