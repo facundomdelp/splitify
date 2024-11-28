@@ -1,7 +1,7 @@
 'use client'
 
 import { TRANSLATIONS } from '@/translations'
-import React, { useEffect } from 'react'
+import { createContext, useEffect } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
 
 interface LanguageProvider {
@@ -10,7 +10,7 @@ interface LanguageProvider {
   t: (key: keyof typeof TRANSLATIONS, variables?: { [variable: string]: string }) => string
 }
 
-export const LanguageContext = React.createContext<LanguageProvider>({
+export const LanguageContext = createContext<LanguageProvider>({
   language: 'en',
   setLanguage: () => {},
   t: () => '',
