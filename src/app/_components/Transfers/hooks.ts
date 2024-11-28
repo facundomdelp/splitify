@@ -1,6 +1,6 @@
 import { formatAmount } from '@/lib/functions/formatAmount'
 import { getEmojiFromString } from '@/lib/functions/getEmojiFromString'
-import { Transfer } from '@/types'
+import { Transfer } from '@/types/Transfer'
 import { useMemo } from 'react'
 
 export const useCopyString = ({ transfers }: { transfers: Transfer[] }) => {

@@ -1,12 +1,12 @@
 'use client'
 
 import ConfirmationModal from '@/components/ConfirmationModal'
-import { LanguageContext } from '@/context/LanguageContext'
 import { getEmojiFromString } from '@/lib/functions/getEmojiFromString'
+import { useTranslate } from '@/lib/hooks/useTranslate'
 import { cn } from '@/lib/utils'
-import { Expense } from '@/types'
+import { Translations } from '@/types/Common'
+import { Expense } from '@/types/Expense'
 import { X } from 'lucide-react'
-import { useContext } from 'react'
 
 interface Props {
   id: string
@@ -17,12 +17,12 @@ interface Props {
 }
 
 export const RemoveExpense = ({ id, name, expenses, setExpenses, className }: Props) => {
-  const { t } = useContext(LanguageContext)
-
   const handleRemoveExpense = () => {
     const remainingExpenses = expenses.filter(({ id: expenseId }) => expenseId !== id)
     setExpenses(remainingExpenses)
   }
+
+  const t = useTranslate(translations)
 
   return (
     <ConfirmationModal
@@ -44,3 +44,12 @@ export const RemoveExpense = ({ id, name, expenses, setExpenses, className }: Pr
     </ConfirmationModal>
   )
 }
+
+const translations = {
+  'Are you sure you want to remove': {
+    es: '¿Estas seguro de que quieres eliminar a',
+  },
+  'from the list?': {
+    es: 'de la lista',
+  },
+} satisfies Translations

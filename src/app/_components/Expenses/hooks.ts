@@ -1,5 +1,5 @@
 import { generateId } from '@/lib/functions/generateId'
-import { Expense } from '@/types'
+import { Expense } from '@/types/Expense'
 import { useState } from 'react'
 
 interface useExpensesFormProps {

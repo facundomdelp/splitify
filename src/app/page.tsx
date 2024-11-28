@@ -2,7 +2,8 @@
 
 import Transfers from './_components/Transfers'
 import ExpensesForm from './_components/Expenses/ExpensesForm'
-import { Expense, Transfer } from '@/types'
+import { Expense } from '@/types/Expense'
+import { Transfer } from '@/types/Transfer'
 import { calculateTransfers } from '@/lib/functions/calculateTransfers'
 import { Expenses } from './_components/Expenses/Expenses'
 import { useLocalStorage } from 'usehooks-ts'

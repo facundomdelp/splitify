@@ -1,4 +1,5 @@
-import { Expense, Transfer } from '@/types'
+import { Expense } from '@/types/Expense'
+import { Transfer } from '@/types/Transfer'
 
 export function calculateTransfers(expenses: Expense[]): Transfer[] {
   const total = expenses.reduce((sum, { amount }) => sum + amount, 0)

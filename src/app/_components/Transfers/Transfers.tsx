@@ -2,12 +2,12 @@
 
 import { formatAmount } from '@/lib/functions/formatAmount'
 import { getEmojiFromString } from '@/lib/functions/getEmojiFromString'
-import { Transfer } from '@/types'
 import { CleanTransfers } from './ClearTransfers'
 import CopyToClipboard from '@/components/CopyToClipboard'
 import { useCopyString } from './hooks'
-import { LanguageContext } from '@/context/LanguageContext'
-import { useContext } from 'react'
+import { Transfer } from '@/types/Transfer'
+import { useTranslate } from '@/lib/hooks/useTranslate'
+import { Translations } from '@/types/Common'
 
 interface Props {
   transfers: Transfer[]
@@ -16,7 +16,7 @@ interface Props {
 }
 
 const Transfers = ({ transfers, setTransfers, onClean }: Props) => {
-  const { t } = useContext(LanguageContext)
+  const t = useTranslate(translations)
 
   const copyString = useCopyString({ transfers })
 
@@ -55,3 +55,15 @@ const Transfers = ({ transfers, setTransfers, onClean }: Props) => {
 }
 
 export default Transfers
+
+const translations = {
+  Balances: {
+    es: 'Saldos',
+  },
+  owes: {
+    es: 'debe',
+  },
+  to: {
+    es: 'a',
+  },
+} satisfies Translations

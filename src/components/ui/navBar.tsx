@@ -9,6 +9,7 @@ import { LucideProps, MenuIcon } from 'lucide-react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './select'
 import Image from 'next/image'
 import LanguageProvider from '@/context/LanguageContext'
+import { Languages } from '@/types/Common'
 
 export const NavBar = ({
   opened = false,
@@ -28,8 +29,8 @@ export const NavBar = ({
   icon?: ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>>
   logo: React.ReactNode
   language?: {
-    languages: Array<{ slug: Exclude<LanguageProvider['language'], undefined>; language: string; src: string }>
-    language: LanguageProvider['language']
+    languages: Array<{ slug: Exclude<Languages, undefined>; language: string; src: string }>
+    language: Languages
     setLanguage: LanguageProvider['setLanguage']
   }
   socialMedia?: Array<{
@@ -86,7 +87,7 @@ export const NavBar = ({
           {language && language.languages.length > 0 && (
             <Select
               value={language.language}
-              onValueChange={(value: Exclude<LanguageProvider['language'], undefined>) => language.setLanguage(value)}
+              onValueChange={(value: Exclude<Languages, undefined>) => language.setLanguage(value)}
             >
               <SelectTrigger>
                 <SelectValue placeholder='Language' />

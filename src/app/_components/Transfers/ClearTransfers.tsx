@@ -2,10 +2,10 @@
 
 import ConfirmationModal from '@/components/ConfirmationModal'
 import { Button } from '@/components/ui/button'
-import { LanguageContext } from '@/context/LanguageContext'
-import { Transfer } from '@/types'
+import { useTranslate } from '@/lib/hooks/useTranslate'
+import { Translations } from '@/types/Common'
+import { Transfer } from '@/types/Transfer'
 import { Eraser } from 'lucide-react'
-import { useContext } from 'react'
 
 interface Props {
   setTransfers: React.Dispatch<React.SetStateAction<Transfer[]>>
@@ -14,12 +14,12 @@ interface Props {
 }
 
 export const CleanTransfers = ({ setTransfers, onClean, className }: Props) => {
-  const { t } = useContext(LanguageContext)
-
   const handleOnConfirm = () => {
     onClean?.()
     setTransfers([])
   }
+
+  const t = useTranslate(translations)
 
   return (
     <ConfirmationModal
@@ -34,3 +34,12 @@ export const CleanTransfers = ({ setTransfers, onClean, className }: Props) => {
     </ConfirmationModal>
   )
 }
+
+const translations = {
+  'Are you sure you want to clear the transfer list?': {
+    es: '¿Estas seguro que quieres limpiar el listado de transferencias?',
+  },
+  Clear: {
+    es: 'Limpiar',
+  },
+} satisfies Translations

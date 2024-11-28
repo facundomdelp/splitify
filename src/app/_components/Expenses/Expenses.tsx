@@ -1,10 +1,10 @@
 import { getEmojiFromString } from '@/lib/functions/getEmojiFromString'
-import { Expense } from '@/types'
+import { Expense } from '@/types/Expense'
 import { formatAmount } from '@/lib/functions/formatAmount'
 import { RemoveExpense } from './RemoveExpense'
 import { Button } from '@/components/ui/button'
-import { LanguageContext } from '@/context/LanguageContext'
-import { useContext } from 'react'
+import { useTranslate } from '@/lib/hooks/useTranslate'
+import { Translations } from '@/types/Common'
 
 interface Props {
   expenses: Expense[]
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export const Expenses = ({ expenses, setExpenses, handleCalculateTransfers }: Props) => {
-  const { t } = useContext(LanguageContext)
+  const t = useTranslate(translations)
 
   return (
     <>
@@ -58,3 +58,18 @@ export const Expenses = ({ expenses, setExpenses, handleCalculateTransfers }: Pr
     </>
   )
 }
+
+const translations = {
+  Participants: {
+    es: 'Participantes',
+  },
+  'Enter a Participant to get started!': {
+    es: '¡Ingresa un Participante para comenzar!',
+  },
+  'Calculate Balances': {
+    es: ' Calcular Saldos',
+  },
+  Balances: {
+    es: 'Saldos',
+  },
+} satisfies Translations
