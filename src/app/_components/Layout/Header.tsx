@@ -24,8 +24,8 @@ const Header = () => {
         language={{
           language,
           languages: [
-            { slug: 'es', language: 'Español', src: '/es.jpg' },
             { slug: 'en', language: 'English', src: '/gb.jpg' },
+            { slug: 'es', language: 'Español', src: '/es.jpg' },
           ],
           setLanguage,
         }}
