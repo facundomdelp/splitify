@@ -31,7 +31,7 @@ export const Expenses = ({ expenses, setExpenses, handleCalculateTransfers }: Pr
             ))}
           </ul>
         ) : (
-          <p className='m-auto text-gray-500 text-center'>{t('Enter a Participant to get started!')}</p>
+          <p className='m-auto text-gray-500 text-center'>🤑 {t('Enter a Participant to get started!')} 💸</p>
         )}
       </section>
 
