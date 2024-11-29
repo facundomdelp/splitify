@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Montserrat } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import Header from './_components/Layout/Header'
 import Footer from './_components/Layout/Footer'
 import { GoogleTagManager } from '@next/third-parties/google'
@@ -7,7 +7,7 @@ import LanguageProvider from '@/context/LanguageContext'
 import Splash from '@/components/Splash'
 import './globals.css'
 
-const montserrat = Montserrat({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] })
 
 export const metadata: Metadata = {
   title: 'Splitify',
@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang='en' className='h-full'>
       <GoogleTagManager gtmId='GTM-TSLLPXCB' />
-      <body className={`${montserrat.className} antialiased bg-dark text-white relative min-h-full flex flex-col`}>
+      <body className={`${inter.className} antialiased bg-dark text-white relative min-h-full flex flex-col`}>
         <LanguageProvider>
           <Header />
 
