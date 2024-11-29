@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang='en' className='h-full'>
       <GoogleTagManager gtmId='GTM-TSLLPXCB' />
-      <body className={`${montserrat} antialiased bg-dark text-white relative min-h-full flex flex-col`}>
+      <body className={`${montserrat.className} antialiased bg-dark text-white relative min-h-full flex flex-col`}>
         <LanguageProvider>
           <Header />
 
