@@ -40,7 +40,9 @@ export const RemoveExpense = ({ id, name, expenses, setExpenses, className }: Pr
       }
       onConfirm={handleRemoveExpense}
     >
-      <X className={cn('size-[18px] text-gray-500 hover:text-red-800 h-[20px] items-center', className)} />
+      <X
+        className={cn('size-[18px] text-gray-500 hover:text-red-800 h-[20px] items-center cursor-pointer', className)}
+      />
     </ConfirmationModal>
   )
 }
