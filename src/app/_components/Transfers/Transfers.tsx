@@ -8,6 +8,8 @@ import { Transfer } from '@/types/Transfer'
 import { useTranslate } from '@/lib/hooks/useTranslate'
 import { Translations } from '@/types/Common'
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
+// import { Button } from '@/components/ui/button'
+// import { ArrowLeft, ArrowRight } from 'lucide-react'
 
 interface Props {
   transfers: Transfer[]
@@ -16,6 +18,8 @@ interface Props {
 }
 
 const Transfers = ({ transfers, setTransfers, onClean }: Props) => {
+  // const [fractionDigits, setFractionDigits] = useState(2)
+
   const t = useTranslate(translations)
 
   const copyString = useCopyString({ transfers })
@@ -24,8 +28,20 @@ const Transfers = ({ transfers, setTransfers, onClean }: Props) => {
   return (
     <>
       <section className='text-sm min-w-0'>
-        <div className='flex gap-5 items-center'>
+        <div className='flex items-center gap-2'>
           <h2 className='text-lg font-bold'>{t('Balances')}</h2>
+          {/* <Button
+            size='icon'
+            variant='outline'
+            className='h-[20px] w-[45px] gap-[3px] text-[8px] text-gray-500 ml-auto'
+          >
+            0.1
+            <ArrowLeft />
+          </Button>
+          <Button size='icon' variant='outline' className='h-[20px] w-[45px] gap-[3px] text-gray-500 text-[8px]'>
+            <ArrowRight />
+            0.01
+          </Button> */}
         </div>
 
         <ul className='mt-4 flex flex-col gap-3 min-w-0'>
