@@ -1,13 +1,13 @@
 'use client'
 
 import { formatAmount } from '@/lib/functions/formatAmount'
-import { getEmojiFromString } from '@/lib/functions/getEmojiFromString'
 import { CleanTransfers } from './ClearTransfers'
 import CopyToClipboard from '@/components/CopyToClipboard'
 import { useCopyString } from './hooks'
 import { Transfer } from '@/types/Transfer'
 import { useTranslate } from '@/lib/hooks/useTranslate'
 import { Translations } from '@/types/Common'
+import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
 
 interface Props {
   transfers: Transfer[]
@@ -19,6 +19,7 @@ const Transfers = ({ transfers, setTransfers, onClean }: Props) => {
   const t = useTranslate(translations)
 
   const copyString = useCopyString({ transfers })
+  const getEmojiFromString = useGetEmojiFromString()
 
   return (
     <>

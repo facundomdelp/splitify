@@ -1,10 +1,12 @@
-import { getEmojiFromString } from '@/lib/functions/getEmojiFromString'
 import { Expense } from '@/types/Expense'
 import { formatAmount } from '@/lib/functions/formatAmount'
 import { RemoveExpense } from './RemoveExpense'
 import { Button } from '@/components/ui/button'
 import { useTranslate } from '@/lib/hooks/useTranslate'
 import { Translations } from '@/types/Common'
+import { RefreshCwIcon } from 'lucide-react'
+import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
+import { useHandleChangeEmojis } from './hooks'
 
 interface Props {
   expenses: Expense[]
@@ -15,10 +17,18 @@ interface Props {
 export const Expenses = ({ expenses, setExpenses, handleCalculateTransfers }: Props) => {
   const t = useTranslate(translations)
 
+  const { handleChangeEmojis, rotate } = useHandleChangeEmojis()
+  const getEmojiFromString = useGetEmojiFromString()
+
   return (
     <>
       <section className='text-sm h-full flex flex-col min-w-0'>
-        <h2 className='text-lg font-bold'>{t('Participants')}</h2>
+        <div className='flex items-center'>
+          <h2 className='text-lg font-bold'>{t('Participants')}</h2>
+          <Button size='icon' variant='ghost' className='size-[18px] ml-auto' onClick={handleChangeEmojis}>
+            <RefreshCwIcon className={rotate ? 'rotate-180 transition-transform duration-500' : ''} />
+          </Button>
+        </div>
         {Object.keys(expenses).length ? (
           <ul className='mt-4 flex flex-col gap-3 min-w-0'>
             {expenses.toReversed().map(({ id, name, amount }, index) => (

@@ -1,7 +1,7 @@
 'use client'
 
 import ConfirmationModal from '@/components/ConfirmationModal'
-import { getEmojiFromString } from '@/lib/functions/getEmojiFromString'
+import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
 import { useTranslate } from '@/lib/hooks/useTranslate'
 import { cn } from '@/lib/utils'
 import { Translations } from '@/types/Common'
@@ -23,6 +23,8 @@ export const RemoveExpense = ({ id, name, expenses, setExpenses, className }: Pr
   }
 
   const t = useTranslate(translations)
+
+  const getEmojiFromString = useGetEmojiFromString()
 
   return (
     <ConfirmationModal

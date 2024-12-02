@@ -1,6 +1,7 @@
 import { generateId } from '@/lib/functions/generateId'
 import { Expense } from '@/types/Expense'
 import { useState } from 'react'
+import { useLocalStorage } from 'usehooks-ts'
 
 interface useExpensesFormProps {
   expenses: Expense[]
@@ -71,4 +72,21 @@ export const useExpensesForm = ({ expenses, setExpenses, nameInputRef }: useExpe
   }
 
   return { name, handleName, amount, handleAmount, handleSubmit }
+}
+
+export const useHandleChangeEmojis = () => {
+  const [rotate, setRotate] = useState(false)
+  const [metadata, setMetadata] = useLocalStorage('metadata', {}, { initializeWithValue: false })
+
+  const handleChangeEmojis = () => {
+    setRotate(true)
+    setTimeout(() => setRotate(false), 500)
+
+    setMetadata({
+      ...metadata,
+      emojiHash: Math.floor(Math.random() * 1000),
+    })
+  }
+
+  return { handleChangeEmojis, rotate }
 }
