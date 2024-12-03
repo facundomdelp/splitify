@@ -25,9 +25,11 @@ export const Expenses = ({ expenses, setExpenses, handleCalculateTransfers }: Pr
       <section className='text-sm h-full flex flex-col min-w-0'>
         <div className='flex items-center'>
           <h2 className='text-lg font-bold'>{t('Participants')}</h2>
-          <Button size='icon' variant='ghost' className='size-[18px] ml-auto' onClick={handleChangeEmojis}>
-            <RefreshCwIcon className={rotate ? 'rotate-180 transition-transform duration-500' : ''} />
-          </Button>
+          {expenses.length > 0 && (
+            <Button size='icon' variant='ghost' className='size-[18px] ml-auto' onClick={handleChangeEmojis}>
+              <RefreshCwIcon className={rotate ? 'rotate-180 transition-transform duration-500' : ''} />
+            </Button>
+          )}
         </div>
         {Object.keys(expenses).length ? (
           <ul className='mt-4 flex flex-col gap-3 min-w-0'>
