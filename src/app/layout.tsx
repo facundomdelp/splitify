@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ['latin'], weight: ['100', '200', '300', '400', '
 
 export const metadata: Metadata = {
   title: 'Splitify',
-  description: '🤑 Simplifica tus gastos en grupo con Splitify',
+  description: '🤑 Simplify your group expenses with Splitify',
 }
 
 export default function RootLayout({

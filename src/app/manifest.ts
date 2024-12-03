@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'Splitify',
     short_name: 'Splitify',
-    description: '🤑 Simplifica tus gastos en grupo con Splitify',
+    description: '🤑 Simplify your group expenses with Splitify',
     start_url: '/',
     display: 'standalone',
     background_color: '#052E16',
