@@ -3,7 +3,12 @@ import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
 import { Transfer } from '@/types/Transfer'
 import { useMemo } from 'react'
 
-export const useCopyString = ({ transfers }: { transfers: Transfer[] }) => {
+interface Props {
+  transfers: Transfer[]
+  fractionDigits: number
+}
+
+export const useCopyString = ({ transfers, fractionDigits }: Props) => {
   const getEmojiFromString = useGetEmojiFromString()
 
   return useMemo(
@@ -11,10 +16,10 @@ export const useCopyString = ({ transfers }: { transfers: Transfer[] }) => {
       [
         ...transfers.map(
           (transfer) =>
-            `${getEmojiFromString(transfer.debtor)} ${transfer.debtor} debe $${formatAmount(transfer.amount)} a ${getEmojiFromString(transfer.creditor)} ${transfer.creditor}`,
+            `${getEmojiFromString(transfer.debtor)} ${transfer.debtor} debe $${formatAmount(transfer.amount, fractionDigits)} a ${getEmojiFromString(transfer.creditor)} ${transfer.creditor}`,
         ),
         '\nhttps://splitify.me/share',
       ].join('\n'),
-    [getEmojiFromString, transfers],
+    [fractionDigits, getEmojiFromString, transfers],
   )
 }

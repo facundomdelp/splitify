@@ -8,6 +8,10 @@ import { Transfer } from '@/types/Transfer'
 import { useTranslate } from '@/lib/hooks/useTranslate'
 import { Translations } from '@/types/Common'
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
+import { Button } from '@/components/ui/button'
+import ReduceDecimal from '@/components/icons/ReduceDecimal'
+import IncreaseDecimal from '@/components/icons/IncreaseDecimal'
+import { useState } from 'react'
 // import { Button } from '@/components/ui/button'
 // import { ArrowLeft, ArrowRight } from 'lucide-react'
 
@@ -18,11 +22,11 @@ interface Props {
 }
 
 const Transfers = ({ transfers, setTransfers, onClean }: Props) => {
-  // const [fractionDigits, setFractionDigits] = useState(2)
+  const [fractionDigits, setFractionDigits] = useState(2)
 
   const t = useTranslate(translations)
 
-  const copyString = useCopyString({ transfers })
+  const copyString = useCopyString({ transfers, fractionDigits })
   const getEmojiFromString = useGetEmojiFromString()
 
   return (
@@ -30,18 +34,24 @@ const Transfers = ({ transfers, setTransfers, onClean }: Props) => {
       <section className='text-sm min-w-0'>
         <div className='flex items-center gap-2'>
           <h2 className='text-lg font-bold'>{t('Balances')}</h2>
-          {/* <Button
+          <Button
             size='icon'
-            variant='outline'
-            className='h-[20px] w-[45px] gap-[3px] text-[8px] text-gray-500 ml-auto'
+            variant='ghost'
+            className='h-[20px] w-[25px] gap-[3px] ml-auto'
+            onClick={() => setFractionDigits(fractionDigits - 1)}
+            disabled={fractionDigits === 0}
           >
-            0.1
-            <ArrowLeft />
+            <ReduceDecimal className='width-[10px]' />
           </Button>
-          <Button size='icon' variant='outline' className='h-[20px] w-[45px] gap-[3px] text-gray-500 text-[8px]'>
-            <ArrowRight />
-            0.01
-          </Button> */}
+          <Button
+            size='icon'
+            variant='ghost'
+            className='h-[20px] w-[25px] gap-[3px]'
+            onClick={() => setFractionDigits(fractionDigits + 1)}
+            disabled={fractionDigits === 2}
+          >
+            <IncreaseDecimal className='width-[10px]' />
+          </Button>
         </div>
 
         <ul className='mt-4 flex flex-col gap-3 min-w-0'>
@@ -51,7 +61,9 @@ const Transfers = ({ transfers, setTransfers, onClean }: Props) => {
                 <p className='mr-1'>{getEmojiFromString(transfer.debtor)}</p>
                 <p className='text-ellipsis whitespace-nowrap overflow-hidden min-w-0'>{transfer.debtor}</p>
                 <p className='whitespace-nowrap'>{t('owes')}</p>
-                <strong className='font-semibold whitespace-nowrap'>${formatAmount(transfer.amount)}</strong>
+                <strong className='font-semibold whitespace-nowrap'>
+                  ${formatAmount(transfer.amount, fractionDigits)}
+                </strong>
               </div>
               <div className='flex items-center min-w-0 gap-1'>
                 <p className='whitespace-nowrap'>{t('to')}</p>
