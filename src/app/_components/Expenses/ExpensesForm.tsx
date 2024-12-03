@@ -39,6 +39,7 @@ const ExpensesForm = ({ expenses, setExpenses, disabled, onReturn }: Props) => {
           onChange={handleName}
           value={disabled ? '-' : name}
           disabled={disabled}
+          placeholder={t('John Spliti')}
         />
 
         <div className='flex gap-4 ml-auto'>
@@ -76,5 +77,8 @@ export default ExpensesForm
 const translations = {
   'Add participant': {
     es: 'Añadir participante',
+  },
+  'John Spliti': {
+    es: 'Juan Spliti',
   },
 } satisfies Translations
