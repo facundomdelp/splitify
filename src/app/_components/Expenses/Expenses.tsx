@@ -26,11 +26,18 @@ export const Expenses = ({ expenses, setExpenses, handleCalculateTransfers }: Pr
         <div className='flex items-center'>
           <h2 className='text-lg font-bold'>{t('Participants')}</h2>
           {expenses.length > 0 && (
-            <Button size='icon' variant='ghost' className='size-[18px] ml-auto' onClick={handleChangeEmojis}>
+            <Button
+              size='icon'
+              variant='ghost'
+              className='size-[18px] ml-auto'
+              onClick={handleChangeEmojis}
+              tabIndex={-1}
+            >
               <RefreshCwIcon className={rotate ? 'rotate-180 transition-transform duration-500' : ''} />
             </Button>
           )}
         </div>
+
         {Object.keys(expenses).length ? (
           <ul className='mt-4 flex flex-col gap-3 min-w-0'>
             {expenses.toReversed().map(({ id, name, amount }, index) => (
