@@ -32,7 +32,7 @@ const ExpensesForm = ({ expenses, setExpenses, disabled, onReturn }: Props) => {
       <p className='text-sm'>{t('Add participant')}</p>
       <form className='flex gap-4 flex-wrap' onSubmit={handleSubmit}>
         <Input
-          className='min-w-40 flex-1'
+          className='min-w-40 flex-1 placeholder:text-gray-300'
           name='name'
           ref={nameInputRef}
           maxLength={50}
