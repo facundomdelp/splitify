@@ -32,7 +32,7 @@ const CopyToClipboard = ({ copyString }: Props) => {
       ) : (
         <>
           <CopyCheck className='size-[18px]' />
-          <p>{t('Pasted!')}</p>
+          <p>{t('Copied!')}</p>
         </>
       )}
     </Button>
