@@ -33,8 +33,6 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <Header />
 
-          <h1></h1>
-
           <div className='text-dark flex justify-center flex-1 w-full min-h-0'>{children}</div>
 
           <Footer />

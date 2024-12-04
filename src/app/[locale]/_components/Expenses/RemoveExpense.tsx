@@ -21,7 +21,7 @@ export const RemoveExpense = ({ id, name, expenses, setExpenses, className }: Pr
     setExpenses(remainingExpenses)
   }
 
-  const t = useTranslations(RemoveExpense.name)
+  const t = useTranslations('RemoveExpense')
 
   const getEmojiFromString = useGetEmojiFromString()
 

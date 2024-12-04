@@ -14,7 +14,7 @@ interface Props {
 }
 
 export const Expenses = ({ expenses, setExpenses, handleCalculateTransfers }: Props) => {
-  const t = useTranslations(Expenses.name)
+  const t = useTranslations('Expenses')
 
   const { handleChangeEmojis, rotate } = useHandleChangeEmojis()
   const getEmojiFromString = useGetEmojiFromString()

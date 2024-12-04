@@ -21,7 +21,7 @@ interface Props {
 const Transfers = ({ transfers, setTransfers, onClean }: Props) => {
   const [fractionDigits, setFractionDigits] = useState(2)
 
-  const t = useTranslations(Transfers.name)
+  const t = useTranslations('Transfers')
 
   const copyString = useCopyString({ transfers, fractionDigits })
   const getEmojiFromString = useGetEmojiFromString()

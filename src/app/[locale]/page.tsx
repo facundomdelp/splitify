@@ -21,7 +21,7 @@ export default function Home() {
     setExpenses([])
   }
 
-  const t = useTranslations(Home.name)
+  const t = useTranslations('Home')
 
   return (
     <main className='my-8 mx-4 flex flex-col gap-8 max-w-[600px] text-gray-600 flex-1 min-w-0 cursor-default'>

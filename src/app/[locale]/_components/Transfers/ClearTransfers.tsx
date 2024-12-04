@@ -18,7 +18,7 @@ export const CleanTransfers = ({ setTransfers, onClean, className }: Props) => {
     setTransfers([])
   }
 
-  const t = useTranslations(CleanTransfers.name)
+  const t = useTranslations('CleanTransfers')
 
   return (
     <ConfirmationModal

@@ -16,7 +16,7 @@ interface Props {
 }
 
 const ExpensesForm = ({ expenses, setExpenses, disabled, onReturn }: Props) => {
-  const t = useTranslations(ExpensesForm.name)
+  const t = useTranslations('ExpensesForm')
 
   const nameInputRef = useRef<HTMLInputElement>(null)
 

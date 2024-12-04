@@ -13,7 +13,7 @@ interface Props {
 }
 
 const ConfirmationModal = ({ children, className, title, onConfirm }: Props) => {
-  const t = useTranslations(ConfirmationModal.name)
+  const t = useTranslations('ConfirmationModal')
 
   return (
     <Dialog>

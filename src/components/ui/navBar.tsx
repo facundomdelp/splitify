@@ -66,7 +66,7 @@ export const NavBar = ({
 
   const { isInstallable, handleInstallClick } = usePWAInstall()
 
-  const t = useTranslations(NavBar.name)
+  const t = useTranslations('NavBar')
 
   useEffect(() => {
     setDrawerOpen(opened)

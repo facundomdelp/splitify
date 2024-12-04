@@ -20,7 +20,7 @@ const CopyToClipboard = ({ copyString }: Props) => {
     setTimeout(() => setCopied(false), 3000)
   }
 
-  const t = useTranslations(CopyToClipboard.name)
+  const t = useTranslations('CopyToClipboard')
 
   return (
     <Button className='flex-1 basis-28 text-sm font-medium items-center bg-green-500' onClick={handleCopyToClipboard}>
