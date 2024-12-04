@@ -4,13 +4,26 @@ import Footer from './_components/Layout/Footer'
 import { GoogleTagManager } from '@next/third-parties/google'
 import Splash from '@/components/Splash'
 import { NextIntlClientProvider } from 'next-intl'
-import { getMessages } from 'next-intl/server'
+import { getMessages, getTranslations } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { notFound } from 'next/navigation'
 import { Locale } from '@/types/Common'
+import { Metadata } from 'next'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] })
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
+  const { locale } = await params
+
+  const t = await getTranslations({ locale, namespace: 'Metadata' })
+
+  return {
+    title: 'Splitify',
+    description: t('🤑 Simplify your group expenses with Splitify'),
+    keywords: t('keywords'),
+  }
+}
 
 export default async function LocaleLayout({
   children,
