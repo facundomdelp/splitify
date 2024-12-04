@@ -14,11 +14,12 @@ const inter = Inter({ subsets: ['latin'], weight: ['100', '200', '300', '400', '
 
 export default async function LocaleLayout({
   children,
-  params: { locale },
+  params,
 }: Readonly<{
   children: React.ReactNode
-  params: { locale: Locale }
+  params: Promise<{ locale: Locale }>
 }>) {
+  const { locale } = await params
   if (!routing.locales.includes(locale as Locale)) {
     notFound()
   }
