@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import Image from 'next/image'
 import { Locale } from '@/types/Common'
 import { useTranslations } from 'next-intl'
+import { usePWAInstall } from '@/lib/hooks/usePWAInstall'
 
 export const NavBar = ({
   opened = false,
@@ -63,6 +64,8 @@ export const NavBar = ({
     closeDrawer()
   }
 
+  const { isInstallable, handleInstallClick } = usePWAInstall()
+
   const t = useTranslations(NavBar.name)
 
   useEffect(() => {
@@ -86,26 +89,39 @@ export const NavBar = ({
         <header className='flex p-8 pb-6 bg-green-700'>{logo}</header>
 
         <main className='p-8 flex flex-col gap-8 flex-1'>
-          {locales && locales.availableLocales.length > 0 && (
-            <Select
-              value={locales.locale}
-              onValueChange={(value: Exclude<Locale, undefined>) => locales.setLanguage(value)}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder='Language' />
-              </SelectTrigger>
-              <SelectContent>
-                {locales.availableLocales.map(({ locale, description, src }) => (
-                  <SelectItem key={locale} value={locale}>
-                    <div className='flex items-center gap-2'>
-                      <Image src={src} alt={description} width={16} height={16} className='rounded-full' />
-                      <p>{description}</p>
-                    </div>
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          )}
+          <div className='flex flex-col gap-4 flex-1'>
+            {isInstallable && (
+              <Button
+                onClick={handleInstallClick}
+                variant='default'
+                className='rounded-2xl drop-shadow-xl bg-green-500 relative overflow-hidden animate-beat delay-[5000ms]'
+              >
+                {t('Install App')}
+                <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-r from-white opacity-10 animate-shine' />
+              </Button>
+            )}
+
+            {locales && locales.availableLocales.length > 0 && (
+              <Select
+                value={locales.locale}
+                onValueChange={(value: Exclude<Locale, undefined>) => locales.setLanguage(value)}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder='Language' />
+                </SelectTrigger>
+                <SelectContent>
+                  {locales.availableLocales.map(({ locale, description, src }) => (
+                    <SelectItem key={locale} value={locale}>
+                      <div className='flex items-center gap-2'>
+                        <Image src={src} alt={description} width={16} height={16} className='rounded-full' />
+                        <p>{description}</p>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
+          </div>
 
           <p className='flex-1 flex items-center justify-center text-center text-gray-950 font-light px-2 leading-6'>
             {t('Do you have any suggestions?')}

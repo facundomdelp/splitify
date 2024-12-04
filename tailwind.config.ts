@@ -69,9 +69,36 @@ export default {
             opacity: '1',
           },
         },
+        shine: {
+          '0%': {
+            transform: 'translateX(-100%)',
+          },
+          '100%': {
+            transform: 'translateX(100%)',
+          },
+        },
+        beat: {
+          '0%': {
+            transform: 'scale(100%)',
+          },
+          '25%': {
+            transform: 'scale(100.5%)',
+          },
+          '50%': {
+            transform: 'scale(100%)',
+          },
+          '75%': {
+            transform: 'scale(100.015%)',
+          },
+          '100%': {
+            transform: 'scale(100%)',
+          },
+        },
       },
       animation: {
         'slide-up': 'slide-up 200ms ease-out forwards',
+        shine: 'shine 5s infinite linear',
+        beat: 'beat 1.5s infinite ease-in-out',
       },
     },
   },
