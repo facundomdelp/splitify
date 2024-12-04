@@ -7,6 +7,7 @@ import { Transfer } from '@/types/Transfer'
 import { calculateTransfers } from '@/lib/functions/calculateTransfers'
 import { Expenses } from './_components/Expenses/Expenses'
 import { useLocalStorage } from 'usehooks-ts'
+import { useTranslations } from 'next-intl'
 
 export default function Home() {
   const [expenses, setExpenses] = useLocalStorage<Expense[]>('expenses', [], { initializeWithValue: false })
@@ -20,8 +21,12 @@ export default function Home() {
     setExpenses([])
   }
 
+  const t = useTranslations(Home.name)
+
   return (
     <main className='my-8 mx-4 flex flex-col gap-8 max-w-[600px] text-gray-600 flex-1 min-w-0 cursor-default'>
+      <h1 className='hidden'>{t('🤑 Simplify your group expenses with Splitify')}</h1>
+
       <ExpensesForm
         expenses={expenses}
         setExpenses={setExpenses}

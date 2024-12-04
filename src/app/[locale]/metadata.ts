@@ -8,5 +8,6 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   return {
     title: 'Splitify',
     description: t('🤑 Simplify your group expenses with Splitify'),
+    keywords: t('keywords'),
   }
 }

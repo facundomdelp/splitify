@@ -24,12 +24,15 @@ export default async function LocaleLayout({
   }
 
   const messages = await getMessages()
+
   return (
     <html lang='en' className='h-full'>
       <GoogleTagManager gtmId='GTM-TSLLPXCB' />
       <body className={`${inter.className} antialiased bg-dark text-white relative min-h-full flex flex-col`}>
         <NextIntlClientProvider messages={messages}>
           <Header />
+
+          <h1></h1>
 
           <div className='text-dark flex justify-center flex-1 w-full min-h-0'>{children}</div>
 
