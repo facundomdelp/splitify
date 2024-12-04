@@ -107,13 +107,11 @@ export const NavBar = ({
             </Select>
           )}
 
-          {/* TODO: REMOVE */}
           <p className='flex-1 flex items-center justify-center text-center text-gray-950 font-light px-2 leading-6'>
             {t('Do you have any suggestions?')}
             <br />
             {t('Write to us on X (Twitter) or by Email!')}
           </p>
-          {/* TODO: REMOVE */}
 
           <nav>
             <ul>
