@@ -2,11 +2,10 @@
 
 import ConfirmationModal from '@/components/ConfirmationModal'
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
-import { useTranslate } from '@/lib/hooks/useTranslate'
 import { cn } from '@/lib/utils'
-import { Translations } from '@/types/Common'
 import { Expense } from '@/types/Expense'
 import { X } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 interface Props {
   id: string
@@ -22,7 +21,7 @@ export const RemoveExpense = ({ id, name, expenses, setExpenses, className }: Pr
     setExpenses(remainingExpenses)
   }
 
-  const t = useTranslate(translations)
+  const t = useTranslations(RemoveExpense.name)
 
   const getEmojiFromString = useGetEmojiFromString()
 
@@ -48,12 +47,3 @@ export const RemoveExpense = ({ id, name, expenses, setExpenses, className }: Pr
     </ConfirmationModal>
   )
 }
-
-const translations = {
-  'Are you sure you want to remove': {
-    es: '¿Estas seguro de que quieres eliminar a',
-  },
-  'from the list?': {
-    es: 'de la lista',
-  },
-} satisfies Translations

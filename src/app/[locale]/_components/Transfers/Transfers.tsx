@@ -5,15 +5,12 @@ import { CleanTransfers } from './ClearTransfers'
 import CopyToClipboard from '@/components/CopyToClipboard'
 import { useCopyString } from './hooks'
 import { Transfer } from '@/types/Transfer'
-import { useTranslate } from '@/lib/hooks/useTranslate'
-import { Translations } from '@/types/Common'
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
 import { Button } from '@/components/ui/button'
 import ReduceDecimal from '@/components/icons/ReduceDecimal'
 import IncreaseDecimal from '@/components/icons/IncreaseDecimal'
 import { useState } from 'react'
-// import { Button } from '@/components/ui/button'
-// import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 interface Props {
   transfers: Transfer[]
@@ -24,7 +21,7 @@ interface Props {
 const Transfers = ({ transfers, setTransfers, onClean }: Props) => {
   const [fractionDigits, setFractionDigits] = useState(2)
 
-  const t = useTranslate(translations)
+  const t = useTranslations(Transfers.name)
 
   const copyString = useCopyString({ transfers, fractionDigits })
   const getEmojiFromString = useGetEmojiFromString()
@@ -84,15 +81,3 @@ const Transfers = ({ transfers, setTransfers, onClean }: Props) => {
 }
 
 export default Transfers
-
-const translations = {
-  Balances: {
-    es: 'Saldos',
-  },
-  owes: {
-    es: 'debe',
-  },
-  to: {
-    es: 'a',
-  },
-} satisfies Translations

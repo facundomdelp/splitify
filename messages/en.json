@@ -1,0 +1,40 @@
+{
+  "Manifest": {
+    "🤑 Simplify your group expenses with Splitify": "🤑 Simplify your group expenses with Splitify"
+  },
+  "ExpensesForm": {
+    "Add participant": "Add participant",
+    "John Spliti": "John Spliti"
+  },
+  "Expenses": {
+    "Participants": "Participants",
+    "Enter a Participant to get started!": "Enter a Participant to get started!",
+    "Calculate Balances": "Calculate Balances",
+    "Balances": "Balances"
+  },
+  "RemoveExpense": {
+    "Are you sure you want to remove": "Are you sure you want to remove",
+    "from the list?": "from the list?"
+  },
+  "CleanTransfers": {
+    "Are you sure you want to clear the transfer list?": "Are you sure you want to clear the transfer list?",
+    "Clear": "Clear"
+  },
+  "Transfers": {
+    "Balances": "Balances",
+    "owes": "owes",
+    "to": "to"
+  },
+  "ConfirmationModal": {
+    "Yes": "Yes",
+    "No": "No"
+  },
+  "CopyToClipboard": {
+    "Copy": "Copy",
+    "Copied!": "Copied!"
+  },
+  "NavBar": {
+    "Do you have any suggestions?": "Do you have any suggestions?",
+    "Write to us on X (Twitter) or by Email!": "Write to us on X (Twitter) or by Email!"
+  }
+}

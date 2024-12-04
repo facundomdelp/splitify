@@ -2,15 +2,21 @@
 
 import XLogo from '@/components/icons/XLogo'
 import { NavBar } from '@/components/ui/navBar'
-import { LanguageContext } from '@/context/LanguageContext'
+import { Locale } from '@/types/Common'
 import { MailIcon } from 'lucide-react'
+import { useLocale } from 'next-intl'
 import Image from 'next/image'
-import { useContext } from 'react'
+import { useRouter } from 'next/navigation'
 
 const LOGO_WIDTH = 120
 
 const Header = () => {
-  const { setLanguage, language } = useContext(LanguageContext)
+  const locale = useLocale() as Locale
+  const router = useRouter()
+
+  const setLanguage = (newLocale: Locale) => {
+    router.push(`/${newLocale}`)
+  }
 
   return (
     <header className='w-full bg-green-500 flex justify-center items-center h-20 shadow-md rounded-b-sm flex-shrink-0 relative'>
@@ -21,11 +27,11 @@ const Header = () => {
       <NavBar
         logo={<Image src='/Splitify.png' alt='Splitify' width={LOGO_WIDTH} height={LOGO_WIDTH / (10 / 3)} />}
         className='absolute right-4 top-1/2 -translate-y-1/2'
-        language={{
-          language,
-          languages: [
-            { slug: 'en', language: 'English', src: '/gb.jpg' },
-            { slug: 'es', language: 'Español', src: '/es.jpg' },
+        locales={{
+          locale,
+          availableLocales: [
+            { locale: 'en', description: 'English', src: '/gb.jpg' },
+            { locale: 'es', description: 'Español', src: '/es.jpg' },
           ],
           setLanguage,
         }}

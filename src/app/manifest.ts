@@ -1,10 +1,18 @@
-import type { MetadataRoute } from 'next'
+import { MetadataRoute } from 'next'
+import { getTranslations } from 'next-intl/server'
 
-export default function manifest(): MetadataRoute.Manifest {
+export default async function manifest(): Promise<MetadataRoute.Manifest> {
+  const locale = 'en'
+
+  const t = await getTranslations({
+    namespace: 'Manifest',
+    locale,
+  })
+
   return {
     name: 'Splitify',
     short_name: 'Splitify',
-    description: '🤑 Simplify your group expenses with Splitify',
+    description: t('🤑 Simplify your group expenses with Splitify'),
     start_url: '/',
     display: 'standalone',
     background_color: '#052E16',

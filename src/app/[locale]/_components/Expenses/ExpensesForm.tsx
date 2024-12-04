@@ -6,8 +6,7 @@ import { Expense } from '@/types/Expense'
 import { Plus, Undo } from 'lucide-react'
 import { useExpensesForm } from './hooks'
 import { useRef } from 'react'
-import { useTranslate } from '@/lib/hooks/useTranslate'
-import { Translations } from '@/types/Common'
+import { useTranslations } from 'next-intl'
 
 interface Props {
   expenses: Expense[]
@@ -17,7 +16,7 @@ interface Props {
 }
 
 const ExpensesForm = ({ expenses, setExpenses, disabled, onReturn }: Props) => {
-  const t = useTranslate(translations)
+  const t = useTranslations(ExpensesForm.name)
 
   const nameInputRef = useRef<HTMLInputElement>(null)
 
@@ -73,12 +72,3 @@ const ExpensesForm = ({ expenses, setExpenses, disabled, onReturn }: Props) => {
 }
 
 export default ExpensesForm
-
-const translations = {
-  'Add participant': {
-    es: 'Añadir participante',
-  },
-  'John Spliti': {
-    es: 'Juan Spliti',
-  },
-} satisfies Translations

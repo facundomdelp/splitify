@@ -2,9 +2,8 @@
 
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogTitle, DialogFooter } from '@/components/ui/dialog'
-import { useTranslate } from '@/lib/hooks/useTranslate'
-import { Translations } from '@/types/Common'
 import { Close, Trigger } from '@radix-ui/react-dialog'
+import { useTranslations } from 'next-intl'
 
 interface Props {
   children: React.ReactNode
@@ -14,7 +13,7 @@ interface Props {
 }
 
 const ConfirmationModal = ({ children, className, title, onConfirm }: Props) => {
-  const t = useTranslate(translations)
+  const t = useTranslations(ConfirmationModal.name)
 
   return (
     <Dialog>
@@ -44,12 +43,3 @@ const ConfirmationModal = ({ children, className, title, onConfirm }: Props) => 
 }
 
 export default ConfirmationModal
-
-const translations = {
-  Yes: {
-    es: 'Si',
-  },
-  No: {
-    es: 'No',
-  },
-} satisfies Translations

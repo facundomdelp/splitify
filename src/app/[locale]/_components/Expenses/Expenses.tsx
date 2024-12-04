@@ -2,11 +2,10 @@ import { Expense } from '@/types/Expense'
 import { formatAmount } from '@/lib/functions/formatAmount'
 import { RemoveExpense } from './RemoveExpense'
 import { Button } from '@/components/ui/button'
-import { useTranslate } from '@/lib/hooks/useTranslate'
-import { Translations } from '@/types/Common'
 import { RefreshCwIcon } from 'lucide-react'
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
 import { useHandleChangeEmojis } from './hooks'
+import { useTranslations } from 'next-intl'
 
 interface Props {
   expenses: Expense[]
@@ -15,7 +14,7 @@ interface Props {
 }
 
 export const Expenses = ({ expenses, setExpenses, handleCalculateTransfers }: Props) => {
-  const t = useTranslate(translations)
+  const t = useTranslations(Expenses.name)
 
   const { handleChangeEmojis, rotate } = useHandleChangeEmojis()
   const getEmojiFromString = useGetEmojiFromString()
@@ -77,18 +76,3 @@ export const Expenses = ({ expenses, setExpenses, handleCalculateTransfers }: Pr
     </>
   )
 }
-
-const translations = {
-  Participants: {
-    es: 'Participantes',
-  },
-  'Enter a Participant to get started!': {
-    es: '¡Ingresa un Participante para comenzar!',
-  },
-  'Calculate Balances': {
-    es: ' Calcular Saldos',
-  },
-  Balances: {
-    es: 'Saldos',
-  },
-} satisfies Translations

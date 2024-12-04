@@ -8,8 +8,8 @@ import { cn } from '@/lib/utils'
 import { LucideProps, MenuIcon } from 'lucide-react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './select'
 import Image from 'next/image'
-import LanguageProvider from '@/context/LanguageContext'
-import { Language } from '@/types/Common'
+import { Locale } from '@/types/Common'
+import { useTranslations } from 'next-intl'
 
 export const NavBar = ({
   opened = false,
@@ -18,7 +18,7 @@ export const NavBar = ({
   className,
   icon: Icon = MenuIcon,
   logo,
-  language,
+  locales,
   socialMedia,
 }: {
   children?: ReactNode
@@ -28,10 +28,10 @@ export const NavBar = ({
   className?: string
   icon?: ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>>
   logo: React.ReactNode
-  language?: {
-    languages: Array<{ slug: Exclude<Language, undefined>; language: string; src: string }>
-    language: Language
-    setLanguage: LanguageProvider['setLanguage']
+  locales?: {
+    availableLocales: Array<{ locale: Locale; description: string; src: string }>
+    locale: Locale
+    setLanguage: (newLocale: Locale) => void
   }
   socialMedia?: Array<{
     slug: string
@@ -63,6 +63,8 @@ export const NavBar = ({
     closeDrawer()
   }
 
+  const t = useTranslations(NavBar.name)
+
   useEffect(() => {
     setDrawerOpen(opened)
   }, [opened])
@@ -84,20 +86,20 @@ export const NavBar = ({
         <header className='flex p-8 pb-6 bg-green-700'>{logo}</header>
 
         <main className='p-8 flex flex-col gap-8 flex-1'>
-          {language && language.languages.length > 0 && (
+          {locales && locales.availableLocales.length > 0 && (
             <Select
-              value={language.language}
-              onValueChange={(value: Exclude<Language, undefined>) => language.setLanguage(value)}
+              value={locales.locale}
+              onValueChange={(value: Exclude<Locale, undefined>) => locales.setLanguage(value)}
             >
               <SelectTrigger>
                 <SelectValue placeholder='Language' />
               </SelectTrigger>
               <SelectContent>
-                {language.languages.map(({ slug, language, src }) => (
-                  <SelectItem key={slug} value={slug}>
+                {locales.availableLocales.map(({ locale, description, src }) => (
+                  <SelectItem key={locale} value={locale}>
                     <div className='flex items-center gap-2'>
-                      <Image src={src} alt={language} width={16} height={16} className='rounded-full' />
-                      <p>{language}</p>
+                      <Image src={src} alt={description} width={16} height={16} className='rounded-full' />
+                      <p>{description}</p>
                     </div>
                   </SelectItem>
                 ))}
@@ -107,11 +109,9 @@ export const NavBar = ({
 
           {/* TODO: REMOVE */}
           <p className='flex-1 flex items-center justify-center text-center text-gray-950 font-light px-2 leading-6'>
-            {language?.language === 'es' ? '¿Tienes alguna propuesta?' : 'Do you have any suggestions?'}
+            {t('Do you have any suggestions?')}
             <br />
-            {language?.language === 'es'
-              ? '¡Escribenos por X (Twitter) o por Email!'
-              : 'Write to us on X (Twitter) or by Email!'}
+            {t('Write to us on X (Twitter) or by Email!')}
           </p>
           {/* TODO: REMOVE */}
 
