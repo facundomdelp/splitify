@@ -89,7 +89,7 @@ export const NavBar = ({
         <header className='flex p-8 pb-6 bg-green-700'>{logo}</header>
 
         <main className='p-8 flex flex-col gap-8 flex-1'>
-          <div className='flex flex-col gap-4 flex-1'>
+          <div className='flex flex-col gap-4'>
             {isInstallable && (
               <Button
                 onClick={handleInstallClick}
