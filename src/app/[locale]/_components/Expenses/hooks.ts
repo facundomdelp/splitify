@@ -1,7 +1,7 @@
 import { generateId } from '@/lib/functions/generateId'
+import { useHandleMetadata } from '@/components/store/metadata'
 import { Expense } from '@/types/Expense'
 import { useState } from 'react'
-import { useLocalStorage } from 'usehooks-ts'
 
 interface useExpensesFormProps {
   expenses: Expense[]
@@ -76,7 +76,7 @@ export const useExpensesForm = ({ expenses, setExpenses, nameInputRef }: useExpe
 
 export const useHandleChangeEmojis = () => {
   const [rotate, setRotate] = useState(false)
-  const [metadata, setMetadata] = useLocalStorage('metadata', {}, { initializeWithValue: false })
+  const [metadata, setMetadata] = useHandleMetadata()
 
   const handleChangeEmojis = () => {
     setRotate(true)

@@ -6,11 +6,9 @@ import CopyToClipboard from '@/components/CopyToClipboard'
 import { useCopyString } from './hooks'
 import { Transfer } from '@/types/Transfer'
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
-import { Button } from '@/components/ui/button'
-import ReduceDecimal from '@/components/icons/ReduceDecimal'
-import IncreaseDecimal from '@/components/icons/IncreaseDecimal'
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
+import { Switch } from '@/components/ui/switch'
 
 interface Props {
   transfers: Transfer[]
@@ -19,11 +17,11 @@ interface Props {
 }
 
 const Transfers = ({ transfers, setTransfers, onClean }: Props) => {
-  const [fractionDigits, setFractionDigits] = useState(2)
+  const [rounded, setRounded] = useState(transfers.some((transfer) => transfer.amount % 1 === 0))
 
   const t = useTranslations('Transfers')
 
-  const copyString = useCopyString({ transfers, fractionDigits })
+  const copyString = useCopyString({ transfers, rounded })
   const getEmojiFromString = useGetEmojiFromString()
 
   return (
@@ -31,24 +29,11 @@ const Transfers = ({ transfers, setTransfers, onClean }: Props) => {
       <section className='text-sm min-w-0'>
         <div className='flex items-center gap-2'>
           <h2 className='text-lg font-bold'>{t('Balances')}</h2>
-          <Button
-            size='icon'
-            variant='ghost'
-            className='h-[20px] w-[25px] gap-[3px] ml-auto'
-            onClick={() => setFractionDigits(fractionDigits - 1)}
-            disabled={fractionDigits === 0}
-          >
-            <ReduceDecimal className='width-[10px]' />
-          </Button>
-          <Button
-            size='icon'
-            variant='ghost'
-            className='h-[20px] w-[25px] gap-[3px]'
-            onClick={() => setFractionDigits(fractionDigits + 1)}
-            disabled={fractionDigits === 2}
-          >
-            <IncreaseDecimal className='width-[10px]' />
-          </Button>
+
+          <div className='ml-auto flex gap-1'>
+            <Switch className='scale-75' onCheckedChange={setRounded} checked={rounded} />
+            <p className='text-[12px]'>{t('Round')}</p>
+          </div>
         </div>
 
         <ul className='mt-4 flex flex-col gap-3 min-w-0'>
@@ -59,7 +44,7 @@ const Transfers = ({ transfers, setTransfers, onClean }: Props) => {
                 <p className='text-ellipsis whitespace-nowrap overflow-hidden min-w-0'>{transfer.debtor}</p>
                 <p className='whitespace-nowrap'>{t('owes')}</p>
                 <strong className='font-semibold whitespace-nowrap'>
-                  ${formatAmount(transfer.amount, fractionDigits)}
+                  ${formatAmount(transfer.amount, rounded ? 0 : 2)}
                 </strong>
               </div>
               <div className='flex items-center min-w-0 gap-1'>

@@ -29,6 +29,7 @@
   },
   "Transfers": {
     "Balances": "Balances",
+    "Round": "Round",
     "owes": "owes",
     "to": "to"
   },
