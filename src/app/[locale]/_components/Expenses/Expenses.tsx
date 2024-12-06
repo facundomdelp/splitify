@@ -6,6 +6,7 @@ import { RefreshCwIcon } from 'lucide-react'
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
 import { useHandleChangeEmojis } from './hooks'
 import { useTranslations } from 'next-intl'
+import { useGetMetadata } from '@/components/store/metadata'
 
 interface Props {
   expenses: Expense[]
@@ -14,10 +15,11 @@ interface Props {
 }
 
 export const Expenses = ({ expenses, setExpenses, handleCalculateTransfers }: Props) => {
-  const t = useTranslations('Expenses')
-
+  const metadata = useGetMetadata()
   const { handleChangeEmojis, rotate } = useHandleChangeEmojis()
   const getEmojiFromString = useGetEmojiFromString()
+
+  const t = useTranslations('Expenses')
 
   return (
     <>
@@ -25,15 +27,12 @@ export const Expenses = ({ expenses, setExpenses, handleCalculateTransfers }: Pr
         <div className='flex items-center'>
           <h2 className='text-lg font-bold'>{t('Participants')}</h2>
           {expenses.length > 0 && (
-            <Button
-              size='icon'
-              variant='ghost'
-              className='size-[18px] ml-auto'
-              onClick={handleChangeEmojis}
-              tabIndex={-1}
-            >
-              <RefreshCwIcon className={rotate ? 'rotate-180 transition-transform duration-500' : ''} />
-            </Button>
+            <div className='ml-auto flex gap-1 items-center'>
+              <Button size='icon' variant='ghost' className='size-[18px]' onClick={handleChangeEmojis} tabIndex={-1}>
+                <RefreshCwIcon className={rotate ? 'rotate-180 transition-transform duration-500' : ''} />
+              </Button>
+              <p>{metadata?.emojiHash === undefined ? '🤑' : getEmojiFromString('🐑')}</p>
+            </div>
           )}
         </div>
 

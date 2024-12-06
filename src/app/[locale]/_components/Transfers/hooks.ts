@@ -5,10 +5,10 @@ import { useMemo } from 'react'
 
 interface Props {
   transfers: Transfer[]
-  fractionDigits: number
+  rounded: boolean
 }
 
-export const useCopyString = ({ transfers, fractionDigits }: Props) => {
+export const useCopyString = ({ transfers, rounded }: Props) => {
   const getEmojiFromString = useGetEmojiFromString()
 
   return useMemo(
@@ -16,10 +16,10 @@ export const useCopyString = ({ transfers, fractionDigits }: Props) => {
       [
         ...transfers.map(
           (transfer) =>
-            `${getEmojiFromString(transfer.debtor)} ${transfer.debtor} debe $${formatAmount(transfer.amount, fractionDigits)} a ${getEmojiFromString(transfer.creditor)} ${transfer.creditor}`,
+            `${getEmojiFromString(transfer.debtor)} ${transfer.debtor} debe $${formatAmount(transfer.amount, rounded ? 0 : 2)} a ${getEmojiFromString(transfer.creditor)} ${transfer.creditor}`,
         ),
         '\nhttps://splitify.me?utm_source=share',
       ].join('\n'),
-    [fractionDigits, getEmojiFromString, transfers],
+    [getEmojiFromString, rounded, transfers],
   )
 }
