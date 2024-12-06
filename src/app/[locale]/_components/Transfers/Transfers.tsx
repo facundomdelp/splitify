@@ -32,7 +32,7 @@ const Transfers = ({ transfers, setTransfers, onClean }: Props) => {
 
           <div className='ml-auto flex gap-1'>
             <Switch className='scale-75' onCheckedChange={setRounded} checked={rounded} />
-            <p className='text-[12px]'>Redondear</p>
+            <p className='text-[12px]'>{t('Round')}</p>
           </div>
         </div>
 

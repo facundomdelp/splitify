@@ -29,6 +29,7 @@
   },
   "Transfers": {
     "Balances": "Saldos",
+    "Round": "Redondear",
     "owes": "debe",
     "to": "a"
   },
