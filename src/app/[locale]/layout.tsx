@@ -19,8 +19,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
   const t = await getTranslations({ locale, namespace: 'Metadata' })
 
   return {
-    title: 'Splitify',
-    description: t('🤑 Simplify your group expenses with Splitify'),
+    title: t('title'),
+    description: t('description'),
     keywords: t('keywords'),
   }
 }
