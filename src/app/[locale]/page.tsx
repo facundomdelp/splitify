@@ -24,7 +24,7 @@ export default function Home() {
 
   return (
     <main className='my-8 mx-4 flex flex-col gap-8 max-w-[600px] text-gray-600 flex-1 min-w-0 cursor-default'>
-      <h1 className='hidden'>{t('🤑 Simplify your group expenses with Splitify')}</h1>
+      <h1 className='hidden'>{t('🤑 Splitify | Simplify your group expenses with Splitify')}</h1>
 
       <ExpensesForm
         expenses={expenses}
