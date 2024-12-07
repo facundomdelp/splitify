@@ -18,7 +18,7 @@ export const useCopyString = ({ transfers, rounded }: Props) => {
           (transfer) =>
             `${getEmojiFromString(transfer.debtor)} ${transfer.debtor} debe $${formatAmount(transfer.amount, rounded ? 0 : 2)} a ${getEmojiFromString(transfer.creditor)} ${transfer.creditor}`,
         ),
-        '\nhttps://splitify.me?utm_source=share',
+        '\nhttps://splitify.me',
       ].join('\n'),
     [getEmojiFromString, rounded, transfers],
   )
