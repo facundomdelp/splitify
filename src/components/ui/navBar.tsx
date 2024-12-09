@@ -121,6 +121,21 @@ export const NavBar = ({
                 </SelectContent>
               </Select>
             )}
+
+            <a
+              href='https://appgentina.com.ar/producto/splitify?ref=badge'
+              title='Splitify | Appgentina'
+              className='mx-auto'
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src='https://appgentina.com.ar/embed-svg/splitify'
+                alt='Splitify | Appgentina'
+                style={{ width: '229px', height: '54px' }}
+                width='229'
+                height='54'
+              />
+            </a>
           </div>
 
           <p className='flex-1 flex items-center justify-center text-center text-gray-950 font-light px-2 leading-6'>
