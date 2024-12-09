@@ -24,7 +24,12 @@ export default function Home() {
 
   return (
     <main className='my-8 mx-4 flex flex-col gap-8 max-w-[600px] text-gray-600 flex-1 min-w-0 cursor-default'>
-      <h1 className='hidden'>{t('🤑 Splitify | Simplify your group expenses with Splitify')}</h1>
+      {/* SEO */}
+      <article className='hidden'>
+        <h1>{t('🤑 Splitify | Simplify your group expenses with Splitify')}</h1>
+        <p>{t('Splitify is the ultimate tool to divide expenses with friends, family, and colleagues')}</p>
+      </article>
+      {/* SEO */}
 
       <ExpensesForm
         expenses={expenses}
