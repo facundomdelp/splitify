@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const locales = ['en', 'es']
+  const locales = ['en', 'es', 'pt']
 
   const routes = ['/']
 

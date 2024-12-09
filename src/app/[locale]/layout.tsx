@@ -40,7 +40,7 @@ export default async function LocaleLayout({
   const messages = await getMessages()
 
   return (
-    <html lang='en' className='h-full'>
+    <html lang={locale} className='h-full'>
       <GoogleTagManager gtmId='GTM-TSLLPXCB' />
       <body className={`${inter.className} antialiased bg-dark text-white relative min-h-full flex flex-col`}>
         <NextIntlClientProvider messages={messages}>

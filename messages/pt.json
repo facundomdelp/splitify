@@ -1,0 +1,50 @@
+{
+  "Metadata": {
+    "title": "🤑 Splitify | Simplifique suas despesas em grupo com o Splitify",
+    "description": "💸 O Splitify facilita dividir despesas em grupo! Adicione participantes, calcule saldos e distribua os custos de forma justa, sem precisar criar um usuário!",
+    "keywords": "dividir despesas com amigos online, dividir despesas online grátis, dividir despesas com amigos sem custo, dividir despesas no Excel, app para dividir despesas com amigos, dividir despesas com amigos Mercado Pago, dividir despesas online sem app, calculadora para dividir despesas, dividir despesas em grupo, divisão de contas com amigos online, como dividir despesas com amigos no Excel, dividir despesas com amigos no Brasil, split contas online, dividir despesas app, dividir despesas em grupo"
+  },
+  "Manifest": {
+    "🤑 Simplify your group expenses with Splitify": "🤑 Simplifique suas despesas em grupo com o Splitify"
+  },
+  "Home": {
+    "🤑 Splitify | Simplify your group expenses with Splitify": "🤑 Splitify | Simplifique suas despesas em grupo com o Splitify"
+  },
+  "ExpensesForm": {
+    "Add participant": "Adicionar participante",
+    "John Spliti": "João Spliti"
+  },
+  "Expenses": {
+    "Participants": "Participantes",
+    "Enter a Participant to get started!": "Adicione um participante para começar!",
+    "Calculate Balances": "Calcular Saldos",
+    "Balances": "Saldos"
+  },
+  "RemoveExpense": {
+    "Are you sure you want to remove": "Tem certeza de que deseja remover",
+    "from the list?": "da lista?"
+  },
+  "CleanTransfers": {
+    "Are you sure you want to clear the transfer list?": "Tem certeza de que deseja limpar a lista de transferências?",
+    "Clear": "Limpar"
+  },
+  "Transfers": {
+    "Balances": "Saldos",
+    "Round": "Arredondar",
+    "owes": "deve",
+    "to": "para"
+  },
+  "ConfirmationModal": {
+    "Yes": "Sim",
+    "No": "Não"
+  },
+  "CopyToClipboard": {
+    "Copy": "Copiar",
+    "Copied!": "Copiado!"
+  },
+  "NavBar": {
+    "Do you have any suggestions?": "Tem alguma sugestão?",
+    "Write to us on X (Twitter) or by Email!": "Escreva para nós no X (Twitter) ou por Email!",
+    "Install App": "Instalar Aplicativo 🚀"
+  }
+}

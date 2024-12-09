@@ -32,6 +32,7 @@ const Header = () => {
           availableLocales: [
             { locale: 'en', description: 'English', src: '/gb.jpg' },
             { locale: 'es', description: 'Español', src: '/es.jpg' },
+            { locale: 'pt', description: 'Português', src: '/br.jpg' },
           ],
           setLanguage,
         }}

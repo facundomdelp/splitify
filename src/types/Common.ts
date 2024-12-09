@@ -1,4 +1,4 @@
-export type Locale = 'es' | 'en'
+export type Locale = 'en' | 'es' | 'pt'
 
 export type Metadata = {
   emojiHash: number
