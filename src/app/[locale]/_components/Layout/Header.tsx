@@ -30,9 +30,9 @@ const Header = () => {
         locales={{
           locale,
           availableLocales: [
-            { locale: 'en', description: 'English', src: '/gb.jpg' },
+            { locale: 'en', description: 'English', src: '/en.jpg' },
             { locale: 'es', description: 'Español', src: '/es.jpg' },
-            { locale: 'pt', description: 'Português', src: '/br.jpg' },
+            { locale: 'pt', description: 'Português', src: '/pt.jpg' },
           ],
           setLanguage,
         }}
