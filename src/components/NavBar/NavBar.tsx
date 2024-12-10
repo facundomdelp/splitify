@@ -102,22 +102,6 @@ const NavBar = ({
             )}
 
             {locales && locales.availableLocales.length > 0 && <LocaleSelector {...locales} />}
-
-            <a
-              href='https://appgentina.com.ar/producto/splitify?ref=badge'
-              title='Splitify | Appgentina'
-              className='mx-auto'
-              target='_blank'
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src='https://appgentina.com.ar/embed-svg/splitify'
-                alt='Splitify | Appgentina'
-                style={{ width: '229px', height: '54px' }}
-                width='229'
-                height='54'
-              />
-            </a>
           </div>
 
           <p className='flex-1 flex items-center justify-center text-center text-gray-950 font-light px-2 leading-6'>
@@ -141,6 +125,22 @@ const NavBar = ({
 
         {socialMedia && (
           <footer className='gap-4 flex justify-end text-gray-700 mt-auto p-8'>
+            <a
+              href='https://appgentina.com.ar/producto/splitify?ref=badge'
+              title='Splitify | Appgentina'
+              className='mx-auto'
+              target='_blank'
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src='https://appgentina.com.ar/embed-svg/splitify'
+                alt='Splitify | Appgentina'
+                style={{ width: '229px', height: '54px' }}
+                width='229'
+                height='54'
+              />
+            </a>
+
             {socialMedia.map(({ slug, description, href, icon: Icon }) => (
               <Link
                 key={`social-media-${slug}`}
