@@ -9,7 +9,7 @@ import { LucideProps, MenuIcon } from 'lucide-react'
 import { Locale } from '@/types/Common'
 import { useTranslations } from 'next-intl'
 import LocaleSelector from '../LocaleSelector'
-import InstallApp from '../InstallApp'
+import { usePWAInstall } from '../../lib/hooks/usePWAInstall'
 
 const NavBar = ({
   opened = false,
@@ -20,7 +20,6 @@ const NavBar = ({
   logo,
   locales,
   socialMedia,
-  installApp = true,
 }: {
   children?: ReactNode
   opened?: boolean
@@ -42,7 +41,6 @@ const NavBar = ({
       | ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>>
       | (({ className }: { className: string }) => JSX.Element)
   }>
-  installApp?: boolean
 }) => {
   const [drawerOpen, setDrawerOpen] = useState(opened)
 
@@ -67,6 +65,8 @@ const NavBar = ({
 
   const t = useTranslations('NavBar')
 
+  const { isInstallable, handleInstallClick } = usePWAInstall()
+
   useEffect(() => {
     setDrawerOpen(opened)
   }, [opened])
@@ -84,12 +84,22 @@ const NavBar = ({
           'overflow-y-auto text-black h-full mr-12 w-[400px] max-w-[90vw] overflow-x-hidden border-none',
           direction === 'left' ? 'mr-auto rounded-tl-none' : 'ml-auto mr-0 rounded-tr-none',
         )}
+        aria-describedby={undefined}
       >
         <header className='flex p-8 pb-6 bg-green-700'>{logo}</header>
 
         <main className='p-8 flex flex-col gap-8 flex-1'>
           <div className='flex flex-col gap-4'>
-            {installApp && <InstallApp />}
+            {isInstallable && (
+              <Button
+                onClick={handleInstallClick}
+                variant='default'
+                className='rounded-2xl drop-shadow-xl bg-green-500 relative overflow-hidden animate-beat delay-[5000ms]'
+              >
+                {t('Install App')}
+                <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-r from-white opacity-10 animate-shine' />
+              </Button>
+            )}
 
             {locales && locales.availableLocales.length > 0 && <LocaleSelector {...locales} />}
 
