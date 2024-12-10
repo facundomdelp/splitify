@@ -12,7 +12,7 @@ declare global {
 }
 
 export const usePWAInstall = () => {
-  const [isInstallable, setIsInstallable] = useState(true)
+  const [isInstallable, setIsInstallable] = useState(false)
   const [installPromptEvent, setInstallPromptEvent] = useState<BeforeInstallPromptEvent | null>(null)
 
   useEffect(() => {
