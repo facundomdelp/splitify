@@ -107,6 +107,7 @@ const NavBar = ({
               href='https://appgentina.com.ar/producto/splitify?ref=badge'
               title='Splitify | Appgentina'
               className='mx-auto'
+              target='_blank'
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
