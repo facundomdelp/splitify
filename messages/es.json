@@ -45,7 +45,9 @@
   },
   "NavBar": {
     "Do you have any suggestions?": "¿Tienes alguna propuesta?",
-    "Write to us on X (Twitter) or by Email!": "¡Escribenos por X (Twitter) o por Email!",
+    "Write to us on X (Twitter) or by Email!": "¡Escribenos por X (Twitter) o por Email!"
+  },
+  "InstallApp": {
     "Install App": "Instalar Aplicación 🚀"
   }
 }

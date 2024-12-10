@@ -2,17 +2,16 @@
 
 import Link from 'next/link'
 import { ForwardRefExoticComponent, ReactNode, RefAttributes, useCallback, useEffect, useState } from 'react'
-import { Button } from './button'
-import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from './drawer'
+import { Button } from '../ui/button'
+import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from '../ui/drawer'
 import { cn } from '@/lib/utils'
 import { LucideProps, MenuIcon } from 'lucide-react'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './select'
-import Image from 'next/image'
 import { Locale } from '@/types/Common'
 import { useTranslations } from 'next-intl'
-import { usePWAInstall } from '@/lib/hooks/usePWAInstall'
+import LocaleSelector from '../LocaleSelector'
+import InstallApp from '../InstallApp'
 
-export const NavBar = ({
+const NavBar = ({
   opened = false,
   links,
   direction = 'right',
@@ -21,6 +20,7 @@ export const NavBar = ({
   logo,
   locales,
   socialMedia,
+  installApp = true,
 }: {
   children?: ReactNode
   opened?: boolean
@@ -32,7 +32,7 @@ export const NavBar = ({
   locales?: {
     availableLocales: Array<{ locale: Locale; description: string; src: string }>
     locale: Locale
-    setLanguage: (newLocale: Locale) => void
+    setLocale: (newLocale: Locale) => void
   }
   socialMedia?: Array<{
     slug: string
@@ -42,6 +42,7 @@ export const NavBar = ({
       | ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>>
       | (({ className }: { className: string }) => JSX.Element)
   }>
+  installApp?: boolean
 }) => {
   const [drawerOpen, setDrawerOpen] = useState(opened)
 
@@ -63,8 +64,6 @@ export const NavBar = ({
 
     closeDrawer()
   }
-
-  const { isInstallable, handleInstallClick } = usePWAInstall()
 
   const t = useTranslations('NavBar')
 
@@ -90,37 +89,9 @@ export const NavBar = ({
 
         <main className='p-8 flex flex-col gap-8 flex-1'>
           <div className='flex flex-col gap-4'>
-            {isInstallable && (
-              <Button
-                onClick={handleInstallClick}
-                variant='default'
-                className='rounded-2xl drop-shadow-xl bg-green-500 relative overflow-hidden animate-beat delay-[5000ms]'
-              >
-                {t('Install App')}
-                <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-r from-white opacity-10 animate-shine' />
-              </Button>
-            )}
+            {installApp && <InstallApp />}
 
-            {locales && locales.availableLocales.length > 0 && (
-              <Select
-                value={locales.locale}
-                onValueChange={(value: Exclude<Locale, undefined>) => locales.setLanguage(value)}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder='Language' />
-                </SelectTrigger>
-                <SelectContent>
-                  {locales.availableLocales.map(({ locale, description, src }) => (
-                    <SelectItem key={locale} value={locale}>
-                      <div className='flex items-center gap-2'>
-                        <Image src={src} alt={description} width={16} height={16} className='rounded-full' />
-                        <p>{description}</p>
-                      </div>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            )}
+            {locales && locales.availableLocales.length > 0 && <LocaleSelector {...locales} />}
 
             <a
               href='https://appgentina.com.ar/producto/splitify?ref=badge'
@@ -176,3 +147,5 @@ export const NavBar = ({
     </Drawer>
   )
 }
+
+export default NavBar

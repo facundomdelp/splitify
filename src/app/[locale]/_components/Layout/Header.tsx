@@ -1,7 +1,7 @@
 'use client'
 
 import XLogo from '@/components/icons/XLogo'
-import { NavBar } from '@/components/ui/navBar'
+import NavBar from '@/components/NavBar'
 import { Locale } from '@/types/Common'
 import { MailIcon } from 'lucide-react'
 import { useLocale } from 'next-intl'
@@ -14,7 +14,7 @@ const Header = () => {
   const locale = useLocale() as Locale
   const router = useRouter()
 
-  const setLanguage = (newLocale: Locale) => {
+  const setLocale = (newLocale: Locale) => {
     router.push(`/${newLocale}`)
   }
 
@@ -34,7 +34,7 @@ const Header = () => {
             { locale: 'es', description: 'Español', src: '/es.jpg' },
             { locale: 'pt', description: 'Português', src: '/pt.jpg' },
           ],
-          setLanguage,
+          setLocale,
         }}
         socialMedia={[
           {
