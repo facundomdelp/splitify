@@ -104,11 +104,19 @@ const NavBar = ({
             {locales && locales.availableLocales.length > 0 && <LocaleSelector {...locales} />}
           </div>
 
-          <p className='flex-1 flex items-center justify-center text-center text-gray-950 font-light px-2 leading-6'>
-            {t('Do you have any suggestions?')}
-            <br />
-            {t('Write to us on X (Twitter) or by Email!')}
-          </p>
+          <article className='flex-1 flex flex-col items-center justify-center gap-2 text-center text-gray-950 font-light px-2 leading-6'>
+            <p>
+              {t('🚀 Welcome to the')}
+              <strong> {t('Splitify Beta')}</strong>!
+              <br />
+              {t('More things are coming 🤫')}
+            </p>
+            <p className='text-xs'>
+              {t('Do you have any suggestions?')}
+              <br />
+              {t('Write to us on X (Twitter) or by Email!')}
+            </p>
+          </article>
 
           <nav>
             <ul>
