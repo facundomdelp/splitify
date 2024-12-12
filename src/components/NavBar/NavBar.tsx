@@ -10,6 +10,7 @@ import { Locale } from '@/types/Common'
 import { useTranslations } from 'next-intl'
 import LocaleSelector from '../LocaleSelector'
 import { usePWAInstall } from '../../lib/hooks/usePWAInstall'
+import VisuallyHidden from '../ui/visuallyHidden'
 
 const NavBar = ({
   opened = false,
@@ -63,9 +64,9 @@ const NavBar = ({
     closeDrawer()
   }
 
-  const t = useTranslations('NavBar')
-
   const { isInstallable, handleInstallClick } = usePWAInstall()
+
+  const t = useTranslations('NavBar')
 
   useEffect(() => {
     setDrawerOpen(opened)
@@ -78,7 +79,11 @@ const NavBar = ({
           <Icon />
         </Button>
       </DrawerTrigger>
-      <DrawerTitle className='hidden' /> {/* For avoiding console error */}
+      <VisuallyHidden>
+        <DrawerTitle aria-hidden='false' inert>
+          {t('Discover more!')}
+        </DrawerTitle>
+      </VisuallyHidden>
       <DrawerContent
         className={cn(
           'overflow-y-auto text-black h-full mr-12 w-[400px] max-w-[90vw] overflow-x-hidden border-none',
