@@ -11,7 +11,7 @@ interface Props {
   id: string
   name: string
   expenses: Expense[]
-  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[] | null>>
   className?: string
 }
 

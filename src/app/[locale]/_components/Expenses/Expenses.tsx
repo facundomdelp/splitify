@@ -9,8 +9,8 @@ import { useTranslations } from 'next-intl'
 import { useGetMetadata } from '@/components/store/metadata'
 
 interface Props {
-  expenses: Expense[]
-  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
+  expenses: Expense[] | null
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[] | null>>
   handleCalculateTransfers: () => void
 }
 
@@ -26,7 +26,7 @@ export const Expenses = ({ expenses, setExpenses, handleCalculateTransfers }: Pr
       <section className='text-sm h-full flex flex-col min-w-0'>
         <div className='flex items-center'>
           <h2 className='text-lg font-bold'>{t('Participants')}</h2>
-          {expenses.length > 0 && (
+          {expenses && expenses.length > 0 && (
             <div className='ml-auto flex gap-1 items-center'>
               <Button size='icon' variant='ghost' className='size-[18px]' onClick={handleChangeEmojis} tabIndex={-1}>
                 <RefreshCwIcon className={rotate ? 'rotate-180 transition-transform duration-500' : ''} />
@@ -36,7 +36,7 @@ export const Expenses = ({ expenses, setExpenses, handleCalculateTransfers }: Pr
           )}
         </div>
 
-        {Object.keys(expenses).length ? (
+        {expenses && Object.keys(expenses).length ? (
           <ul className='mt-4 flex flex-col gap-3 min-w-0'>
             {expenses.toReversed().map(({ id, name, amount }, index) => (
               <li key={index} className='flex items-center min-w-0'>
@@ -57,6 +57,7 @@ export const Expenses = ({ expenses, setExpenses, handleCalculateTransfers }: Pr
           className='flex-1'
           onClick={handleCalculateTransfers}
           disabled={
+            !expenses ||
             new Set(expenses.map(({ name }) => name)).size < 2 ||
             new Set(
               Object.values(

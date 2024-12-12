@@ -5,14 +5,16 @@ import ExpensesForm from './_components/Expenses/ExpensesForm'
 import { calculateTransfers } from '@/lib/functions/calculateTransfers'
 import { Expenses } from './_components/Expenses/Expenses'
 import { useTranslations } from 'next-intl'
-import { useGetExpenses } from '@/components/store/expenses'
-import { useGetTransfers } from '@/components/store/transfers'
+import { useSetExpenses } from '@/components/store/expenses'
+import { useSetTransfers } from '@/components/store/transfers'
 
 export default function Home() {
-  const [expenses, setExpenses] = useGetExpenses()
-  const [transfers, setTransfers] = useGetTransfers()
+  const [expenses, setExpenses] = useSetExpenses()
+  const [transfers, setTransfers] = useSetTransfers()
 
   const handleCalculateTransfers = () => {
+    if (!expenses) return
+
     setTransfers(calculateTransfers(expenses))
   }
 
@@ -34,11 +36,11 @@ export default function Home() {
       <ExpensesForm
         expenses={expenses}
         setExpenses={setExpenses}
-        disabled={transfers.length > 0}
-        onReturn={transfers.length > 0 ? () => setTransfers([]) : undefined}
+        disabled={!transfers || transfers.length > 0}
+        onReturn={!transfers || transfers.length > 0 ? () => setTransfers([]) : undefined}
       />
 
-      {!transfers.length ? (
+      {!transfers || !transfers.length ? (
         <Expenses expenses={expenses} setExpenses={setExpenses} handleCalculateTransfers={handleCalculateTransfers} />
       ) : (
         <Transfers transfers={transfers} setTransfers={setTransfers} onClean={onClean} />

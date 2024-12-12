@@ -1,24 +1,29 @@
 'use client'
 
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useSetExpenses } from '../store/expenses'
+import { useSetTransfers } from '../store/transfers'
+// import { useEffect, useState } from 'react'
 
 const ISOLOGO_SIZE = 200
-const DURATION = 400
+// const DURATION = 400
 
 const Splash = () => {
-  const [isVisible, setIsVisible] = useState(true)
+  const [expenses] = useSetExpenses()
+  const [transfers] = useSetTransfers()
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(false)
-    }, DURATION)
+  // const [isVisible, setIsVisible] = useState(true)
 
-    return () => clearTimeout(timer)
-  }, [])
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setIsVisible(false)
+  //   }, DURATION)
+
+  //   return () => clearTimeout(timer)
+  // }, [])
 
   return (
-    isVisible && (
+    (expenses === null || transfers === null) && (
       <div className='absolute inset-0 flex items-center justify-center bg-green-950 text-white z-50'>
         <div className='text-center opacity-0 animate-slide-up'>
           <Image src='/Isologo.png' alt='Splitify' width={ISOLOGO_SIZE} height={ISOLOGO_SIZE} />

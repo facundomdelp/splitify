@@ -1,11 +1,11 @@
 import { generateId } from '@/lib/functions/generateId'
-import { useHandleMetadata } from '@/components/store/metadata'
+import { useSetMetadata } from '@/components/store/metadata'
 import { Expense } from '@/types/Expense'
 import { useState } from 'react'
 
 interface useExpensesFormProps {
-  expenses: Expense[]
-  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
+  expenses: Expense[] | null
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[] | null>>
   nameInputRef: React.RefObject<HTMLInputElement>
 }
 
@@ -61,7 +61,7 @@ export const useExpensesForm = ({ expenses, setExpenses, nameInputRef }: useExpe
     if (!name.trim()) return
 
     const id = generateId()
-    setExpenses([...expenses, { id, name: name.trim(), amount }])
+    setExpenses([...(expenses ?? []), { id, name: name.trim(), amount }])
 
     setName('')
     setAmount(0)
@@ -76,7 +76,7 @@ export const useExpensesForm = ({ expenses, setExpenses, nameInputRef }: useExpe
 
 export const useHandleChangeEmojis = () => {
   const [rotate, setRotate] = useState(false)
-  const [metadata, setMetadata] = useHandleMetadata()
+  const [metadata, setMetadata] = useSetMetadata()
 
   const handleChangeEmojis = () => {
     setRotate(true)

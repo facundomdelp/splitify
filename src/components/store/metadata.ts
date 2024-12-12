@@ -5,6 +5,6 @@ export const useGetMetadata = () => {
   return useReadLocalStorage<Metadata>('metadata')
 }
 
-export const useHandleMetadata = () => {
-  return useLocalStorage<Metadata>('metadata', {} as Metadata, { initializeWithValue: false })
+export const useSetMetadata = () => {
+  return useLocalStorage<Metadata | null>('metadata', null, { initializeWithValue: false })
 }

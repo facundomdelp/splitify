@@ -12,7 +12,7 @@ import { Switch } from '@/components/ui/switch'
 
 interface Props {
   transfers: Transfer[]
-  setTransfers: React.Dispatch<React.SetStateAction<Transfer[]>>
+  setTransfers: React.Dispatch<React.SetStateAction<Transfer[] | null>>
   onClean?: () => void
 }
 
