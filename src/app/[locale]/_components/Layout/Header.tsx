@@ -1,5 +1,6 @@
 'use client'
 
+import TiktokLogo from '@/components/icons/TiktokLogo'
 import XLogo from '@/components/icons/XLogo'
 import NavBar from '@/components/NavBar'
 import { Badge } from '@/components/ui/badge'
@@ -45,6 +46,11 @@ const Header = () => {
             slug: 'x',
             href: 'https://x.com/splitify_me',
             icon: XLogo,
+          },
+          {
+            slug: 'tik-tok',
+            href: 'https://www.tiktok.com/@.splitify',
+            icon: TiktokLogo,
           },
           {
             slug: 'mail',
