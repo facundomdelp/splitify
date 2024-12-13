@@ -4,8 +4,8 @@ import { Expense } from '@/types/Expense'
 import { useState } from 'react'
 
 interface useExpensesFormProps {
-  expenses: Expense[] | null
-  setExpenses: React.Dispatch<React.SetStateAction<Expense[] | null>>
+  expenses: Expense[]
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
   nameInputRef: React.RefObject<HTMLInputElement>
 }
 

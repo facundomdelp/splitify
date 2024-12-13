@@ -9,8 +9,8 @@ import { useRef } from 'react'
 import { useTranslations } from 'next-intl'
 
 interface Props {
-  expenses: Expense[] | null
-  setExpenses: React.Dispatch<React.SetStateAction<Expense[] | null>>
+  expenses: Expense[]
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
   disabled: boolean
   onReturn?: () => void
 }

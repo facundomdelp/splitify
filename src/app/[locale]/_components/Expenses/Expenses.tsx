@@ -9,8 +9,8 @@ import { useTranslations } from 'next-intl'
 import { useGetMetadata } from '@/components/store/metadata'
 
 interface Props {
-  expenses: Expense[] | null
-  setExpenses: React.Dispatch<React.SetStateAction<Expense[] | null>>
+  expenses: Expense[]
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
   handleCalculateTransfers: () => void
 }
 

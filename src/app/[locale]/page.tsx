@@ -36,8 +36,8 @@ export default function Home() {
       <ExpensesForm
         expenses={expenses}
         setExpenses={setExpenses}
-        disabled={!transfers || transfers.length > 0}
-        onReturn={!transfers || transfers.length > 0 ? () => setTransfers([]) : undefined}
+        disabled={transfers.length > 0}
+        onReturn={transfers.length > 0 ? () => setTransfers([]) : undefined}
       />
 
       {!transfers || !transfers.length ? (

@@ -7,7 +7,7 @@ import { Eraser } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 interface Props {
-  setTransfers: React.Dispatch<React.SetStateAction<Transfer[] | null>>
+  setTransfers: React.Dispatch<React.SetStateAction<Transfer[]>>
   onClean?: () => void
   className?: string
 }
