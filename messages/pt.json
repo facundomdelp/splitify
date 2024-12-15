@@ -9,27 +9,30 @@
   },
   "Home": {
     "🤑 Splitify | Simplify your group expenses with Splitify": "🤑 Splitify | Simplifique suas despesas em grupo com o Splitify",
-    "Splitify is the ultimate tool to divide expenses with friends, family, and colleagues": "Splitify é a ferramenta definitiva para dividir despesas com amigos, familiares e colegas de trabalho. Nosso aplicativo permite que você registre e divida as despesas em grupo em tempo real, sem a necessidade de planilhas complicadas ou cálculos confusos. Seja gerenciando a conta de um jantar ou uma viagem de fim de semana, Splitify garante que todos paguem sua parte justa, tornando o gerenciamento de despesas descomplicado. Experimente o Splitify hoje e simplifique sua vida!"
+    "Splitify is the ultimate tool to divide expenses with friends, family, and colleagues": "Splitify é a ferramenta definitiva para dividir despesas com amigos, familiares e colegas de trabalho. Nosso aplicativo permite que você registre e divida as despesas em grupo em tempo real, sem a necessidade de planilhas complicadas ou cálculos confusos. Seja gerenciando a conta de um jantar ou uma viagem de fim de semana, Splitify garante que todos paguem sua parte justa, tornando o gerenciamento de despesas descomplicado. Experimente o Splitify hoje e simplifique sua vida!",
+    "Continue Editing": "Continuar Editando"
   },
   "ExpensesForm": {
     "Add participant": "Adicionar participante",
     "John Spliti": "João Spliti"
   },
   "Expenses": {
-    "Participants": "Participantes",
+    "Participants": "Despesas",
     "Enter a Participant to get started!": "Adicione um participante para começar!",
-    "Calculate Balances": "Calcular Saldos",
     "Balances": "Saldos"
+  },
+  "CalculateButton": {
+    "Calculate Balances": "Calcular Saldos"
   },
   "RemoveExpense": {
     "Are you sure you want to remove": "Tem certeza de que deseja remover",
     "from the list?": "da lista?"
   },
-  "CleanTransfers": {
-    "Are you sure you want to clear the transfer list?": "Tem certeza de que deseja limpar a lista de transferências?",
-    "Clear": "Limpar"
+  "ResetBalances": {
+    "Are you sure you want to clear the blances list?": "Tem certeza de que deseja limpar a lista de saldos?",
+    "Reset": "Reiniciar"
   },
-  "Transfers": {
+  "Balances": {
     "Balances": "Saldos",
     "Round": "Arredondar",
     "owes": "deve",

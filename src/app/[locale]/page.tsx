@@ -1,21 +1,38 @@
 'use client'
 
-import Transfers from './_components/Transfers'
 import ExpensesForm from './_components/Expenses/ExpensesForm'
-import { calculateTransfers } from '@/lib/functions/calculateTransfers'
+import { calculateBalances } from '@/lib/functions/calculateBalances'
 import { Expenses } from './_components/Expenses/Expenses'
 import { useTranslations } from 'next-intl'
 import { useSetExpenses } from '@/components/store/expenses'
-import { useSetTransfers } from '@/components/store/transfers'
+import { Button } from '@/components/ui/button'
+import { Undo } from 'lucide-react'
+import { useState } from 'react'
+import CalculateButton from './_components/Expenses/CalculateButton'
+import { useSetBalances } from '@/components/store/balances'
+import Balances from './_components/Balances'
 
 export default function Home() {
   const [expenses, setExpenses] = useSetExpenses()
-  const [transfers, setTransfers] = useSetTransfers()
+  const [balances, setBalances] = useSetBalances()
+  const [calculating, setCalculating] = useState(false)
 
-  const handleCalculateTransfers = () => {
+  const handleCalculateBalances = () => {
     if (!expenses) return
 
-    setTransfers(calculateTransfers(expenses))
+    setCalculating(true)
+    setTimeout(() => {
+      setBalances(calculateBalances(expenses))
+      setCalculating(false)
+
+      setTimeout(() => {
+        const targetElement = document.querySelector('#balances')
+        if (targetElement) {
+          const { top } = targetElement.getBoundingClientRect()
+          scrollTo({ top: top, behavior: 'smooth' })
+        }
+      }, 300)
+    }, 1000)
   }
 
   const onClean = () => {
@@ -33,17 +50,24 @@ export default function Home() {
       </article>
       {/* SEO */}
 
-      <ExpensesForm
-        expenses={expenses}
-        setExpenses={setExpenses}
-        disabled={transfers.length > 0}
-        onReturn={transfers.length > 0 ? () => setTransfers([]) : undefined}
-      />
-
-      {!transfers || !transfers.length ? (
-        <Expenses expenses={expenses} setExpenses={setExpenses} handleCalculateTransfers={handleCalculateTransfers} />
+      {!balances || !balances.length ? (
+        <ExpensesForm expenses={expenses} setExpenses={setExpenses} />
       ) : (
-        <Transfers transfers={transfers} setTransfers={setTransfers} onClean={onClean} />
+        <Button className='flex gap-4' type='submit' variant='outline' onClick={() => setBalances([])}>
+          <Undo />
+          {t('Continue Editing')}
+        </Button>
+      )}
+
+      <Expenses expenses={expenses} setExpenses={setExpenses} />
+      {balances.length === 0 ? (
+        <CalculateButton
+          expenses={expenses}
+          calculating={calculating}
+          handleCalculateBalances={handleCalculateBalances}
+        />
+      ) : (
+        <Balances balances={balances} setBalances={setBalances} onClean={onClean} />
       )}
     </main>
   )

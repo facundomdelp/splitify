@@ -2,7 +2,7 @@ import { Expense } from '@/types/Expense'
 import { formatAmount } from '@/lib/functions/formatAmount'
 import { RemoveExpense } from './RemoveExpense'
 import { Button } from '@/components/ui/button'
-import { RefreshCwIcon } from 'lucide-react'
+import { RefreshCwIcon, UsersRound } from 'lucide-react'
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
 import { useHandleChangeEmojis } from './hooks'
 import { useTranslations } from 'next-intl'
@@ -11,10 +11,9 @@ import { useGetMetadata } from '@/components/store/metadata'
 interface Props {
   expenses: Expense[]
   setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
-  handleCalculateTransfers: () => void
 }
 
-export const Expenses = ({ expenses, setExpenses, handleCalculateTransfers }: Props) => {
+export const Expenses = ({ expenses, setExpenses }: Props) => {
   const metadata = useGetMetadata()
   const { handleChangeEmojis, rotate } = useHandleChangeEmojis()
   const getEmojiFromString = useGetEmojiFromString()
@@ -25,19 +24,25 @@ export const Expenses = ({ expenses, setExpenses, handleCalculateTransfers }: Pr
     <>
       <section className='text-sm h-full flex flex-col min-w-0'>
         <div className='flex items-center'>
-          <h2 className='text-lg font-bold'>{t('Participants')}</h2>
+          <h2 className='text-lg font-bold flex flex-nowrap gap-2 items-center' id='expenses'>
+            <UsersRound className='size-[22px] text-green-700' />
+            {t('Expenses')}
+          </h2>
           {expenses && expenses.length > 0 && (
-            <div className='ml-auto flex gap-1 items-center'>
-              <Button size='icon' variant='ghost' className='size-[18px]' onClick={handleChangeEmojis} tabIndex={-1}>
-                <RefreshCwIcon className={rotate ? 'rotate-180 transition-transform duration-500' : ''} />
-              </Button>
-              <p>{metadata?.emojiHash === undefined ? '🤑' : getEmojiFromString('🐑')}</p>
-            </div>
+            <Button
+              variant='outline'
+              className='flex w-[65px] h-fit py-1 px-2 ml-auto justify-evenly'
+              onClick={handleChangeEmojis}
+              tabIndex={-1}
+            >
+              <RefreshCwIcon className={rotate ? 'rotate-180 transition-transform duration-500' : ''} />
+              {metadata?.emojiHash === undefined ? '🤑' : getEmojiFromString('🐑')}
+            </Button>
           )}
         </div>
 
         {expenses && Object.keys(expenses).length ? (
-          <ul className='mt-4 flex flex-col gap-3 min-w-0'>
+          <ul className='mt-4 flex flex-col gap-3 min-w-0 flex-1'>
             {expenses.toReversed().map(({ id, name, amount }, index) => (
               <li key={index} className='flex items-center min-w-0'>
                 <p className='mr-2'>{getEmojiFromString(name)}</p>
@@ -46,32 +51,14 @@ export const Expenses = ({ expenses, setExpenses, handleCalculateTransfers }: Pr
                 <RemoveExpense id={id} name={name} expenses={expenses} setExpenses={setExpenses} className='mx-1' />
               </li>
             ))}
+            <li className='mt-auto flex justify-between font-semibold py-2'>
+              <p>TOTAL:</p>
+              <p>$ {formatAmount(expenses.reduce((acc, cv) => acc + cv.amount, 0))}</p>
+            </li>
           </ul>
         ) : (
           <p className='m-auto text-gray-500 text-center'>🤑 {t('Enter a Participant to get started!')} 💸</p>
         )}
-      </section>
-
-      <section className='mt-auto flex'>
-        <Button
-          className='flex-1'
-          onClick={handleCalculateTransfers}
-          disabled={
-            !expenses ||
-            new Set(expenses.map(({ name }) => name)).size < 2 ||
-            new Set(
-              Object.values(
-                expenses.reduce<Record<string, number>>(
-                  (acc, { amount, name }) => ({ ...acc, [name]: (acc[name] ? acc[name] : 0) + amount }),
-                  {},
-                ),
-              ),
-            ).size === 1 ||
-            expenses.reduce((acc, { amount }) => amount + acc, 0) === 0
-          }
-        >
-          {t('Calculate Balances')}
-        </Button>
       </section>
     </>
   )

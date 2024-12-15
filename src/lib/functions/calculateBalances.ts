@@ -1,7 +1,7 @@
 import { Expense } from '@/types/Expense'
-import { Transfer } from '@/types/Transfer'
+import { Balance } from '@/types/Balance'
 
-export function calculateTransfers(expenses: Expense[]): Transfer[] {
+export function calculateBalances(expenses: Expense[]): Balance[] {
   const total = expenses.reduce((sum, { amount }) => sum + amount, 0)
   const people = expenses.reduce(
     (acc, { name, amount }) => {
@@ -29,7 +29,7 @@ export function calculateTransfers(expenses: Expense[]): Transfer[] {
     }
   })
 
-  const transfers: Transfer[] = []
+  const optimizedBalances: Balance[] = []
   const sortedDebtors = Object.entries(debtors).sort(([, a], [, b]) => b - a)
   const sortedCreditors = Object.entries(creditors).sort(([, a], [, b]) => b - a)
 
@@ -43,7 +43,7 @@ export function calculateTransfers(expenses: Expense[]): Transfer[] {
     const amount = Math.min(debtorAmount, creditorAmount)
 
     if (amount > 0) {
-      transfers.push({
+      optimizedBalances.push({
         debtor,
         creditor,
         amount: Number(amount.toFixed(2)),
@@ -57,5 +57,5 @@ export function calculateTransfers(expenses: Expense[]): Transfer[] {
     if (sortedCreditors[creditorIndex][1] === 0) creditorIndex++
   }
 
-  return transfers
+  return optimizedBalances
 }
