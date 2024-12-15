@@ -25,6 +25,7 @@ export const ResetBalances = ({ setBalances, onClean, className }: Props) => {
       title={t('Are you sure you want to clear the balances list?')}
       onConfirm={handleOnConfirm}
       className={className}
+      destructive
     >
       <Button className='w-full' variant='destructive'>
         <Eraser className='size-[18px]' />

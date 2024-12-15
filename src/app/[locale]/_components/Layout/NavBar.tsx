@@ -120,11 +120,11 @@ const NavBar = ({
         </main>
 
         {socialMedia && (
-          <footer className='gap-4 flex justify-end text-gray-700 mt-auto p-8'>
+          <footer className='gap-3 flex justify-end text-gray-700 mt-auto p-8'>
             <a
               href='https://appgentina.com.ar/producto/splitify?ref=badge'
               title='Splitify | Appgentina'
-              className='mx-auto'
+              className='mr-auto max-w-[200px] pr-2'
               target='_blank'
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
