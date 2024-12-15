@@ -22,7 +22,7 @@ export const ResetBalances = ({ setBalances, onClean, className }: Props) => {
 
   return (
     <ConfirmationModal
-      title={t('Are you sure you want to clear the balances list?')}
+      title={t('Are you sure you want to reset the balances list?')}
       onConfirm={handleOnConfirm}
       className={className}
       destructive
