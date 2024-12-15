@@ -10,9 +10,10 @@ interface Props {
   className?: string
   title: React.ReactNode
   onConfirm: () => void
+  destructive?: boolean
 }
 
-const ConfirmationModal = ({ children, className, title, onConfirm }: Props) => {
+const ConfirmationModal = ({ children, className, title, onConfirm, destructive }: Props) => {
   const t = useTranslations('ConfirmationModal')
 
   return (
@@ -29,7 +30,7 @@ const ConfirmationModal = ({ children, className, title, onConfirm }: Props) => 
         </DialogTitle>
         <DialogFooter className='pt-4 px-6 flex-row gap-3'>
           <Close asChild>
-            <Button variant='outline' onClick={onConfirm} className='flex-1'>
+            <Button variant={!destructive ? 'outline' : 'destructive'} onClick={onConfirm} className='flex-1'>
               {t('Yes')}
             </Button>
           </Close>

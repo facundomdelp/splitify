@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Expense } from '@/types/Expense'
-import { Plus, Undo } from 'lucide-react'
+import { Plus, UserRound } from 'lucide-react'
 import { useExpensesForm } from './hooks'
 import { useRef } from 'react'
 import { useTranslations } from 'next-intl'
@@ -11,11 +11,9 @@ import { useTranslations } from 'next-intl'
 interface Props {
   expenses: Expense[]
   setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
-  disabled: boolean
-  onReturn?: () => void
 }
 
-const ExpensesForm = ({ expenses, setExpenses, disabled, onReturn }: Props) => {
+const ExpensesForm = ({ expenses, setExpenses }: Props) => {
   const t = useTranslations('ExpensesForm')
 
   const nameInputRef = useRef<HTMLInputElement>(null)
@@ -28,7 +26,10 @@ const ExpensesForm = ({ expenses, setExpenses, disabled, onReturn }: Props) => {
 
   return (
     <section className='flex flex-col gap-2'>
-      <p className='text-sm'>{t('Add participant')}</p>
+      <p className='text-sm flex items-center gap-1 flex-nowrap'>
+        <UserRound className='size-[14px]' />
+        {t('Add participant')}
+      </p>
       <form className='flex gap-4 flex-wrap' onSubmit={handleSubmit}>
         <Input
           className='min-w-40 flex-1 placeholder:text-gray-300'
@@ -36,8 +37,7 @@ const ExpensesForm = ({ expenses, setExpenses, disabled, onReturn }: Props) => {
           ref={nameInputRef}
           maxLength={50}
           onChange={handleName}
-          value={disabled ? '-' : name}
-          disabled={disabled}
+          value={name}
           placeholder={t('John Spliti')}
         />
 
@@ -53,18 +53,11 @@ const ExpensesForm = ({ expenses, setExpenses, disabled, onReturn }: Props) => {
               step={0.01}
               onChange={handleAmount}
               value={amount}
-              disabled={disabled}
             />
           </div>
-          {!onReturn ? (
-            <Button size='icon' className='min-w-10 ml-auto' type='submit' disabled={name === '' || disabled}>
-              <Plus />
-            </Button>
-          ) : (
-            <Button size='icon' className='min-w-10 ml-auto' type='submit' variant='outline' onClick={onReturn}>
-              <Undo />
-            </Button>
-          )}
+          <Button size='icon' className='min-w-10 ml-auto' type='submit' disabled={name === ''}>
+            <Plus />
+          </Button>
         </div>
       </form>
     </section>
