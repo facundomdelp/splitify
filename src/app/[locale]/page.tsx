@@ -27,9 +27,13 @@ export default function Home() {
 
       setTimeout(() => {
         const targetElement = document.querySelector('#balances')
-        if (targetElement) {
-          const { top } = targetElement.getBoundingClientRect()
-          scrollTo({ top: top, behavior: 'smooth' })
+        const header = document.querySelector('#header')
+
+        if (targetElement && header) {
+          const { top: balancesTop } = targetElement.getBoundingClientRect()
+          const { height: headerHeight } = header?.getBoundingClientRect()
+
+          scrollTo({ top: balancesTop + headerHeight, behavior: 'smooth' })
         }
       }, 300)
     }, 1000)
