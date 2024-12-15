@@ -1,7 +1,6 @@
 'use client'
 
 import ExpensesForm from './_components/Expenses/ExpensesForm'
-import { calculateBalances } from '@/lib/functions/calculateBalances'
 import { Expenses } from './_components/Expenses/Expenses'
 import { useTranslations } from 'next-intl'
 import { useSetExpenses } from '@/components/store/expenses'
@@ -11,33 +10,18 @@ import { useState } from 'react'
 import CalculateButton from './_components/Expenses/CalculateButton'
 import { useSetBalances } from '@/components/store/balances'
 import Balances from './_components/Balances'
+import { ResetBalances } from './_components/Balances/ResetBalances'
+import CopyToClipboard from '@/components/CopyToClipboard'
+import { useCalculateBalances, useCopyString } from './hooks'
 
 export default function Home() {
   const [expenses, setExpenses] = useSetExpenses()
   const [balances, setBalances] = useSetBalances()
-  const [calculating, setCalculating] = useState(false)
 
-  const handleCalculateBalances = () => {
-    if (!expenses) return
+  const [rounded, setRounded] = useState(balances.some((balance) => balance.amount % 1 === 0))
 
-    setCalculating(true)
-    setTimeout(() => {
-      setBalances(calculateBalances(expenses))
-      setCalculating(false)
-
-      setTimeout(() => {
-        const targetElement = document.querySelector('#balances')
-        const header = document.querySelector('#header')
-
-        if (targetElement && header) {
-          const { top: balancesTop } = targetElement.getBoundingClientRect()
-          const { height: headerHeight } = header?.getBoundingClientRect()
-
-          scrollTo({ top: balancesTop + headerHeight, behavior: 'smooth' })
-        }
-      }, 300)
-    }, 1000)
-  }
+  const { handleCalculateBalances, calculating } = useCalculateBalances({ expenses, setBalances })
+  const copyString = useCopyString({ balances, rounded })
 
   const onClean = () => {
     setExpenses([])
@@ -54,16 +38,21 @@ export default function Home() {
       </article>
       {/* SEO */}
 
-      {!balances || !balances.length ? (
+      {balances.length === 0 ? (
         <ExpensesForm expenses={expenses} setExpenses={setExpenses} />
       ) : (
-        <Button className='flex gap-4' type='submit' variant='outline' onClick={() => setBalances([])}>
-          <Undo />
-          {t('Continue Editing')}
-        </Button>
+        <section className='h-[64px] flex items-center'>
+          <Button className='w-full gap-4' type='submit' variant='outline' onClick={() => setBalances([])}>
+            <Undo />
+            {t('Continue Editing')}
+          </Button>
+        </section>
       )}
 
       <Expenses expenses={expenses} setExpenses={setExpenses} readOnly={balances.length > 0} />
+      {balances.length > 0 && (
+        <Balances balances={balances} setBalances={setBalances} rounded={rounded} setRounded={setRounded} />
+      )}
 
       {balances.length === 0 ? (
         <CalculateButton
@@ -72,7 +61,12 @@ export default function Home() {
           handleCalculateBalances={handleCalculateBalances}
         />
       ) : (
-        <Balances balances={balances} setBalances={setBalances} onClean={onClean} />
+        <>
+          <section className='mt-auto flex gap-4'>
+            <ResetBalances setBalances={setBalances} onClean={onClean} className='flex-1 basis-28' />
+            <CopyToClipboard copyString={copyString} />
+          </section>
+        </>
       )}
     </main>
   )

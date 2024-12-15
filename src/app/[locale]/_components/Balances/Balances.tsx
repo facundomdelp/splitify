@@ -1,12 +1,8 @@
 'use client'
 
 import { formatAmount } from '@/lib/functions/formatAmount'
-import { ResetBalances } from './ResetBalances'
-import CopyToClipboard from '@/components/CopyToClipboard'
-import { useCopyString } from './hooks'
 import { Balance } from '@/types/Balance'
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
-import { useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { Switch } from '@/components/ui/switch'
 import { CircleDollarSign } from 'lucide-react'
@@ -14,15 +10,13 @@ import { CircleDollarSign } from 'lucide-react'
 interface Props {
   balances: Balance[]
   setBalances: React.Dispatch<React.SetStateAction<Balance[]>>
-  onClean?: () => void
+  rounded: boolean
+  setRounded: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Balances = ({ balances, setBalances, onClean }: Props) => {
-  const [rounded, setRounded] = useState(balances.some((balance) => balance.amount % 1 === 0))
-
+const Balances = ({ balances, rounded, setRounded }: Props) => {
   const t = useTranslations('Balances')
 
-  const copyString = useCopyString({ balances, rounded })
   const getEmojiFromString = useGetEmojiFromString()
 
   return (
@@ -59,11 +53,6 @@ const Balances = ({ balances, setBalances, onClean }: Props) => {
             </li>
           ))}
         </ul>
-      </section>
-
-      <section className='mt-auto flex gap-4'>
-        <ResetBalances setBalances={setBalances} onClean={onClean} className='flex-1 basis-28' />
-        <CopyToClipboard copyString={copyString} />
       </section>
     </>
   )
