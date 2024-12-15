@@ -1,39 +1,38 @@
 'use client'
 
 import Link from 'next/link'
-import { ForwardRefExoticComponent, ReactNode, RefAttributes, useCallback, useEffect, useState } from 'react'
-import { Button } from '../ui/button'
-import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from '../ui/drawer'
+import { ForwardRefExoticComponent, ReactNode, RefAttributes, useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
 import { LucideProps, MenuIcon } from 'lucide-react'
 import { Locale } from '@/types/Common'
-import { useTranslations } from 'next-intl'
-import LocaleSelector from '../LocaleSelector'
-import { usePWAInstall } from '../../lib/hooks/usePWAInstall'
-import VisuallyHidden from '../ui/visuallyHidden'
+import { useLocale, useTranslations } from 'next-intl'
+import { useRouter } from 'next/navigation'
+import LocaleSelector from '@/components/LocaleSelector'
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
+import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer'
+import { Button } from '@/components/ui/button'
+import { usePWAInstall } from '@/lib/hooks/usePWAInstall'
+
+const AVAILABLE_LOCALES: Array<{ locale: Locale; description: string; src: string }> = [
+  { locale: 'en', description: 'English', src: '/en.jpg' },
+  { locale: 'es', description: 'Español', src: '/es.jpg' },
+  { locale: 'pt', description: 'Português', src: '/pt.jpg' },
+]
 
 const NavBar = ({
   opened = false,
-  links,
   direction = 'right',
   className,
   icon: Icon = MenuIcon,
   logo,
-  locales,
   socialMedia,
 }: {
   children?: ReactNode
   opened?: boolean
-  links?: Array<Record<'text' | 'href', string>>
   direction?: 'right' | 'left'
   className?: string
   icon?: ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>>
   logo: React.ReactNode
-  locales?: {
-    availableLocales: Array<{ locale: Locale; description: string; src: string }>
-    locale: Locale
-    setLocale: (newLocale: Locale) => void
-  }
   socialMedia?: Array<{
     slug: string
     description?: string
@@ -45,25 +44,6 @@ const NavBar = ({
 }) => {
   const [drawerOpen, setDrawerOpen] = useState(opened)
 
-  const closeDrawer = useCallback(() => {
-    setDrawerOpen(false)
-  }, [])
-
-  const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const { hash } = new URL(e.currentTarget.href)
-
-    if (hash) {
-      e.preventDefault()
-
-      setTimeout(() => {
-        const targetElement = document.querySelector(hash)
-        targetElement?.scrollIntoView({ behavior: 'smooth' })
-      }, 400)
-    }
-
-    closeDrawer()
-  }
-
   const { isInstallable, handleInstallClick } = usePWAInstall()
 
   const t = useTranslations('NavBar')
@@ -71,6 +51,13 @@ const NavBar = ({
   useEffect(() => {
     setDrawerOpen(opened)
   }, [opened])
+
+  const locale = useLocale() as Locale
+  const router = useRouter()
+
+  const setLocale = (newLocale: Locale) => {
+    router.push(`/${newLocale}`)
+  }
 
   return (
     <Drawer direction={direction} open={drawerOpen} onOpenChange={setDrawerOpen}>
@@ -106,8 +93,16 @@ const NavBar = ({
               </Button>
             )}
 
-            {locales && locales.availableLocales.length > 0 && <LocaleSelector {...locales} />}
+            <LocaleSelector locale={locale} setLocale={setLocale} availableLocales={AVAILABLE_LOCALES} />
           </div>
+
+          {/* <div>
+            <h3>Settings</h3>
+            <div className='flex items-center'>
+              <Switch />
+              <p>Categorize Expenses</p>
+            </div>
+          </div> */}
 
           <article className='flex-1 flex flex-col items-center justify-center gap-2 text-center text-gray-950 font-light px-2 leading-6'>
             <p>
@@ -122,18 +117,6 @@ const NavBar = ({
               {t('Write to us on X (Twitter) or by Email!')}
             </p>
           </article>
-
-          <nav>
-            <ul>
-              {links?.map(({ text, href }, index) => (
-                <li key={`${index}-${text}`} className='my-8 font-medium'>
-                  <Link href={href} onClick={handleNavigation} className='hover:underline'>
-                    {text}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
         </main>
 
         {socialMedia && (
