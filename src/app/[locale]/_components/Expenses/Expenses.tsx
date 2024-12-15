@@ -56,7 +56,7 @@ export const Expenses = ({ expenses, setExpenses, readOnly = false }: Props) => 
                 )}
               </li>
             ))}
-            <li className='mt-auto flex justify-between font-semibold py-2'>
+            <li className='mt-auto flex justify-between font-semibold py-3'>
               <p>TOTAL:</p>
               <p>$ {formatAmount(expenses.reduce((acc, cv) => acc + cv.amount, 0))}</p>
             </li>
