@@ -17,9 +17,8 @@
     "John Spliti": "João Spliti"
   },
   "Expenses": {
-    "Participants": "Despesas",
-    "Enter a Participant to get started!": "Adicione um participante para começar!",
-    "Balances": "Saldos"
+    "Expenses": "Despesas",
+    "Enter a Participant to get started!": "Adicione um participante para começar!"
   },
   "CalculateButton": {
     "Calculate Balances": "Calcular Saldos"
