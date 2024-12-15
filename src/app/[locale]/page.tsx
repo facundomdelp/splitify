@@ -59,7 +59,8 @@ export default function Home() {
         </Button>
       )}
 
-      <Expenses expenses={expenses} setExpenses={setExpenses} />
+      <Expenses expenses={expenses} setExpenses={setExpenses} readOnly={balances.length > 0} />
+
       {balances.length === 0 ? (
         <CalculateButton
           expenses={expenses}

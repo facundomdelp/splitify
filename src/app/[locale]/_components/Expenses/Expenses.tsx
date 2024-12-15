@@ -11,9 +11,10 @@ import { useGetMetadata } from '@/components/store/metadata'
 interface Props {
   expenses: Expense[]
   setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
+  readOnly?: boolean
 }
 
-export const Expenses = ({ expenses, setExpenses }: Props) => {
+export const Expenses = ({ expenses, setExpenses, readOnly = false }: Props) => {
   const metadata = useGetMetadata()
   const { handleChangeEmojis, rotate } = useHandleChangeEmojis()
   const getEmojiFromString = useGetEmojiFromString()
@@ -48,7 +49,9 @@ export const Expenses = ({ expenses, setExpenses }: Props) => {
                 <p className='mr-2'>{getEmojiFromString(name)}</p>
                 <p className='text-ellipsis whitespace-nowrap overflow-hidden min-w-0'>{name}</p>
                 <p className='whitespace-nowrap'>: ${formatAmount(amount)}</p>
-                <RemoveExpense id={id} name={name} expenses={expenses} setExpenses={setExpenses} className='mx-1' />
+                {!readOnly && (
+                  <RemoveExpense id={id} name={name} expenses={expenses} setExpenses={setExpenses} className='mx-1' />
+                )}
               </li>
             ))}
             <li className='mt-auto flex justify-between font-semibold py-2'>
