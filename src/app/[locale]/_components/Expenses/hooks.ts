@@ -75,18 +75,29 @@ export const useExpensesForm = ({ expenses, setExpenses, nameInputRef }: useExpe
 }
 
 export const useHandleChangeEmojis = () => {
+  const [isChangeEmojiClicked, setIsChangeEmojiClicked] = useState(false)
+
   const [rotate, setRotate] = useState(false)
   const [metadata, setMetadata] = useSetMetadata()
 
   const handleChangeEmojis = () => {
-    setRotate(true)
-    setTimeout(() => setRotate(false), 500)
+    if (!isChangeEmojiClicked) {
+      setTimeout(() => {
+        setIsChangeEmojiClicked(true)
+      }, 250)
+    }
 
-    setMetadata({
-      ...metadata,
-      emojiHash: Math.floor(Math.random() * 1000),
-    })
+    setRotate(true)
+
+    setTimeout(() => {
+      setMetadata({
+        ...metadata,
+        emojiHash: Math.floor(Math.random() * 1000),
+      })
+    }, 250)
+
+    setTimeout(() => setRotate(false), 500)
   }
 
-  return { handleChangeEmojis, rotate }
+  return { handleChangeEmojis, rotate, isChangeEmojiClicked }
 }

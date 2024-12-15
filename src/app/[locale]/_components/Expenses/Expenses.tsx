@@ -2,11 +2,11 @@ import { Expense } from '@/types/Expense'
 import { formatAmount } from '@/lib/functions/formatAmount'
 import { RemoveExpense } from './RemoveExpense'
 import { Button } from '@/components/ui/button'
-import { RefreshCwIcon, UsersRound } from 'lucide-react'
+import { UsersRound } from 'lucide-react'
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
 import { useHandleChangeEmojis } from './hooks'
 import { useTranslations } from 'next-intl'
-import { useGetMetadata } from '@/components/store/metadata'
+import { cn } from '@/lib/utils'
 
 interface Props {
   expenses: Expense[]
@@ -15,8 +15,7 @@ interface Props {
 }
 
 export const Expenses = ({ expenses, setExpenses, readOnly = false }: Props) => {
-  const metadata = useGetMetadata()
-  const { handleChangeEmojis, rotate } = useHandleChangeEmojis()
+  const { handleChangeEmojis, rotate, isChangeEmojiClicked } = useHandleChangeEmojis()
   const getEmojiFromString = useGetEmojiFromString()
 
   const t = useTranslations('Expenses')
@@ -32,12 +31,15 @@ export const Expenses = ({ expenses, setExpenses, readOnly = false }: Props) => 
           {expenses && expenses.length > 0 && (
             <Button
               variant='outline'
-              className='flex w-[65px] h-fit py-1 px-2 ml-auto justify-evenly'
+              className='flex w-[40px] h-[30px] py-1 px-2 ml-auto justify-evenly'
               onClick={handleChangeEmojis}
               tabIndex={-1}
             >
-              <RefreshCwIcon className={rotate ? 'rotate-180 transition-transform duration-500' : ''} />
-              {metadata?.emojiHash === undefined ? '🤑' : getEmojiFromString('🐑')}
+              {
+                <div className={cn(rotate ? 'rotate-[360deg] transition-transform duration-500' : '')}>
+                  {!isChangeEmojiClicked ? '🤑' : getEmojiFromString('🤑')}
+                </div>
+              }
             </Button>
           )}
         </div>
