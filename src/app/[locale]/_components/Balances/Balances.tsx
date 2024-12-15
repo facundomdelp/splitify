@@ -38,7 +38,7 @@ const Balances = ({ balances, rounded, setRounded }: Props) => {
           {balances.map((balance, index) => (
             <li key={index} className='flex items-center min-w-0 flex-wrap'>
               <div className='flex items-center min-w-0 gap-1 mr-1'>
-                <p className='mr-1'>{getEmojiFromString(balance.debtor)}</p>
+                <p className='w-[20px] text-center mr-1'>{getEmojiFromString(balance.debtor)}</p>
                 <p className='text-ellipsis whitespace-nowrap overflow-hidden min-w-0'>{balance.debtor}</p>
                 <p className='whitespace-nowrap'>{t('owes')}</p>
                 <strong className='font-semibold whitespace-nowrap'>
@@ -48,7 +48,7 @@ const Balances = ({ balances, rounded, setRounded }: Props) => {
               <div className='flex items-center min-w-0 gap-1'>
                 <p className='whitespace-nowrap'>{t('to')}</p>
                 <p className='text-ellipsis whitespace-nowrap overflow-hidden min-w-0'>{balance.creditor}</p>
-                <p className='mr-1'>{getEmojiFromString(balance.creditor)}</p>
+                <p className='w-[20px] text-center'>{getEmojiFromString(balance.creditor)}</p>
               </div>
             </li>
           ))}

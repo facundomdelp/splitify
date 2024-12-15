@@ -48,7 +48,7 @@ export const Expenses = ({ expenses, setExpenses, readOnly = false }: Props) => 
           <ul className='mt-4 flex flex-col gap-3 min-w-0'>
             {expenses.toReversed().map(({ id, name, amount }, index) => (
               <li key={index} className='flex items-center min-w-0'>
-                <p className='mr-2'>{getEmojiFromString(name)}</p>
+                <p className='mr-2 w-[20px] text-center'>{getEmojiFromString(name)}</p>
                 <p className='text-ellipsis whitespace-nowrap overflow-hidden min-w-0'>{name}</p>
                 <p className='whitespace-nowrap'>: ${formatAmount(amount)}</p>
                 {!readOnly && (
