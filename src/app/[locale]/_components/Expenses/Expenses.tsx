@@ -42,7 +42,7 @@ export const Expenses = ({ expenses, setExpenses }: Props) => {
         </div>
 
         {expenses && Object.keys(expenses).length ? (
-          <ul className='mt-4 flex flex-col gap-3 min-w-0 flex-1'>
+          <ul className='mt-4 flex flex-col gap-3 min-w-0'>
             {expenses.toReversed().map(({ id, name, amount }, index) => (
               <li key={index} className='flex items-center min-w-0'>
                 <p className='mr-2'>{getEmojiFromString(name)}</p>
