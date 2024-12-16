@@ -1,5 +1,5 @@
+import { SEO_ROUTES } from '@/lib/seoRoutes'
 import { Locale } from '@/types/Common'
-import { seoRoutes } from './seoRoutes'
 import { redirect } from 'next/navigation'
 
 export default async function SeoRouteLayout({
@@ -11,7 +11,7 @@ export default async function SeoRouteLayout({
 }>) {
   const awaitedParams = await params
 
-  const isValidRoute = Object.keys(seoRoutes[awaitedParams.locale]).includes(awaitedParams['seo-route'])
+  const isValidRoute = Object.keys(SEO_ROUTES[awaitedParams.locale]).includes(awaitedParams['seo-route'])
 
   if (!isValidRoute) {
     redirect('/')

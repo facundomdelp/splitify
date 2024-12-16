@@ -1,19 +1,17 @@
-import { Locale } from '@/types/Common'
-import { seoRoutes } from './seoRoutes'
-import Description from './_components/Description'
+'use client'
 
-const Page = async ({
-  params,
-}: Readonly<{
-  params: Promise<{ locale: Locale; 'seo-route': string }>
-}>) => {
-  const awaitedParams = await params
-  const localeSeoRoutes = seoRoutes[awaitedParams['locale']]
+import Description from './_components/Description'
+import { SEO_ROUTES } from '@/lib/seoRoutes'
+import { useParams } from 'next/navigation'
+
+const Page = () => {
+  const params = useParams()
+  const localeSeoRoute = SEO_ROUTES[params.locale as keyof typeof SEO_ROUTES]
 
   return (
     <main className='w-full p-6 text-dark max-w-[600px]'>
       <h1 className='text-lg font-bold text-green-950'>
-        {localeSeoRoutes[awaitedParams['seo-route'] as keyof typeof localeSeoRoutes]}
+        {localeSeoRoute[params['seo-route'] as keyof typeof localeSeoRoute]}
       </h1>
       <Description />
     </main>
