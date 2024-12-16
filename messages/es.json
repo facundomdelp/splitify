@@ -54,10 +54,11 @@
     "Write to us on X (Twitter) or by Email!": "¡Escribenos por X (Twitter) o por Email!",
     "Install App": "Instalar Aplicación 🚀"
   },
-  "Description": {
+  "SeoPage": {
     "Start": "Comenzar 🚀",
     "paragraph-1": "🤑 ¡Gestionar los gastos en grupo nunca fue tan sencillo! Splitify es la solución ideal para dividir cuentas de manera justa entre amigos, familiares o colegas. Olvídate de los cálculos manuales o las hojas de cálculo complicadas: nuestra app simplifica todo el proceso. Ya sea una cena informal, un viaje en grupo o cualquier gasto compartido, Splitify asegura que todos sepan exactamente cuánto deben, eliminando la incomodidad y confusión al manejar dinero.",
     "paragraph-2": "💡 Lo que distingue a Splitify es su capacidad de seguimiento en tiempo real y sus funciones avanzadas de optimización. Agrega participantes, registra pagos y deja que la app se encargue de los cálculos para una división justa y transparente. Con un algoritmo inteligente, Splitify minimiza la cantidad de transacciones necesarias, asegurando que todos salden cuentas de manera eficiente. Sin necesidad de cuentas ni inicios de sesión, puedes empezar a dividir gastos de forma rápida y segura.",
-    "paragraph-3": "💸 Splitify es más que una calculadora de gastos: es una herramienta que fomenta la armonía en las finanzas grupales. Ya sea organizando una cena o planificando una escapada de fin de semana, Splitify convierte una tarea potencialmente estresante en una experiencia sencilla. Di adiós a los malentendidos y hola a la claridad y conveniencia. ¡Prueba Splitify hoy y descubre la forma más fácil de gestionar costos compartidos, tus amigos te lo agradecerán!"
+    "paragraph-3": "💸 Splitify es más que una calculadora de gastos: es una herramienta que fomenta la armonía en las finanzas grupales. Ya sea organizando una cena o planificando una escapada de fin de semana, Splitify convierte una tarea potencialmente estresante en una experiencia sencilla. Di adiós a los malentendidos y hola a la claridad y conveniencia. ¡Prueba Splitify hoy y descubre la forma más fácil de gestionar costos compartidos, tus amigos te lo agradecerán!",
+    "paragraph-4": "🏗️ Splitify está diseñado pensando en la simplicidad y la flexibilidad, lo que lo hace perfecto para cualquier ocasión. Ya sea que estés compartiendo gastos con compañeros de piso, organizando unas vacaciones en grupo o manejando gastos compartidos para un proyecto, nuestra interfaz intuitiva se adapta a tus necesidades. Accesible desde cualquier dispositivo, Splitify garantiza que gestionar tus finanzas sea sencillo, estés donde estés."
   }
 }
