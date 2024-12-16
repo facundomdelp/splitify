@@ -11,7 +11,6 @@ const ISOLOGO_SIZE = 65
 
 const Footer = () => {
   const params = useParams()
-  console.log('👽 ~ file: Footer.tsx:11 ~ Footer ~ params:', params)
 
   return (
     <footer className='w-full bg-green-950 flex justify-center items-center flex-shrink-0 py-2 px-3'>
