@@ -6,26 +6,18 @@ import { useTranslations } from 'next-intl'
 import { useSetExpenses } from '@/components/store/expenses'
 import { Button } from '@/components/ui/button'
 import { Undo } from 'lucide-react'
-import { useState } from 'react'
 import CalculateButton from './_components/Expenses/CalculateButton'
 import { useSetBalances } from '@/components/store/balances'
 import Balances from './_components/Balances'
-import { ResetBalances } from './_components/Balances/ResetBalances'
-import CopyToClipboard from '@/components/CopyToClipboard'
-import { useCalculateBalances, useCopyString } from './hooks'
+import { useCalculateBalances } from './hooks'
 
 export default function Home() {
   const [expenses, setExpenses] = useSetExpenses()
   const [balances, setBalances] = useSetBalances()
 
-  const [rounded, setRounded] = useState(balances.some((balance) => balance.amount % 1 === 0))
-
   const { handleCalculateBalances, calculating } = useCalculateBalances({ expenses, setBalances })
-  const copyString = useCopyString({ balances, rounded })
 
-  const onClean = () => {
-    setExpenses([])
-  }
+  const onReset = () => setExpenses([])
 
   const t = useTranslations('Home')
 
@@ -50,9 +42,6 @@ export default function Home() {
       )}
 
       <Expenses expenses={expenses} setExpenses={setExpenses} readOnly={balances.length > 0} />
-      {balances.length > 0 && (
-        <Balances balances={balances} setBalances={setBalances} rounded={rounded} setRounded={setRounded} />
-      )}
 
       {balances.length === 0 ? (
         <CalculateButton
@@ -61,12 +50,7 @@ export default function Home() {
           handleCalculateBalances={handleCalculateBalances}
         />
       ) : (
-        <>
-          <section className='mt-auto flex gap-4'>
-            <ResetBalances setBalances={setBalances} onClean={onClean} className='flex-1 basis-28' />
-            <CopyToClipboard copyString={copyString} />
-          </section>
-        </>
+        <Balances balances={balances} onReset={onReset} setBalances={setBalances} />
       )}
     </main>
   )

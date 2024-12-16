@@ -6,18 +6,24 @@ import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
 import { useTranslations } from 'next-intl'
 import { Switch } from '@/components/ui/switch'
 import { CircleDollarSign } from 'lucide-react'
+import { ResetBalances } from './ResetBalances'
+import CopyToClipboard from '@/components/CopyToClipboard'
+import { useCopyString } from '../../hooks'
+import { useState } from 'react'
 
 interface Props {
   balances: Balance[]
   setBalances: React.Dispatch<React.SetStateAction<Balance[]>>
-  rounded: boolean
-  setRounded: React.Dispatch<React.SetStateAction<boolean>>
+  onReset: () => void
 }
 
-const Balances = ({ balances, rounded, setRounded }: Props) => {
-  const t = useTranslations('Balances')
+const Balances = ({ balances, setBalances, onReset }: Props) => {
+  const [rounded, setRounded] = useState(balances.some((balance) => balance.amount % 1 === 0))
 
   const getEmojiFromString = useGetEmojiFromString()
+  const copyString = useCopyString({ balances, rounded })
+
+  const t = useTranslations('Balances')
 
   return (
     <>
@@ -53,6 +59,11 @@ const Balances = ({ balances, rounded, setRounded }: Props) => {
             </li>
           ))}
         </ul>
+      </section>
+
+      <section className='mt-auto flex gap-4'>
+        <ResetBalances setBalances={setBalances} onReset={onReset} className='flex-1 basis-28' />
+        <CopyToClipboard copyString={copyString} />
       </section>
     </>
   )

@@ -8,13 +8,13 @@ import { useTranslations } from 'next-intl'
 
 interface Props {
   setBalances: React.Dispatch<React.SetStateAction<Balance[]>>
-  onClean?: () => void
+  onReset?: () => void
   className?: string
 }
 
-export const ResetBalances = ({ setBalances, onClean, className }: Props) => {
+export const ResetBalances = ({ setBalances, onReset, className }: Props) => {
   const handleOnConfirm = () => {
-    onClean?.()
+    onReset?.()
     setBalances([])
   }
 
