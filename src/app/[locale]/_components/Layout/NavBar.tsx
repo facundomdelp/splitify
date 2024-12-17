@@ -12,6 +12,8 @@ import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer'
 import { Button } from '@/components/ui/button'
 import { usePWAInstall } from '@/lib/hooks/usePWAInstall'
+import { useGetGeoLocation } from '@/lib/hooks/useGetGeoLocation'
+import { COUNTRIES } from '@/lib/countries'
 
 const AVAILABLE_LOCALES: Array<{ locale: Locale; description: string; src: string }> = [
   { locale: 'en', description: 'English', src: '/en.jpg' },
@@ -45,6 +47,7 @@ const NavBar = ({
   const [drawerOpen, setDrawerOpen] = useState(opened)
 
   const { isInstallable, handleInstallClick } = usePWAInstall()
+  const userGeoLocation = useGetGeoLocation()
 
   const t = useTranslations('NavBar')
 
@@ -96,14 +99,6 @@ const NavBar = ({
             <LocaleSelector locale={locale} setLocale={setLocale} availableLocales={AVAILABLE_LOCALES} />
           </div>
 
-          {/* <div>
-            <h3>Settings</h3>
-            <div className='flex items-center'>
-              <Switch />
-              <p>Categorize Expenses</p>
-            </div>
-          </div> */}
-
           <article className='flex-1 flex flex-col items-center justify-center gap-2 text-center text-gray-950 font-light px-2 leading-6'>
             <p>
               {t('🚀 Welcome to the')}
@@ -121,21 +116,23 @@ const NavBar = ({
 
         {socialMedia && (
           <footer className='gap-3 flex justify-end text-gray-700 mt-auto p-8'>
-            <a
-              href='https://appgentina.com.ar/producto/splitify?ref=badge'
-              title='Splitify | Appgentina'
-              className='mr-auto max-w-[200px] pr-2'
-              target='_blank'
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src='https://appgentina.com.ar/embed-svg/splitify'
-                alt='Splitify | Appgentina'
-                style={{ width: '229px', height: '54px' }}
-                width='229'
-                height='54'
-              />
-            </a>
+            {userGeoLocation?.country === COUNTRIES.argentina && (
+              <a
+                href='https://appgentina.com.ar/producto/splitify?ref=badge'
+                title='Splitify | Appgentina'
+                className='mr-auto max-w-[200px] pr-2'
+                target='_blank'
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src='https://appgentina.com.ar/embed-svg/splitify'
+                  alt='Splitify | Appgentina'
+                  style={{ width: '229px', height: '54px' }}
+                  width='229'
+                  height='54'
+                />
+              </a>
+            )}
 
             {socialMedia.map(({ slug, description, href, icon: Icon }) => (
               <Link
