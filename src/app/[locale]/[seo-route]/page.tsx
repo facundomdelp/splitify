@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { SEO_ROUTES } from '@/lib/seoRoutes'
+import { SEO_ROUTES } from '@/seo/seoRoutes'
 import { useParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'

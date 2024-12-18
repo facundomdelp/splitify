@@ -1,4 +1,4 @@
-import { EMOJIS } from '../emojis'
+import { EMOJIS } from '../constants/emojis'
 import { hashStringToNumber } from '../functions/hashStringToNumber'
 import { useCallback } from 'react'
 import { useGetMetadata } from '../../components/store/metadata'

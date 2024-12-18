@@ -1,6 +1,6 @@
 'use client'
 
-import { SEO_ROUTES } from '@/lib/seoRoutes'
+import { SEO_ROUTES } from '@/seo/seoRoutes'
 import { Locale } from '@/types/Common'
 import Image from 'next/image'
 import Link from 'next/link'

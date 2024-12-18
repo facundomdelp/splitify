@@ -1,4 +1,4 @@
-import { SEO_ROUTES } from '@/lib/seoRoutes'
+import { SEO_ROUTES } from '@/seo/seoRoutes'
 import { Locale } from '@/types/Common'
 import { redirect } from 'next/navigation'
 
