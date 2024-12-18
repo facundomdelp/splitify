@@ -1,9 +1,6 @@
 'use client'
 
-import TiktokLogo from '@/components/icons/TiktokLogo'
-import XLogo from '@/components/icons/XLogo'
 import { Badge } from '@/components/ui/badge'
-import { MailIcon } from 'lucide-react'
 import Image from 'next/image'
 import NavBar from './NavBar'
 import Link from 'next/link'
@@ -23,27 +20,7 @@ const Header = () => {
         </Badge>
       </Link>
 
-      <NavBar
-        logo={<Image src='/Splitify.png' alt='Splitify' width={LOGO_WIDTH} height={LOGO_WIDTH / (10 / 3)} />}
-        className='absolute right-4 top-1/2 -translate-y-1/2'
-        socialMedia={[
-          {
-            slug: 'x',
-            href: 'https://x.com/splitify_me',
-            icon: XLogo,
-          },
-          {
-            slug: 'tik-tok',
-            href: 'https://www.tiktok.com/@.splitify',
-            icon: TiktokLogo,
-          },
-          {
-            slug: 'mail',
-            href: 'mailto:splitify.me@gmail.com',
-            icon: MailIcon,
-          },
-        ]}
-      />
+      <NavBar className='absolute right-4 top-1/2 -translate-y-1/2' />
     </header>
   )
 }
