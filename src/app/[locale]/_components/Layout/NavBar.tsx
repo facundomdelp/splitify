@@ -13,7 +13,7 @@ import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from '@/components/
 import { Button } from '@/components/ui/button'
 import { usePWAInstall } from '@/lib/hooks/usePWAInstall'
 import { useGetGeoLocation } from '@/lib/hooks/useGetGeoLocation'
-import { COUNTRIES } from '@/lib/countries'
+import { COUNTRIES } from '@/lib/constants/countries'
 
 const AVAILABLE_LOCALES: Array<{ locale: Locale; description: string; src: string }> = [
   { locale: 'en', description: 'English', src: '/en.jpg' },

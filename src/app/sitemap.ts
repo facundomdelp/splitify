@@ -1,4 +1,4 @@
-import { SEO_ROUTES } from '@/lib/seoRoutes'
+import { SEO_ROUTES } from '@/seo/seoRoutes'
 import type { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
