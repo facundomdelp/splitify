@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
 import {
   ChevronRight,
   CoinsIcon,
-  FlagIcon,
+  Globe,
   HandCoinsIcon,
   LucideProps,
   MailIcon,
@@ -110,7 +110,7 @@ const NavBar = ({
                     {t('Install App')}
                   </NavItem>
                 )}
-                <NavItem key='language' icon={FlagIcon} onClick={() => setModalOpen(true)}>
+                <NavItem key='language' icon={Globe} onClick={() => setModalOpen(true)}>
                   {t('Language')}
                 </NavItem>
                 <NavItem key='settings' icon={Settings} disabled>
