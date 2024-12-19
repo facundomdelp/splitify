@@ -35,7 +35,7 @@ const NavBar = ({
   icon?: ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>>
 }) => {
   const [drawerOpen, setDrawerOpen] = useState(false)
-  const [modalOpen, setModalOpen] = useState(false)
+  const [localeModalOpen, setLocaleModalOpen] = useState(false)
 
   const { handleNavigation } = useHandleNavigation({ setDrawerOpen })
   const { isInstallable, handleInstallClick } = usePWAInstall()
@@ -44,7 +44,7 @@ const NavBar = ({
 
   return (
     <>
-      <LocaleSelectorModal open={modalOpen} setOpen={setModalOpen} />
+      <LocaleSelectorModal open={localeModalOpen} setOpen={setLocaleModalOpen} />
 
       <Drawer direction={direction} open={drawerOpen} onOpenChange={setDrawerOpen}>
         <DrawerTrigger asChild className={className}>
@@ -77,7 +77,7 @@ const NavBar = ({
                     {t('Install App')}
                   </NavItem>
                 )}
-                <NavItem key='language' icon={Globe} onClick={() => setModalOpen(true)}>
+                <NavItem key='language' icon={Globe} onClick={() => setLocaleModalOpen(true)}>
                   {t('Language')}
                 </NavItem>
                 <NavItem key='settings' icon={Settings} disabled>
