@@ -1,6 +1,6 @@
 'use client'
 
-import { ForwardRefExoticComponent, ReactNode, RefAttributes, useEffect, useState } from 'react'
+import { ForwardRefExoticComponent, ReactNode, RefAttributes, useState } from 'react'
 import { cn } from '@/lib/utils'
 import { CoinsIcon, Globe, HandCoinsIcon, LucideProps, MenuIcon, RocketIcon, Settings } from 'lucide-react'
 import { useTranslations } from 'next-intl'
@@ -20,46 +20,27 @@ import LocaleSelectorModal from './LocaleSelectorModal'
 import SocialMedia from './SocialMedia'
 import NavSection from './NavSection'
 import NavItem from './NavItem'
+import { useHandleNavigation } from './hooks'
 
 const LOGO_WIDTH = 120
 
 const NavBar = ({
-  opened = false,
   direction = 'right',
   className,
   icon: Icon = MenuIcon,
 }: {
   children?: ReactNode
-  opened?: boolean
   direction?: 'right' | 'left'
   className?: string
   icon?: ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>>
 }) => {
+  const [drawerOpen, setDrawerOpen] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
-  const [drawerOpen, setDrawerOpen] = useState(opened)
 
+  const { handleNavigation } = useHandleNavigation({ setDrawerOpen })
   const { isInstallable, handleInstallClick } = usePWAInstall()
 
   const t = useTranslations('NavBar')
-
-  const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const { hash } = new URL(e.currentTarget.href)
-
-    if (hash) {
-      e.preventDefault()
-
-      setTimeout(() => {
-        const targetElement = document.querySelector(hash)
-        targetElement?.scrollIntoView({ behavior: 'smooth' })
-      }, 400)
-    }
-
-    setDrawerOpen(false)
-  }
-
-  useEffect(() => {
-    setDrawerOpen(opened)
-  }, [opened])
 
   return (
     <>
@@ -123,7 +104,7 @@ const NavBar = ({
             </nav>
           </main>
 
-          <footer className='gap-3 flex justify-end text-gray-700 mt-auto p-8'>
+          <footer className='gap-3 flex justify-end text-gray-700 mt-auto p-8 h-[118px]'>
             <SocialMedia />
           </footer>
         </DrawerContent>
