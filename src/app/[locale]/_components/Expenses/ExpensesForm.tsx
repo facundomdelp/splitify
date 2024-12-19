@@ -27,7 +27,7 @@ const ExpensesForm = ({ expenses, setExpenses }: Props) => {
   return (
     <section className='h-[64px] flex flex-col gap-2'>
       <p className='text-sm flex items-center gap-1 flex-nowrap'>
-        <UserRound className='size-[14px]' />
+        <UserRound className='size-[14px] text-green-700' />
         {t('Add participant')}
       </p>
       <form className='flex gap-4 flex-wrap' onSubmit={handleSubmit}>

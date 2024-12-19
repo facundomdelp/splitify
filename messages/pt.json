@@ -47,15 +47,20 @@
   },
   "NavBar": {
     "Discover more!": "Descubra mais!",
-    "🚀 Welcome to the": "🚀 Bem-vindo à",
-    "Splitify Beta": "Beta do Splitify",
-    "More things are coming 🤫": "Mais novidades estão a caminho 🤫",
-    "Do you have any suggestions?": "Tem alguma sugestão?",
-    "Write to us on X (Twitter) or by Email!": "Escreva para nós no X (Twitter) ou por Email!",
-    "Install App": "Instalar Aplicativo 🚀"
+    "General": "Geral",
+    "Language": "Idioma",
+    "Settings": "Configurações",
+    "Spliti Quick": "Spliti Já",
+    "Spliti Groups": "Spliti Groupos",
+    "Install App": "Instalar Aplicativo"
+  },
+  "LocaleSelectorModal": {
+    "Language": "Idioma",
+    "Would you like to select a different language?": "Gostaria de selecionar um idioma diferente?",
+    "Send us an email!": "Envie-nos um e-mail!"
   },
   "SeoPage": {
-    "Start": "Começar 🚀",
+    "Get Started": "Começar 🚀",
     "paragraph-1": "🤑 Gerenciar despesas em grupo nunca foi tão simples! Splitify é a solução ideal para dividir contas de forma justa entre amigos, familiares ou colegas. Esqueça os cálculos manuais ou planilhas complicadas—nosso aplicativo torna todo o processo mais fácil. Seja em um jantar casual, uma viagem em grupo ou qualquer despesa compartilhada, o Splitify garante que todos saibam exatamente o que devem, eliminando desconfortos e confusões ao lidar com dinheiro.",
     "paragraph-2": "💡 O que diferencia o Splitify é seu rastreamento em tempo real e recursos avançados de otimização. Adicione participantes, registre pagamentos e deixe o aplicativo fazer os cálculos para uma divisão justa e transparente. Com um algoritmo inteligente, o Splitify reduz o número de transações necessárias, garantindo que todos acertem suas contas de forma eficiente. Sem necessidade de contas ou logins, você pode começar a dividir as despesas de maneira rápida e segura.",
     "paragraph-3": "💸 Splitify é mais do que uma calculadora de despesas: é uma ferramenta que promove harmonia nas finanças de grupos. Seja organizando um jantar ou planejando uma viagem de fim de semana, o Splitify transforma uma tarefa potencialmente estressante em uma experiência tranquila. Diga adeus aos mal-entendidos e olá à clareza e conveniência. Experimente o Splitify hoje e descubra a forma mais fácil de gerenciar custos compartilhados—seus amigos vão te agradecer!",
