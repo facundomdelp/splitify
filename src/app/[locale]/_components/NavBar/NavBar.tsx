@@ -14,12 +14,16 @@ import {
   RocketIcon,
   Settings,
 } from 'lucide-react'
-// import { Locale } from '@/types/Common'
-import { /* useLocale,  */ useTranslations } from 'next-intl'
-// import { useRouter } from 'next/navigation'
-// import LocaleSelector from '@/components/LocaleSelector'
+import { useTranslations } from 'next-intl'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
-import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer'
+import {
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from '@/components/ui/drawer'
 import { Button } from '@/components/ui/button'
 import { usePWAInstall } from '@/lib/hooks/usePWAInstall'
 import { useGetGeoLocation } from '@/lib/hooks/useGetGeoLocation'
@@ -28,14 +32,9 @@ import XLogo from '@/components/icons/XLogo'
 import TiktokLogo from '@/components/icons/TiktokLogo'
 import Image from 'next/image'
 import { slugify } from '@/lib/functions/slugify'
+import LocaleSelectorModal from './LocaleSelectorModal'
 
 const LOGO_WIDTH = 120
-
-// const AVAILABLE_LOCALES: Array<{ locale: Locale; description: string; src: string }> = [
-//   { locale: 'en', description: 'English', src: '/en.jpg' },
-//   { locale: 'es', description: 'Español', src: '/es.jpg' },
-//   { locale: 'pt', description: 'Português', src: '/pt.jpg' },
-// ]
 
 const NavBar = ({
   opened = false,
@@ -49,6 +48,7 @@ const NavBar = ({
   className?: string
   icon?: ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>>
 }) => {
+  const [modalOpen, setModalOpen] = useState(false)
   const [drawerOpen, setDrawerOpen] = useState(opened)
 
   const { isInstallable, handleInstallClick } = usePWAInstall()
@@ -56,19 +56,29 @@ const NavBar = ({
 
   const t = useTranslations('NavBar')
 
+  const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const { hash } = new URL(e.currentTarget.href)
+
+    if (hash) {
+      e.preventDefault()
+
+      setTimeout(() => {
+        const targetElement = document.querySelector(hash)
+        targetElement?.scrollIntoView({ behavior: 'smooth' })
+      }, 400)
+    }
+
+    setDrawerOpen(false)
+  }
+
   useEffect(() => {
     setDrawerOpen(opened)
   }, [opened])
 
-  // const locale = useLocale() as Locale
-  // const router = useRouter()
-
-  // const setLocale = (newLocale: Locale) => {
-  //   router.push(`/${newLocale}`)
-  // }
-
   return (
     <>
+      <LocaleSelectorModal open={modalOpen} setOpen={setModalOpen} />
+
       <Drawer direction={direction} open={drawerOpen} onOpenChange={setDrawerOpen}>
         <DrawerTrigger asChild className={className}>
           <Button variant='ghost' size='icon' aria-label='Open navigation menu' className='[&_svg]:size-8'>
@@ -76,9 +86,10 @@ const NavBar = ({
           </Button>
         </DrawerTrigger>
         <VisuallyHidden>
-          <DrawerTitle aria-hidden='false' inert>
-            {t('Discover more!')}
-          </DrawerTitle>
+          <DrawerHeader>
+            <DrawerTitle>{t('Discover more!')}</DrawerTitle>
+            <DrawerDescription />
+          </DrawerHeader>
         </VisuallyHidden>
         <DrawerContent
           className={cn(
@@ -93,26 +104,32 @@ const NavBar = ({
 
           <main className='p-8 flex flex-col gap-8 flex-1'>
             <nav className='space-y-9'>
-              <NavSection title='General'>
+              <NavSection title={t('General')}>
                 {isInstallable && (
                   <NavItem key='pwa' icon={RocketIcon} onClick={handleInstallClick}>
                     {t('Install App')}
                   </NavItem>
                 )}
-                <NavItem key='language' icon={FlagIcon}>
-                  Idioma
+                <NavItem key='language' icon={FlagIcon} onClick={() => setModalOpen(true)}>
+                  {t('Language')}
                 </NavItem>
                 <NavItem key='settings' icon={Settings} disabled>
-                  Configuraciones 🏭
+                  {t('Settings')} 🏭
                 </NavItem>
               </NavSection>
 
               <NavSection title='Spliti'>
                 {[
-                  { slug: 'spliti-basic', icon: CoinsIcon, name: 'Spliti Basic', href: '/' },
-                  { slug: 'spliti-groups', icon: HandCoinsIcon, name: 'Spliti Groups 🏭', href: '/', disabled: true },
+                  { slug: 'spliti-basic', icon: CoinsIcon, name: t('Spliti Quick'), href: '/' },
+                  {
+                    slug: 'spliti-groups',
+                    icon: HandCoinsIcon,
+                    name: `${t('Spliti Groups')} 🏭`,
+                    href: '/',
+                    disabled: true,
+                  },
                 ].map(({ slug, icon, name, href, disabled }) => (
-                  <NavItem key={slug} icon={icon} disabled={disabled} href={href}>
+                  <NavItem key={slug} icon={icon} disabled={disabled} href={href} handleNavigation={handleNavigation}>
                     {name}
                   </NavItem>
                 ))}
@@ -196,9 +213,10 @@ interface NavItemProps {
   href?: string
   onClick?: () => void
   disabled?: boolean
+  handleNavigation?: React.MouseEventHandler<HTMLAnchorElement>
 }
 
-const NavItem = ({ children, icon: Icon, href, onClick, disabled }: NavItemProps) => {
+const NavItem = ({ children, icon: Icon, href, onClick, disabled, handleNavigation }: NavItemProps) => {
   const NavChildren = () => (
     <>
       <Icon className={cn('text-green-700 size-[20px]', disabled ? 'text-gray-400 cursor-not-allowed' : '')} />
@@ -208,9 +226,9 @@ const NavItem = ({ children, icon: Icon, href, onClick, disabled }: NavItemProps
   )
 
   return (
-    <li className={cn('text-gray-600 py-3 border-b text-sm', disabled ? 'text-gray-400' : '')}>
-      {href ? (
-        <Link href={href} className='flex flex-nowrap gap-4 items-center'>
+    <li className={cn('text-gray-600 py-3 border-b text-sm', disabled ? 'cursor-not-allowed' : '')}>
+      {href && !disabled ? (
+        <Link href={href} className='flex flex-nowrap gap-4 items-center' onClick={handleNavigation}>
           <NavChildren />
         </Link>
       ) : (
@@ -218,6 +236,7 @@ const NavItem = ({ children, icon: Icon, href, onClick, disabled }: NavItemProps
           variant='ghost'
           className='flex flex-nowrap gap-4 items-center p-0 w-full font-normal hover:bg-inherit hover:text-inherit h-fit [&_svg]:size-[20px]'
           onClick={onClick}
+          disabled={disabled}
         >
           <NavChildren />
         </Button>

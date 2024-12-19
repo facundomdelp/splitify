@@ -2,7 +2,7 @@
 
 import { Badge } from '@/components/ui/badge'
 import Image from 'next/image'
-import NavBar from './NavBar'
+import NavBar from '../NavBar/NavBar'
 import Link from 'next/link'
 
 const LOGO_WIDTH = 120
