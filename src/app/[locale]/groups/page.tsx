@@ -38,7 +38,7 @@ const GroupsPage = () => {
       <section className='flex flex-col gap-4'>
         <Card key='add-new-group' className='flex cursor-pointer hover:shadow-lg' onClick={addNewGroup}>
           <CardHeader className='flex-1 space-y-0'>
-            <CardTitle className='text-lg flex flex-row items-center gap-3'>
+            <CardTitle className='text-lg flex flex-row items-center gap-3 text-green-800'>
               <PlusCircleIcon className='text-green-500 flex-shrink-0' /> Add New Group
             </CardTitle>
           </CardHeader>
@@ -49,7 +49,7 @@ const GroupsPage = () => {
 
         <Card key='add-existent-group' className='flex cursor-pointer hover:shadow-lg'>
           <CardHeader className='flex-1 space-y-0'>
-            <CardTitle className='text-lg flex flex-row items-center gap-3'>
+            <CardTitle className='text-lg flex flex-row items-center gap-3 text-green-800'>
               <Lightbulb className='text-green-500 flex-shrink-0' /> Already have a group?
             </CardTitle>
           </CardHeader>
@@ -66,7 +66,7 @@ const GroupsPage = () => {
         </h2>
         <Card key='card-1' className='flex cursor-pointer hover:shadow-lg'>
           <CardHeader className='flex-1 space-y-2'>
-            <CardTitle className='text-lg'>💘 Card Title</CardTitle>
+            <CardTitle className='text-lg text-green-800'>💘 Card Title</CardTitle>
             <CardDescription className='flex items-center gap-2 text-sm'>
               <Clipboard
                 className='size-[16px] cursor-pointer flex-shrink-0'
