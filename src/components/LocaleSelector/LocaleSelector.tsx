@@ -1,6 +1,6 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
 import Image from 'next/image'
-import { Locale } from '@/types/Common'
+import { Locale } from '@/types/common.types'
 import { useLocale } from 'next-intl'
 import { useRouter } from 'next/navigation'
 

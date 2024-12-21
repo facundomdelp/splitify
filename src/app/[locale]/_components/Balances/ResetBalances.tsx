@@ -2,7 +2,7 @@
 
 import ConfirmationModal from '@/components/ConfirmationModal'
 import { Button } from '@/components/ui/button'
-import { Balance } from '@/types/Balance'
+import { Balance } from '@/types/balance.types'
 import { Eraser } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 

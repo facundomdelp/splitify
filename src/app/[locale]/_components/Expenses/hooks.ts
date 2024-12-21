@@ -1,6 +1,6 @@
 import { generateId } from '@/lib/functions/generateId'
-import { useSetMetadata } from '@/components/store/metadata'
-import { Expense } from '@/types/Expense'
+import { useSetMetadata } from '@/store/metadata.store'
+import { Expense } from '@/types/expense.types'
 import { useState } from 'react'
 
 interface useExpensesFormProps {

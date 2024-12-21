@@ -1,4 +1,4 @@
-import { Metadata } from '@/types/Common'
+import { Metadata } from '@/types/common.types'
 import { useLocalStorage, useReadLocalStorage } from 'usehooks-ts'
 
 export const useGetMetadata = () => {

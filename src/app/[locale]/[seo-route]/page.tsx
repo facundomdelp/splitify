@@ -5,10 +5,11 @@ import { SEO_ROUTES } from '@/seo/seoRoutes'
 import { useParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
+import { Locale } from '@/types/common.types'
 
 const SeoPage = () => {
-  const params = useParams()
-  const localeSeoRoute = SEO_ROUTES[params.locale as keyof typeof SEO_ROUTES]
+  const params = useParams<{ locale: Locale; 'seo-route': string }>()
+  const localeSeoRoute = SEO_ROUTES[params.locale]
 
   const t = useTranslations('SeoPage')
 

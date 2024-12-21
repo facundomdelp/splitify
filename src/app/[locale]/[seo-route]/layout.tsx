@@ -1,5 +1,5 @@
 import { SEO_ROUTES } from '@/seo/seoRoutes'
-import { Locale } from '@/types/Common'
+import { Locale } from '@/types/common.types'
 import { redirect } from 'next/navigation'
 
 export default async function SeoRouteLayout({

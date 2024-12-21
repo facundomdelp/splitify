@@ -1,7 +1,7 @@
 'use client'
 
 import { formatAmount } from '@/lib/functions/formatAmount'
-import { Balance } from '@/types/Balance'
+import { Balance } from '@/types/balance.types'
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
 import { useTranslations } from 'next-intl'
 import { Switch } from '@/components/ui/switch'

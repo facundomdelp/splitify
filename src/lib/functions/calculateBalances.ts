@@ -1,5 +1,5 @@
-import { Expense } from '@/types/Expense'
-import { Balance } from '@/types/Balance'
+import { Expense } from '@/types/expense.types'
+import { Balance } from '@/types/balance.types'
 
 export function calculateBalances(expenses: Expense[]): Balance[] {
   const total = expenses.reduce((sum, { amount }) => sum + amount, 0)

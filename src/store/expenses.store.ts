@@ -1,4 +1,4 @@
-import { Expense } from '@/types/Expense'
+import { Expense } from '@/types/expense.types'
 import { useLocalStorage } from 'usehooks-ts'
 
 export const useSetExpenses = () => {

@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Expense } from '@/types/Expense'
+import { Expense } from '@/types/expense.types'
 import { Plus, UserRound } from 'lucide-react'
 import { useExpensesForm } from './hooks'
 import { useRef } from 'react'
@@ -25,7 +25,7 @@ const ExpensesForm = ({ expenses, setExpenses }: Props) => {
   })
 
   return (
-    <section className='h-[64px] flex flex-col gap-2'>
+    <section className='mx-4 h-[64px] flex flex-col gap-2'>
       <p className='text-sm flex items-center gap-1 flex-nowrap'>
         <UserRound className='size-[14px] text-green-700' />
         {t('Add participant')}

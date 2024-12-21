@@ -1,8 +1,8 @@
 import { calculateBalances } from '@/lib/functions/calculateBalances'
 import { formatAmount } from '@/lib/functions/formatAmount'
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
-import { Balance } from '@/types/Balance'
-import { Expense } from '@/types/Expense'
+import { Balance } from '@/types/balance.types'
+import { Expense } from '@/types/expense.types'
 import { useMemo, useState } from 'react'
 
 interface useCalculateBalancesProps {

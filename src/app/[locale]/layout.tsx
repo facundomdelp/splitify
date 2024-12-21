@@ -7,7 +7,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { notFound } from 'next/navigation'
-import { Locale } from '@/types/Common'
+import { Locale } from '@/types/common.types'
 import { Metadata } from 'next'
 import './globals.css'
 

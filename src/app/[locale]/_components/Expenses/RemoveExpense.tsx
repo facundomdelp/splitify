@@ -3,7 +3,7 @@
 import ConfirmationModal from '@/components/ConfirmationModal'
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
 import { cn } from '@/lib/utils'
-import { Expense } from '@/types/Expense'
+import { Expense } from '@/types/expense.types'
 import { X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 

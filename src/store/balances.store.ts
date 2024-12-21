@@ -1,4 +1,4 @@
-import { Balance } from '@/types/Balance'
+import { Balance } from '@/types/balance.types'
 import { useLocalStorage } from 'usehooks-ts'
 
 export const useSetBalances = () => {

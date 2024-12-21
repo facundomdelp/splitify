@@ -3,13 +3,16 @@
 import ExpensesForm from './_components/Expenses/ExpensesForm'
 import { Expenses } from './_components/Expenses/Expenses'
 import { useTranslations } from 'next-intl'
-import { useSetExpenses } from '@/components/store/expenses'
+import { useSetExpenses } from '@/store/expenses.store'
 import { Button } from '@/components/ui/button'
 import { Undo } from 'lucide-react'
 import CalculateButton from './_components/Expenses/CalculateButton'
-import { useSetBalances } from '@/components/store/balances'
+import { useSetBalances } from '@/store/balances.store'
 import Balances from './_components/Balances'
 import { useCalculateBalances } from './hooks'
+// import Image from 'next/image'
+// import { useParams } from 'next/navigation'
+// import { Locale } from '@/types/common.types'
 
 export default function Home() {
   const [expenses, setExpenses] = useSetExpenses()
@@ -19,10 +22,11 @@ export default function Home() {
 
   const onReset = () => setExpenses([])
 
+  // const { locale } = useParams<{ locale: Locale }>()
   const t = useTranslations('Home')
 
   return (
-    <main className='my-8 mx-4 flex flex-col gap-8 max-w-[600px] text-gray-600 flex-1 min-w-0 cursor-default'>
+    <main className='my-8 flex flex-col gap-8 max-w-[600px] text-gray-600 flex-1 min-w-0 cursor-default'>
       {/* SEO */}
       <article className='hidden'>
         <h1>{t('🤑 Splitify | Simplify your group expenses with Splitify')}</h1>
@@ -30,10 +34,22 @@ export default function Home() {
       </article>
       {/* SEO */}
 
+      {/*  <h1 className='hidden'>Splity Quick</h1>
+      <div className='mx-4 flex items-center justify-center'>
+        <div className='h-[30px] w-[150px] relative'>
+          <Image
+            src={`/SplitiQuick-${locale}.png`}
+            alt='Spliti Quick'
+            fill
+            className='object-contain invert opacity-60'
+          />
+        </div>
+      </div> */}
+
       {balances.length === 0 ? (
         <ExpensesForm expenses={expenses} setExpenses={setExpenses} />
       ) : (
-        <section className='h-[64px] flex items-center'>
+        <section className='mx-4 h-[64px] flex items-center'>
           <Button className='w-full gap-4' type='submit' variant='outline' onClick={() => setBalances([])}>
             <Undo />
             {t('Continue Editing')}
