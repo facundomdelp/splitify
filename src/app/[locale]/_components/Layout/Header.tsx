@@ -10,7 +10,7 @@ const LOGO_WIDTH = 120
 const Header = () => {
   return (
     <header
-      className='w-full bg-green-500 flex justify-center items-center h-20 shadow-md flex-shrink-0 fixed top-0'
+      className='w-full bg-green-500 flex justify-center items-center h-20 shadow-md flex-shrink-0 fixed top-0 z-10'
       id='header'
     >
       <Link href='/' className='max-w-[600px] flex justify-center items-center mt-2 relative'>
