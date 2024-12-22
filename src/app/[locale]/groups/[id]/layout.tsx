@@ -1,5 +1,8 @@
 // import { redirect } from 'next/navigation'
 
+// Env Variables for using a different collection for development
+// Responsiveness for Groups
+
 export default async function GroupLayout({
   children,
   params,
