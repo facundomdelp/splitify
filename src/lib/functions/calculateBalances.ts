@@ -1,7 +1,7 @@
 import { Expense } from '@/types/Expense'
 import { Balance } from '@/types/Balance'
 
-export function calculateBalances(expenses: Array<Required<Pick<Partial<Expense>, 'name' | 'amount'>>>): Balance[] {
+export function calculateBalances(expenses: Array<Pick<Expense, 'name' | 'amount'>>): Balance[] {
   // Calculate the total sum and per-person spending
   const total = expenses.reduce((sum, { amount }) => sum + amount, 0)
   const people = expenses.reduce(
