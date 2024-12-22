@@ -1,11 +1,9 @@
 import { Expense } from '@/types/Expense'
 import { Balance } from '@/types/Balance'
 
-export function calculateBalances(expenses: Expense[]): Balance[] {
-  // Calculate the total sum of all expenses
+export function calculateBalances(expenses: Array<Required<Pick<Partial<Expense>, 'name' | 'amount'>>>): Balance[] {
+  // Calculate the total sum and per-person spending
   const total = expenses.reduce((sum, { amount }) => sum + amount, 0)
-
-  // Calculate the total amount spent by each person
   const people = expenses.reduce(
     (acc, { name, amount }) => {
       acc[name] = (acc[name] || 0) + amount
@@ -14,94 +12,34 @@ export function calculateBalances(expenses: Expense[]): Balance[] {
     {} as { [name: string]: number },
   )
 
-  // Calculate the number of people involved in the expenses and the average expense per person
   const peopleCount = Object.keys(people).length
   const averageExpense = total / peopleCount
 
-  // Calculate the balance for each person (how much they owe or are owed)
+  // Calculate initial balances
   const balances: { [person: string]: number } = Object.fromEntries(
     Object.entries(people).map(([person, expense]) => [person, Number((averageExpense - expense).toFixed(2))]),
   )
 
-  // Categorize each person as either a debtor or a creditor based on their balance
-  const debtors: { [person: string]: number } = {}
-  const creditors: { [person: string]: number } = {}
-
-  Object.entries(balances).forEach(([person, balance]) => {
-    if (balance > 0) {
-      debtors[person] = balance
-    } else if (balance < 0) {
-      creditors[person] = Math.abs(balance)
-    }
-  })
-
-  // Sort debtors and creditors by the amount they owe or are owed (largest first)
-  const optimizedBalances: Balance[] = []
-  const sortedDebtors = Object.entries(debtors).sort(([, a], [, b]) => b - a)
-  const sortedCreditors = Object.entries(creditors).sort(([, a], [, b]) => b - a)
-
-  // Distribute the debts between debtors and creditors
-  let debtorIndex = 0
-  let creditorIndex = 0
-
-  while (debtorIndex < sortedDebtors.length && creditorIndex < sortedCreditors.length) {
-    const [debtor, debtorAmount] = sortedDebtors[debtorIndex]
-    const [creditor, creditorAmount] = sortedCreditors[creditorIndex]
-
-    const amount = Math.min(debtorAmount, creditorAmount)
-
-    if (amount > 0) {
-      optimizedBalances.push({
-        debtor,
-        creditor,
-        amount: Number(amount.toFixed(2)),
-      })
-
-      sortedDebtors[debtorIndex][1] = Number((debtorAmount - amount).toFixed(2))
-      sortedCreditors[creditorIndex][1] = Number((creditorAmount - amount).toFixed(2))
-    }
-
-    if (sortedDebtors[debtorIndex][1] === 0) debtorIndex++
-    if (sortedCreditors[creditorIndex][1] === 0) creditorIndex++
-  }
-
-  return redistributeBalances(optimizedBalances)
-}
-
-function redistributeBalances(transfers: Balance[]): Balance[] {
-  // First, calculate total debts and credits per person
-  const balances = new Map<string, number>()
-
-  transfers.forEach((transfer) => {
-    balances.set(transfer.debtor, (balances.get(transfer.debtor) || 0) - transfer.amount)
-    balances.set(transfer.creditor, (balances.get(transfer.creditor) || 0) + transfer.amount)
-  })
-
-  // Create arrays of debtors and creditors with their total amounts
-  const debtors: Array<[string, number]> = []
-  const creditors: Array<[string, number]> = []
-
-  balances.forEach((balance, person) => {
-    if (balance < 0) {
-      debtors.push([person, Math.abs(balance)])
-    } else if (balance > 0) {
-      creditors.push([person, balance])
-    }
-  })
-
   // Track number of transfers per person
   const transferCount = new Map<string, number>()
-
-  function incrementTransferCount(person: string) {
+  const incrementTransferCount = (person: string) => {
     transferCount.set(person, (transferCount.get(person) || 0) + 1)
   }
+  const getTransferCount = (person: string): number => transferCount.get(person) || 0
 
-  function getTransferCount(person: string): number {
-    return transferCount.get(person) || 0
-  }
+  // Separate and sort debtors and creditors
+  const debtors = Object.entries(balances)
+    .filter(([, balance]) => balance > 0)
+    .map(([person, balance]) => [person, balance] as [string, number])
+    .sort(([, a], [, b]) => b - a)
 
-  // Helper function to find the person with the least transfers
-  function findPersonWithLeastTransfers(people: Array<[string, number]>): number {
+  const creditors = Object.entries(balances)
+    .filter(([, balance]) => balance < 0)
+    .map(([person, balance]) => [person, Math.abs(balance)] as [string, number])
+    .sort(([, a], [, b]) => b - a)
+
+  // Helper function to find person with least transfers
+  const findPersonWithLeastTransfers = (people: Array<[string, number]>): number => {
     let minTransfers = Infinity
     let minIndex = 0
 
@@ -115,34 +53,38 @@ function redistributeBalances(transfers: Balance[]): Balance[] {
     return minIndex
   }
 
-  const newTransfers: Balance[] = []
+  const optimizedBalances: Balance[] = []
 
-  // Distribute transfers evenly
+  // Optimize transfers (total and per participant)
   while (debtors.some(([, amount]) => amount > 0) && creditors.some(([, amount]) => amount > 0)) {
     const debtorIndex = findPersonWithLeastTransfers(debtors)
     const creditorIndex = findPersonWithLeastTransfers(creditors)
 
-    const [debtor, debtAmount] = debtors[debtorIndex]
-    const [creditor, creditAmount] = creditors[creditorIndex]
+    const [debtor, debtorAmount] = debtors[debtorIndex]
+    const [creditor, creditorAmount] = creditors[creditorIndex]
 
-    // Calculate optimal transfer amount to minimize number of transfers
-    const transferAmount = Math.min(debtAmount, creditAmount)
+    const amount = Math.min(debtorAmount, creditorAmount)
 
-    if (transferAmount > 0) {
-      newTransfers.push({
+    if (amount > 0) {
+      optimizedBalances.push({
         debtor,
         creditor,
-        amount: Math.round(transferAmount),
+        amount: Number(amount.toFixed(2)),
       })
 
-      // Update remaining amounts and transfer counts
-      debtors[debtorIndex][1] -= transferAmount
-      creditors[creditorIndex][1] -= transferAmount
+      // Update remaining amounts
+      debtors[debtorIndex][1] = Number((debtorAmount - amount).toFixed(2))
+      creditors[creditorIndex][1] = Number((creditorAmount - amount).toFixed(2))
 
+      // Track transfer counts
       incrementTransferCount(debtor)
       incrementTransferCount(creditor)
     }
+
+    // Remove settled balances
+    if (debtors[debtorIndex][1] === 0) debtors[debtorIndex][1] = 0
+    if (creditors[creditorIndex][1] === 0) creditors[creditorIndex][1] = 0
   }
 
-  return newTransfers.sort((a, b) => a.debtor.localeCompare(b.debtor))
+  return optimizedBalances.sort((a, b) => a.debtor.localeCompare(b.debtor))
 }
