@@ -27,7 +27,7 @@ const Balances = ({ balances, setBalances, onReset }: Props) => {
 
   return (
     <>
-      <section className='text-sm min-w-0'>
+      <section className='mx-4 text-sm min-w-0'>
         <div className='flex items-center gap-2'>
           <h2 className='text-lg font-bold flex flex-nowrap gap-2 items-center' id='balances'>
             <CircleDollarSign className='size-[22px] text-green-700' />
@@ -61,7 +61,7 @@ const Balances = ({ balances, setBalances, onReset }: Props) => {
         </ul>
       </section>
 
-      <section className='mt-auto flex gap-4'>
+      <section className='mx-4 mt-auto flex gap-4'>
         <ResetBalances setBalances={setBalances} onReset={onReset} className='flex-1 basis-28' />
         <CopyToClipboard copyString={copyString} />
       </section>

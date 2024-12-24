@@ -12,6 +12,10 @@ class GroupService {
 
     return groups.addGroup({ name, createdAt: new Date() })
   }
+
+  async getGroup(groupId: string) {
+    return groups.getGroup(groupId)
+  }
 }
 
 export default GroupService

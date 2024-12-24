@@ -34,3 +34,10 @@ export interface GeoLocation {
   utc_offset: string
   version: string
 }
+
+type ValidationError = {
+  field: string
+  message: string
+}
+
+export type ValidationResult<T> = [T | null, ValidationError[] | null]

@@ -1,12 +1,10 @@
 import { Expense } from '@/types/expense.types'
 import { formatAmount } from '@/lib/functions/formatAmount'
 import { RemoveExpense } from './RemoveExpense'
-import { Button } from '@/components/ui/button'
 import { UsersRound } from 'lucide-react'
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
-import { useHandleChangeEmojis } from './hooks'
 import { useTranslations } from 'next-intl'
-import { cn } from '@/lib/utils'
+import ChangeEmojisButton from '@/components/ChangeEmojisButton'
 
 interface Props {
   expenses: Expense[]
@@ -15,7 +13,6 @@ interface Props {
 }
 
 export const Expenses = ({ expenses, setExpenses, readOnly = false }: Props) => {
-  const { handleChangeEmojis, rotate, isChangeEmojiClicked } = useHandleChangeEmojis()
   const getEmojiFromString = useGetEmojiFromString()
 
   const t = useTranslations('Expenses')
@@ -28,20 +25,7 @@ export const Expenses = ({ expenses, setExpenses, readOnly = false }: Props) => 
             <UsersRound className='size-[22px] text-green-700' />
             {t('Expenses')}
           </h2>
-          {expenses && expenses.length > 0 && (
-            <Button
-              variant='outline'
-              className='flex w-[40px] h-[30px] py-1 px-2 ml-auto justify-evenly'
-              onClick={handleChangeEmojis}
-              tabIndex={-1}
-            >
-              {
-                <div className={cn(rotate ? 'rotate-[360deg] transition-transform duration-500' : '')}>
-                  {!isChangeEmojiClicked ? '🤑' : getEmojiFromString('🤑')}
-                </div>
-              }
-            </Button>
-          )}
+          {expenses && expenses.length > 0 && <ChangeEmojisButton />}
         </div>
 
         {expenses && Object.keys(expenses).length ? (
