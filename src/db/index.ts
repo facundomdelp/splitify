@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  apiKey: process.env.FIREBASE_API_KEY,
   authDomain: 'splitify-bd940.firebaseapp.com',
   projectId: 'splitify-bd940',
   storageBucket: 'splitify-bd940.firebasestorage.app',
