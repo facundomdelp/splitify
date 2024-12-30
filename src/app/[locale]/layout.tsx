@@ -16,7 +16,7 @@ const inter = Inter({ subsets: ['latin'], weight: ['100', '200', '300', '400', '
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params
 
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || ''
 
   const t = await getTranslations({ locale, namespace: 'Metadata' })
 
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
     description: t('description'),
     keywords: t('keywords'),
     alternates: {
-      canonical: baseUrl,
+      canonical: `${baseUrl}/${locale}`,
       languages: {
         en: `${baseUrl}/en`,
         es: `${baseUrl}/es`,
