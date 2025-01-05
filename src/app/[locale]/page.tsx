@@ -10,9 +10,6 @@ import CalculateButton from './_components/Expenses/CalculateButton'
 import { useSetBalances } from '@/store/balances.store'
 import Balances from './_components/Balances'
 import { useCalculateBalances } from './hooks'
-// import Image from 'next/image'
-// import { useParams } from 'next/navigation'
-// import { Locale } from '@/types/common.types'
 
 export default function Home() {
   const [expenses, setExpenses] = useSetExpenses()
@@ -22,7 +19,6 @@ export default function Home() {
 
   const onReset = () => setExpenses([])
 
-  // const { locale } = useParams<{ locale: Locale }>()
   const t = useTranslations('Home')
 
   return (
@@ -33,18 +29,6 @@ export default function Home() {
         <p>{t('Splitify is the ultimate tool to divide expenses with friends, family, and colleagues')}</p>
       </article>
       {/* SEO */}
-
-      {/*  <h1 className='hidden'>Splity Quick</h1>
-      <div className='mx-4 flex items-center justify-center'>
-        <div className='h-[30px] w-[150px] relative'>
-          <Image
-            src={`/SplitiQuick-${locale}.png`}
-            alt='Spliti Quick'
-            fill
-            className='object-contain invert opacity-60'
-          />
-        </div>
-      </div> */}
 
       {balances.length === 0 ? (
         <ExpensesForm expenses={expenses} setExpenses={setExpenses} />

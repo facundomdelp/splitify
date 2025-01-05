@@ -13,12 +13,12 @@
     "Continue Editing": "Continue Editing"
   },
   "ExpensesForm": {
-    "Add participant": "Add participant",
+    "Add expense": "Add expense",
     "John Spliti": "John Spliti"
   },
   "Expenses": {
     "Expenses": "Expenses",
-    "Enter a Participant to get started!": "Enter a Participant to get started!"
+    "Enter an Expense to get started!": "Enter an Expense to get started!"
   },
   "CalculateButton": {
     "Calculate Balances": "Calculate Balances"

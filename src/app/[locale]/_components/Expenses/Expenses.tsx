@@ -46,7 +46,7 @@ export const Expenses = ({ expenses, setExpenses, readOnly = false }: Props) => 
             </li>
           </ul>
         ) : (
-          <p className='m-auto text-gray-500 text-center'>🤑 {t('Enter a Participant to get started!')} 💸</p>
+          <p className='m-auto text-gray-500 text-center'>🤑 {t('Enter an Expense to get started!')} 💸</p>
         )}
       </section>
     </>

@@ -20,24 +20,24 @@ const Header = () => {
       return t('Quick')
     }
 
-    if (pathname.includes('groups')) {
+    if (pathname.startsWith('/groups')) {
       return t('Groups')
     }
 
     return null
   }, [pathname, t])
 
-  const badgeBackgroundColor = useMemo(() => {
-    if (pathname === '/') {
-      return 'bg-orange-500'
-    }
+  // const badgeBackgroundColor = useMemo(() => {
+  //   if (pathname === '/') {
+  //     return 'bg-orange-500'
+  //   }
 
-    if (pathname.includes('groups')) {
-      return 'bg-blue-600'
-    }
+  //   if (pathname.includes('groups')) {
+  //     return 'bg-blue-600'
+  //   }
 
-    return null
-  }, [pathname])
+  //   return null
+  // }, [pathname])
 
   return (
     <header
@@ -49,8 +49,8 @@ const Header = () => {
         {badgeContent && (
           <Badge
             className={cn(
-              'absolute right-[50%] bottom-[-2px] translate-x-[50%] translate-y-[50%] scale-[0.55] origin-center uppercase text-nowrap italic bg-opacity-75 opacity-0 animate-fade-in delay-6000',
-              badgeBackgroundColor,
+              'absolute right-[50%] bottom-[-2px] translate-x-[50%] translate-y-[50%] scale-[0.55] origin-center uppercase text-nowrap italic bg-opacity-75',
+              // badgeBackgroundColor,
             )}
           >
             {badgeContent}
