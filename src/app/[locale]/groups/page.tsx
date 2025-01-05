@@ -1,19 +1,20 @@
 'use client'
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import Spinner from '@/components/ui/spinner'
-import { copyToClipboard } from '@/lib/functions/copyToClipboard'
-import { Clipboard, HandCoinsIcon, PlusCircleIcon } from 'lucide-react'
-import { useParams } from 'next/navigation'
-import { useAddNewGroup } from './hooks'
+import { ChevronRight, HandCoinsIcon, PlusCircleIcon } from 'lucide-react'
+import { useAddNewGroup, useNavigateToGroup } from './hooks'
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
-import ChangeEmojisButton from '@/components/ChangeEmojisButton'
+import { useSetGroups } from '@/store/groups.store'
+import { cn } from '@/lib/utils'
 
 const GroupsPage = () => {
-  const { id } = useParams<{ id: string }>()
+  const { groups } = useSetGroups()
 
   const { newGroupState, addNewGroup } = useAddNewGroup()
-  const getEmojiFromString = useGetEmojiFromString()
+  const { navigateToGroup } = useNavigateToGroup()
+
+  const getEmojiFromString = useGetEmojiFromString(true)
 
   return (
     <main className='w-full p-6 text-dark max-w-[600px] space-y-8'>
@@ -23,44 +24,46 @@ const GroupsPage = () => {
             <HandCoinsIcon className='size-[22px] text-green-700' />
             My Groups
           </h2>
-          {true && <ChangeEmojisButton />}
         </div>
 
-        <Card key='add-new-group' className='flex cursor-pointer hover:shadow-lg' onClick={addNewGroup}>
+        <Card
+          key='add-new-group'
+          className={cn(
+            'flex cursor-pointer hover:shadow-lg',
+            newGroupState.loading ? 'opacity-40 pointer-events-none' : '',
+          )}
+          onClick={addNewGroup}
+        >
           <CardHeader className='flex-1 space-y-0'>
             <CardTitle className='text-lg flex flex-row items-center gap-3 text-green-800'>
               <PlusCircleIcon className='text-green-500 flex-shrink-0' /> Add New Group
             </CardTitle>
           </CardHeader>
           <CardContent className='p-6 flex items-center'>
-            {!newGroupState.loading ? (
-              <p>{getEmojiFromString('Splitify Groups')}</p>
-            ) : (
-              <Spinner className='text-green-600' />
-            )}
+            {!newGroupState.loading ? <p>🤑</p> : <Spinner className='text-green-600' />}
           </CardContent>
         </Card>
 
-        <Card key='card-1' className='cursor-pointer hover:shadow-lg'>
-          <CardHeader className='flex-1 space-y-2 p-5'>
-            <CardTitle className='text-lg text-green-800 flex items-center gap-2'>
-              <p>{getEmojiFromString('Card Titl')}</p>Card Title
-            </CardTitle>
-            <CardDescription className='flex items-center gap-1 text-[10px] text-gray-400 px-1'>
-              <Clipboard
-                className='size-[12px] cursor-pointer flex-shrink-0'
-                onClick={(e) => {
-                  e.stopPropagation()
-                  copyToClipboard(`https://splitify.me/${id}/groups/21a56257-894c-4578-a4f8-1457daefb22e`)
-                }}
-              />
-              21a56257-894c-4578-a4f8-1457daefb22e
-            </CardDescription>
-          </CardHeader>
-          {/*           <CardContent className='p-3 pt-2 flex items-center'>
-            <Trash className='size-[18px] text-gray-500 cursor-pointer ml-auto' />
-          </CardContent> */}
-        </Card>
+        {groups.map((group) => (
+          <Card
+            key={group.id}
+            className={cn(
+              'flex cursor-pointer hover:shadow-lg',
+              newGroupState.loading ? 'opacity-40 pointer-events-none' : '',
+            )}
+            onClick={() => navigateToGroup(group.id)}
+          >
+            <CardHeader className='flex-1 space-y-0 min-w-0 pr-0 justify-center'>
+              <CardTitle className='text-green-800 flex items-center gap-2 min-w-0 font-medium'>
+                <p>{getEmojiFromString(group.id)}</p>
+                <p className='text-ellipsis text-nowrap overflow-hidden min-w-0'>{group.name}</p>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className='p-6 flex items-center'>
+              <ChevronRight className='size-5 opacity-50' />
+            </CardContent>
+          </Card>
+        ))}
       </section>
     </main>
   )

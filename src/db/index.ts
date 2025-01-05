@@ -7,8 +7,8 @@ const firebaseConfig = {
   projectId: 'splitify-bd940',
   storageBucket: 'splitify-bd940.firebasestorage.app',
   messagingSenderId: '440055759870',
-  appId: '1:440055759870:web:7b91ea5fa70f774b7076af',
-  measurementId: 'G-Q0XT4K0ZT2',
+  appId: process.env.FIREBASE_APP_ID,
+  // measurementId: process.env.FIREBASE_MEASUREMENT_ID,
 }
 
 const app = initializeApp(firebaseConfig)

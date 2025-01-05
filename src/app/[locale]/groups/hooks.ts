@@ -22,9 +22,22 @@ export const useAddNewGroup = () => {
     } catch {
       setNewGroupState((prev) => ({ ...prev, error: true }))
     } finally {
-      setNewGroupState((prev) => ({ ...prev, loading: false }))
+      setTimeout(() => {
+        setNewGroupState((prev) => ({ ...prev, loading: false }))
+      }, 500)
     }
   }, [locale, router])
 
   return { newGroupState, addNewGroup }
+}
+
+export const useNavigateToGroup = () => {
+  const { locale } = useParams<{ locale: Locale }>()
+  const router = useRouter()
+
+  const navigateToGroup = (id: string) => {
+    router.push(`/${locale}/groups/${id}`)
+  }
+
+  return { navigateToGroup }
 }
