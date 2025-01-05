@@ -13,11 +13,11 @@ const SeoPage = () => {
   const t = useTranslations('SeoPage')
 
   return (
-    <main className='w-full p-6 text-dark max-w-[600px]'>
+    <main className='w-full p-10 text-dark max-w-[600px]'>
       <h1 className='text-lg font-bold text-green-950'>
         {localeSeoRoute[params['seo-route'] as keyof typeof localeSeoRoute]}
       </h1>
-      <div className='flex flex-col gap-6'>
+      <div className='flex flex-col gap-10'>
         <p className='text-gray-700 text-justify text-sm'>{t('paragraph-1')}</p>
         <Button className='w-full' asChild>
           <Link href='/'>{t('Get Started')}</Link>

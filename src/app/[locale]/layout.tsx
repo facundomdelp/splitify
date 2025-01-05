@@ -15,22 +15,39 @@ const inter = Inter({ subsets: ['latin'], weight: ['100', '200', '300', '400', '
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params
-
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || ''
-
   const t = await getTranslations({ locale, namespace: 'Metadata' })
 
+  const languages: Record<string, string> = {}
+  routing.locales.forEach((loc) => {
+    languages[loc] = `${baseUrl}/${loc}`
+  })
+
   return {
-    title: t('title'),
+    title: {
+      template: `%s | Splitify`,
+      default: t('title'),
+    },
     description: t('description'),
     keywords: t('keywords'),
+    metadataBase: new URL(baseUrl),
     alternates: {
       canonical: `${baseUrl}/${locale}`,
-      languages: {
-        en: `${baseUrl}/en`,
-        es: `${baseUrl}/es`,
-        pt: `${baseUrl}/pt`,
-      },
+      languages,
+    },
+    openGraph: {
+      title: t('title'),
+      description: t('description'),
+      url: `${baseUrl}/${locale}`,
+      siteName: 'Splitify',
+      locale: locale,
+      type: 'website',
+      alternateLocale: routing.locales.filter((loc) => loc !== locale),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('title'),
+      description: t('description'),
     },
   }
 }
