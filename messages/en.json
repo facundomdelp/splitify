@@ -45,6 +45,10 @@
     "Copy": "Copy",
     "Copied!": "Copied!"
   },
+  "Header": {
+    "Quick": "Quick",
+    "Groups": "Groups"
+  },
   "NavBar": {
     "Discover more!": "Discover more!",
     "General": "General",

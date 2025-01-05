@@ -1,30 +1,43 @@
 'use client'
 
+import { Badge } from '@/components/ui/badge'
 import Image from 'next/image'
 import NavBar from '../NavBar/NavBar'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname } from '@/i18n/routing'
+import { useTranslations } from 'next-intl'
+import { useMemo } from 'react'
+import { cn } from '@/lib/utils'
 
 const LOGO_WIDTH = 120
 
-const getLocationEmoji = (pathname: string) => {
-  if (pathname.includes('groups')) {
-    return (
-      <p className='absolute -right-1 bottom-0 translate-x-[50%] translate-y-[50%] text-lg rotate-[1deg] origin-center opacity-0 animate-fade-in delay-6000'>
-        ✈️
-      </p>
-    )
-  }
-
-  return (
-    <p className='absolute right-0 bottom-0 translate-x-[50%] translate-y-[50%] text-xl rotate-[15deg] scale-110 origin-center opacity-0 animate-fade-in delay-6000'>
-      ⚡
-    </p>
-  )
-}
-
 const Header = () => {
   const pathname = usePathname()
+  const t = useTranslations('Header')
+
+  const badgeContent = useMemo(() => {
+    if (pathname === '/') {
+      return t('Quick')
+    }
+
+    if (pathname.includes('groups')) {
+      return t('Groups')
+    }
+
+    return null
+  }, [pathname, t])
+
+  const badgeBackgroundColor = useMemo(() => {
+    if (pathname === '/') {
+      return 'bg-orange-500'
+    }
+
+    if (pathname.includes('groups')) {
+      return 'bg-blue-600'
+    }
+
+    return null
+  }, [pathname])
 
   return (
     <header
@@ -33,7 +46,16 @@ const Header = () => {
     >
       <Link href='/' className='max-w-[600px] flex justify-center items-center mt-2 relative'>
         <Image src='/Splitify.png' alt='Splitify' width={LOGO_WIDTH} height={LOGO_WIDTH / (10 / 3)} />
-        {getLocationEmoji(pathname)}
+        {badgeContent && (
+          <Badge
+            className={cn(
+              'absolute right-[50%] bottom-[-2px] translate-x-[50%] translate-y-[50%] scale-[0.55] origin-center uppercase text-nowrap italic bg-opacity-75 opacity-0 animate-fade-in delay-6000',
+              badgeBackgroundColor,
+            )}
+          >
+            {badgeContent}
+          </Badge>
+        )}
       </Link>
 
       <NavBar className='absolute right-4 top-1/2 -translate-y-1/2' />
