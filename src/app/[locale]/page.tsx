@@ -1,6 +1,5 @@
 'use client'
 
-import ExpensesForm from './_components/Expenses/ExpensesForm'
 import { Expenses } from './_components/Expenses/Expenses'
 import { useTranslations } from 'next-intl'
 import { useSetExpenses } from '@/store/expenses.store'
@@ -10,6 +9,7 @@ import CalculateButton from './_components/Expenses/CalculateButton'
 import { useSetBalances } from '@/store/balances.store'
 import Balances from './_components/Balances'
 import { useCalculateBalances } from './hooks'
+import ExpensesForm from '@/components/ExpensesForm'
 
 export default function Home() {
   const [expenses, setExpenses] = useSetExpenses()

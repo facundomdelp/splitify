@@ -17,7 +17,7 @@ const GroupsPage = () => {
   const getEmojiFromString = useGetEmojiFromString(true)
 
   return (
-    <main className='w-full p-6 text-dark max-w-[600px] space-y-8'>
+    <main className='w-full p-8 text-dark max-w-[600px] space-y-8'>
       <section className='flex flex-col gap-4'>
         <div className='flex items-center'>
           <h2 className='text-lg font-bold flex flex-nowrap gap-2 items-center' id='expenses'>

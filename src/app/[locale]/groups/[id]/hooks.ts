@@ -35,13 +35,6 @@ export const useGetGroup = () => {
         newGroups[groupIndex] = data.group
         setGroups(newGroups)
       }
-
-      //
-      // I can:
-      // * get the expenses within the group, populated from the backend
-      // * get the expenses as soon as I get the group
-      //
-      //
     } catch (e) {
       if (e instanceof CustomError) {
         setGetGroupState((prev) => ({ ...prev, error: e.status }))
@@ -58,5 +51,5 @@ export const useGetGroup = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialized])
 
-  return { loading, error, groups }
+  return { loading, error, group: groups.find((group) => group.id === id) }
 }

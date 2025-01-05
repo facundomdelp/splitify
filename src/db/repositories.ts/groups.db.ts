@@ -11,6 +11,16 @@ class Groups {
     return doc(db, GROUPS, groupId)
   }
 
+  private parseDates = (data: { [key: string]: unknown }) => {
+    for (const key in data) {
+      if (data[key] instanceof Timestamp) {
+        data[key] = data[key].toMillis()
+      }
+    }
+
+    return data
+  }
+
   async addGroup({ name, createdAt }: { name: string; createdAt: Date }) {
     return (
       await addDoc(this.groupCollection, {
@@ -33,7 +43,8 @@ class Groups {
     const groupDoc = await getDoc(groupRef)
 
     if (groupDoc.exists()) {
-      return { id: groupDoc.id, ...groupDoc.data() }
+      const data = this.parseDates(groupDoc.data())
+      return { id: groupDoc.id, ...data }
     } else {
       throw new CustomError(404, `Group with ID ${groupId} not found.`)
     }
