@@ -1,9 +1,7 @@
 import { calculateBalances } from '@/lib/functions/calculateBalances'
-import { formatAmount } from '@/lib/functions/formatAmount'
-import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
 import { Balance } from '@/types/balance.types'
 import { Expense } from '@/types/expense.types'
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 
 interface useCalculateBalancesProps {
   expenses: Expense[]
@@ -36,25 +34,4 @@ export const useCalculateBalances = ({ expenses, setBalances }: useCalculateBala
   }
 
   return { handleCalculateBalances, calculating }
-}
-
-interface useCopyStringProps {
-  balances: Balance[]
-  rounded: boolean
-}
-
-export const useCopyString = ({ balances, rounded }: useCopyStringProps) => {
-  const getEmojiFromString = useGetEmojiFromString()
-
-  return useMemo(
-    () =>
-      [
-        ...balances.map(
-          (balance) =>
-            `${getEmojiFromString(balance.debtor)} ${balance.debtor} debe $${formatAmount(balance.amount, rounded ? 0 : 2)} a ${getEmojiFromString(balance.creditor)} ${balance.creditor}`,
-        ),
-        '\nhttps://splitify.me',
-      ].join('\n'),
-    [getEmojiFromString, rounded, balances],
-  )
 }

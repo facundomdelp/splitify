@@ -1,10 +1,10 @@
 import { Expense } from '@/types/expense.types'
 import { formatAmount } from '@/lib/functions/formatAmount'
-import { RemoveExpense } from './RemoveExpense'
 import { UsersRound } from 'lucide-react'
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
 import { useTranslations } from 'next-intl'
 import ChangeEmojisButton from '@/components/ChangeEmojisButton'
+import { RemoveExpense } from './RemoveExpense'
 
 interface Props {
   expenses: Expense[]

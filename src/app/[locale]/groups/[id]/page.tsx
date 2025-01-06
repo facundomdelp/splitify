@@ -5,9 +5,15 @@ import { useGetGroup } from './hooks'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useState } from 'react'
 import GroupExpenses from './_components/GroupExpenses'
+import { Expense } from '@/types/expense.types'
+import Balances from '@/components/Balances/Balances'
+import { Balance } from '@/types/balance.types'
 
 const GroupPage = () => {
   const { /* loading,  */ /* error,  */ group } = useGetGroup()
+
+  const [expenses, setExpenses] = useState<Expense[]>([])
+  const [balances, setBalances] = useState<Balance[]>([])
 
   const [tabValue, setTabValue] = useState<'expenses' | 'balances'>('expenses')
 
@@ -38,10 +44,10 @@ const GroupPage = () => {
           </TabsTrigger>
         </TabsList>
         <TabsContent className='mt-8 flex-1 flex flex-col' value='expenses'>
-          <GroupExpenses />
+          <GroupExpenses expenses={expenses} setExpenses={setExpenses} />
         </TabsContent>
         <TabsContent className='mt-8 flex-1 flex flex-col' value='balances'>
-          Change your password here.
+          <Balances balances={balances} onReset={() => ''} setBalances={setBalances} />
         </TabsContent>
       </Tabs>
     </main>

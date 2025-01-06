@@ -6,10 +6,10 @@ import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
 import { useTranslations } from 'next-intl'
 import { Switch } from '@/components/ui/switch'
 import { CircleDollarSign } from 'lucide-react'
-import { ResetBalances } from './ResetBalances'
 import CopyToClipboard from '@/components/CopyToClipboard'
-import { useCopyString } from '../../hooks'
 import { useState } from 'react'
+import { useCopyString } from '@/lib/hooks/useCopyString'
+import { ResetBalances } from './ResetBalances'
 
 interface Props {
   balances: Balance[]

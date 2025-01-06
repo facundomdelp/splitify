@@ -40,7 +40,7 @@ const ExpensesForm = ({ expenses, setExpenses, onFocus, details = false, bigAddB
       <form className='flex flex-col gap-3' onSubmit={handleSubmit}>
         <div className='flex gap-3 flex-wrap'>
           <Input
-            className='min-w-36 flex-[2] placeholder:text-gray-300'
+            className='min-w-36 flex-[2.5] placeholder:text-gray-300'
             name='name'
             ref={nameInputRef}
             maxLength={50}
@@ -83,7 +83,7 @@ const ExpensesForm = ({ expenses, setExpenses, onFocus, details = false, bigAddB
               )}
             >
               <div className='flex flex-wrap gap-2 px-1 max-w-full min-h-0'>
-                <div className='space-y-1 flex-1 min-w-44'>
+                <div className='space-y-1 flex-1 min-w-40'>
                   <Label htmlFor='title' className='font-semibold text-xs'>
                     Title
                   </Label>
