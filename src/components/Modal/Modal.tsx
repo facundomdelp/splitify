@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '../ui/dialog'
+import { cn } from '@/lib/utils'
 
 interface Props {
   open: boolean
@@ -7,17 +8,21 @@ interface Props {
   title: string
   children: ReactNode
   closeOnBackdropClick?: boolean
+  className?: string
 }
 
-const Modal = ({ open, setOpen, title, children, closeOnBackdropClick = false }: Props) => {
+const Modal = ({ open, setOpen, title, children, closeOnBackdropClick = false, className }: Props) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent
         onPointerDownOutside={!closeOnBackdropClick ? (e) => e.preventDefault() : undefined}
-        className='min-w-0 w-[80vw] max-w-[400px] flex flex-col justify-center rounded-xl text-gray-700 px-5'
+        className={cn(
+          'min-w-0 w-[80vw] max-w-[400px] flex flex-col justify-center rounded-xl text-gray-700 px-5',
+          className,
+        )}
       >
         <DialogHeader>
-          <DialogTitle>{title}</DialogTitle>
+          <DialogTitle className='mx-4'>{title}</DialogTitle>
           <DialogDescription />
         </DialogHeader>
         {children}
