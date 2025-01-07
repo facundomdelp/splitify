@@ -16,9 +16,11 @@ interface Props {
 const NavItem = ({ children, icon: Icon, href, onClick, disabled, handleNavigation }: Props) => {
   const NavChildren = () => (
     <>
-      <Icon className={cn('text-green-700 size-[20px]', disabled ? 'text-gray-400 cursor-not-allowed' : '')} />
-      {children}
-      <ChevronRight className='ml-auto size-[20px]' />
+      <Icon
+        className={cn('text-green-700 size-[20px] flex-shrink-0', disabled ? 'text-gray-400 cursor-not-allowed' : '')}
+      />
+      <span className='text-nowrap flex gap-3'>{children}</span>
+      <ChevronRight className='ml-auto size-[20px] flex-shrink-0' />
     </>
   )
 
