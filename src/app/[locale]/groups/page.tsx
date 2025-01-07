@@ -2,11 +2,12 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import Spinner from '@/components/ui/spinner'
-import { ChevronRight, HandCoinsIcon, PlusCircleIcon } from 'lucide-react'
+import { HandCoinsIcon, PlusCircleIcon } from 'lucide-react'
 import { useAddNewGroup, useNavigateToGroup } from './hooks'
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
 import { useSetGroups } from '@/store/groups.store'
 import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
 
 const GroupsPage = () => {
   const { groups } = useSetGroups()
@@ -45,14 +46,7 @@ const GroupsPage = () => {
         </Card>
 
         {groups.map((group) => (
-          <Card
-            key={group.id}
-            className={cn(
-              'flex cursor-pointer hover:shadow-lg',
-              newGroupState.loading ? 'opacity-40 pointer-events-none' : '',
-            )}
-            onClick={() => navigateToGroup(group.id)}
-          >
+          <Card key={group.id} className={cn('flex', newGroupState.loading ? 'opacity-40 pointer-events-none' : '')}>
             <CardHeader className='flex-1 space-y-0 min-w-0 pr-0 justify-center'>
               <CardTitle className='text-green-800 flex items-center gap-2 min-w-0 font-medium'>
                 <p>{getEmojiFromString(group.id)}</p>
@@ -60,7 +54,12 @@ const GroupsPage = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className='p-6 flex items-center'>
-              <ChevronRight className='size-5 opacity-50' />
+              <Button
+                className='text-[12px] rounded-2xl shadow-none  h-6 px-5'
+                onClick={() => navigateToGroup(group.id)}
+              >
+                Ver
+              </Button>
             </CardContent>
           </Card>
         ))}
