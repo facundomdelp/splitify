@@ -10,7 +10,7 @@ class GroupService {
       name = generateRandomName(locale)
     }
 
-    return groups.addGroup({ name, createdAt: new Date() })
+    return groups.addGroup({ name })
   }
 
   async getGroup(groupId: string) {

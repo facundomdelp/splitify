@@ -1,17 +1,24 @@
-import { generateId } from '@/lib/functions/generateId'
-import { Expense } from '@/types/expense.types'
 import { useState } from 'react'
 
 interface useExpensesFormProps {
-  expenses: Expense[]
-  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
   nameInputRef: React.RefObject<HTMLInputElement>
-  onSubmit?: () => void
+  onSubmit?: ({ name, amount, title, date }: { name: string; amount: number; title?: string; date?: string }) => void
 }
 
-export const useExpensesForm = ({ expenses, setExpenses, nameInputRef, onSubmit }: useExpensesFormProps) => {
-  const [amount, setAmount] = useState(0)
+export const useExpensesForm = ({ nameInputRef, onSubmit }: useExpensesFormProps) => {
   const [name, setName] = useState('')
+  const [amount, setAmount] = useState(0)
+  const [title, setTitle] = useState('')
+  const [date, setDate] = useState('')
+
+  const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    const maxLength = e.target.maxLength
+
+    if (value.length <= maxLength) {
+      setName(e.target.value)
+    }
+  }
 
   const handleAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
@@ -46,24 +53,23 @@ export const useExpensesForm = ({ expenses, setExpenses, nameInputRef, onSubmit 
     }
   }
 
-  const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     const maxLength = e.target.maxLength
 
     if (value.length <= maxLength) {
-      setName(e.target.value)
+      setTitle(e.target.value)
     }
+  }
+
+  const handleDate = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDate(e.target.value)
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (!name.trim()) return
-
-    onSubmit?.()
-
-    const id = generateId()
-    setExpenses([...(expenses ?? []), { id, name: name.trim(), amount }])
+    onSubmit?.({ name, amount, title, date })
 
     setName('')
     setAmount(0)
@@ -73,5 +79,5 @@ export const useExpensesForm = ({ expenses, setExpenses, nameInputRef, onSubmit 
     }
   }
 
-  return { name, handleName, amount, handleAmount, handleSubmit }
+  return { name, handleName, amount, handleAmount, title, handleTitle, date, handleDate, handleSubmit }
 }

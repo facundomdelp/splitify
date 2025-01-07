@@ -3,7 +3,6 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Expense } from '@/types/expense.types'
 import { MinusIcon, Plus, PlusIcon, UserRound } from 'lucide-react'
 import { useExpensesForm } from './hooks'
 import { useRef, useState } from 'react'
@@ -11,25 +10,22 @@ import { useTranslations } from 'next-intl'
 import { cn } from '@/lib/utils'
 
 interface Props {
-  expenses: Expense[]
-  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
   onFocus?: () => void
-  details?: boolean
+  includeDetails?: boolean
   bigAddButton?: boolean
-  onSubmit?: () => void
+  onSubmit?: ({ name, amount }: { name: string; amount: number }) => void
 }
 
-const ExpensesForm = ({ expenses, setExpenses, onFocus, details = false, bigAddButton = false, onSubmit }: Props) => {
+const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, onSubmit }: Props) => {
   const [showDetails, setShowDetails] = useState(false)
 
   const nameInputRef = useRef<HTMLInputElement>(null)
 
-  const { name, handleName, amount, handleAmount, handleSubmit } = useExpensesForm({
-    expenses,
-    setExpenses,
-    nameInputRef,
-    onSubmit,
-  })
+  const { name, handleName, amount, handleAmount, title, handleTitle, date, handleDate, handleSubmit } =
+    useExpensesForm({
+      nameInputRef,
+      onSubmit,
+    })
 
   const t = useTranslations('ExpensesForm')
 
@@ -69,14 +65,14 @@ const ExpensesForm = ({ expenses, setExpenses, onFocus, details = false, bigAddB
             </div>
 
             {!bigAddButton && (
-              <Button size='icon' className='w-10' type='submit' disabled={name === ''}>
+              <Button size='icon' className='w-10' type='submit' disabled={name.trim() === ''}>
                 <Plus />
               </Button>
             )}
           </div>
         </div>
 
-        {details && (
+        {includeDetails && (
           <div className='flex flex-col'>
             <div
               className={cn(
@@ -86,32 +82,33 @@ const ExpensesForm = ({ expenses, setExpenses, onFocus, details = false, bigAddB
             >
               <div className='flex flex-wrap gap-2 px-1 max-w-full min-h-0 border-y border-transparent'>
                 <div className='space-y-1 flex-1 min-w-40'>
-                  <Label htmlFor='title' className='font-semibold text-xs'>
-                    Title
+                  <Label htmlFor='title' className='text-xs'>
+                    <strong>Title</strong> (optional)
                   </Label>
                   <Input
                     id='Title'
                     name='title'
                     className='placeholder:text-gray-300'
                     maxLength={50}
-                    // onChange={handleName}
-                    // value={name}
+                    onChange={handleTitle}
+                    value={title}
                     placeholder='For example: Taxi'
+                    tabIndex={!showDetails ? -1 : undefined}
                   />
                 </div>
 
                 <div className='space-y-1 flex-1 min-w-40'>
-                  <Label htmlFor='date' className='font-semibold text-xs'>
-                    Date
+                  <Label htmlFor='date' className='text-xs'>
+                    <strong>Date</strong> (optional)
                   </Label>
                   <Input
                     id='date'
                     type='date'
                     name='date'
-                    className={cn(/* !date ? 'text-gray-300' : 'text-black' */)}
-                    maxLength={50}
-                    // onChange={handleName}
-                    // value={name}
+                    className={cn(!date ? 'text-gray-300' : 'text-black')}
+                    onChange={handleDate}
+                    value={date}
+                    tabIndex={!showDetails ? -1 : undefined}
                   />
                 </div>
               </div>
@@ -120,6 +117,7 @@ const ExpensesForm = ({ expenses, setExpenses, onFocus, details = false, bigAddB
             <Button
               className={cn('text-gray-600', !showDetails ? '' : 'mt-3')}
               variant='outline'
+              type='button'
               onClick={() => setShowDetails((prev) => !prev)}
             >
               {!showDetails ? <PlusIcon /> : <MinusIcon />}
@@ -129,7 +127,7 @@ const ExpensesForm = ({ expenses, setExpenses, onFocus, details = false, bigAddB
         )}
 
         {bigAddButton && (
-          <Button className='flex' type='submit' disabled={name === ''}>
+          <Button className='flex' type='submit' disabled={name.trim() === ''}>
             ADD EXPENSE
           </Button>
         )}

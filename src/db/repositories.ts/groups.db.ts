@@ -21,12 +21,12 @@ class Groups {
     return data
   }
 
-  async addGroup({ name, createdAt }: { name: string; createdAt: Date }) {
+  async addGroup({ name }: { name: string }) {
     return (
       await addDoc(this.groupCollection, {
-        name,
-        createdAt: Timestamp.fromDate(createdAt),
+        createdAt: Timestamp.fromDate(new Date()),
         deletedAt: null,
+        name,
       })
     ).id
   }

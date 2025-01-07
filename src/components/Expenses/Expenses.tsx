@@ -5,6 +5,7 @@ import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
 import { useTranslations } from 'next-intl'
 import ChangeEmojisButton from '@/components/ChangeEmojisButton'
 import { RemoveExpense } from './RemoveExpense'
+import { cn } from '@/lib/utils'
 
 interface Props {
   expenses: Expense[]
@@ -30,12 +31,12 @@ export const Expenses = ({ expenses, setExpenses, readOnly = false }: Props) => 
 
         {expenses && Object.keys(expenses).length ? (
           <ul className='mt-4 flex flex-col gap-3 min-w-0'>
-            {expenses.toReversed().map(({ id, name, amount }, index) => (
-              <li key={index} className='flex items-center min-w-0'>
+            {expenses.toReversed().map(({ id, optimistic, name, amount }, index) => (
+              <li key={index} className={cn('flex items-center min-w-0', optimistic ? 'text-gray-400' : '')}>
                 <p className='mr-2 w-[20px] text-center'>{getEmojiFromString(name)}</p>
                 <p className='text-ellipsis whitespace-nowrap overflow-hidden min-w-0'>{name}</p>
                 <p className='whitespace-nowrap'>: ${formatAmount(amount)}</p>
-                {!readOnly && (
+                {!readOnly && !optimistic && (
                   <RemoveExpense id={id} name={name} expenses={expenses} setExpenses={setExpenses} className='mx-1' />
                 )}
               </li>

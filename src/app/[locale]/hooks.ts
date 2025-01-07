@@ -1,7 +1,7 @@
 import { calculateBalances } from '@/lib/functions/calculateBalances'
 import { Balance } from '@/types/balance.types'
 import { Expense } from '@/types/expense.types'
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 interface useCalculateBalancesProps {
   expenses: Expense[]

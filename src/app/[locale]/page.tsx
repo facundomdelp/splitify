@@ -13,6 +13,7 @@ import Balances from '@/components/Balances/Balances'
 import { ResetBalances } from '@/components/Balances/ResetBalances'
 import CopyToClipboard from '@/components/CopyToClipboard'
 import { useCopyString } from '@/lib/hooks/useCopyString'
+import { generateId } from '@/lib/functions/generateId'
 
 export default function Home() {
   const [expenses, setExpenses] = useSetExpenses()
@@ -34,7 +35,11 @@ export default function Home() {
       {/* SEO */}
 
       {balances.length === 0 ? (
-        <ExpensesForm expenses={expenses} setExpenses={setExpenses} />
+        <ExpensesForm
+          onSubmit={({ name, amount }) =>
+            setExpenses([...(expenses ?? []), { id: generateId(), name: name.trim(), amount }])
+          }
+        />
       ) : (
         <section className='mx-4 h-[64px] flex items-center'>
           <Button className='w-full gap-4' type='submit' variant='outline' onClick={() => setBalances([])}>

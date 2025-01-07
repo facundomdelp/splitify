@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc } from 'firebase/firestore'
+import { addDoc, collection, deleteDoc, doc, Timestamp } from 'firebase/firestore'
 import { db } from '..'
 
 const EXPENSES = 'expenses'
@@ -10,12 +10,28 @@ class Expenses {
     return doc(db, EXPENSES, expenseId)
   }
 
-  async addExpense({ groupId, participant, amount }: { groupId: string; participant: string; amount: number }) {
-    return await addDoc(this.expenseCollection, {
-      groupId,
-      participant,
-      amount,
-    })
+  async addExpense({
+    groupId,
+    name,
+    amount,
+    title,
+    date,
+  }: {
+    groupId: string
+    name: string
+    amount: number
+    title?: string
+    date?: Date
+  }) {
+    return (
+      await addDoc(this.expenseCollection, {
+        groupId,
+        name,
+        amount,
+        title: title || '',
+        date: date ? Timestamp.fromDate(date) : '',
+      })
+    ).id
   }
 
   async removeExpense(expenseId: string) {
