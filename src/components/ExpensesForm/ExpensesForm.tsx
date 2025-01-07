@@ -16,9 +16,10 @@ interface Props {
   onFocus?: () => void
   details?: boolean
   bigAddButton?: boolean
+  onSubmit?: () => void
 }
 
-const ExpensesForm = ({ expenses, setExpenses, onFocus, details = false, bigAddButton = false }: Props) => {
+const ExpensesForm = ({ expenses, setExpenses, onFocus, details = false, bigAddButton = false, onSubmit }: Props) => {
   const [showDetails, setShowDetails] = useState(false)
 
   const nameInputRef = useRef<HTMLInputElement>(null)
@@ -27,6 +28,7 @@ const ExpensesForm = ({ expenses, setExpenses, onFocus, details = false, bigAddB
     expenses,
     setExpenses,
     nameInputRef,
+    onSubmit,
   })
 
   const t = useTranslations('ExpensesForm')
@@ -82,7 +84,7 @@ const ExpensesForm = ({ expenses, setExpenses, onFocus, details = false, bigAddB
                 !showDetails ? 'grid-rows-[0fr]' : 'grid-rows-[1fr]',
               )}
             >
-              <div className='flex flex-wrap gap-2 px-1 max-w-full min-h-0'>
+              <div className='flex flex-wrap gap-2 px-1 max-w-full min-h-0 border-y border-transparent'>
                 <div className='space-y-1 flex-1 min-w-40'>
                   <Label htmlFor='title' className='font-semibold text-xs'>
                     Title

@@ -5,12 +5,14 @@ import { Clipboard, CopyCheck } from 'lucide-react'
 import { useState } from 'react'
 import { Button } from '../ui/button'
 import { useTranslations } from 'next-intl'
+import { cn } from '@/lib/utils'
 
 interface Props {
   copyString: string
+  className?: string
 }
 
-const CopyToClipboard = ({ copyString }: Props) => {
+const CopyToClipboard = ({ copyString, className }: Props) => {
   const [copied, setCopied] = useState(false)
 
   const handleCopyToClipboard = () => {
@@ -23,7 +25,7 @@ const CopyToClipboard = ({ copyString }: Props) => {
   const t = useTranslations('CopyToClipboard')
 
   return (
-    <Button className='flex-1 basis-28 text-sm font-medium items-center bg-green-500' onClick={handleCopyToClipboard}>
+    <Button className={cn('text-sm font-medium items-center bg-green-500', className)} onClick={handleCopyToClipboard}>
       {!copied ? (
         <>
           <Clipboard className='size-[18px]' />

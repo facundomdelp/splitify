@@ -35,3 +35,13 @@ export const useCalculateBalances = ({ expenses, setBalances }: useCalculateBala
 
   return { handleCalculateBalances, calculating }
 }
+
+interface useRoundBalancesProps {
+  balances: Balance[]
+}
+
+export const useRoundBalances = ({ balances }: useRoundBalancesProps) => {
+  const [rounded, setRounded] = useState(balances.some((balance) => balance.amount % 1 === 0))
+
+  return { rounded, setRounded }
+}

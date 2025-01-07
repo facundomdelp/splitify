@@ -1,21 +1,26 @@
 'use client'
 
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
-import { useGetGroup } from './hooks'
+import { useCalculateGroupBalances, useGetGroup } from './hooks'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useState } from 'react'
 import GroupExpenses from './_components/GroupExpenses'
 import { Expense } from '@/types/expense.types'
 import Balances from '@/components/Balances/Balances'
 import { Balance } from '@/types/balance.types'
+import CopyToClipboard from '@/components/CopyToClipboard'
+import { useCopyString } from '@/lib/hooks/useCopyString'
 
 const GroupPage = () => {
   const { /* loading,  */ /* error,  */ group } = useGetGroup()
 
   const [expenses, setExpenses] = useState<Expense[]>([])
   const [balances, setBalances] = useState<Balance[]>([])
-
+  const [rounded, setRounded] = useState(false)
   const [tabValue, setTabValue] = useState<'expenses' | 'balances'>('expenses')
+
+  const { handleCalculateGroupBalances } = useCalculateGroupBalances({ expenses, balances, setBalances, setRounded })
+  const copyString = useCopyString({ balances, rounded })
 
   const getEmojiFromString = useGetEmojiFromString(true)
 
@@ -39,7 +44,7 @@ const GroupPage = () => {
           <TabsTrigger className='w-[120px]' value='expenses'>
             Expenses
           </TabsTrigger>
-          <TabsTrigger className='w-[120px]' value='balances'>
+          <TabsTrigger className='w-[120px]' value='balances' onClick={handleCalculateGroupBalances}>
             Balances
           </TabsTrigger>
         </TabsList>
@@ -47,7 +52,10 @@ const GroupPage = () => {
           <GroupExpenses expenses={expenses} setExpenses={setExpenses} />
         </TabsContent>
         <TabsContent className='mt-8 flex-1 flex flex-col' value='balances'>
-          <Balances balances={balances} onReset={() => ''} setBalances={setBalances} />
+          <section className='flex-1 flex flex-col gap-4 justify-between'>
+            <Balances balances={balances} rounded={rounded} setRounded={setRounded} />
+            <CopyToClipboard copyString={copyString} className='mx-4' />
+          </section>
         </TabsContent>
       </Tabs>
     </main>

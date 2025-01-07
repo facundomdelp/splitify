@@ -6,9 +6,10 @@ interface useExpensesFormProps {
   expenses: Expense[]
   setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
   nameInputRef: React.RefObject<HTMLInputElement>
+  onSubmit?: () => void
 }
 
-export const useExpensesForm = ({ expenses, setExpenses, nameInputRef }: useExpensesFormProps) => {
+export const useExpensesForm = ({ expenses, setExpenses, nameInputRef, onSubmit }: useExpensesFormProps) => {
   const [amount, setAmount] = useState(0)
   const [name, setName] = useState('')
 
@@ -58,6 +59,8 @@ export const useExpensesForm = ({ expenses, setExpenses, nameInputRef }: useExpe
     e.preventDefault()
 
     if (!name.trim()) return
+
+    onSubmit?.()
 
     const id = generateId()
     setExpenses([...(expenses ?? []), { id, name: name.trim(), amount }])

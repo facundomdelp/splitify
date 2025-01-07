@@ -6,18 +6,21 @@ import { Button } from '@/components/ui/button'
 import { Undo } from 'lucide-react'
 import CalculateButton from './_components/Expenses/CalculateButton'
 import { useSetBalances } from '@/store/balances.store'
-import { useCalculateBalances } from './hooks'
+import { useCalculateBalances, useRoundBalances } from './hooks'
 import ExpensesForm from '@/components/ExpensesForm'
 import { Expenses } from '@/components/Expenses/Expenses'
 import Balances from '@/components/Balances/Balances'
+import { ResetBalances } from '@/components/Balances/ResetBalances'
+import CopyToClipboard from '@/components/CopyToClipboard'
+import { useCopyString } from '@/lib/hooks/useCopyString'
 
 export default function Home() {
   const [expenses, setExpenses] = useSetExpenses()
   const [balances, setBalances] = useSetBalances()
 
   const { handleCalculateBalances, calculating } = useCalculateBalances({ expenses, setBalances })
-
-  const onReset = () => setExpenses([])
+  const { rounded, setRounded } = useRoundBalances({ balances })
+  const copyString = useCopyString({ balances, rounded })
 
   const t = useTranslations('Home')
 
@@ -50,7 +53,14 @@ export default function Home() {
           handleCalculateBalances={handleCalculateBalances}
         />
       ) : (
-        <Balances balances={balances} onReset={onReset} setBalances={setBalances} />
+        <>
+          <Balances balances={balances} rounded={rounded} setRounded={setRounded} />
+
+          <section className='mx-4 mt-auto flex gap-4'>
+            <ResetBalances setBalances={setBalances} onReset={() => setExpenses([])} className='flex-1 basis-28' />
+            <CopyToClipboard copyString={copyString} className='flex-1 basis-28' />
+          </section>
+        </>
       )}
     </main>
   )
