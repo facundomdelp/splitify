@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import GroupService from '@/services/groups.services'
 import { validateGroupId } from '@/validators/groups.validators'
 import { handleErrors } from '@/lib/errors/handleErrors'
+import ExpenseService from '@/services/expenses.services'
 
-const groupService = new GroupService()
+const expenseService = new ExpenseService()
 
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   const [data, errors] = validateGroupId({ id: params.id })
@@ -13,9 +13,9 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
   }
 
   try {
-    const result = await groupService.getGroup(data.id)
+    const result = await expenseService.getGroupExpenses(data.id)
 
-    return NextResponse.json({ group: result }, { status: 200 })
+    return NextResponse.json({ group: result }, { status: 201 })
   } catch (error) {
     return handleErrors(error)
   }

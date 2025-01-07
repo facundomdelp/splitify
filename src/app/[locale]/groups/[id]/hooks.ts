@@ -2,7 +2,7 @@ import { CustomError } from '@/lib/errors/CustomErrors'
 import { calculateBalances } from '@/lib/functions/calculateBalances'
 import { useSetGroups } from '@/store/groups.store'
 import { Balance } from '@/types/balance.types'
-import { Expense } from '@/types/expense.types'
+import { Expense, GetGroupExpensesResponse } from '@/types/expense.types'
 import { GetGroupResponse } from '@/types/group.types'
 import { useParams } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
@@ -55,6 +55,46 @@ export const useGetGroup = () => {
   }, [initialized])
 
   return { loading, error, group: groups.find((group) => group.id === id) }
+}
+
+export const useGetGroupExpenses = () => {
+  const [expenses, setExpenses] = useState<Expense[]>([])
+  const [{ loading, error }, setGetExpensesState] = useState<{ loading: boolean; error: number | null }>({
+    loading: true,
+    error: null,
+  })
+
+  const { id } = useParams<{ id: string }>()
+
+  const getGroupExpenses = useCallback(async () => {
+    try {
+      const response = await fetch(`/api/groups/${id}/expenses`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      })
+
+      if (!response.ok) {
+        throw new CustomError(response.status)
+      }
+
+      const data: GetGroupExpensesResponse = await response.json()
+      setExpenses(data.group)
+    } catch (e) {
+      if (e instanceof CustomError) {
+        setGetExpensesState((prev) => ({ ...prev, error: e.status }))
+      }
+    } finally {
+      setGetExpensesState((prev) => ({ ...prev, loading: false }))
+    }
+  }, [id])
+
+  useEffect(() => {
+    if (expenses.length === 0) {
+      getGroupExpenses()
+    }
+  }, [expenses.length, getGroupExpenses])
+
+  return { expenses, setExpenses, loading, error }
 }
 
 interface useCalculateGroupBalancesProps {

@@ -14,3 +14,7 @@ export type AddExpenseRequestBody = {
   title?: string
   date?: string
 }
+
+export type GetGroupExpensesResponse = {
+  group: Array<Expense>
+}

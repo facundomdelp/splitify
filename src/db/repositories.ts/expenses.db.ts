@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc, Timestamp } from 'firebase/firestore'
+import { addDoc, collection, deleteDoc, doc, getDocs, query, Timestamp, where } from 'firebase/firestore'
 import { db } from '..'
 
 const EXPENSES = 'expenses'
@@ -37,6 +37,17 @@ class Expenses {
   async removeExpense(expenseId: string) {
     const expenseRef = this.getExpenseRef(expenseId)
     return await deleteDoc(expenseRef)
+  }
+
+  async getGroupExpenses(groupId: string) {
+    const q = query(this.expenseCollection, where('groupId', '==', groupId))
+
+    const querySnapshot = await getDocs(q)
+
+    return querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }))
   }
 }
 

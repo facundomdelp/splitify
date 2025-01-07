@@ -21,7 +21,7 @@ const Footer = () => {
         <Image src='/Isologo.png' alt='Splitify' width={ISOLOGO_SIZE} height={ISOLOGO_SIZE} />
 
         {/* SEO */}
-        <nav className='absolute right-0 bottom-0'>
+        <nav className='absolute right-0 bottom-0 hidden'>
           <ul className='flex gap-2'>
             {LOCALES?.map((locale, index) => (
               <li key={`${index}-${locale}`}>

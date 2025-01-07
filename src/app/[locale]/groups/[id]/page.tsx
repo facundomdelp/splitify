@@ -1,18 +1,17 @@
 'use client'
 
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
-import { useCalculateGroupBalances, useGetGroup } from './hooks'
+import { useCalculateGroupBalances, useGetGroup, useGetGroupExpenses } from './hooks'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useState } from 'react'
 import GroupExpenses from './_components/GroupExpenses'
-import { Expense } from '@/types/expense.types'
 import { Balance } from '@/types/balance.types'
 import GroupBalances from './_components/GroupBalances'
 
 const GroupPage = () => {
   const { /* loading,  */ /* error,  */ group } = useGetGroup()
+  const { /* loading,  */ /* error,  */ expenses, setExpenses } = useGetGroupExpenses()
 
-  const [expenses, setExpenses] = useState<Expense[]>([])
   const [balances, setBalances] = useState<Balance[]>([])
   const [rounded, setRounded] = useState(false)
   const [tabValue, setTabValue] = useState<'expenses' | 'balances'>('expenses')

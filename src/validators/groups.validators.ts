@@ -27,7 +27,7 @@ const getGroupSchema = z.object({
     .regex(/^[A-Za-z0-9\-_]+$/, 'Invalid Group ID'),
 })
 
-export const validateGetGroup = ({ id }: Partial<GetGroupRequestBody>): ValidationResult<GetGroupRequestBody> => {
+export const validateGroupId = ({ id }: Partial<GetGroupRequestBody>): ValidationResult<GetGroupRequestBody> => {
   const validationResult = getGroupSchema.safeParse({ id })
   let errors: Array<{ field: string; message: string }> | null = null
 
