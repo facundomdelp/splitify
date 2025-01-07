@@ -58,6 +58,9 @@
     "Spliti Groups": "Spliti Groups",
     "Install App": "Install App"
   },
+  "Footer": {
+    "Groups": "Groups"
+  },
   "LocaleSelectorModal": {
     "Language": "Language",
     "Would you like to select a different language?": "Would you like to select a different language?",
