@@ -21,7 +21,6 @@ import SocialMedia from './SocialMedia'
 import NavSection from './NavSection'
 import NavItem from './NavItem'
 import { useAddNewGroup, useHandleNavigation } from './hooks'
-import { useParams } from 'next/navigation'
 import { Badge } from '@/components/ui/badge'
 import { useSetGroups } from '@/store/groups.store'
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
@@ -42,8 +41,6 @@ const NavBar = ({
 
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [localeModalOpen, setLocaleModalOpen] = useState(false)
-
-  const { locale } = useParams()
 
   const { handleNavigation } = useHandleNavigation({ setDrawerOpen })
   const { isInstallable, handleInstallClick } = usePWAInstall()
@@ -108,7 +105,7 @@ const NavBar = ({
                     slug: 'spliti-quick',
                     emoji: '⚡',
                     name: `${t('Spliti Quick')}`,
-                    href: `/${locale}`,
+                    href: `/`,
                     beta: undefined,
                   },
                 ].map(({ slug, emoji, name, href, beta }) => (
@@ -145,6 +142,7 @@ const NavBar = ({
                         slug: id,
                         emoji: getEmojiFromString(name),
                         name: name,
+                        href: `/groups/${id}`,
                         beta: false,
                       }))
                     : []),
