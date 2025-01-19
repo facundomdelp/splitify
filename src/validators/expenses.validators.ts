@@ -15,7 +15,7 @@ const addExpenseSchema = z.object({
     .step(0.01, { message: 'Amount must be in increments of 0.01' }),
   title: z.string().max(50, 'Expense title is too long').optional(),
   date: z
-    .string()
+    .number()
     .optional()
     .transform((val) => (val ? new Date(val) : undefined))
     .refine((date) => !date || !isNaN(date.getTime()), { message: 'Invalid date format' }),

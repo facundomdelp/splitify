@@ -24,13 +24,13 @@ const GroupExpenses = ({ groupId, expenses, setExpenses }: Props) => {
     name: string
     amount: number
     title?: string
-    date?: string
+    date?: number
   }) => {
     setOpenModal(false)
 
     name = name.trim()
     title = title?.trim()
-    date = date ? new Date(date).toISOString() : undefined
+    date = date ? new Date(date).getTime() : undefined
 
     const expenseUiId = generateId()
     const newExpenses = [...(expenses ?? []), { id: expenseUiId, optimistic: true, name, amount, title, date }]

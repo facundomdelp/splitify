@@ -12,7 +12,7 @@ export type AddExpenseRequestBody = {
   name: string
   amount: number
   title?: string
-  date?: string
+  date?: number
 }
 
 export type GetGroupExpensesResponse = {
