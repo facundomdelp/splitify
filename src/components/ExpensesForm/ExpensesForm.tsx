@@ -14,9 +14,10 @@ interface Props {
   includeDetails?: boolean
   bigAddButton?: boolean
   onSubmit?: ({ name, amount }: { name: string; amount: number }) => void
+  disabled?: boolean
 }
 
-const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, onSubmit }: Props) => {
+const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, onSubmit, disabled }: Props) => {
   const [showDetails, setShowDetails] = useState(false)
 
   const nameInputRef = useRef<HTMLInputElement>(null)
@@ -46,6 +47,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
             value={name}
             placeholder={t('John Spliti')}
             onFocus={onFocus}
+            disabled={disabled}
           />
 
           <div className='flex gap-4 ml-auto flex-1 flex-grow-1'>
@@ -61,11 +63,12 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
                 onChange={handleAmount}
                 value={amount}
                 onFocus={onFocus}
+                disabled={disabled}
               />
             </div>
 
             {!bigAddButton && (
-              <Button size='icon' className='w-10' type='submit' disabled={name.trim() === ''}>
+              <Button size='icon' className='w-10' type='submit' disabled={name.trim() === '' || disabled}>
                 <Plus />
               </Button>
             )}
@@ -94,6 +97,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
                     value={title}
                     placeholder='For example: Taxi'
                     tabIndex={!showDetails ? -1 : undefined}
+                    disabled={disabled}
                   />
                 </div>
 
@@ -109,6 +113,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
                     onChange={handleDate}
                     value={date}
                     tabIndex={!showDetails ? -1 : undefined}
+                    disabled={disabled}
                   />
                 </div>
               </div>
@@ -119,6 +124,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
               variant='outline'
               type='button'
               onClick={() => setShowDetails((prev) => !prev)}
+              disabled={disabled}
             >
               {!showDetails ? <PlusIcon /> : <MinusIcon />}
               Details

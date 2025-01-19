@@ -100,10 +100,14 @@ const GroupPage = () => {
         {group && ( // Handle Group error
           <>
             <div className='flex justify-center items-center gap-2 relative'>
-              <h2 className='text-lg font-bold flex flex-nowrap gap-2 justify-center text-green-800' id='expenses'>
+              <h2
+                className='font-bold flex flex-nowrap gap-2 justify-center text-green-800 text-base xs:text-lg'
+                id='expenses'
+              >
                 {getEmojiFromString(group.id)} {group.name}
               </h2>
               {/* <PencilIcon className='size-[16px] text-gray-500' /> */}
+
               {group && (
                 <TooltipProvider>
                   <Tooltip defaultOpen>
@@ -112,14 +116,14 @@ const GroupPage = () => {
                         size='icon'
                         variant='ghost'
                         className={cn(
-                          'rounded-full absolute right-0 transition-all mt-[0!important] flex text-gray-600',
+                          'rounded-full absolute right-2 transition-all mt-[0!important] flex text-gray-500 px-3',
                         )}
                         onClick={() => setOpenShareModal(true)}
                       >
                         <Share2 />
                       </Button>
                     </TooltipTrigger>
-                    <TooltipContent className='text-[10px] font-semibold' sideOffset={-4}>
+                    <TooltipContent className='text-[10px] font-semibold mr-2' sideOffset={-4}>
                       <TooltipArrow fill='green' />
                       Share Group!
                     </TooltipContent>

@@ -1,6 +1,7 @@
 import { Expenses } from '@/components/Expenses/Expenses'
 import ExpensesForm from '@/components/ExpensesForm'
 import Modal from '@/components/Modal'
+import { cn } from '@/lib/utils'
 import { Expense } from '@/types/expense.types'
 import React, { useState } from 'react'
 
@@ -9,9 +10,10 @@ interface Props {
   setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
   addExpenseAction: (expense: Pick<Expense, 'name' | 'amount' | 'title' | 'date'>) => void | Promise<void>
   loadingExpenses?: boolean
+  disabled?: boolean
 }
 
-const ExpensesSection = ({ expenses, setExpenses, addExpenseAction, loadingExpenses }: Props) => {
+const ExpensesSection = ({ expenses, setExpenses, addExpenseAction, loadingExpenses, disabled }: Props) => {
   const [openModal, setOpenModal] = useState(false)
 
   const addExpense = async ({
@@ -32,41 +34,18 @@ const ExpensesSection = ({ expenses, setExpenses, addExpenseAction, loadingExpen
     date = date ? new Date(date).getTime() : undefined
 
     addExpenseAction({ name, amount, title, date })
-    // setExpenses(newExpenses)
-
-    // try {
-    //   const response = await fetch('/api/expenses', {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({
-    //       groupId,
-    //       name,
-    //       amount,
-    //       title,
-    //       date,
-    //     }),
-    //   })
-
-    //   if (!response.ok) {
-    //     throw new CustomError(response.status)
-    //   }
-
-    //   setExpenses((prevExpenses) =>
-    //     prevExpenses.map((expense) => (expense.id === expenseUiId ? { ...expense, optimistic: false } : expense)),
-    //   )
-    // } catch {
-    //   // Put in red with a warning, a tooltip and a try again button
-    // }
   }
 
   return (
     <>
       <Modal open={openModal} setOpen={setOpenModal} title={'Add Expense'} className='px-0 w-[90vw] max-w-[500px]'>
-        <ExpensesForm includeDetails bigAddButton onSubmit={addExpense} />
+        <ExpensesForm includeDetails bigAddButton onSubmit={addExpense} disabled={disabled} />
       </Modal>
 
-      <section className='flex flex-col gap-8 flex-1 min-w-0 cursor-default'>
-        <ExpensesForm onFocus={() => setOpenModal(true)} />
+      <section
+        className={cn('flex flex-col gap-8 flex-1 min-w-0 cursor-default', disabled ? 'pointer-events-none' : '')}
+      >
+        <ExpensesForm onFocus={() => setOpenModal(true)} disabled={disabled} />
         <Expenses expenses={expenses} setExpenses={setExpenses} loading={loadingExpenses} />
       </section>
     </>
