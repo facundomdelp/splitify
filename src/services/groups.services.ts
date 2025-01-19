@@ -1,4 +1,4 @@
-import Groups from '@/db/repositories.ts/groups.db'
+import Groups from '@/db/firebase/repositories.ts/groups.db'
 import { generateRandomName } from '@/lib/functions/generateRandomName'
 import { Locale } from '@/types/common.types'
 

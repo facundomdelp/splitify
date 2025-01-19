@@ -1,7 +1,8 @@
 import { addDoc, collection, deleteDoc, doc, getDocs, query, Timestamp, where } from 'firebase/firestore'
 import { db } from '..'
+import { tableNames } from '../tableNames'
 
-const EXPENSES = 'expenses'
+const { EXPENSES } = tableNames()
 
 class Expenses {
   private expenseCollection = collection(db, EXPENSES)

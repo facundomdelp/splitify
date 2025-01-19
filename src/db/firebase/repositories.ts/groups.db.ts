@@ -1,8 +1,9 @@
 import { addDoc, collection, doc, getDoc, Timestamp, updateDoc } from 'firebase/firestore'
 import { CustomError } from '@/lib/errors/CustomErrors'
 import { db } from '..'
+import { tableNames } from '../tableNames'
 
-const GROUPS = 'groups'
+const { GROUPS } = tableNames()
 
 class Groups {
   private groupCollection = collection(db, GROUPS)
