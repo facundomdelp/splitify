@@ -10,16 +10,20 @@ import { cn } from '@/lib/utils'
 interface Props {
   copyString: string
   className?: string
+  onClick?: () => void
 }
 
-const CopyToClipboard = ({ copyString, className }: Props) => {
+const CopyToClipboard = ({ copyString, className, onClick }: Props) => {
   const [copied, setCopied] = useState(false)
 
   const handleCopyToClipboard = () => {
     copyToClipboard(copyString)
 
     setCopied(true)
-    setTimeout(() => setCopied(false), 3000)
+    setTimeout(() => {
+      setCopied(false)
+      onClick?.()
+    }, 3000)
   }
 
   const t = useTranslations('CopyToClipboard')
