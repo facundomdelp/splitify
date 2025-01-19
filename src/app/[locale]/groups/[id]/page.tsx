@@ -161,7 +161,6 @@ const GroupPage = () => {
               </TabsList>
               <TabsContent className='mt-8 flex-1 flex flex-col' value='expenses'>
                 <ExpensesSection
-                  groupId={group.id}
                   expenses={expenses}
                   setExpenses={setExpenses}
                   loadingExpenses={loadingExpenses}

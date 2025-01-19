@@ -9,31 +9,13 @@ interface useCalculateBalancesProps {
 }
 
 export const useCalculateBalances = ({ expenses, setBalances }: useCalculateBalancesProps) => {
-  const [calculating, setCalculating] = useState(false)
-
   const handleCalculateBalances = () => {
     if (!expenses) return
 
-    setCalculating(true)
-    setTimeout(() => {
-      setBalances(calculateBalances(expenses))
-      setCalculating(false)
-
-      setTimeout(() => {
-        const targetElement = document.querySelector('#balances')
-        const header = document.querySelector('#header')
-
-        if (targetElement && header) {
-          const { top: balancesTop } = targetElement.getBoundingClientRect()
-          const { height: headerHeight } = header?.getBoundingClientRect()
-
-          scrollTo({ top: balancesTop + headerHeight, behavior: 'smooth' })
-        }
-      }, 300)
-    }, 1000)
+    setBalances(calculateBalances(expenses))
   }
 
-  return { handleCalculateBalances, calculating }
+  return { handleCalculateBalances }
 }
 
 interface useRoundBalancesProps {

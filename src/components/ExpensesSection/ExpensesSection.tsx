@@ -5,7 +5,6 @@ import { Expense } from '@/types/expense.types'
 import React, { useState } from 'react'
 
 interface Props {
-  groupId: string
   expenses: Expense[]
   setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
   addExpenseAction: (expense: Pick<Expense, 'name' | 'amount' | 'title' | 'date'>) => void | Promise<void>
