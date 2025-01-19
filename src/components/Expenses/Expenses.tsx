@@ -31,16 +31,35 @@ export const Expenses = ({ expenses, setExpenses, readOnly = false }: Props) => 
 
         {expenses && Object.keys(expenses).length ? (
           <ul className='mt-4 flex flex-col gap-3 min-w-0'>
-            {expenses.toReversed().map(({ id, optimistic, name, amount }, index) => (
-              <li key={index} className={cn('flex items-center min-w-0', optimistic ? 'text-gray-400' : '')}>
-                <p className='mr-2 w-[20px] text-center'>{getEmojiFromString(name)}</p>
-                <p className='text-ellipsis whitespace-nowrap overflow-hidden min-w-0'>{name}</p>
-                <p className='whitespace-nowrap'>: ${formatAmount(amount)}</p>
-                {!readOnly && !optimistic && (
-                  <RemoveExpense id={id} name={name} expenses={expenses} setExpenses={setExpenses} className='mx-1' />
-                )}
-              </li>
-            ))}
+            {expenses.toReversed().map(({ id, optimistic, name, amount, title, date }, index) => {
+              return (
+                <li key={index} className={cn('flex items-center min-w-0', optimistic ? 'text-gray-400' : '')}>
+                  <p className='mr-2 w-[20px] text-center'>{getEmojiFromString(name)}</p>
+                  <div className='flex flex-col min-w-0'>
+                    <div className='flex items-center min-w-0'>
+                      <p className='text-ellipsis whitespace-nowrap overflow-hidden min-w-0'>{name}</p>
+                      <p className='whitespace-nowrap'>: ${formatAmount(amount)}</p>
+                      {!readOnly && !optimistic && (
+                        <RemoveExpense
+                          id={id}
+                          name={name}
+                          expenses={expenses}
+                          setExpenses={setExpenses}
+                          className='mx-1'
+                        />
+                      )}
+                    </div>
+                    {(title || date) && (
+                      <div className='flex items-center min-w-0 gap-1 text-gray-500 text-xs'>
+                        {date && <p>{new Date(date).toLocaleDateString()}</p>}
+                        {title && date && <p>-</p>}
+                        <p className='text-ellipsis whitespace-nowrap overflow-hidden min-w-0'>{title}</p>
+                      </div>
+                    )}
+                  </div>
+                </li>
+              )
+            })}
             <li className='mt-auto flex justify-between font-semibold py-3'>
               <p>TOTAL</p>
               <p>$ {formatAmount(expenses.reduce((acc, cv) => acc + cv.amount, 0))}</p>

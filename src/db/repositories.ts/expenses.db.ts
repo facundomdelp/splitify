@@ -47,6 +47,7 @@ class Expenses {
     return querySnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
+      date: doc.data().date ? doc.data().date.toMillis() : '',
     }))
   }
 }

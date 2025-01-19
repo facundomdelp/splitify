@@ -4,7 +4,7 @@ export type Expense = {
   name: string
   amount: number
   title?: string
-  date?: string
+  date?: number
 }
 
 export type AddExpenseRequestBody = {
