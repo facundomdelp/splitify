@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button'
+import Spinner from '@/components/ui/spinner'
 import { cn } from '@/lib/utils'
 import { ChevronRight, LucideProps } from 'lucide-react'
 import Link from 'next/link'
@@ -6,21 +7,42 @@ import { ForwardRefExoticComponent, ReactNode, RefAttributes } from 'react'
 
 interface Props {
   children: ReactNode
-  icon: ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>>
+  icon?: ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>>
+  emoji?: string
   href?: string
   onClick?: () => void
+  strong?: boolean
+  loading?: boolean
   disabled?: boolean
   handleNavigation?: React.MouseEventHandler<HTMLAnchorElement>
 }
 
-const NavItem = ({ children, icon: Icon, href, onClick, disabled, handleNavigation }: Props) => {
+const NavItem = ({
+  children,
+  icon: Icon,
+  emoji,
+  href,
+  onClick,
+  strong,
+  loading,
+  disabled,
+  handleNavigation,
+}: Props) => {
   const NavChildren = () => (
     <>
-      <Icon
-        className={cn('text-green-700 size-[20px] flex-shrink-0', disabled ? 'text-gray-400 cursor-not-allowed' : '')}
-      />
-      <span className='text-nowrap flex gap-3'>{children}</span>
-      <ChevronRight className='ml-auto size-[20px] flex-shrink-0' />
+      {Icon ? (
+        <Icon
+          className={cn('text-green-700 size-[20px] flex-shrink-0', disabled ? 'text-gray-400 cursor-not-allowed' : '')}
+        />
+      ) : (
+        emoji
+      )}
+      <span className={cn('text-nowrap flex gap-3', strong ? 'font-bold' : '')}>{children}</span>
+      {!loading ? (
+        <ChevronRight className='ml-auto size-[20px] flex-shrink-0' />
+      ) : (
+        <Spinner className='ml-auto size-[20px] flex-shrink-0 text-green-600' />
+      )}
     </>
   )
 
