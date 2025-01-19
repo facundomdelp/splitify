@@ -1,11 +1,12 @@
 import { CustomError } from '@/lib/errors/CustomErrors'
 import { calculateBalances } from '@/lib/functions/calculateBalances'
+import { generateId } from '@/lib/functions/generateId'
 import { useSetGroups } from '@/store/groups.store'
 import { Balance } from '@/types/balance.types'
 import { Expense, GetGroupExpensesResponse } from '@/types/expense.types'
 import { GetGroupResponse } from '@/types/group.types'
 import { useParams } from 'next/navigation'
-import { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
 export const useGetGroup = () => {
   const { groups, setGroups, initialized } = useSetGroups()
@@ -95,6 +96,59 @@ export const useGetGroupExpenses = () => {
   }, [expenses.length, getGroupExpenses])
 
   return { expenses, setExpenses, loading, error }
+}
+
+interface useAddExpenseProps {
+  groupId?: string
+  expenses: Expense[]
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
+}
+
+export const useAddExpense = ({ groupId, expenses, setExpenses }: useAddExpenseProps) => {
+  const addExpense = async ({
+    name,
+    amount,
+    title,
+    date,
+  }: {
+    name: string
+    amount: number
+    title?: string
+    date?: number
+  }) => {
+    if (!groupId) return
+
+    const expenseUiId = generateId()
+    const newExpenses = [...(expenses ?? []), { id: expenseUiId, optimistic: true, name, amount, title, date }]
+
+    setExpenses(newExpenses)
+
+    try {
+      const response = await fetch('/api/expenses', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          groupId: groupId,
+          name,
+          amount,
+          title,
+          date,
+        }),
+      })
+
+      if (!response.ok) {
+        throw new CustomError(response.status)
+      }
+
+      setExpenses((prevExpenses) =>
+        prevExpenses.map((expense) => (expense.id === expenseUiId ? { ...expense, optimistic: false } : expense)),
+      )
+    } catch {
+      // Put in red with a warning, a tooltip and a try again button
+    }
+  }
+
+  return { addExpense }
 }
 
 interface useCalculateGroupBalancesProps {

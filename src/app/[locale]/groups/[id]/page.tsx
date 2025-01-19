@@ -1,7 +1,7 @@
 'use client'
 
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
-import { useCalculateGroupBalances, useGetGroup, useGetGroupExpenses } from './hooks'
+import { useAddExpense, useCalculateGroupBalances, useGetGroup, useGetGroupExpenses } from './hooks'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useState } from 'react'
 import ExpensesSection from '../../../../components/ExpensesSection'
@@ -14,8 +14,6 @@ import { useLocale } from 'next-intl'
 import CopyToClipboard from '@/components/CopyToClipboard'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { TooltipArrow } from '@radix-ui/react-tooltip'
-import { generateId } from '@/lib/functions/generateId'
-import { CustomError } from '@/lib/errors/CustomErrors'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 
 const GroupPage = () => {
@@ -28,54 +26,13 @@ const GroupPage = () => {
 
   const [openShareModal, setOpenShareModal] = useState(false)
 
+  const { addExpense } = useAddExpense({ groupId: group?.id, expenses, setExpenses })
+
   const { handleCalculateGroupBalances } = useCalculateGroupBalances({ expenses, balances, setBalances, setRounded })
 
   const getEmojiFromString = useGetEmojiFromString(true)
 
   const locale = useLocale()
-
-  const addExpense = async ({
-    name,
-    amount,
-    title,
-    date,
-  }: {
-    name: string
-    amount: number
-    title?: string
-    date?: number
-  }) => {
-    if (!group?.id) return
-
-    const expenseUiId = generateId()
-    const newExpenses = [...(expenses ?? []), { id: expenseUiId, optimistic: true, name, amount, title, date }]
-
-    setExpenses(newExpenses)
-
-    try {
-      const response = await fetch('/api/expenses', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          groupId: group.id,
-          name,
-          amount,
-          title,
-          date,
-        }),
-      })
-
-      if (!response.ok) {
-        throw new CustomError(response.status)
-      }
-
-      setExpenses((prevExpenses) =>
-        prevExpenses.map((expense) => (expense.id === expenseUiId ? { ...expense, optimistic: false } : expense)),
-      )
-    } catch {
-      // Put in red with a warning, a tooltip and a try again button
-    }
-  }
 
   return (
     <>

@@ -3,18 +3,14 @@
 import { useTranslations } from 'next-intl'
 import { useSetExpenses } from '@/store/expenses.store'
 import { useSetBalances } from '@/store/balances.store'
-import { useCalculateBalances, useRoundBalances } from './hooks'
+import { useAddExpense, useCalculateBalances, useConvertIntoGroup, useRoundBalances } from './hooks'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import ExpensesSection from '@/components/ExpensesSection'
 import BalancesSection from '@/components/BalancesSection'
 import { useState } from 'react'
-import { generateId } from '@/lib/functions/generateId'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { EllipsisVertical } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { useRouter } from '@/i18n/routing'
-import { Expense } from '@/types/expense.types'
-import { CustomError } from '@/lib/errors/CustomErrors'
 import Spinner from '@/components/ui/spinner'
 
 export default function Home() {
@@ -23,78 +19,10 @@ export default function Home() {
 
   const [tabValue, setTabValue] = useState<'expenses' | 'balances'>('expenses')
 
+  const { addExpense } = useAddExpense({ expenses, setExpenses })
   const { handleCalculateBalances } = useCalculateBalances({ expenses, setBalances })
   const { rounded, setRounded } = useRoundBalances({ balances })
-
-  const addExpense = async ({
-    name,
-    amount,
-    title,
-    date,
-  }: {
-    name: string
-    amount: number
-    title?: string
-    date?: number
-  }) => {
-    const expenseUiId = generateId()
-    const newExpenses = [...(expenses ?? []), { id: expenseUiId, optimistic: false, name, amount, title, date }]
-
-    setExpenses(newExpenses)
-  }
-
-  const [{ loading: loadingConvertToGroup /* , error */ }, setConvertToGroupState] = useState({
-    loading: false,
-    error: false,
-  })
-  const router = useRouter()
-
-  const convertIntoGroup = async (expenses: Expense[]) => {
-    setConvertToGroupState({ error: false, loading: true })
-
-    try {
-      const addGroupResponse = await fetch('/api/groups', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-      })
-
-      if (!addGroupResponse.ok) {
-        throw new CustomError(addGroupResponse.status)
-      }
-
-      const data = await addGroupResponse.json()
-
-      for (const expense of expenses) {
-        // Bulk Add Expenses?
-        const addExpensesToGroup = await fetch('/api/expenses', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            groupId: data.group,
-            name: expense.name,
-            amount: expense.amount,
-            title: expense.title,
-            date: expense.date,
-          }),
-        })
-
-        if (!addExpensesToGroup.ok) {
-          throw new CustomError(addGroupResponse.status)
-        }
-      }
-
-      setExpenses([])
-      setBalances([])
-
-      router.push(`/groups/${data.group}`)
-    } catch {
-      setConvertToGroupState((prev) => ({ ...prev, error: true }))
-    } finally {
-      setTimeout(() => {
-        setConvertToGroupState((prev) => ({ ...prev, loading: false }))
-      }, 500)
-    }
-  }
+  const { convertIntoGroup, convertToGroupState } = useConvertIntoGroup({ setExpenses, setBalances })
 
   const t = useTranslations('Home')
 
@@ -112,7 +40,7 @@ export default function Home() {
           ⚡{'Spliti Ya'}
         </h2>
         <div className='absolute right-2'>
-          {!loadingConvertToGroup ? (
+          {!convertToGroupState.loading ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant='ghost' className='px-3'>
@@ -138,7 +66,7 @@ export default function Home() {
       >
         <div className='flex relative'>
           <TabsList className='mx-auto scale-[80%] xs:scale-100'>
-            <TabsTrigger className='w-[120px]' value='expenses' disabled={loadingConvertToGroup}>
+            <TabsTrigger className='w-[120px]' value='expenses' disabled={convertToGroupState.loading}>
               Expenses
             </TabsTrigger>
             <TabsTrigger
@@ -147,7 +75,7 @@ export default function Home() {
               onClick={handleCalculateBalances}
               disabled={
                 !expenses ||
-                loadingConvertToGroup ||
+                convertToGroupState.loading ||
                 new Set(expenses.map(({ name }) => name)).size < 2 ||
                 new Set(
                   Object.values(
@@ -170,7 +98,7 @@ export default function Home() {
             expenses={expenses}
             setExpenses={setExpenses}
             addExpenseAction={addExpense}
-            disabled={loadingConvertToGroup}
+            disabled={convertToGroupState.loading}
           />
         </TabsContent>
         <TabsContent className='mt-8 flex-1 flex flex-col' value='balances'>
