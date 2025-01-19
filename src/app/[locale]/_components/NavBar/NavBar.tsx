@@ -47,7 +47,7 @@ const NavBar = ({
 
   const { addNewGroup, newGroupState } = useAddNewGroup({ setDrawerOpen })
 
-  const getEmojiFromString = useGetEmojiFromString()
+  const getEmojiFromString = useGetEmojiFromString(true)
 
   const t = useTranslations('NavBar')
 
@@ -140,7 +140,7 @@ const NavBar = ({
                   ...(groups
                     ? groups.map(({ id, name }) => ({
                         slug: id,
-                        emoji: getEmojiFromString(name),
+                        emoji: getEmojiFromString(id),
                         name: name,
                         href: `/groups/${id}`,
                         beta: false,
