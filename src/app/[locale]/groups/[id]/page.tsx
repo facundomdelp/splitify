@@ -4,9 +4,9 @@ import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
 import { useCalculateGroupBalances, useGetGroup, useGetGroupExpenses } from './hooks'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useState } from 'react'
-import GroupExpenses from './_components/GroupExpenses'
+import ExpensesSection from './_components/ExpensesSection'
 import { Balance } from '@/types/balance.types'
-import GroupBalances from './_components/GroupBalances'
+import BalancesSection from '@/components/BalancesSection'
 import { Button } from '@/components/ui/button'
 import { Share2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -15,6 +15,8 @@ import { useLocale } from 'next-intl'
 import CopyToClipboard from '@/components/CopyToClipboard'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { TooltipArrow } from '@radix-ui/react-tooltip'
+import { generateId } from '@/lib/functions/generateId'
+import { CustomError } from '@/lib/errors/CustomErrors'
 
 const GroupPage = () => {
   const { /* loading,  */ /* error,  */ group } = useGetGroup()
@@ -31,6 +33,49 @@ const GroupPage = () => {
   const getEmojiFromString = useGetEmojiFromString(true)
 
   const locale = useLocale()
+
+  const addExpense = async ({
+    name,
+    amount,
+    title,
+    date,
+  }: {
+    name: string
+    amount: number
+    title?: string
+    date?: number
+  }) => {
+    if (!group?.id) return
+
+    const expenseUiId = generateId()
+    const newExpenses = [...(expenses ?? []), { id: expenseUiId, optimistic: true, name, amount, title, date }]
+
+    setExpenses(newExpenses)
+
+    try {
+      const response = await fetch('/api/expenses', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          groupId: group.id,
+          name,
+          amount,
+          title,
+          date,
+        }),
+      })
+
+      if (!response.ok) {
+        throw new CustomError(response.status)
+      }
+
+      setExpenses((prevExpenses) =>
+        prevExpenses.map((expense) => (expense.id === expenseUiId ? { ...expense, optimistic: false } : expense)),
+      )
+    } catch {
+      // Put in red with a warning, a tooltip and a try again button
+    }
+  }
 
   return (
     <>
@@ -115,15 +160,16 @@ const GroupPage = () => {
                 </TabsTrigger>
               </TabsList>
               <TabsContent className='mt-8 flex-1 flex flex-col' value='expenses'>
-                <GroupExpenses
+                <ExpensesSection
                   groupId={group.id}
                   expenses={expenses}
                   setExpenses={setExpenses}
-                  loading={loadingExpenses}
+                  loadingExpenses={loadingExpenses}
+                  addExpenseAction={addExpense}
                 />
               </TabsContent>
               <TabsContent className='mt-8 flex-1 flex flex-col' value='balances'>
-                <GroupBalances balances={balances} rounded={rounded} setRounded={setRounded} />
+                <BalancesSection balances={balances} rounded={rounded} setRounded={setRounded} />
               </TabsContent>
             </Tabs>
           </>

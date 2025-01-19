@@ -10,7 +10,7 @@ interface Props {
   setRounded: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const GroupBalances = ({ balances, rounded, setRounded }: Props) => {
+const BalancesSection = ({ balances, rounded, setRounded }: Props) => {
   const copyString = useCopyString({ balances, rounded })
 
   return (
@@ -21,4 +21,4 @@ const GroupBalances = ({ balances, rounded, setRounded }: Props) => {
   )
 }
 
-export default GroupBalances
+export default BalancesSection
