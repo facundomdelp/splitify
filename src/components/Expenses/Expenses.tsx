@@ -6,14 +6,16 @@ import { useTranslations } from 'next-intl'
 import ChangeEmojisButton from '@/components/ChangeEmojisButton'
 import { RemoveExpense } from './RemoveExpense'
 import { cn } from '@/lib/utils'
+import Spinner from '../ui/spinner'
 
 interface Props {
   expenses: Expense[]
   setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
   readOnly?: boolean
+  loading?: boolean
 }
 
-export const Expenses = ({ expenses, setExpenses, readOnly = false }: Props) => {
+export const Expenses = ({ expenses, setExpenses, readOnly = false, loading }: Props) => {
   const getEmojiFromString = useGetEmojiFromString()
 
   const t = useTranslations('Expenses')
@@ -29,7 +31,11 @@ export const Expenses = ({ expenses, setExpenses, readOnly = false }: Props) => 
           {expenses && expenses.length > 0 && <ChangeEmojisButton />}
         </div>
 
-        {expenses && Object.keys(expenses).length ? (
+        {loading ? (
+          <p className='m-auto text-gray-500 text-center'>
+            <Spinner className='text-green-600' />
+          </p>
+        ) : expenses && Object.keys(expenses).length ? (
           <ul className='mt-4 flex flex-col gap-3 min-w-0'>
             {expenses.toReversed().map(({ id, optimistic, name, amount, title, date }, index) => {
               return (

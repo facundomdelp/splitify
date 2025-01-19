@@ -10,9 +10,10 @@ interface Props {
   groupId: string
   expenses: Expense[]
   setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
+  loading?: boolean
 }
 
-const GroupExpenses = ({ groupId, expenses, setExpenses }: Props) => {
+const GroupExpenses = ({ groupId, expenses, setExpenses, loading }: Props) => {
   const [openModal, setOpenModal] = useState(false)
 
   const addExpense = async ({
@@ -69,7 +70,7 @@ const GroupExpenses = ({ groupId, expenses, setExpenses }: Props) => {
 
       <section className='flex flex-col gap-8 flex-1 min-w-0 cursor-default'>
         <ExpensesForm onFocus={() => setOpenModal(true)} />
-        <Expenses expenses={expenses} setExpenses={setExpenses} />
+        <Expenses expenses={expenses} setExpenses={setExpenses} loading={loading} />
       </section>
     </>
   )

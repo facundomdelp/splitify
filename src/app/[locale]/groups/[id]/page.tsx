@@ -18,7 +18,7 @@ import { TooltipArrow } from '@radix-ui/react-tooltip'
 
 const GroupPage = () => {
   const { /* loading,  */ /* error,  */ group } = useGetGroup()
-  const { /* loading,  */ /* error,  */ expenses, setExpenses } = useGetGroupExpenses()
+  const { loading: loadingExpenses, /* error,  */ expenses, setExpenses } = useGetGroupExpenses()
 
   const [balances, setBalances] = useState<Balance[]>([])
   const [rounded, setRounded] = useState(false)
@@ -34,6 +34,23 @@ const GroupPage = () => {
 
   return (
     <>
+      {group && (
+        <Modal open={openShareModal} setOpen={setOpenShareModal} title={'Share Group'} closeOnBackdropClick>
+          <div className='space-y-3 text-center'>
+            <p className='text-sm'>{'🤑 Copy this link and share it with your friends!  💸'} </p>
+            <code
+              title='Copy this link'
+              className='text-[10px] text-wrap p-2 bg-gray-50 flex items-center justify-center'
+            >{`https://splitify.me/${locale}/groups/${group.id}`}</code>
+            <p className='text-[10px] pb-3'>{'Your friends can easily add expenses to this group.'} </p>
+            <CopyToClipboard
+              onClick={() => setOpenShareModal(false)}
+              copyString={`https://splitify.me/${locale}/groups/${group.id}`}
+            />
+          </div>
+        </Modal>
+      )}
+
       <main className='w-full my-8 text-dark max-w-[600px] space-y-6 flex flex-col'>
         {group && ( // Handle Group error
           <>
@@ -58,7 +75,7 @@ const GroupPage = () => {
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent className='text-[10px] font-semibold' sideOffset={-4}>
-                      <TooltipArrow />
+                      <TooltipArrow fill='green' />
                       Share Group!
                     </TooltipContent>
                   </Tooltip>
@@ -80,7 +97,7 @@ const GroupPage = () => {
                   value='balances'
                   onClick={handleCalculateGroupBalances}
                   disabled={
-                    // loading ||
+                    loadingExpenses ||
                     !expenses ||
                     new Set(expenses.map(({ name }) => name)).size < 2 ||
                     new Set(
@@ -98,7 +115,12 @@ const GroupPage = () => {
                 </TabsTrigger>
               </TabsList>
               <TabsContent className='mt-8 flex-1 flex flex-col' value='expenses'>
-                <GroupExpenses groupId={group.id} expenses={expenses} setExpenses={setExpenses} />
+                <GroupExpenses
+                  groupId={group.id}
+                  expenses={expenses}
+                  setExpenses={setExpenses}
+                  loading={loadingExpenses}
+                />
               </TabsContent>
               <TabsContent className='mt-8 flex-1 flex flex-col' value='balances'>
                 <GroupBalances balances={balances} rounded={rounded} setRounded={setRounded} />
@@ -107,23 +129,6 @@ const GroupPage = () => {
           </>
         )}
       </main>
-
-      {group && (
-        <Modal open={openShareModal} setOpen={setOpenShareModal} title={'Share Group'} closeOnBackdropClick>
-          <div className='space-y-3 text-center'>
-            <p className='text-sm'>{'🤑 Copy this link and share it with your friends!  💸'} </p>
-            <code
-              title='Copy this link'
-              className='text-[10px] text-wrap p-2 bg-gray-50 flex items-center justify-center'
-            >{`https://splitify.me/${locale}/groups/${group.id}`}</code>
-            <p className='text-[10px] pb-3'>{'Your friends can easily add expenses to this group.'} </p>
-            <CopyToClipboard
-              onClick={() => setOpenShareModal(false)}
-              copyString={`https://splitify.me/${locale}/groups/${group.id}`}
-            />
-          </div>
-        </Modal>
-      )}
     </>
   )
 }
