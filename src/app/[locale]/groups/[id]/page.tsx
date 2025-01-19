@@ -8,8 +8,7 @@ import ExpensesSection from '../../../../components/ExpensesSection'
 import { Balance } from '@/types/balance.types'
 import BalancesSection from '@/components/BalancesSection'
 import { Button } from '@/components/ui/button'
-import { Share2 } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { EllipsisVertical, Share2 } from 'lucide-react'
 import Modal from '@/components/Modal'
 import { useLocale } from 'next-intl'
 import CopyToClipboard from '@/components/CopyToClipboard'
@@ -17,6 +16,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { TooltipArrow } from '@radix-ui/react-tooltip'
 import { generateId } from '@/lib/functions/generateId'
 import { CustomError } from '@/lib/errors/CustomErrors'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 
 const GroupPage = () => {
   const { /* loading,  */ /* error,  */ group } = useGetGroup()
@@ -109,26 +109,33 @@ const GroupPage = () => {
               {/* <PencilIcon className='size-[16px] text-gray-500' /> */}
 
               {group && (
-                <TooltipProvider>
-                  <Tooltip defaultOpen>
-                    <TooltipTrigger asChild>
-                      <Button
-                        size='icon'
-                        variant='ghost'
-                        className={cn(
-                          'rounded-full absolute right-2 transition-all mt-[0!important] flex text-gray-500 px-3',
-                        )}
-                        onClick={() => setOpenShareModal(true)}
-                      >
-                        <Share2 />
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent className='text-[10px] font-semibold mr-2' sideOffset={-4}>
-                      <TooltipArrow fill='green' />
-                      Share Group!
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+                <div className='absolute right-2'>
+                  <TooltipProvider>
+                    <Tooltip defaultOpen>
+                      <TooltipTrigger asChild>
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button variant='ghost' className='px-3'>
+                              <EllipsisVertical className='text-gray-600' />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align='end' alignOffset={24} sideOffset={-5}>
+                            <DropdownMenuItem className='text-xs text-gray-500' onClick={() => setOpenShareModal(true)}>
+                              <Share2 /> Share Group
+                            </DropdownMenuItem>
+                            {/* <DropdownMenuItem className='text-xs text-gray-500' onClick={() => setOpenShareModal(true)}>
+                              <Trash2 /> Remove Group
+                            </DropdownMenuItem> */}
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </TooltipTrigger>
+                      <TooltipContent className='text-[10px] font-semibold mr-2' sideOffset={-4}>
+                        <TooltipArrow fill='green' />
+                        Share Group!
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
               )}
             </div>
 
