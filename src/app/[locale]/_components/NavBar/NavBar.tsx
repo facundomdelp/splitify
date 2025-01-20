@@ -2,7 +2,7 @@
 
 import { ForwardRefExoticComponent, ReactNode, RefAttributes, useState } from 'react'
 import { cn } from '@/lib/utils'
-import { Globe, HandCoinsIcon, LucideProps, MenuIcon, RocketIcon, Settings } from 'lucide-react'
+import { Globe, HandCoinsIcon, LucideProps, MenuIcon, RocketIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import {
@@ -92,9 +92,6 @@ const NavBar = ({
                   disabled={newGroupState.loading}
                 >
                   {t('Language')}
-                </NavItem>
-                <NavItem key='settings' icon={Settings} disabled>
-                  {t('Settings')} 🏭
                 </NavItem>
               </NavSection>
 
