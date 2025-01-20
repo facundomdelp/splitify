@@ -10,7 +10,7 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale; 'seo-route': string }>
 }): Promise<Metadata> {
   const { locale, 'seo-route': seoRoute } = await params
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || ''
+  const baseUrl = 'https://splitify.me'
 
   const localeSeoRoute = SEO_ROUTES[locale]
 

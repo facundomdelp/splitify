@@ -15,7 +15,7 @@ const inter = Inter({ subsets: ['latin'], weight: ['100', '200', '300', '400', '
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || ''
+  const baseUrl = 'https://splitify.me'
   const t = await getTranslations({ locale, namespace: 'Metadata' })
 
   const languages: Record<string, string> = {}
