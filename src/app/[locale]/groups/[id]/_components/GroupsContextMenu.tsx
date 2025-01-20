@@ -1,10 +1,12 @@
+import ConfirmationModal from '@/components/ConfirmationModal'
 import ContextMenu from '@/components/ContextMenu'
 import { ContextMenuItem } from '@/components/ContextMenu/ContextMenu'
 import CopyToClipboard from '@/components/CopyToClipboard'
 import Modal from '@/components/Modal'
-import { Share2 } from 'lucide-react'
+import { Share2, Trash2 } from 'lucide-react'
 import { useLocale } from 'next-intl'
 import React, { useState } from 'react'
+import { useRemoveGroup } from './hooks'
 
 interface Props {
   groupId?: string
@@ -12,6 +14,9 @@ interface Props {
 
 const GroupsContextMenu = ({ groupId }: Props) => {
   const [openShareModal, setOpenShareModal] = useState(false)
+  const [openRemoveConfirmationModal, setOpenRemoveConfirmationModal] = useState(false)
+
+  const { handleRemoveGroup } = useRemoveGroup({ groupId })
 
   const locale = useLocale()
 
@@ -34,9 +39,21 @@ const GroupsContextMenu = ({ groupId }: Props) => {
         </Modal>
       )}
 
+      <ConfirmationModal
+        open={openRemoveConfirmationModal}
+        onOpenChange={setOpenRemoveConfirmationModal}
+        title={<>¿Estás seguro de que quieres quitar este grupo?</>}
+        description='Al quitar este grupo, no se elimina, solo dejarás de verlo. Puedes usar el enlace nuevamente para acceder cuando lo desees.'
+        onConfirm={handleRemoveGroup}
+        destructive
+      />
+
       <ContextMenu>
-        <ContextMenuItem onClick={() => setOpenShareModal(true)}>
+        <ContextMenuItem key='share-group' onClick={() => setOpenShareModal(true)}>
           <Share2 /> Share Group
+        </ContextMenuItem>
+        <ContextMenuItem key='-group' onClick={() => setOpenRemoveConfirmationModal(true)}>
+          <Trash2 /> Remove Group
         </ContextMenuItem>
       </ContextMenu>
     </>
