@@ -1,4 +1,5 @@
 import { useRouter } from '@/i18n/routing'
+import { CustomError } from '@/lib/errors/CustomErrors'
 import { useState } from 'react'
 
 interface useHandleNavigationProps {
@@ -43,6 +44,11 @@ export const useAddNewGroup = ({ setDrawerOpen }: useAddNewGroupProps) => {
       })
 
       const data = await response.json()
+
+      if (!response.ok) {
+        throw new CustomError(response.status, data)
+      }
+
       router.push(`/groups/${data.group}`)
     } catch {
       setNewGroupState((prev) => ({ ...prev, error: true }))
