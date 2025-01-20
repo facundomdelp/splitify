@@ -38,12 +38,17 @@ const ExpensesSection = ({ expenses, setExpenses, addExpenseAction, loadingExpen
 
   return (
     <>
-      <Modal open={openModal} setOpen={setOpenModal} title={'Add Expense'} className='px-0 w-[90vw] max-w-[500px]'>
+      <Modal
+        open={openModal}
+        setOpen={setOpenModal}
+        title={'Add Expense'}
+        className='px-6 xs:px-8 w-[90vw] max-w-[500px]'
+      >
         <ExpensesForm includeDetails bigAddButton onSubmit={addExpense} disabled={disabled} />
       </Modal>
 
       <section
-        className={cn('flex flex-col gap-8 flex-1 min-w-0 cursor-default', disabled ? 'pointer-events-none' : '')}
+        className={cn('flex flex-col gap-8 flex-1 min-w-0 cursor-default mx-4', disabled ? 'pointer-events-none' : '')}
       >
         <ExpensesForm onFocus={() => setOpenModal(true)} disabled={disabled} />
         <Expenses expenses={expenses} setExpenses={setExpenses} loading={loadingExpenses} />

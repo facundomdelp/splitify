@@ -3,25 +3,28 @@
 import { useTranslations } from 'next-intl'
 import { useSetExpenses } from '@/store/expenses.store'
 import { useSetBalances } from '@/store/balances.store'
-import { useAddExpense, useCalculateBalances, useConvertIntoGroup, useRoundBalances } from './hooks'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { useAddExpense, useConvertIntoGroup } from './hooks'
 import ExpensesSection from '@/components/ExpensesSection'
 import BalancesSection from '@/components/BalancesSection'
-import { useState } from 'react'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
-import { EllipsisVertical } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import Spinner from '@/components/ui/spinner'
+import ExpensesBalancesTabs from '@/components/ExpensesBalancesTabs'
+import { useCalculateBalances } from '@/lib/hooks/useCalculateBalances'
+import { useState } from 'react'
+import HomeContextMenu from './_components/HomeContextMenu'
 
 export default function Home() {
   const [expenses, setExpenses] = useSetExpenses()
   const [balances, setBalances] = useSetBalances()
 
-  const [tabValue, setTabValue] = useState<'expenses' | 'balances'>('expenses')
+  const [rounded, setRounded] = useState(false)
 
   const { addExpense } = useAddExpense({ expenses, setExpenses })
-  const { handleCalculateBalances } = useCalculateBalances({ expenses, setBalances })
-  const { rounded, setRounded } = useRoundBalances({ balances })
+  const { handleCalculateBalances, disabledBalances } = useCalculateBalances({
+    expenses,
+    balances,
+    setBalances,
+    setRounded,
+  })
   const { convertIntoGroup, convertToGroupState } = useConvertIntoGroup({ setExpenses, setBalances })
 
   const t = useTranslations('Home')
@@ -41,70 +44,34 @@ export default function Home() {
         </h2>
         <div className='absolute right-2'>
           {!convertToGroupState.loading ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant='ghost' className='px-3'>
-                  <EllipsisVertical className='text-gray-600' />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align='end' alignOffset={24} sideOffset={-5}>
-                <DropdownMenuItem className='text-xs text-gray-500' onClick={() => convertIntoGroup(expenses)}>
-                  Convertir en Grupo ✈️
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <HomeContextMenu
+              expenses={expenses}
+              setExpenses={setExpenses}
+              setBalances={setBalances}
+              convertIntoGroup={convertIntoGroup}
+            />
           ) : (
             <Spinner className='w-fit px-4 text-green-600' />
           )}
         </div>
       </div>
 
-      <Tabs
-        value={tabValue}
-        onValueChange={(value) => setTabValue(value as 'expenses' | 'balances')}
-        className='w-full flex flex-col flex-1'
+      <ExpensesBalancesTabs
+        onBalancesClick={handleCalculateBalances}
+        disabled={convertToGroupState.loading}
+        disabledBalances={disabledBalances}
       >
-        <div className='flex relative'>
-          <TabsList className='mx-auto scale-[80%] xs:scale-100'>
-            <TabsTrigger className='w-[120px]' value='expenses' disabled={convertToGroupState.loading}>
-              Expenses
-            </TabsTrigger>
-            <TabsTrigger
-              className='w-[120px]'
-              value='balances'
-              onClick={handleCalculateBalances}
-              disabled={
-                !expenses ||
-                convertToGroupState.loading ||
-                new Set(expenses.map(({ name }) => name)).size < 2 ||
-                new Set(
-                  Object.values(
-                    expenses.reduce<Record<string, number>>(
-                      (acc, { amount, name }) => ({ ...acc, [name]: (acc[name] ? acc[name] : 0) + amount }),
-                      {},
-                    ),
-                  ),
-                ).size === 1 ||
-                expenses.reduce((acc, { amount }) => amount + acc, 0) === 0
-              }
-            >
-              Balances
-            </TabsTrigger>
-          </TabsList>
-        </div>
-
-        <TabsContent className='mt-8 flex-1 flex flex-col' value='expenses'>
+        {[
           <ExpensesSection
+            key='expenses-section'
             expenses={expenses}
             setExpenses={setExpenses}
             addExpenseAction={addExpense}
             disabled={convertToGroupState.loading}
-          />
-        </TabsContent>
-        <TabsContent className='mt-8 flex-1 flex flex-col' value='balances'>
-          <BalancesSection balances={balances} rounded={rounded} setRounded={setRounded} />
-        </TabsContent>
-      </Tabs>
+          />,
+          <BalancesSection key='balances-section' balances={balances} rounded={rounded} setRounded={setRounded} />,
+        ]}
+      </ExpensesBalancesTabs>
     </main>
   )
 }

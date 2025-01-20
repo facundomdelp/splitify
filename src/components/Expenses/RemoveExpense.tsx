@@ -2,10 +2,10 @@
 
 import ConfirmationModal from '@/components/ConfirmationModal'
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
-import { cn } from '@/lib/utils'
 import { Expense } from '@/types/expense.types'
 import { X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import { useState } from 'react'
 
 interface Props {
   id: string
@@ -15,7 +15,9 @@ interface Props {
   className?: string
 }
 
-export const RemoveExpense = ({ id, name, expenses, setExpenses, className }: Props) => {
+export const RemoveExpense = ({ id, name, expenses, setExpenses }: Props) => {
+  const [open, setOpen] = useState(false)
+
   const handleRemoveExpense = () => {
     const remainingExpenses = expenses.filter(({ id: expenseId }) => expenseId !== id)
     setExpenses(remainingExpenses)
@@ -26,27 +28,30 @@ export const RemoveExpense = ({ id, name, expenses, setExpenses, className }: Pr
   const getEmojiFromString = useGetEmojiFromString()
 
   return (
-    <ConfirmationModal
-      title={
-        <>
-          {t('Are you sure you want to remove')}
-          <div className='flex flex-nowrap space-x-1 min-w-0'>
-            <p>{getEmojiFromString(name)}</p>
-            <strong className='font-semibold max-w-full text-ellipsis whitespace-nowrap overflow-hidden block'>
-              {name}
-            </strong>
-          </div>
-          {t('from the list?')}
-        </>
-      }
-      onConfirm={handleRemoveExpense}
-    >
+    <>
       <X
-        className={cn(
-          'size-[18px] text-gray-500 hover:text-red-800 h-[20px] items-center cursor-pointer shrink-0',
-          className,
-        )}
+        className='mx-1 size-[18px] text-gray-500 hover:text-red-800 h-[20px] items-center cursor-pointer shrink-0'
+        onClick={() => setOpen(true)}
       />
-    </ConfirmationModal>
+
+      <ConfirmationModal
+        open={open}
+        onOpenChange={setOpen}
+        title={
+          <>
+            {t('Are you sure you want to remove')}
+            <div className='flex flex-nowrap space-x-1 min-w-0'>
+              <p>{getEmojiFromString(name)}</p>
+              <strong className='font-semibold max-w-full text-ellipsis whitespace-nowrap overflow-hidden block'>
+                {name}
+              </strong>
+            </div>
+            {t('from the list?')}
+          </>
+        }
+        onConfirm={handleRemoveExpense}
+        destructive
+      />
+    </>
   )
 }

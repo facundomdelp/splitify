@@ -31,7 +31,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
   const t = useTranslations('ExpensesForm')
 
   return (
-    <section className='mx-4 flex flex-col gap-2'>
+    <section className='flex flex-col gap-2'>
       <p className='text-sm flex items-center gap-1 flex-nowrap'>
         <UserRound className='size-[14px] text-green-700' />
         {t('Add expense')}

@@ -22,7 +22,7 @@ export const Expenses = ({ expenses, setExpenses, readOnly = false, loading }: P
 
   return (
     <>
-      <section className='mx-4 text-sm flex flex-col min-w-0 flex-1'>
+      <section className='text-sm flex flex-col min-w-0 flex-1'>
         <div className='flex items-center'>
           <h2 className='text-lg font-bold flex flex-nowrap gap-2 items-center' id='expenses'>
             <UsersRound className='size-[22px] text-green-700' />
