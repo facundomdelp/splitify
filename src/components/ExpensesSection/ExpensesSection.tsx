@@ -38,12 +38,7 @@ const ExpensesSection = ({ expenses, setExpenses, addExpenseAction, loadingExpen
 
   return (
     <>
-      <Modal
-        open={openModal}
-        setOpen={setOpenModal}
-        title={'Add Expense'}
-        className='px-6 xs:px-8 w-[90vw] max-w-[500px]'
-      >
+      <Modal open={openModal} setOpen={setOpenModal} title={'Add Expense'} className='px-6 w-[90vw] max-w-[500px]'>
         <ExpensesForm includeDetails bigAddButton onSubmit={addExpense} disabled={disabled} />
       </Modal>
 
