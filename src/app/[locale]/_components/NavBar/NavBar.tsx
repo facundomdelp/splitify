@@ -106,9 +106,8 @@ const NavBar = ({
                     emoji: '⚡',
                     name: `${t('Spliti Quick')}`,
                     href: `/`,
-                    beta: undefined,
                   },
-                ].map(({ slug, emoji, name, href, beta }) => (
+                ].map(({ slug, emoji, name, href }) => (
                   <NavItem
                     key={slug}
                     emoji={emoji}
@@ -117,11 +116,6 @@ const NavBar = ({
                     disabled={newGroupState.loading}
                   >
                     {name}
-                    {beta && (
-                      <Badge className='uppercase text-nowrap opacity-70 rounded-lg text-[9px] flex leading-3 px-2 pointer-events-none'>
-                        Beta
-                      </Badge>
-                    )}
                   </NavItem>
                 ))}
               </NavSection>
@@ -146,14 +140,14 @@ const NavBar = ({
                         beta: false,
                       }))
                     : []),
-                ].map(({ slug, name, beta, ...props }) => (
+                ].map(({ slug, name, ...props }) => (
                   <NavItem key={slug} disabled={newGroupState.loading} {...props} handleNavigation={handleNavigation}>
                     {name}
-                    {beta && (
+                    {/* {beta && (
                       <Badge className='uppercase text-nowrap opacity-70 rounded-lg text-[9px] flex leading-3 px-2 pointer-events-none'>
                         Beta
                       </Badge>
-                    )}
+                    )} */}
                   </NavItem>
                 ))}
               </NavSection>
