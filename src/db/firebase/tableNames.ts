@@ -9,7 +9,7 @@ export const tablesNames = () => {
     EXPENSES: `expenses`,
   }
 
-  if (process.env.ENVIRONMENT === 'development') {
+  if (process.env.ENVIRONMENT !== 'production') {
     return Object.entries(names).reduce((acc, [key, value]) => {
       acc[key as keyof TableNames] = `dev-${value}`
       return acc
