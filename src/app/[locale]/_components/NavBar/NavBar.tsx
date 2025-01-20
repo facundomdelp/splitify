@@ -21,7 +21,6 @@ import SocialMedia from './SocialMedia'
 import NavSection from './NavSection'
 import NavItem from './NavItem'
 import { useAddNewGroup, useHandleNavigation } from './hooks'
-import { Badge } from '@/components/ui/badge'
 import { useSetGroups } from '@/store/groups.store'
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
 
