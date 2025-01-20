@@ -66,6 +66,10 @@
     "Would you like to select a different language?": "Gostaria de selecionar um idioma diferente?",
     "Send us an email!": "Envie-nos um e-mail!"
   },
+  "useCopyString": {
+    "owes": "deve",
+    "to": "para"
+  },
   "SeoPage": {
     "Get Started": "Começar 🚀",
     "paragraph-1": "🤑 Gerenciar despesas em grupo nunca foi tão simples! Splitify é a solução ideal para dividir contas de forma justa entre amigos, familiares ou colegas. Esqueça os cálculos manuais ou planilhas complicadas—nosso aplicativo torna todo o processo mais fácil. Seja em um jantar casual, uma viagem em grupo ou qualquer despesa compartilhada, o Splitify garante que todos saibam exatamente o que devem, eliminando desconfortos e confusões ao lidar com dinheiro.",

@@ -66,6 +66,10 @@
     "Would you like to select a different language?": "Would you like to select a different language?",
     "Send us an email!": "Send us an email!"
   },
+  "useCopyString": {
+    "owes": "owes",
+    "to": "to"
+  },
   "SeoPage": {
     "Get Started": "Get Started 🚀",
     "paragraph-1": "🤑 Managing group expenses has never been easier! Splitify is the go-to solution for dividing bills fairly among friends, family, or colleagues. Forget the headache of manual calculations or juggling spreadsheets—our app streamlines the entire process. Whether it’s a casual dinner, a group trip, or any shared expense, Splitify ensures everyone knows exactly what they owe, removing the awkwardness and confusion of money matters.",
