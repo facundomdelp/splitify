@@ -1,8 +1,8 @@
 import { addDoc, collection, deleteDoc, doc, getDocs, query, Timestamp, where } from 'firebase/firestore'
 import { db } from '..'
-import { tableNames } from '../tableNames'
+import { tablesNames } from '../tableNames'
 
-const { EXPENSES } = tableNames()
+const { EXPENSES } = tablesNames()
 
 class Expenses {
   private expenseCollection = collection(db, EXPENSES)
@@ -26,6 +26,7 @@ class Expenses {
   }) {
     return (
       await addDoc(this.expenseCollection, {
+        createdAt: Timestamp.fromDate(new Date()),
         groupId,
         name,
         amount,
@@ -36,6 +37,7 @@ class Expenses {
   }
 
   async removeExpense(expenseId: string) {
+    // Expenses are hard deleted
     const expenseRef = this.getExpenseRef(expenseId)
     return await deleteDoc(expenseRef)
   }

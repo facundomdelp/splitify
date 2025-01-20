@@ -3,7 +3,7 @@ type TableNames = {
   EXPENSES: string
 }
 
-export const tableNames = () => {
+export const tablesNames = () => {
   const names: TableNames = {
     GROUPS: `groups`,
     EXPENSES: `expenses`,
