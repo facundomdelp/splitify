@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { MinusIcon, Plus, PlusIcon, UserRound } from 'lucide-react'
 import { useExpensesForm } from './hooks'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { useTranslations } from 'next-intl'
 import { cn } from '@/lib/utils'
 
@@ -18,15 +18,24 @@ interface Props {
 }
 
 const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, onSubmit, disabled }: Props) => {
-  const [showDetails, setShowDetails] = useState(false)
-
   const nameInputRef = useRef<HTMLInputElement>(null)
 
-  const { name, handleName, amount, handleAmount, title, handleTitle, date, handleDate, handleSubmit } =
-    useExpensesForm({
-      nameInputRef,
-      onSubmit,
-    })
+  const {
+    name,
+    handleName,
+    amount,
+    handleAmount,
+    handleShowDetails,
+    showDetails,
+    title,
+    handleTitle,
+    date,
+    handleDate,
+    handleSubmit,
+  } = useExpensesForm({
+    nameInputRef,
+    onSubmit,
+  })
 
   const t = useTranslations('ExpensesForm')
 
@@ -123,7 +132,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
               className={cn('text-gray-600', !showDetails ? '' : 'mt-3')}
               variant='outline'
               type='button'
-              onClick={() => setShowDetails((prev) => !prev)}
+              onClick={handleShowDetails}
               disabled={disabled}
             >
               {!showDetails ? <PlusIcon /> : <MinusIcon />}

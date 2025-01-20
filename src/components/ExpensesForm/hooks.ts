@@ -8,6 +8,9 @@ interface useExpensesFormProps {
 export const useExpensesForm = ({ nameInputRef, onSubmit }: useExpensesFormProps) => {
   const [name, setName] = useState('')
   const [amount, setAmount] = useState(0)
+
+  const [showDetails, setShowDetails] = useState(false)
+
   const [title, setTitle] = useState('')
   const [date, setDate] = useState('')
 
@@ -53,6 +56,17 @@ export const useExpensesForm = ({ nameInputRef, onSubmit }: useExpensesFormProps
     }
   }
 
+  const handleShowDetails = () => {
+    setShowDetails((prev) => !prev)
+
+    if (showDetails) {
+      setDate('')
+      return
+    }
+
+    setDate(new Date().toISOString().split('T')[0])
+  }
+
   const handleTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     const maxLength = e.target.maxLength
@@ -79,5 +93,17 @@ export const useExpensesForm = ({ nameInputRef, onSubmit }: useExpensesFormProps
     }
   }
 
-  return { name, handleName, amount, handleAmount, title, handleTitle, date, handleDate, handleSubmit }
+  return {
+    name,
+    handleName,
+    amount,
+    handleAmount,
+    handleShowDetails,
+    showDetails,
+    title,
+    handleTitle,
+    date,
+    handleDate,
+    handleSubmit,
+  }
 }
