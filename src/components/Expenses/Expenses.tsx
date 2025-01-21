@@ -7,6 +7,7 @@ import ChangeEmojisButton from '@/components/ChangeEmojisButton'
 import { RemoveExpense } from './RemoveExpense'
 import { cn } from '@/lib/utils'
 import Spinner from '../ui/spinner'
+import { formatDate } from '@/lib/functions/formatDate'
 
 interface Props {
   expenses: Expense[]
@@ -51,7 +52,7 @@ export const Expenses = ({ expenses, onRemoveExpense, readOnly = false, loading 
                     </div>
                     {(title || date) && (
                       <div className='flex items-center min-w-0 gap-1 text-gray-500 text-xs'>
-                        {date && <p>{new Date(date).toLocaleDateString()}</p>}
+                        {date && <p>{formatDate(date)}</p>}
                         {title && date && <p>-</p>}
                         <p className='text-ellipsis whitespace-nowrap overflow-hidden min-w-0'>{title}</p>
                       </div>
