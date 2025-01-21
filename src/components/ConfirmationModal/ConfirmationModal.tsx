@@ -35,12 +35,16 @@ const ConfirmationModal = ({ open, onOpenChange, title, description, onConfirm, 
         <DialogFooter className='pt-4 px-6 flex-row gap-3'>
           <Button
             variant={!destructive ? 'outline' : 'destructive'}
-            onClick={destructive ? handleOnClick : undefined}
+            onClick={destructive ? handleOnClick : () => onOpenChange(false)}
             className='flex-1'
           >
             {!destructive ? t('No') : t('Yes')}
           </Button>
-          <Button variant='default' onClick={!destructive ? handleOnClick : undefined} className='flex-1'>
+          <Button
+            variant='default'
+            onClick={!destructive ? handleOnClick : () => onOpenChange(false)}
+            className='flex-1'
+          >
             {!destructive ? t('Yes') : t('No')}
           </Button>
         </DialogFooter>
