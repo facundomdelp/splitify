@@ -6,11 +6,10 @@ import { Expense } from '@/types/expense.types'
 import { useState } from 'react'
 
 interface useAddExpenseProps {
-  expenses: Expense[]
   setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
 }
 
-export const useAddExpense = ({ expenses, setExpenses }: useAddExpenseProps) => {
+export const useAddExpense = ({ setExpenses }: useAddExpenseProps) => {
   const addExpense = async ({
     name,
     amount,
@@ -23,9 +22,7 @@ export const useAddExpense = ({ expenses, setExpenses }: useAddExpenseProps) => 
     date?: number
   }) => {
     const expenseUiId = generateId()
-    const newExpenses = [...(expenses ?? []), { id: expenseUiId, optimistic: false, name, amount, title, date }]
-
-    setExpenses(newExpenses)
+    setExpenses((prev) => [...(prev ?? []), { id: expenseUiId, optimistic: false, name, amount, title, date }])
   }
 
   return { addExpense }

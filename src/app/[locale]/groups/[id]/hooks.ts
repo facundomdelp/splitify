@@ -98,11 +98,10 @@ export const useGetGroupExpenses = () => {
 
 interface useAddExpenseProps {
   groupId?: string
-  expenses: Expense[]
   setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
 }
 
-export const useAddExpense = ({ groupId, expenses, setExpenses }: useAddExpenseProps) => {
+export const useAddExpense = ({ groupId, setExpenses }: useAddExpenseProps) => {
   const addExpense = async ({
     name,
     amount,
@@ -117,9 +116,7 @@ export const useAddExpense = ({ groupId, expenses, setExpenses }: useAddExpenseP
     if (!groupId) return
 
     const expenseUiId = generateId()
-    const newExpenses = [...(expenses ?? []), { id: expenseUiId, optimistic: true, name, amount, title, date }]
-
-    setExpenses(newExpenses)
+    setExpenses((prev) => [...(prev ?? []), { id: expenseUiId, optimistic: true, name, amount, title, date }])
 
     try {
       const response = await fetch(`/api/groups/${groupId}/expenses`, {
@@ -137,8 +134,12 @@ export const useAddExpense = ({ groupId, expenses, setExpenses }: useAddExpenseP
         throw new CustomError(response.status)
       }
 
+      const data = await response.json()
+
       setExpenses((prevExpenses) =>
-        prevExpenses.map((expense) => (expense.id === expenseUiId ? { ...expense, optimistic: false } : expense)),
+        prevExpenses.map((expense) =>
+          expense.id === expenseUiId ? { ...expense, optimistic: false, id: data.expense } : expense,
+        ),
       )
     } catch {
       // Put in red with a warning, a tooltip and a try again button

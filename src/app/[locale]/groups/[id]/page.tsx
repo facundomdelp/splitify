@@ -3,7 +3,7 @@
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
 import { useAddExpense, useGetGroup, useGetGroupExpenses } from './hooks'
 import { useState } from 'react'
-import ExpensesSection from '../../../../components/ExpensesSection'
+import ExpensesSection from '@/components/ExpensesSection'
 import { Balance } from '@/types/balance.types'
 import BalancesSection from '@/components/BalancesSection'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
@@ -20,7 +20,7 @@ const GroupPage = () => {
   const [balances, setBalances] = useState<Balance[]>([])
   const [rounded, setRounded] = useState(false)
 
-  const { addExpense } = useAddExpense({ groupId: group?.id, expenses, setExpenses })
+  const { addExpense } = useAddExpense({ groupId: group?.id, setExpenses })
 
   const removeExpense = async (id: string) => {
     const remainingExpenses = expenses.filter(({ id: expenseId }) => expenseId !== id)

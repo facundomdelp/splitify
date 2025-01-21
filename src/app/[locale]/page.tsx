@@ -18,7 +18,7 @@ export default function Home() {
 
   const [rounded, setRounded] = useState(false)
 
-  const { addExpense } = useAddExpense({ expenses, setExpenses })
+  const { addExpense } = useAddExpense({ setExpenses })
 
   const removeExpense = async (id: string) => {
     const remainingExpenses = expenses.filter(({ id: expenseId }) => expenseId !== id)
