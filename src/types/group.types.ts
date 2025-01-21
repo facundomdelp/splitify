@@ -4,10 +4,6 @@ export type AddGroupRequestBody = {
   name?: string
 }
 
-export type GetGroupRequestBody = {
-  id: string
-}
-
 export type GetGroupResponse = {
   group: {
     id: string

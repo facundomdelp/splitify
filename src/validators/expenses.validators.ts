@@ -1,6 +1,27 @@
 import { z } from 'zod'
-import { ValidationResult } from '@/types/common.types'
+import { idParam, ValidationResult } from '@/types/common.types'
 import { AddExpenseRequestBody } from '@/types/expense.types'
+
+const validateExpenseIdSchema = z.object({
+  id: z
+    .string()
+    .length(20, 'Invalid Expense ID')
+    .regex(/^[A-Za-z0-9\-_]+$/, 'Invalid Expense ID'),
+})
+
+export const validateExpenseId = ({ id }: Partial<idParam>): ValidationResult<idParam> => {
+  const validationResult = validateExpenseIdSchema.safeParse({ id })
+  let errors: Array<{ field: string; message: string }> | null = null
+
+  if (!validationResult.success) {
+    errors = validationResult.error.errors.map((error) => ({
+      field: error.path.join('.'),
+      message: error.message,
+    }))
+  }
+
+  return [validationResult.success ? validationResult.data : null, errors] as const
+}
 
 const addExpenseSchema = z.object({
   name: z.string().max(50, 'Expense owner name is too long'),

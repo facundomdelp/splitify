@@ -2,7 +2,6 @@
 
 import ConfirmationModal from '@/components/ConfirmationModal'
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
-import { Expense } from '@/types/expense.types'
 import { X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
@@ -10,22 +9,15 @@ import { useState } from 'react'
 interface Props {
   id: string
   name: string
-  expenses: Expense[]
-  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
-  className?: string
+  onRemoveExpense: (id: string) => void
 }
 
-export const RemoveExpense = ({ id, name, expenses, setExpenses }: Props) => {
+export const RemoveExpense = ({ id, name, onRemoveExpense }: Props) => {
   const [open, setOpen] = useState(false)
 
-  const handleRemoveExpense = () => {
-    const remainingExpenses = expenses.filter(({ id: expenseId }) => expenseId !== id)
-    setExpenses(remainingExpenses)
-  }
+  const getEmojiFromString = useGetEmojiFromString()
 
   const t = useTranslations('RemoveExpense')
-
-  const getEmojiFromString = useGetEmojiFromString()
 
   return (
     <>
@@ -49,7 +41,7 @@ export const RemoveExpense = ({ id, name, expenses, setExpenses }: Props) => {
             {t('from the list?')}
           </>
         }
-        onConfirm={handleRemoveExpense}
+        onConfirm={() => onRemoveExpense(id)}
         destructive
       />
     </>

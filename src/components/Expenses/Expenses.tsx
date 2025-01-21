@@ -10,12 +10,12 @@ import Spinner from '../ui/spinner'
 
 interface Props {
   expenses: Expense[]
-  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
+  onRemoveExpense: (id: string) => void
   readOnly?: boolean
   loading?: boolean
 }
 
-export const Expenses = ({ expenses, setExpenses, readOnly = false, loading }: Props) => {
+export const Expenses = ({ expenses, onRemoveExpense, readOnly = false, loading }: Props) => {
   const getEmojiFromString = useGetEmojiFromString()
 
   const t = useTranslations('Expenses')
@@ -46,13 +46,7 @@ export const Expenses = ({ expenses, setExpenses, readOnly = false, loading }: P
                       <p className='text-ellipsis whitespace-nowrap overflow-hidden min-w-0'>{name}</p>
                       <p className='whitespace-nowrap'>: ${formatAmount(amount)}</p>
                       {!readOnly && !optimistic && (
-                        <RemoveExpense
-                          id={id}
-                          name={name}
-                          expenses={expenses}
-                          setExpenses={setExpenses}
-                          className='mx-1'
-                        />
+                        <RemoveExpense id={id} name={name} onRemoveExpense={onRemoveExpense} />
                       )}
                     </div>
                     {(title || date) && (

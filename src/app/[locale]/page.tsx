@@ -19,6 +19,12 @@ export default function Home() {
   const [rounded, setRounded] = useState(false)
 
   const { addExpense } = useAddExpense({ expenses, setExpenses })
+
+  const removeExpense = async (id: string) => {
+    const remainingExpenses = expenses.filter(({ id: expenseId }) => expenseId !== id)
+    setExpenses(remainingExpenses)
+  }
+
   const { handleCalculateBalances, disabledBalances } = useCalculateBalances({
     expenses,
     balances,
@@ -65,8 +71,8 @@ export default function Home() {
           <ExpensesSection
             key='expenses-section'
             expenses={expenses}
-            setExpenses={setExpenses}
-            addExpenseAction={addExpense}
+            removeExpense={removeExpense}
+            addExpense={addExpense}
             disabled={convertToGroupState.loading}
           />,
           <BalancesSection key='balances-section' balances={balances} rounded={rounded} setRounded={setRounded} />,

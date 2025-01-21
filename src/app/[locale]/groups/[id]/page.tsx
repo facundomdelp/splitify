@@ -11,6 +11,7 @@ import { TooltipArrow } from '@radix-ui/react-tooltip'
 import ExpensesBalancesTabs from '@/components/ExpensesBalancesTabs'
 import { useCalculateBalances } from '@/lib/hooks/useCalculateBalances'
 import GroupsContextMenu from './_components/GroupsContextMenu'
+import { CustomError } from '@/lib/errors/CustomErrors'
 
 const GroupPage = () => {
   const { /* loading,  */ /* error,  */ group } = useGetGroup()
@@ -20,6 +21,24 @@ const GroupPage = () => {
   const [rounded, setRounded] = useState(false)
 
   const { addExpense } = useAddExpense({ groupId: group?.id, expenses, setExpenses })
+
+  const removeExpense = async (id: string) => {
+    const remainingExpenses = expenses.filter(({ id: expenseId }) => expenseId !== id)
+    setExpenses(remainingExpenses)
+
+    try {
+      const response = await fetch(`/api/expenses/${id}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+      })
+
+      if (!response.ok) {
+        throw new CustomError(response.status)
+      }
+    } catch {
+      // use an optimistic removing
+    }
+  }
 
   const { handleCalculateBalances, disabledBalances } = useCalculateBalances({
     expenses,
@@ -71,9 +90,9 @@ const GroupPage = () => {
                 <ExpensesSection
                   key='expenses-section'
                   expenses={expenses}
-                  setExpenses={setExpenses}
                   loadingExpenses={loadingExpenses}
-                  addExpenseAction={addExpense}
+                  addExpense={addExpense}
+                  removeExpense={removeExpense}
                 />,
                 <BalancesSection
                   key='balances-section'

@@ -7,16 +7,16 @@ import React, { useState } from 'react'
 
 interface Props {
   expenses: Expense[]
-  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
-  addExpenseAction: (expense: Pick<Expense, 'name' | 'amount' | 'title' | 'date'>) => void | Promise<void>
+  addExpense: (expense: Pick<Expense, 'name' | 'amount' | 'title' | 'date'>) => void
+  removeExpense: (id: string) => void
   loadingExpenses?: boolean
   disabled?: boolean
 }
 
-const ExpensesSection = ({ expenses, setExpenses, addExpenseAction, loadingExpenses, disabled }: Props) => {
+const ExpensesSection = ({ expenses, addExpense, removeExpense, loadingExpenses, disabled }: Props) => {
   const [openModal, setOpenModal] = useState(false)
 
-  const addExpense = async ({
+  const handleSubmit = ({
     name,
     amount,
     title,
@@ -33,20 +33,20 @@ const ExpensesSection = ({ expenses, setExpenses, addExpenseAction, loadingExpen
     title = title?.trim()
     date = date ? new Date(date).getTime() : undefined
 
-    addExpenseAction({ name, amount, title, date })
+    addExpense({ name, amount, title, date })
   }
 
   return (
     <>
       <Modal open={openModal} setOpen={setOpenModal} title={'Add Expense'} className='px-6 w-[90vw] max-w-[500px]'>
-        <ExpensesForm includeDetails bigAddButton onSubmit={addExpense} disabled={disabled} />
+        <ExpensesForm includeDetails bigAddButton onSubmit={handleSubmit} disabled={disabled} />
       </Modal>
 
       <section
         className={cn('flex flex-col gap-8 flex-1 min-w-0 cursor-default mx-4', disabled ? 'pointer-events-none' : '')}
       >
         <ExpensesForm onFocus={() => setOpenModal(true)} disabled={disabled} />
-        <Expenses expenses={expenses} setExpenses={setExpenses} loading={loadingExpenses} />
+        <Expenses expenses={expenses} onRemoveExpense={removeExpense} loading={loadingExpenses} />
       </section>
     </>
   )
