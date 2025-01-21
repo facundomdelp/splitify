@@ -10,7 +10,7 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale; 'seo-route': string }>
 }): Promise<Metadata> {
   const { locale, 'seo-route': seoRoute } = await params
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || ''
+  const baseUrl = 'https://splitify.me'
 
   const localeSeoRoute = SEO_ROUTES[locale]
 
@@ -18,6 +18,9 @@ export async function generateMetadata({
   routing.locales.forEach((loc) => {
     languages[loc] = `${baseUrl}/${loc}/${seoRoute}`
   })
+  languages['x-default'] = `${baseUrl}/en/${seoRoute}`
+
+  const canonicalUrl = `${baseUrl}/${locale}/${seoRoute}`
 
   return {
     title: {
@@ -27,13 +30,13 @@ export async function generateMetadata({
     // description: localeSeoRoute.description,
     metadataBase: new URL(baseUrl),
     alternates: {
-      canonical: `${baseUrl}/${locale}/${seoRoute}`,
+      canonical: canonicalUrl,
       languages,
     },
     openGraph: {
       title: localeSeoRoute[seoRoute as keyof typeof localeSeoRoute],
       // description: localeSeoRoute.description,
-      url: `${baseUrl}/${locale}/${seoRoute}`,
+      url: canonicalUrl,
       siteName: 'Splitify',
       locale: locale,
       type: 'website',
