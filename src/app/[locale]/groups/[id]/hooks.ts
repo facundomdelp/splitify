@@ -122,11 +122,10 @@ export const useAddExpense = ({ groupId, expenses, setExpenses }: useAddExpenseP
     setExpenses(newExpenses)
 
     try {
-      const response = await fetch('/api/expenses', {
+      const response = await fetch(`/api/groups/${groupId}/expenses`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          groupId: groupId,
           name,
           amount,
           title,

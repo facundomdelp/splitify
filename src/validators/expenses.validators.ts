@@ -3,10 +3,6 @@ import { ValidationResult } from '@/types/common.types'
 import { AddExpenseRequestBody } from '@/types/expense.types'
 
 const addExpenseSchema = z.object({
-  groupId: z
-    .string()
-    .length(20, 'Invalid Group ID')
-    .regex(/^[A-Za-z0-9\-_]+$/, 'Invalid Group ID'),
   name: z.string().max(50, 'Expense owner name is too long'),
   amount: z
     .number()
