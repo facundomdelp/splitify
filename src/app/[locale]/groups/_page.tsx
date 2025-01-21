@@ -3,7 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import Spinner from '@/components/ui/spinner'
 import { HandCoinsIcon, PlusCircleIcon } from 'lucide-react'
-import { useAddNewGroup, useNavigateToGroup } from './hooks'
+import { useAddNewGroup, useNavigateToGroup } from './_hooks'
 import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
 import { useSetGroups } from '@/store/groups.store'
 import { cn } from '@/lib/utils'

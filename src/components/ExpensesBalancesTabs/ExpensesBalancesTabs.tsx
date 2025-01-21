@@ -1,6 +1,7 @@
 import { ReactNode, useState } from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs'
 import CalculateButton from '@/components/CalculateButton/CalculateButton'
+import { useTranslations } from 'next-intl'
 
 interface Props {
   children: [ReactNode, ReactNode]
@@ -18,6 +19,8 @@ const ExpensesBalancesTabs = ({ children, onBalancesClick, disabled, disabledExp
     setTabValue('balances')
   }
 
+  const t = useTranslations('ExpensesBalancesTabs')
+
   return (
     <Tabs
       value={tabValue}
@@ -27,7 +30,7 @@ const ExpensesBalancesTabs = ({ children, onBalancesClick, disabled, disabledExp
       <div className='flex relative'>
         <TabsList className='mx-auto'>
           <TabsTrigger className='w-[120px]' value='expenses' disabled={disabled || disabledExpenses}>
-            Expenses
+            {t('Expenses')}
           </TabsTrigger>
           <TabsTrigger
             className='w-[120px]'
@@ -35,7 +38,7 @@ const ExpensesBalancesTabs = ({ children, onBalancesClick, disabled, disabledExp
             onClick={onBalancesClick}
             disabled={disabled || disabledBalances}
           >
-            Balances
+            {t('Balances')}
           </TabsTrigger>
         </TabsList>
       </div>
@@ -43,7 +46,7 @@ const ExpensesBalancesTabs = ({ children, onBalancesClick, disabled, disabledExp
       <TabsContent className='mt-4 flex-1 flex flex-col gap-4' value='expenses'>
         {children[0]}
 
-        <CalculateButton onClick={handleCalculateButton} disabled={disabled} />
+        <CalculateButton onClick={handleCalculateButton} disabled={disabled || disabledBalances} />
       </TabsContent>
       <TabsContent className='mt-8 flex-1 flex flex-col' value='balances'>
         {children[1]}

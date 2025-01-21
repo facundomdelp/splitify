@@ -23,7 +23,7 @@ interface Props {
 
 const ContextMenu = ({ children }: Props) => {
   return (
-    <DropdownMenu /* modal={false} */>
+    <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant='ghost' className='px-3'>
           <EllipsisVertical className='text-gray-600' />

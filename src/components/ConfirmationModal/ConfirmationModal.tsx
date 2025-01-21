@@ -3,12 +3,13 @@
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogTitle, DialogFooter, DialogDescription } from '@/components/ui/dialog'
 import { useTranslations } from 'next-intl'
+import { ReactNode } from 'react'
 
 interface Props {
   open: boolean
   onOpenChange: (open: boolean) => void
   className?: string
-  title: React.ReactNode
+  title: ReactNode
   description?: string
   onConfirm: () => void
   destructive?: boolean

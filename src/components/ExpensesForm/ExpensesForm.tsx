@@ -95,7 +95,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
               <div className='flex flex-wrap gap-2 px-1 max-w-full min-h-0 border-y border-transparent'>
                 <div className='space-y-1 flex-1 min-w-40'>
                   <Label htmlFor='title' className='text-xs'>
-                    <strong>Title</strong> (optional)
+                    <strong>{t('Title')}</strong> ({t('optional')})
                   </Label>
                   <Input
                     id='Title'
@@ -104,7 +104,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
                     maxLength={50}
                     onChange={handleTitle}
                     value={title}
-                    placeholder='For example: Taxi'
+                    placeholder={t('For example: Taxi')}
                     tabIndex={!showDetails ? -1 : undefined}
                     disabled={disabled}
                   />
@@ -112,7 +112,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
 
                 <div className='space-y-1 flex-1 min-w-40'>
                   <Label htmlFor='date' className='text-xs'>
-                    <strong>Date</strong> (optional)
+                    <strong>{t('Date')}</strong> ({t('optional')})
                   </Label>
                   <Input
                     id='date'
@@ -136,14 +136,14 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
               disabled={disabled}
             >
               {!showDetails ? <PlusIcon /> : <MinusIcon />}
-              Details
+              {t('Details')}
             </Button>
           </div>
         )}
 
         {bigAddButton && (
           <Button className='flex' type='submit' disabled={name.trim() === ''}>
-            ADD EXPENSE
+            {t('ADD EXPENSE')}
           </Button>
         )}
       </form>

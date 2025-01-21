@@ -12,6 +12,7 @@ import ExpensesBalancesTabs from '@/components/ExpensesBalancesTabs'
 import { useCalculateBalances } from '@/lib/hooks/useCalculateBalances'
 import GroupsContextMenu from './_components/GroupsContextMenu'
 import { CustomError } from '@/lib/errors/CustomErrors'
+import { useTranslations } from 'next-intl'
 
 const GroupPage = () => {
   const { /* loading,  */ /* error,  */ group } = useGetGroup()
@@ -49,6 +50,8 @@ const GroupPage = () => {
 
   const getEmojiFromString = useGetEmojiFromString(true)
 
+  const t = useTranslations('GroupPage')
+
   return (
     <>
       <main className='w-full my-8 text-dark max-w-[600px] space-y-6 flex flex-col'>
@@ -74,7 +77,7 @@ const GroupPage = () => {
                       </TooltipTrigger>
                       <TooltipContent className='text-[10px] font-semibold mr-2' align='end' sideOffset={-4}>
                         <TooltipArrow fill='green' />
-                        Share Group!
+                        {t('Share Group!')}
                       </TooltipContent>
                     </Tooltip>
                   </TooltipProvider>

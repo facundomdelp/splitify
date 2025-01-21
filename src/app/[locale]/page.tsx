@@ -46,7 +46,7 @@ export default function Home() {
         {/* SEO */}
 
         <h2 className='text-lg font-bold flex flex-nowrap gap-2 justify-center text-green-800' id='expenses'>
-          ⚡{'Spliti Ya'}
+          ⚡{t('Spliti Quick')}
         </h2>
         <div className='absolute right-2'>
           {!convertToGroupState.loading ? (

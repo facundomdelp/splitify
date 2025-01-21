@@ -10,32 +10,50 @@
   "Home": {
     "🤑 Splitify | Simplify your group expenses with Splitify": "🤑 Splitify | Simplify your group expenses with Splitify",
     "Splitify is the ultimate tool to divide expenses with friends, family, and colleagues": "Splitify is the ultimate tool to divide expenses with friends, family, and colleagues, making group financial management easier and more efficient. Whether you’re sharing a dinner bill, organizing a weekend getaway, or simply splitting everyday expenses, Splitify provides an intuitive platform to ensure everyone pays their fair share. Gone are the days of complex spreadsheets and confusing calculations—Splitify simplifies the entire process. With real-time expense tracking, you can easily add participants and their contributions, allowing the app to automatically calculate and optimize the split. No matter how large or small the group, Splitify adjusts to your needs. It provides an effortless way to handle shared costs for everything from casual meals to more significant group activities. With our algorithm, Splitify ensures that the expense distribution is fair, and helps optimize the number of transfers between participants, so no one has to worry about making too many payments. Plus, you don’t need to worry about logging in or signing up to start using Splitify, making it even more accessible and convenient. Our app is designed to make expense management stress-free and straightforward, allowing you to focus on enjoying your time with others rather than keeping track of who owes what. Whether you’re on a night out with friends or organizing a group trip, Splitify guarantees everyone will leave satisfied, knowing exactly how much they owe. Try Splitify today and experience the ease of managing group expenses without any hassle. Simplify your life, and let us handle the math for you!",
-    "Continue Editing": "Continue Editing"
+    "Spliti Quick": "Spliti Quick"
   },
-  "ExpensesForm": {
-    "Add expense": "Add expense",
-    "John Spliti": "John Spliti"
+  "Footer": {
+    "Spliti Groups": "Spliti Groups"
   },
-  "Expenses": {
-    "Expenses": "Expenses",
-    "Enter an Expense to get started!": "Enter an Expense to get started!"
+  "NavBar": {
+    "Discover more!": "Discover more!",
+    "General": "General",
+    "Install App": "Install App",
+    "Language": "Language",
+    "Spliti Quick": "Spliti Quick",
+    "Spliti Groups": "Spliti Groups"
   },
-  "CalculateButton": {
-    "Calculate Balances": "Calculate Balances"
+  "LocaleSelectorModal": {
+    "Language": "Language",
+    "Would you like to select a different language?": "Would you like to select a different language?",
+    "Send us an email!": "Send us an email!"
   },
-  "RemoveExpense": {
-    "Are you sure you want to remove": "Are you sure you want to remove",
-    "from the list?": "from the list?"
+  "HomeContextMenu": {
+    "Do you want to turn these expenses into a ✈️ Group?": "Do you want to turn these expenses into a ✈️ Group?",
+    "By turning it into a group, you can share a link so others can collaborate easily": "By turning it into a group, you can share a link so others can collaborate easily.",
+    "Are you sure you want to reset the expenses list?": "Are you sure you want to reset the expenses list?",
+    "Turn into a Group ✈️": "Turn into a Group ✈️",
+    "Reset Expenses": "Reset Expenses"
   },
-  "ResetBalances": {
-    "Are you sure you want to reset the balances list?": "Are you sure you want to reset the balances list?",
-    "Reset": "Reset"
+  "GroupPage": {
+    "Share Group!": "Share Group!"
+  },
+  "GroupsContextMenu": {
+    "Share Group": "Share Group",
+    "🤑 Copy this link and share it with your friends! 💸": "🤑 Copy this link and share it with your friends! 💸",
+    "Your friends would be able to easily add expenses to this group": "Your friends can easily add expenses to this group.",
+    "Are you sure you want to remove this group?": "Are you sure you want to remove this group?",
+    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want,": "Removing this group won't delete it, you will simply stop seeing it. You can use the link again to access it whenever you want.",
+    "Remove Group": "Remove Group"
   },
   "Balances": {
     "Balances": "Balances",
     "Round": "Round",
     "owes": "owes",
     "to": "to"
+  },
+  "CalculateButton": {
+    "Calculate Balances": "Calculate Balances"
   },
   "ConfirmationModal": {
     "Yes": "Yes",
@@ -45,27 +63,32 @@
     "Copy": "Copy",
     "Copied!": "Copied!"
   },
-  "Header": {
-    "Quick": "Quick",
-    "Groups": "Groups"
+  "Expenses": {
+    "Expenses": "Expenses",
+    "Enter an Expense to get started!": "Enter an Expense to get started!"
   },
-  "NavBar": {
-    "Discover more!": "Discover more!",
-    "General": "General",
-    "Language": "Language",
-    "Settings": "Settings",
-    "Spliti Quick": "Spliti Quick",
-    "Spliti Groups": "Spliti Groups",
-    "Install App": "Install App"
+  "RemoveExpense": {
+    "Are you sure you want to remove": "Are you sure you want to remove",
+    "from the list?": "from the list?"
   },
-  "Footer": {
-    "Groups": "Groups"
+  "ExpensesBalancesTabs": {
+    "Expenses": "Expenses",
+    "Balances": "Balances"
   },
-  "LocaleSelectorModal": {
-    "Language": "Language",
-    "Would you like to select a different language?": "Would you like to select a different language?",
-    "Send us an email!": "Send us an email!"
+  "ExpensesForm": {
+    "Add expense": "Add expense",
+    "John Spliti": "John Spliti",
+    "Title": "Title",
+    "optional": "optional",
+    "For example: Taxi": "For example: Taxi",
+    "Date": "Date",
+    "Details": "Details",
+    "ADD EXPENSE": "ADD EXPENSE"
   },
+  "ExpensesSection": {
+    "Add Expense": "Add Expense"
+  },
+
   "useCopyString": {
     "owes": "owes",
     "to": "to"

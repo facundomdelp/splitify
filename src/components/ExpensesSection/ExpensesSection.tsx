@@ -3,6 +3,7 @@ import ExpensesForm from '@/components/ExpensesForm'
 import Modal from '@/components/Modal'
 import { cn } from '@/lib/utils'
 import { Expense } from '@/types/expense.types'
+import { useTranslations } from 'next-intl'
 import React, { useState } from 'react'
 
 interface Props {
@@ -36,9 +37,11 @@ const ExpensesSection = ({ expenses, addExpense, removeExpense, loadingExpenses,
     addExpense({ name, amount, title, date })
   }
 
+  const t = useTranslations('ExpensesSection')
+
   return (
     <>
-      <Modal open={openModal} setOpen={setOpenModal} title={'Add Expense'} className='px-6 w-[90vw] max-w-[500px]'>
+      <Modal open={openModal} setOpen={setOpenModal} title={t('Add Expense')} className='px-6 w-[90vw] max-w-[500px]'>
         <ExpensesForm includeDetails bigAddButton onSubmit={handleSubmit} disabled={disabled} />
       </Modal>
 
