@@ -25,7 +25,7 @@ const ExpensesBalancesTabs = ({ children, onBalancesClick, disabled, disabledExp
     <Tabs
       value={tabValue}
       onValueChange={(value) => setTabValue(value as 'expenses' | 'balances')}
-      className='w-full flex flex-col flex-1'
+      className='w-full flex flex-col h-full'
     >
       <div className='flex relative'>
         <TabsList className='mx-auto scale-90 xs:scale-100'>
