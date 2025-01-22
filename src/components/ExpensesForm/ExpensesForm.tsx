@@ -41,8 +41,8 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
 
   return (
     <section className='flex flex-col gap-2'>
-      <p className='text-sm flex items-center gap-1 flex-nowrap'>
-        <UserRound className='size-[14px] text-green-700' />
+      <p className='text-[12px] flex items-center gap-1 flex-nowrap text-gray-600'>
+        <UserRound className='size-[12px] text-green-700' />
         {t('Add expense')}
       </p>
       <form className='flex flex-col gap-3' onSubmit={handleSubmit}>

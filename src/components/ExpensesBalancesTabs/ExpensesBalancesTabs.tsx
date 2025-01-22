@@ -28,7 +28,7 @@ const ExpensesBalancesTabs = ({ children, onBalancesClick, disabled, disabledExp
       className='w-full flex flex-col flex-1'
     >
       <div className='flex relative'>
-        <TabsList className='mx-auto'>
+        <TabsList className='mx-auto scale-90 xs:scale-100'>
           <TabsTrigger className='w-[120px]' value='expenses' disabled={disabled || disabledExpenses}>
             {t('Expenses')}
           </TabsTrigger>

@@ -36,8 +36,8 @@ export default function Home() {
   const t = useTranslations('Home')
 
   return (
-    <main className='w-full my-8 text-dark max-w-[600px] space-y-6 flex flex-col'>
-      <div className='flex justify-center items-center gap-2 relative'>
+    <main className='w-full my-8 text-dark max-w-[600px] space-y-6 flex flex-col relative'>
+      <div className='flex justify-center items-center gap-2 -mt-6'>
         {/* SEO */}
         <article className='hidden'>
           <h1>{t('🤑 Splitify | Simplify your group expenses with Splitify')}</h1>
@@ -45,21 +45,23 @@ export default function Home() {
         </article>
         {/* SEO */}
 
-        <h2 className='text-lg font-bold flex flex-nowrap gap-2 justify-center text-green-800' id='expenses'>
+        {/* If this is uncommented, then we should remove both -mt-6 and -top-6 from this page */}
+        {/*  <h2 className='text-lg font-bold flex flex-nowrap gap-2 justify-center text-green-800' id='expenses'>
           ⚡{t('Spliti Quick')}
-        </h2>
-        <div className='absolute right-2'>
-          {!convertToGroupState.loading ? (
-            <HomeContextMenu
-              expenses={expenses}
-              setExpenses={setExpenses}
-              setBalances={setBalances}
-              convertIntoGroup={convertIntoGroup}
-            />
-          ) : (
-            <Spinner className='w-fit px-4 text-green-600' />
-          )}
-        </div>
+        </h2> */}
+      </div>
+
+      <div className='absolute -top-6 right-1 sm:right-2 z-10 -mt-6'>
+        {!convertToGroupState.loading ? (
+          <HomeContextMenu
+            expenses={expenses}
+            setExpenses={setExpenses}
+            setBalances={setBalances}
+            convertIntoGroup={convertIntoGroup}
+          />
+        ) : (
+          <Spinner className='w-fit px-4 text-green-600' />
+        )}
       </div>
 
       <ExpensesBalancesTabs
