@@ -1,11 +1,17 @@
 // https://flowbite.com/docs/components/spinner/
 
-const Spinner = () => {
+import { cn } from '@/lib/utils'
+
+interface Props {
+  className?: string
+}
+
+const Spinner = ({ className }: Props) => {
   return (
     <svg
       aria-hidden='true'
       role='status'
-      className='inline w-4 h-4 me-3 text-white animate-spin'
+      className={cn('inline w-4 h-4 text-white animate-spin', className)}
       viewBox='0 0 100 101'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'

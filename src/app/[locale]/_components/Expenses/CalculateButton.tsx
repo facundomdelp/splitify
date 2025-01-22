@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import Spinner from '@/components/ui/spinner'
-import { Expense } from '@/types/Expense'
+import { Expense } from '@/types/expense.types'
 import { useTranslations } from 'next-intl'
 import React from 'react'
 
@@ -14,7 +14,7 @@ const CalculateButton = ({ expenses, calculating, handleCalculateBalances }: Pro
   const t = useTranslations('CalculateButton')
 
   return (
-    <section className='mt-auto flex'>
+    <section className='mx-4 mt-auto flex'>
       <Button
         className='flex-1'
         onClick={handleCalculateBalances}

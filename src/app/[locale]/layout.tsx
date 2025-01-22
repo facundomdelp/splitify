@@ -7,7 +7,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { notFound } from 'next/navigation'
-import { Locale } from '@/types/Common'
+import { Locale } from '@/types/common.types'
 import { Metadata } from 'next'
 import './globals.css'
 
@@ -72,7 +72,9 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className='h-full'>
       <GoogleTagManager gtmId='GTM-TSLLPXCB' />
-      <body className={`${inter.className} antialiased bg-dark text-white relative min-h-full flex flex-col`}>
+      <body
+        className={`${inter.className} antialiased bg-dark text-white relative min-h-full flex flex-col overflow-auto`}
+      >
         <NextIntlClientProvider messages={messages}>
           <Header />
 

@@ -1,6 +1,6 @@
 import { routing } from '@/i18n/routing'
 import { SEO_ROUTES } from '@/seo/seoRoutes'
-import { Locale } from '@/types/Common'
+import { Locale } from '@/types/common.types'
 import { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 

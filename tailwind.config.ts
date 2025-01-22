@@ -58,6 +58,14 @@ export default {
         sm: 'calc(var(--radius) - 4px)',
       },
       keyframes: {
+        'fade-in': {
+          from: {
+            opacity: '0',
+          },
+          to: {
+            opacity: '1',
+          },
+        },
         'slide-up': {
           from: {
             transform: 'translateY(30vh)',
@@ -96,9 +104,13 @@ export default {
         },
       },
       animation: {
+        'fade-in': 'fade-in 200ms ease-out forwards',
         'slide-up': 'slide-up 200ms ease-out forwards',
         shine: 'shine 5s infinite linear',
         beat: 'beat 1.5s infinite ease-in-out',
+      },
+      transitionDelay: {
+        '6000': '6000ms',
       },
     },
   },

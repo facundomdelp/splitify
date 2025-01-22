@@ -21,6 +21,8 @@ import SocialMedia from './SocialMedia'
 import NavSection from './NavSection'
 import NavItem from './NavItem'
 import { useHandleNavigation } from './hooks'
+import { useParams } from 'next/navigation'
+import { Badge } from '@/components/ui/badge'
 
 const LOGO_WIDTH = 120
 
@@ -36,6 +38,8 @@ const NavBar = ({
 }) => {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [localeModalOpen, setLocaleModalOpen] = useState(false)
+
+  const { locale } = useParams()
 
   const { handleNavigation } = useHandleNavigation({ setDrawerOpen })
   const { isInstallable, handleInstallClick } = usePWAInstall()
@@ -87,17 +91,30 @@ const NavBar = ({
 
               <NavSection title='Spliti'>
                 {[
-                  { slug: 'spliti-basic', icon: CoinsIcon, name: t('Spliti Quick'), href: '/' },
+                  {
+                    slug: 'spliti-basic',
+                    icon: CoinsIcon,
+                    name: `${t('Spliti Quick')} ⚡`,
+                    href: `/${locale}`,
+                    disabled: undefined,
+                    beta: undefined,
+                  },
                   {
                     slug: 'spliti-groups',
                     icon: HandCoinsIcon,
-                    name: `${t('Spliti Groups')} 🏭`,
-                    href: '/',
-                    disabled: true,
+                    name: `${t('Spliti Groups')} ✈️`,
+                    href: `/${locale}/groups`,
+                    disabled: undefined,
+                    beta: true,
                   },
-                ].map(({ slug, icon, name, href, disabled }) => (
+                ].map(({ slug, icon, name, href, disabled, beta }) => (
                   <NavItem key={slug} icon={icon} disabled={disabled} href={href} handleNavigation={handleNavigation}>
                     {name}
+                    {beta && (
+                      <Badge className='uppercase text-nowrap opacity-70 rounded-lg text-[9px] flex leading-3 px-2 pointer-events-none'>
+                        Beta
+                      </Badge>
+                    )}
                   </NavItem>
                 ))}
               </NavSection>

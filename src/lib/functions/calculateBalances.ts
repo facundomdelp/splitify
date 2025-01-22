@@ -1,5 +1,5 @@
-import { Expense } from '@/types/Expense'
-import { Balance } from '@/types/Balance'
+import { Expense } from '@/types/expense.types'
+import { Balance } from '@/types/balance.types'
 
 // SALÍ DE ACÁ PÁ
 // SALÍ DE ACÁ PÁ

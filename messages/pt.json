@@ -13,12 +13,12 @@
     "Continue Editing": "Continuar Editando"
   },
   "ExpensesForm": {
-    "Add participant": "Adicionar participante",
+    "Add expense": "Adicionar despesa",
     "John Spliti": "João Spliti"
   },
   "Expenses": {
     "Expenses": "Despesas",
-    "Enter a Participant to get started!": "Adicione um participante para começar!"
+    "Enter an Expense to get started!": "Adicione uma Despesa para começar!"
   },
   "CalculateButton": {
     "Calculate Balances": "Calcular Saldos"
@@ -45,6 +45,10 @@
     "Copy": "Copiar",
     "Copied!": "Copiado!"
   },
+  "Header": {
+    "Quick": "Já!",
+    "Groups": "Grupos"
+  },
   "NavBar": {
     "Discover more!": "Descubra mais!",
     "General": "Geral",
@@ -53,6 +57,9 @@
     "Spliti Quick": "Spliti Já",
     "Spliti Groups": "Spliti Grupos",
     "Install App": "Instalar Aplicativo"
+  },
+  "Footer": {
+    "Groups": "Grupos"
   },
   "LocaleSelectorModal": {
     "Language": "Idioma",

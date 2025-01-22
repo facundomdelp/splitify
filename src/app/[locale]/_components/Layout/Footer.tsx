@@ -1,7 +1,8 @@
 'use client'
 
 import { SEO_ROUTES } from '@/seo/seoRoutes'
-import { Locale } from '@/types/Common'
+import { Locale } from '@/types/common.types'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
@@ -10,7 +11,9 @@ const LOCALES: Locale[] = ['en', 'es', 'pt']
 const ISOLOGO_SIZE = 65
 
 const Footer = () => {
-  const params = useParams()
+  const { locale } = useParams<{ locale: Locale }>()
+
+  const t = useTranslations('Footer')
 
   return (
     <footer className='w-full bg-green-950 flex justify-center items-center flex-shrink-0 py-2 px-3'>
@@ -34,11 +37,18 @@ const Footer = () => {
               </li>
             ))}
           </ul>
+
+          <ul>
+            <li>
+              <Link href={`/${locale}/groups`}>{t('Groups')}</Link>
+            </li>
+          </ul>
+
           <ul className='flex gap-2'>
-            {Object.entries(SEO_ROUTES[params.locale as keyof typeof SEO_ROUTES]).map(([route, name]) => {
+            {Object.entries(SEO_ROUTES[locale]).map(([route, name]) => {
               return (
                 <li key={route}>
-                  <Link href={`/${params.locale}/${route}`}>{name}</Link>
+                  <Link href={`/${locale}/${route}`}>{name}</Link>
                 </li>
               )
             })}
