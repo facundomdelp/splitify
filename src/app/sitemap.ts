@@ -52,12 +52,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     // Root Entry
-    {
-      url: 'https://splitify.me',
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
+    // {
+    //   url: 'https://splitify.me',
+    //   lastModified: new Date(),
+    //   changeFrequency: 'weekly',
+    //   priority: 1,
+    // },
     ...sitemapEntries,
   ]
 }
