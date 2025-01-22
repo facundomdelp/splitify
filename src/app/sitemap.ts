@@ -50,5 +50,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ]) as MetadataRoute.Sitemap
 
-  return sitemapEntries
+  return [
+    // Root Entry
+    {
+      url: 'https://splitify.me',
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 1,
+    },
+    ...sitemapEntries,
+  ]
 }
