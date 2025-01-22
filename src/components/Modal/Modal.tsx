@@ -12,14 +12,19 @@ interface Props {
 }
 
 const Modal = ({ open, setOpen, title, children, closeOnBackdropClick = false, className }: Props) => {
+  // const [focus, setIsFocus] = useState(false)
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent
         onPointerDownOutside={!closeOnBackdropClick ? (e) => e.preventDefault() : undefined}
         className={cn(
           'min-w-0 w-[80vw] max-w-[400px] flex flex-col justify-center rounded-xl text-gray-700 px-5',
+          // focus ? 'top-5 translate-y-0' : '',
           className,
         )}
+        // onFocus={() => setIsFocus(true)}
+        // onBlur={() => setIsFocus(false)}
       >
         <DialogHeader>
           <DialogTitle className='mx-4'>{title}</DialogTitle>
