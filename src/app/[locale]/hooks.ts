@@ -1,47 +1,91 @@
-import { calculateBalances } from '@/lib/functions/calculateBalances'
+import { useRouter } from '@/i18n/routing'
+import { CustomError } from '@/lib/errors/CustomErrors'
+import { generateId } from '@/lib/functions/generateId'
 import { Balance } from '@/types/balance.types'
 import { Expense } from '@/types/expense.types'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
-interface useCalculateBalancesProps {
-  expenses: Expense[]
+interface useAddExpenseProps {
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
+}
+
+export const useAddExpense = ({ setExpenses }: useAddExpenseProps) => {
+  const addExpense = async ({
+    name,
+    amount,
+    title,
+    date,
+  }: {
+    name: string
+    amount: number
+    title?: string
+    date?: number
+  }) => {
+    const expenseUiId = generateId()
+    setExpenses((prev) => [...(prev ?? []), { id: expenseUiId, optimistic: false, name, amount, title, date }])
+  }
+
+  return { addExpense }
+}
+
+interface useConvertIntoGroupProps {
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
   setBalances: React.Dispatch<React.SetStateAction<Balance[]>>
 }
 
-export const useCalculateBalances = ({ expenses, setBalances }: useCalculateBalancesProps) => {
-  const [calculating, setCalculating] = useState(false)
+export const useConvertIntoGroup = ({ setExpenses, setBalances }: useConvertIntoGroupProps) => {
+  const [convertToGroupState, setConvertToGroupState] = useState({
+    loading: false,
+    error: false,
+  })
+  const router = useRouter()
 
-  const handleCalculateBalances = () => {
-    if (!expenses) return
+  const convertIntoGroup = async (expenses: Expense[]) => {
+    setConvertToGroupState({ error: false, loading: true })
 
-    setCalculating(true)
-    setTimeout(() => {
-      setBalances(calculateBalances(expenses))
-      setCalculating(false)
+    try {
+      const addGroupResponse = await fetch('/api/groups', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      })
 
-      setTimeout(() => {
-        const targetElement = document.querySelector('#balances')
-        const header = document.querySelector('#header')
+      if (!addGroupResponse.ok) {
+        throw new CustomError(addGroupResponse.status)
+      }
 
-        if (targetElement && header) {
-          const { top: balancesTop } = targetElement.getBoundingClientRect()
-          const { height: headerHeight } = header?.getBoundingClientRect()
+      const data = await addGroupResponse.json()
 
-          scrollTo({ top: balancesTop + headerHeight, behavior: 'smooth' })
+      for (const expense of expenses) {
+        // Bulk Add Expenses?
+        const addExpensesToGroup = await fetch('/api/expenses', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            groupId: data.group,
+            name: expense.name,
+            amount: expense.amount,
+            title: expense.title,
+            date: expense.date,
+          }),
+        })
+
+        if (!addExpensesToGroup.ok) {
+          throw new CustomError(addGroupResponse.status)
         }
-      }, 300)
-    }, 1000)
+      }
+
+      setExpenses([])
+      setBalances([])
+
+      router.push(`/groups/${data.group}`)
+    } catch {
+      setConvertToGroupState((prev) => ({ ...prev, error: true }))
+    } finally {
+      setTimeout(() => {
+        setConvertToGroupState((prev) => ({ ...prev, loading: false }))
+      }, 500)
+    }
   }
 
-  return { handleCalculateBalances, calculating }
-}
-
-interface useRoundBalancesProps {
-  balances: Balance[]
-}
-
-export const useRoundBalances = ({ balances }: useRoundBalancesProps) => {
-  const [rounded, setRounded] = useState(balances.some((balance) => balance.amount % 1 === 0))
-
-  return { rounded, setRounded }
+  return { convertIntoGroup, convertToGroupState }
 }

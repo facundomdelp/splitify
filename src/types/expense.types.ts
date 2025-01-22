@@ -8,7 +8,6 @@ export type Expense = {
 }
 
 export type AddExpenseRequestBody = {
-  groupId: string
   name: string
   amount: number
   title?: string

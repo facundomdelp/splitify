@@ -7,22 +7,23 @@ import ChangeEmojisButton from '@/components/ChangeEmojisButton'
 import { RemoveExpense } from './RemoveExpense'
 import { cn } from '@/lib/utils'
 import Spinner from '../ui/spinner'
+import { formatDate } from '@/lib/functions/formatDate'
 
 interface Props {
   expenses: Expense[]
-  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
+  onRemoveExpense: (id: string) => void
   readOnly?: boolean
   loading?: boolean
 }
 
-export const Expenses = ({ expenses, setExpenses, readOnly = false, loading }: Props) => {
+export const Expenses = ({ expenses, onRemoveExpense, readOnly = false, loading }: Props) => {
   const getEmojiFromString = useGetEmojiFromString()
 
   const t = useTranslations('Expenses')
 
   return (
     <>
-      <section className='mx-4 text-sm flex flex-col min-w-0 flex-1'>
+      <section className='text-sm flex flex-col min-w-0 flex-1'>
         <div className='flex items-center'>
           <h2 className='text-lg font-bold flex flex-nowrap gap-2 items-center' id='expenses'>
             <UsersRound className='size-[22px] text-green-700' />
@@ -46,18 +47,12 @@ export const Expenses = ({ expenses, setExpenses, readOnly = false, loading }: P
                       <p className='text-ellipsis whitespace-nowrap overflow-hidden min-w-0'>{name}</p>
                       <p className='whitespace-nowrap'>: ${formatAmount(amount)}</p>
                       {!readOnly && !optimistic && (
-                        <RemoveExpense
-                          id={id}
-                          name={name}
-                          expenses={expenses}
-                          setExpenses={setExpenses}
-                          className='mx-1'
-                        />
+                        <RemoveExpense id={id} name={name} onRemoveExpense={onRemoveExpense} />
                       )}
                     </div>
                     {(title || date) && (
                       <div className='flex items-center min-w-0 gap-1 text-gray-500 text-xs'>
-                        {date && <p>{new Date(date).toLocaleDateString()}</p>}
+                        {date && <p>{formatDate(date)}</p>}
                         {title && date && <p>-</p>}
                         <p className='text-ellipsis whitespace-nowrap overflow-hidden min-w-0'>{title}</p>
                       </div>

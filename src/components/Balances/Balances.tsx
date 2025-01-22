@@ -20,7 +20,7 @@ const Balances = ({ balances, rounded, setRounded }: Props) => {
 
   return (
     <>
-      <section className='mx-4 text-sm min-w-0'>
+      <section className='text-sm min-w-0'>
         <div className='flex items-center gap-2'>
           <h2 className='text-lg font-bold flex flex-nowrap gap-2 items-center' id='balances'>
             <CircleDollarSign className='size-[22px] text-green-700' />

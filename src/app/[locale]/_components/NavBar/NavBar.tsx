@@ -2,7 +2,7 @@
 
 import { ForwardRefExoticComponent, ReactNode, RefAttributes, useState } from 'react'
 import { cn } from '@/lib/utils'
-import { CoinsIcon, Globe, HandCoinsIcon, LucideProps, MenuIcon, RocketIcon, Settings } from 'lucide-react'
+import { Globe, HandCoinsIcon, LucideProps, MenuIcon, RocketIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import {
@@ -20,9 +20,9 @@ import LocaleSelectorModal from './LocaleSelectorModal'
 import SocialMedia from './SocialMedia'
 import NavSection from './NavSection'
 import NavItem from './NavItem'
-import { useHandleNavigation } from './hooks'
-import { useParams } from 'next/navigation'
-import { Badge } from '@/components/ui/badge'
+import { useAddNewGroup, useHandleNavigation } from './hooks'
+import { useSetGroups } from '@/store/groups.store'
+import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
 
 const LOGO_WIDTH = 120
 
@@ -36,13 +36,17 @@ const NavBar = ({
   className?: string
   icon?: ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>>
 }) => {
+  const { groups } = useSetGroups()
+
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [localeModalOpen, setLocaleModalOpen] = useState(false)
 
-  const { locale } = useParams()
-
   const { handleNavigation } = useHandleNavigation({ setDrawerOpen })
   const { isInstallable, handleInstallClick } = usePWAInstall()
+
+  const { addNewGroup, newGroupState } = useAddNewGroup({ setDrawerOpen })
+
+  const getEmojiFromString = useGetEmojiFromString(true)
 
   const t = useTranslations('NavBar')
 
@@ -77,44 +81,69 @@ const NavBar = ({
             <nav className='space-y-9'>
               <NavSection title={t('General')}>
                 {isInstallable && (
-                  <NavItem key='pwa' icon={RocketIcon} onClick={handleInstallClick}>
+                  <NavItem key='pwa' icon={RocketIcon} onClick={handleInstallClick} disabled={newGroupState.loading}>
                     {t('Install App')}
                   </NavItem>
                 )}
-                <NavItem key='language' icon={Globe} onClick={() => setLocaleModalOpen(true)}>
+                <NavItem
+                  key='language'
+                  icon={Globe}
+                  onClick={() => setLocaleModalOpen(true)}
+                  disabled={newGroupState.loading}
+                >
                   {t('Language')}
-                </NavItem>
-                <NavItem key='settings' icon={Settings} disabled>
-                  {t('Settings')} 🏭
                 </NavItem>
               </NavSection>
 
               <NavSection title='Spliti'>
                 {[
                   {
-                    slug: 'spliti-basic',
-                    icon: CoinsIcon,
-                    name: `${t('Spliti Quick')} ⚡`,
-                    href: `/${locale}`,
-                    disabled: undefined,
-                    beta: undefined,
+                    slug: 'spliti-quick',
+                    emoji: '⚡',
+                    name: `${t('Spliti Quick')}`,
+                    href: `/`,
                   },
+                ].map(({ slug, emoji, name, href }) => (
+                  <NavItem
+                    key={slug}
+                    emoji={emoji}
+                    href={href}
+                    handleNavigation={handleNavigation}
+                    disabled={newGroupState.loading}
+                  >
+                    {name}
+                  </NavItem>
+                ))}
+              </NavSection>
+
+              <NavSection title='Spliti Groups ✈️'>
+                {[
                   {
-                    slug: 'spliti-groups',
+                    slug: 'add-new-group',
                     icon: HandCoinsIcon,
-                    name: `${t('Spliti Groups')} ✈️`,
-                    href: `/${locale}/groups`,
-                    disabled: undefined,
+                    name: `Add New Group`,
+                    onClick: addNewGroup,
+                    loading: newGroupState.loading,
+                    strong: true,
                     beta: true,
                   },
-                ].map(({ slug, icon, name, href, disabled, beta }) => (
-                  <NavItem key={slug} icon={icon} disabled={disabled} href={href} handleNavigation={handleNavigation}>
+                  ...(groups
+                    ? groups.map(({ id, name }) => ({
+                        slug: id,
+                        emoji: getEmojiFromString(id),
+                        name: name,
+                        href: `/groups/${id}`,
+                        beta: false,
+                      }))
+                    : []),
+                ].map(({ slug, name, ...props }) => (
+                  <NavItem key={slug} disabled={newGroupState.loading} {...props} handleNavigation={handleNavigation}>
                     {name}
-                    {beta && (
+                    {/* {beta && (
                       <Badge className='uppercase text-nowrap opacity-70 rounded-lg text-[9px] flex leading-3 px-2 pointer-events-none'>
                         Beta
                       </Badge>
-                    )}
+                    )} */}
                   </NavItem>
                 ))}
               </NavSection>

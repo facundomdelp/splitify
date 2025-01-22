@@ -10,32 +10,50 @@
   "Home": {
     "🤑 Splitify | Simplify your group expenses with Splitify": "🤑 Splitify | Simplifique suas despesas em grupo com o Splitify",
     "Splitify is the ultimate tool to divide expenses with friends, family, and colleagues": "Splitify é a ferramenta definitiva para dividir despesas com amigos, família e colegas, tornando o gerenciamento financeiro em grupo mais fácil e eficiente. Seja compartilhando a conta de um jantar, organizando um final de semana ou simplesmente dividindo despesas do dia a dia, o Splitify oferece uma plataforma intuitiva para garantir que todos paguem sua parte justa. Acabaram-se os dias de planilhas complexas e cálculos confusos — o Splitify simplifica todo o processo. Com o rastreamento de despesas em tempo real, você pode facilmente adicionar participantes e suas contribuições, permitindo que o app calcule e otimize automaticamente a divisão. Não importa o tamanho do grupo, o Splitify se ajusta às suas necessidades. Ele fornece uma maneira fácil de lidar com custos compartilhados, desde refeições casuais até atividades de grupo mais significativas. Com nosso algoritmo, o Splitify garante que a distribuição de despesas seja justa e ajuda a otimizar o número de transferências entre os participantes, para que ninguém precise se preocupar em fazer muitos pagamentos. Além disso, você não precisa se preocupar em fazer login ou se cadastrar para começar a usar o Splitify, tornando-o ainda mais acessível e conveniente. Nosso app foi projetado para tornar o gerenciamento de despesas sem estresse e simples, permitindo que você se concentre em aproveitar o tempo com os outros, em vez de se preocupar em acompanhar quem deve o quê. Seja em uma noite com os amigos ou organizando uma viagem em grupo, o Splitify garante que todos sairão satisfeitos, sabendo exatamente quanto devem. Experimente o Splitify hoje e viva a facilidade de gerenciar despesas de grupo sem complicação. Simplifique sua vida e deixe que nós cuidemos da matemática por você!",
-    "Continue Editing": "Continuar Editando"
+    "Spliti Quick": "Spliti Quick"
   },
-  "ExpensesForm": {
-    "Add expense": "Adicionar despesa",
-    "John Spliti": "João Spliti"
+  "Footer": {
+    "Spliti Groups": "Spliti Groups"
   },
-  "Expenses": {
-    "Expenses": "Despesas",
-    "Enter an Expense to get started!": "Adicione uma Despesa para começar!"
+  "NavBar": {
+    "Discover more!": "Descubra mais!",
+    "General": "Geral",
+    "Install App": "Instalar Aplicativo",
+    "Language": "Idioma",
+    "Spliti Quick": "Spliti Quick",
+    "Spliti Groups": "Spliti Groups"
   },
-  "CalculateButton": {
-    "Calculate Balances": "Calcular Saldos"
+  "LocaleSelectorModal": {
+    "Language": "Idioma",
+    "Would you like to select a different language?": "Gostaria de selecionar um idioma diferente?",
+    "Send us an email!": "Envie-nos um e-mail!"
   },
-  "RemoveExpense": {
-    "Are you sure you want to remove": "Tem certeza de que deseja remover",
-    "from the list?": "da lista?"
+  "HomeContextMenu": {
+    "Do you want to turn these expenses into a ✈️ Group?": "Você quer transformar essas despesas em um ✈️ Grupo?",
+    "By turning it into a group, you can share a link so others can collaborate easily": "Ao transformá-lo em um grupo, você poderá compartilhar um link para que outros colaborem facilmente.",
+    "Are you sure you want to reset the expenses list?": "Tem certeza de que deseja redefinir a lista de despesas?",
+    "Turn into a Group ✈️": "Transformar em um Grupo ✈️",
+    "Reset Expenses": "Redefinir Despesas"
   },
-  "ResetBalances": {
-    "Are you sure you want to reset the balances list?": "Tem certeza de que deseja redefinir a lista de saldos?",
-    "Reset": "Redefinir"
+  "GroupPage": {
+    "Share Group!": "Compartilhar o Grupo!"
+  },
+  "GroupsContextMenu": {
+    "Share Group": "Compartilhar o Grupo",
+    "🤑 Copy this link and share it with your friends! 💸": "🤑 Copie este link e compartilhe com seus amigos! 💸",
+    "Your friends would be able to easily add expenses to this group": "Seus amigos poderão adicionar despesas facilmente a este grupo.",
+    "Are you sure you want to remove this group?": "Tem certeza de que deseja remover este grupo?",
+    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want": "Ao remover este grupo, ele não será excluído, você apenas deixará de vê-lo. Você pode usar o link novamente para acessá-lo quando quiser.",
+    "Remove Group": "Remover Grupo"
   },
   "Balances": {
     "Balances": "Saldos",
     "Round": "Arredondar",
     "owes": "deve",
     "to": "para"
+  },
+  "CalculateButton": {
+    "Calculate Balances": "Calcular Saldos"
   },
   "ConfirmationModal": {
     "Yes": "Sim",
@@ -45,26 +63,35 @@
     "Copy": "Copiar",
     "Copied!": "Copiado!"
   },
-  "Header": {
-    "Quick": "Já!",
-    "Groups": "Grupos"
+  "Expenses": {
+    "Expenses": "Despesas",
+    "Enter an Expense to get started!": "Adicione uma Despesa para começar!"
   },
-  "NavBar": {
-    "Discover more!": "Descubra mais!",
-    "General": "Geral",
-    "Language": "Idioma",
-    "Settings": "Configurações",
-    "Spliti Quick": "Spliti Já",
-    "Spliti Groups": "Spliti Grupos",
-    "Install App": "Instalar Aplicativo"
+  "RemoveExpense": {
+    "Are you sure you want to remove": "Tem certeza de que deseja remover",
+    "from the list?": "da lista?"
   },
-  "Footer": {
-    "Groups": "Grupos"
+  "ExpensesBalancesTabs": {
+    "Expenses": "Despesas",
+    "Balances": "Saldo"
   },
-  "LocaleSelectorModal": {
-    "Language": "Idioma",
-    "Would you like to select a different language?": "Gostaria de selecionar um idioma diferente?",
-    "Send us an email!": "Envie-nos um e-mail!"
+  "ExpensesForm": {
+    "Add expense": "Adicionar despesa",
+    "John Spliti": "João Spliti",
+    "Title": "Título",
+    "optional": "opcional",
+    "For example: Taxi": "Por exemplo: Táxi",
+    "Date": "Data",
+    "Details": "Detalhes",
+    "ADD EXPENSE": "ADICIONAR DESPESA"
+  },
+  "ExpensesSection": {
+    "Add Expense": "Adicionar Despesa"
+  },
+
+  "useCopyString": {
+    "owes": "deve",
+    "to": "para"
   },
   "SeoPage": {
     "Get Started": "Começar 🚀",

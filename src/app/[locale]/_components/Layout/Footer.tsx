@@ -1,17 +1,14 @@
-'use client'
-
 import { SEO_ROUTES } from '@/seo/seoRoutes'
 import { Locale } from '@/types/common.types'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useParams } from 'next/navigation'
 
 const LOCALES: Locale[] = ['en', 'es', 'pt']
 const ISOLOGO_SIZE = 65
 
 const Footer = () => {
-  const { locale } = useParams<{ locale: Locale }>()
+  const locale = useLocale() as Locale
 
   const t = useTranslations('Footer')
 
@@ -40,7 +37,7 @@ const Footer = () => {
 
           <ul>
             <li>
-              <Link href={`/${locale}/groups`}>{t('Groups')}</Link>
+              <Link href={`/${locale}/groups`}>{t('Spliti Groups')}</Link>
             </li>
           </ul>
 

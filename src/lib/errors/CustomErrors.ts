@@ -13,5 +13,9 @@ export class CustomError extends Error {
     if (Error.captureStackTrace) {
       Error.captureStackTrace(this, CustomError)
     }
+
+    if (process.env.ENVIRONMENT !== 'production') {
+      console.error(message)
+    }
   }
 }

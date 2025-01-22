@@ -1,13 +1,16 @@
 import { z } from 'zod'
-import { AddGroupRequestBody, GetGroupRequestBody } from '@/types/group.types'
-import { ValidationResult } from '@/types/common.types'
+import { AddGroupRequestBody } from '@/types/group.types'
+import { idParam, ValidationResult } from '@/types/common.types'
 
-const addGroupSchema = z.object({
-  name: z.string().max(100, 'Group name is too long').optional(),
+const validateGroupIdSchema = z.object({
+  id: z
+    .string()
+    .length(20, 'Invalid Group ID')
+    .regex(/^[A-Za-z0-9\-_]+$/, 'Invalid Group ID'),
 })
 
-export const validateAddGroup = (body: Partial<AddGroupRequestBody>): ValidationResult<AddGroupRequestBody> => {
-  const validationResult = addGroupSchema.safeParse(body)
+export const validateGroupId = ({ id }: Partial<idParam>): ValidationResult<idParam> => {
+  const validationResult = validateGroupIdSchema.safeParse({ id })
   let errors: Array<{ field: string; message: string }> | null = null
 
   if (!validationResult.success) {
@@ -20,15 +23,12 @@ export const validateAddGroup = (body: Partial<AddGroupRequestBody>): Validation
   return [validationResult.success ? validationResult.data : null, errors] as const
 }
 
-const getGroupSchema = z.object({
-  id: z
-    .string()
-    .length(20, 'Invalid Group ID')
-    .regex(/^[A-Za-z0-9\-_]+$/, 'Invalid Group ID'),
+const addGroupSchema = z.object({
+  name: z.string().max(100, 'Group name is too long').optional(),
 })
 
-export const validateGroupId = ({ id }: Partial<GetGroupRequestBody>): ValidationResult<GetGroupRequestBody> => {
-  const validationResult = getGroupSchema.safeParse({ id })
+export const validateAddGroup = (body: Partial<AddGroupRequestBody>): ValidationResult<AddGroupRequestBody> => {
+  const validationResult = addGroupSchema.safeParse(body)
   let errors: Array<{ field: string; message: string }> | null = null
 
   if (!validationResult.success) {

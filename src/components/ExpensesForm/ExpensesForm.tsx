@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { MinusIcon, Plus, PlusIcon, UserRound } from 'lucide-react'
 import { useExpensesForm } from './hooks'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { useTranslations } from 'next-intl'
 import { cn } from '@/lib/utils'
 
@@ -14,25 +14,35 @@ interface Props {
   includeDetails?: boolean
   bigAddButton?: boolean
   onSubmit?: ({ name, amount }: { name: string; amount: number }) => void
+  disabled?: boolean
 }
 
-const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, onSubmit }: Props) => {
-  const [showDetails, setShowDetails] = useState(false)
-
+const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, onSubmit, disabled }: Props) => {
   const nameInputRef = useRef<HTMLInputElement>(null)
 
-  const { name, handleName, amount, handleAmount, title, handleTitle, date, handleDate, handleSubmit } =
-    useExpensesForm({
-      nameInputRef,
-      onSubmit,
-    })
+  const {
+    name,
+    handleName,
+    amount,
+    handleAmount,
+    handleShowDetails,
+    showDetails,
+    title,
+    handleTitle,
+    date,
+    handleDate,
+    handleSubmit,
+  } = useExpensesForm({
+    nameInputRef,
+    onSubmit,
+  })
 
   const t = useTranslations('ExpensesForm')
 
   return (
-    <section className='mx-4 flex flex-col gap-2'>
-      <p className='text-sm flex items-center gap-1 flex-nowrap'>
-        <UserRound className='size-[14px] text-green-700' />
+    <section className='flex flex-col gap-2'>
+      <p className='text-[12px] flex items-center gap-1 flex-nowrap text-gray-600'>
+        <UserRound className='size-[12px] text-green-700' />
         {t('Add expense')}
       </p>
       <form className='flex flex-col gap-3' onSubmit={handleSubmit}>
@@ -46,6 +56,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
             value={name}
             placeholder={t('John Spliti')}
             onFocus={onFocus}
+            disabled={disabled}
           />
 
           <div className='flex gap-4 ml-auto flex-1 flex-grow-1'>
@@ -61,11 +72,12 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
                 onChange={handleAmount}
                 value={amount}
                 onFocus={onFocus}
+                disabled={disabled}
               />
             </div>
 
             {!bigAddButton && (
-              <Button size='icon' className='w-10' type='submit' disabled={name.trim() === ''}>
+              <Button size='icon' className='w-10' type='submit' disabled={name.trim() === '' || disabled}>
                 <Plus />
               </Button>
             )}
@@ -83,7 +95,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
               <div className='flex flex-wrap gap-2 px-1 max-w-full min-h-0 border-y border-transparent'>
                 <div className='space-y-1 flex-1 min-w-40'>
                   <Label htmlFor='title' className='text-xs'>
-                    <strong>Title</strong> (optional)
+                    <strong>{t('Title')}</strong> ({t('optional')})
                   </Label>
                   <Input
                     id='Title'
@@ -92,14 +104,15 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
                     maxLength={50}
                     onChange={handleTitle}
                     value={title}
-                    placeholder='For example: Taxi'
+                    placeholder={t('For example: Taxi')}
                     tabIndex={!showDetails ? -1 : undefined}
+                    disabled={disabled}
                   />
                 </div>
 
                 <div className='space-y-1 flex-1 min-w-40'>
                   <Label htmlFor='date' className='text-xs'>
-                    <strong>Date</strong> (optional)
+                    <strong>{t('Date')}</strong> ({t('optional')})
                   </Label>
                   <Input
                     id='date'
@@ -109,6 +122,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
                     onChange={handleDate}
                     value={date}
                     tabIndex={!showDetails ? -1 : undefined}
+                    disabled={disabled}
                   />
                 </div>
               </div>
@@ -118,17 +132,18 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
               className={cn('text-gray-600', !showDetails ? '' : 'mt-3')}
               variant='outline'
               type='button'
-              onClick={() => setShowDetails((prev) => !prev)}
+              onClick={handleShowDetails}
+              disabled={disabled}
             >
               {!showDetails ? <PlusIcon /> : <MinusIcon />}
-              Details
+              {t('Details')}
             </Button>
           </div>
         )}
 
         {bigAddButton && (
           <Button className='flex' type='submit' disabled={name.trim() === ''}>
-            ADD EXPENSE
+            {t('ADD EXPENSE')}
           </Button>
         )}
       </form>

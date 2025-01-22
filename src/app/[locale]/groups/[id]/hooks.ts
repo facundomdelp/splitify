@@ -1,11 +1,10 @@
 import { CustomError } from '@/lib/errors/CustomErrors'
-import { calculateBalances } from '@/lib/functions/calculateBalances'
+import { generateId } from '@/lib/functions/generateId'
 import { useSetGroups } from '@/store/groups.store'
-import { Balance } from '@/types/balance.types'
 import { Expense, GetGroupExpensesResponse } from '@/types/expense.types'
 import { GetGroupResponse } from '@/types/group.types'
 import { useParams } from 'next/navigation'
-import { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
 export const useGetGroup = () => {
   const { groups, setGroups, initialized } = useSetGroups()
@@ -97,25 +96,55 @@ export const useGetGroupExpenses = () => {
   return { expenses, setExpenses, loading, error }
 }
 
-interface useCalculateGroupBalancesProps {
-  expenses: Expense[]
-  balances: Balance[]
-  setBalances: React.Dispatch<React.SetStateAction<Balance[]>>
-  setRounded: React.Dispatch<React.SetStateAction<boolean>>
+interface useAddExpenseProps {
+  groupId?: string
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
 }
 
-export const useCalculateGroupBalances = ({
-  expenses,
-  balances,
-  setBalances,
-  setRounded,
-}: useCalculateGroupBalancesProps) => {
-  const handleCalculateGroupBalances = () => {
-    if (!expenses) return
+export const useAddExpense = ({ groupId, setExpenses }: useAddExpenseProps) => {
+  const addExpense = async ({
+    name,
+    amount,
+    title,
+    date,
+  }: {
+    name: string
+    amount: number
+    title?: string
+    date?: number
+  }) => {
+    if (!groupId) return
 
-    setBalances(calculateBalances(expenses))
-    setRounded(balances.some((balance) => balance.amount % 1 === 0))
+    const expenseUiId = generateId()
+    setExpenses((prev) => [...(prev ?? []), { id: expenseUiId, optimistic: true, name, amount, title, date }])
+
+    try {
+      const response = await fetch(`/api/groups/${groupId}/expenses`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          amount,
+          title,
+          date,
+        }),
+      })
+
+      if (!response.ok) {
+        throw new CustomError(response.status)
+      }
+
+      const data = await response.json()
+
+      setExpenses((prevExpenses) =>
+        prevExpenses.map((expense) =>
+          expense.id === expenseUiId ? { ...expense, optimistic: false, id: data.expense } : expense,
+        ),
+      )
+    } catch {
+      // Put in red with a warning, a tooltip and a try again button
+    }
   }
 
-  return { handleCalculateGroupBalances }
+  return { addExpense }
 }
