@@ -25,11 +25,11 @@ const ContextMenu = ({ children }: Props) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant='ghost' className='px-3'>
+        <Button variant='ghost' className='p-1'>
           <EllipsisVertical className='text-gray-600' />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align='end' alignOffset={24} sideOffset={-5}>
+      <DropdownMenuContent align='end' alignOffset={16} sideOffset={-8}>
         {children}
       </DropdownMenuContent>
     </DropdownMenu>

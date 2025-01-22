@@ -51,7 +51,7 @@ export default function Home() {
         </h2> */}
       </div>
 
-      <div className='absolute -top-6 right-1 sm:right-2 z-10 -mt-6'>
+      <div className='absolute -top-6 right-2 z-10 -mt-6'>
         {!convertToGroupState.loading ? (
           <HomeContextMenu
             expenses={expenses}
