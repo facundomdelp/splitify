@@ -36,7 +36,7 @@ export default function Home() {
   const t = useTranslations('Home')
 
   return (
-    <main className='w-full my-8 text-dark max-w-[600px] space-y-6 flex flex-col relative'>
+    <main className='w-full my-6 text-dark max-w-[600px] space-y-6 flex flex-col relative'>
       <div className='flex justify-center items-center gap-2 -mt-6'>
         {/* SEO */}
         <article className='hidden'>
