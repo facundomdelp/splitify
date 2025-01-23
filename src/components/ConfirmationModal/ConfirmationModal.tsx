@@ -29,13 +29,13 @@ const ConfirmationModal = ({ open, onOpenChange, title, description, onConfirm, 
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         onPointerDownOutside={(e) => e.preventDefault()}
-        className='min-w-0 w-[80vw] max-w-[400px] flex flex-col justify-center rounded-xl text-gray-700 px-5'
+        className='flex w-[80vw] min-w-0 max-w-[400px] flex-col justify-center rounded-xl px-5 text-gray-700'
       >
-        <DialogTitle className='text-center font-normal text-balance leading-7 mt-5 min-w-0 gap-1 flex flex-wrap justify-center'>
+        <DialogTitle className='mt-5 flex min-w-0 flex-wrap justify-center gap-1 text-balance text-center font-normal leading-7'>
           {title}
         </DialogTitle>
         {description && <DialogDescription className='text-center text-sm'>{description}</DialogDescription>}
-        <DialogFooter className='pt-4 px-6 flex-row gap-3'>
+        <DialogFooter className='flex-row gap-3 px-6 pt-4'>
           <Button
             variant={!destructive ? 'outline' : 'destructive'}
             onClick={destructive ? handleOnClick : () => onOpenChange(false)}

@@ -39,17 +39,17 @@ const NavItem = ({
     <>
       {Icon ? (
         <Icon
-          className={cn('text-green-700 size-[20px] flex-shrink-0', disabled ? 'text-gray-400 cursor-not-allowed' : '')}
+          className={cn('size-[20px] flex-shrink-0 text-green-700', disabled ? 'cursor-not-allowed text-gray-400' : '')}
         />
       ) : (
         emoji
       )}
       <div className='flex min-w-0 gap-2'>
-        <span className={cn('text-ellipsis text-nowrap min-w-0 overflow-hidden', strong ? 'font-bold' : '')}>
+        <span className={cn('min-w-0 overflow-hidden text-ellipsis text-nowrap', strong ? 'font-bold' : '')}>
           {children}
         </span>
         {beta && (
-          <Badge className='my-auto px-2 uppercase text-nowrap opacity-70 rounded-lg text-[8px] flex leading-[0.6rem] pointer-events-none'>
+          <Badge className='pointer-events-none my-auto flex text-nowrap rounded-lg px-2 text-[8px] uppercase leading-[0.6rem] opacity-70'>
             Beta
           </Badge>
         )}
@@ -63,15 +63,15 @@ const NavItem = ({
   )
 
   return (
-    <li className={cn('text-gray-600 py-3 border-b text-sm', disabled ? 'cursor-not-allowed' : '')}>
+    <li className={cn('border-b py-3 text-sm text-gray-600', disabled ? 'cursor-not-allowed' : '')}>
       {href && !disabled ? (
-        <Link href={href} className='flex flex-nowrap gap-4 items-center' onClick={handleNavigation}>
+        <Link href={href} className='flex flex-nowrap items-center gap-4' onClick={handleNavigation}>
           <NavChildren />
         </Link>
       ) : (
         <Button
           variant='ghost'
-          className='flex flex-nowrap gap-4 items-center p-0 w-full font-normal hover:bg-inherit hover:text-inherit h-fit [&_svg]:size-[20px]'
+          className='flex h-fit w-full flex-nowrap items-center gap-4 p-0 font-normal hover:bg-inherit hover:text-inherit [&_svg]:size-[20px]'
           onClick={onClick}
           disabled={disabled}
         >

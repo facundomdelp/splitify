@@ -60,12 +60,12 @@ const GroupPage = () => {
 
   return (
     <>
-      <main className='w-full my-6 text-dark max-w-[600px] space-y-6 flex flex-col'>
+      <main className='text-dark my-6 flex w-full max-w-[600px] flex-col space-y-6'>
         {group && ( // Handle Group error
           <>
-            <div className='flex justify-center items-center gap-2 relative'>
+            <div className='relative flex items-center justify-center gap-2'>
               <h2
-                className='font-bold flex flex-nowrap gap-2 justify-center text-green-800 text-base xs:text-lg'
+                className='flex flex-nowrap justify-center gap-2 text-base font-bold text-green-800 xs:text-lg'
                 id='expenses'
               >
                 {getEmojiFromString(group.id)} {group.name}
@@ -81,7 +81,7 @@ const GroupPage = () => {
                           <GroupsContextMenu groupId={group.id} />
                         </div>
                       </TooltipTrigger>
-                      <TooltipContent className='text-[10px] font-semibold mr-2' align='end' sideOffset={-4}>
+                      <TooltipContent className='mr-2 text-[10px] font-semibold' align='end' sideOffset={-4}>
                         <TooltipArrow fill='green' />
                         {t('Share Group!')}
                       </TooltipContent>

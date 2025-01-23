@@ -7,10 +7,10 @@ const LOGO_WIDTH = 120
 const Header = () => {
   return (
     <header
-      className='w-full bg-green-500 flex justify-center items-center h-20 shadow-md flex-shrink-0 fixed top-0 z-10'
+      className='fixed top-0 z-10 flex h-20 w-full flex-shrink-0 items-center justify-center bg-green-500 shadow-md'
       id='header'
     >
-      <div className='max-w-[600px] flex justify-center items-center mt-2 relative'>
+      <div className='relative mt-2 flex max-w-[600px] items-center justify-center'>
         <Image src='/Splitify.png' alt='Splitify' width={LOGO_WIDTH} height={LOGO_WIDTH / (10 / 3)} />
       </div>
 

@@ -28,9 +28,9 @@ const ExpensesBalancesTabs = ({ children, onBalancesClick, disabled, disabledExp
     <Tabs
       value={tabValue}
       onValueChange={(value) => setTabValue(value as 'expenses' | 'balances')}
-      className='w-full flex flex-col flex-1'
+      className='flex w-full flex-1 flex-col'
     >
-      <div className='flex relative'>
+      <div className='relative flex'>
         <TabsList className='mx-auto scale-90 xs:scale-100'>
           <TabsTrigger className='w-[120px]' value='expenses' disabled={disabled || disabledExpenses}>
             {t('Expenses')}
@@ -47,13 +47,13 @@ const ExpensesBalancesTabs = ({ children, onBalancesClick, disabled, disabledExp
       </div>
 
       <TabsContent className='flex-1' value='expenses'>
-        <div className='mt-2 h-full flex flex-col gap-4'>
+        <div className='mt-2 flex h-full flex-col gap-4'>
           {children[0]}
           <CalculateButton onClick={handleCalculateButton} disabled={disabled || disabledBalances} />
         </div>
       </TabsContent>
       <TabsContent className='flex-1' value='balances'>
-        <div className='mt-2 h-full flex-1 flex flex-col gap-4'>{children[1]}</div>
+        <div className='mt-2 flex h-full flex-1 flex-col gap-4'>{children[1]}</div>
       </TabsContent>
     </Tabs>
   )

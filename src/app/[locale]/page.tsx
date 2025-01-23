@@ -41,8 +41,8 @@ export default function Home() {
   const t = useTranslations('Home')
 
   return (
-    <main className='w-full my-6 text-dark max-w-[600px] space-y-6 flex flex-col relative'>
-      <div className='flex justify-center items-center gap-2 -mt-6'>
+    <main className='text-dark relative my-6 flex w-full max-w-[600px] flex-col space-y-6'>
+      <div className='-mt-6 flex items-center justify-center gap-2'>
         {/* SEO */}
         <article className='hidden'>
           <h1>{t('🤑 Splitify | Simplify your group expenses with Splitify')}</h1>

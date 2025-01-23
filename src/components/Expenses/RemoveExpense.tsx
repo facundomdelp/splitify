@@ -26,7 +26,7 @@ export const RemoveExpense = ({ id, name, onRemoveExpense }: Props) => {
   return (
     <>
       <X
-        className='mx-1 size-[18px] text-gray-500 hover:text-red-800 h-[20px] items-center cursor-pointer shrink-0'
+        className='mx-1 size-[18px] h-[20px] shrink-0 cursor-pointer items-center text-gray-500 hover:text-red-800'
         onClick={() => setOpen(true)}
       />
 
@@ -36,9 +36,9 @@ export const RemoveExpense = ({ id, name, onRemoveExpense }: Props) => {
         title={
           <>
             {t('Are you sure you want to remove')}
-            <div className='flex flex-nowrap space-x-1 min-w-0'>
+            <div className='flex min-w-0 flex-nowrap space-x-1'>
               <p>{getEmojiFromString(name)}</p>
-              <strong className='font-semibold max-w-full text-ellipsis whitespace-nowrap overflow-hidden block'>
+              <strong className='block max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-semibold'>
                 {name}
               </strong>
             </div>

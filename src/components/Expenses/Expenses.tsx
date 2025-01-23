@@ -29,9 +29,9 @@ export const Expenses = ({ expenses, onRemoveExpense, readOnly = false, loading 
 
   return (
     <>
-      <section className='text-sm flex flex-col min-w-0 flex-1'>
+      <section className='flex min-w-0 flex-1 flex-col text-sm'>
         <div className='flex items-center'>
-          <h2 className='text-lg font-bold flex flex-nowrap gap-2 items-center' id='expenses'>
+          <h2 className='flex flex-nowrap items-center gap-2 text-lg font-bold' id='expenses'>
             <UsersRound className='size-[22px] text-green-700' />
             {t('Expenses')}
           </h2>
@@ -39,41 +39,41 @@ export const Expenses = ({ expenses, onRemoveExpense, readOnly = false, loading 
         </div>
 
         {loading ? (
-          <p className='m-auto text-gray-500 text-center'>
+          <p className='m-auto text-center text-gray-500'>
             <Spinner className='text-green-600' />
           </p>
         ) : expenses && Object.keys(expenses).length ? (
-          <ul className='mt-4 flex flex-col gap-3 min-w-0'>
+          <ul className='mt-4 flex min-w-0 flex-col gap-3'>
             {expenses.toReversed().map(({ id, optimistic, name, amount, title, date }, index) => {
               return (
-                <li key={index} className={cn('flex items-center min-w-0', optimistic ? 'text-gray-400' : '')}>
+                <li key={index} className={cn('flex min-w-0 items-center', optimistic ? 'text-gray-400' : '')}>
                   <p className='mr-2 w-[20px] text-center'>{getEmojiFromString(name)}</p>
-                  <div className='flex flex-col min-w-0'>
-                    <div className='flex items-center min-w-0'>
-                      <p className='text-ellipsis whitespace-nowrap overflow-hidden min-w-0'>{name}</p>
+                  <div className='flex min-w-0 flex-col'>
+                    <div className='flex min-w-0 items-center'>
+                      <p className='min-w-0 overflow-hidden text-ellipsis whitespace-nowrap'>{name}</p>
                       <p className='whitespace-nowrap'>: ${formatAmount(amount)}</p>
                       {!readOnly && !optimistic && (
                         <RemoveExpense id={id} name={name} onRemoveExpense={onRemoveExpense} />
                       )}
                     </div>
                     {(title || date) && (
-                      <div className='flex items-center min-w-0 gap-1 text-gray-500 text-xs'>
+                      <div className='flex min-w-0 items-center gap-1 text-xs text-gray-500'>
                         {date && <p>{formatDate(date)}</p>}
                         {title && date && <p>-</p>}
-                        <p className='text-ellipsis whitespace-nowrap overflow-hidden min-w-0'>{title}</p>
+                        <p className='min-w-0 overflow-hidden text-ellipsis whitespace-nowrap'>{title}</p>
                       </div>
                     )}
                   </div>
                 </li>
               )
             })}
-            <li className='mt-auto flex justify-between font-semibold py-3'>
+            <li className='mt-auto flex justify-between py-3 font-semibold'>
               <p>TOTAL</p>
               <p>$ {formatAmount(expenses.reduce((acc, cv) => acc + cv.amount, 0))}</p>
             </li>
           </ul>
         ) : (
-          <p className='m-auto text-gray-500 text-center'>🤑 {t('Enter an Expense to get started!')} 💸</p>
+          <p className='m-auto text-center text-gray-500'>🤑 {t('Enter an Expense to get started!')} 💸</p>
         )}
       </section>
     </>

@@ -34,7 +34,7 @@ const CopyToClipboard = ({ copyString, className, onClick }: Props) => {
   const t = useTranslations('CopyToClipboard')
 
   return (
-    <Button className={cn('text-sm font-medium items-center bg-green-500', className)} onClick={handleCopyToClipboard}>
+    <Button className={cn('items-center bg-green-500 text-sm font-medium', className)} onClick={handleCopyToClipboard}>
       {!copied ? (
         <>
           <Clipboard className='size-[18px]' />

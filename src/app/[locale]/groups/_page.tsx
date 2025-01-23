@@ -23,10 +23,10 @@ const GroupsPage = () => {
   const getEmojiFromString = useGetEmojiFromString(true)
 
   return (
-    <main className='w-full p-8 text-dark max-w-[600px] space-y-8'>
+    <main className='text-dark w-full max-w-[600px] space-y-8 p-8'>
       <section className='flex flex-col gap-4'>
         <div className='flex items-center'>
-          <h2 className='text-lg font-bold flex flex-nowrap gap-2 items-center' id='expenses'>
+          <h2 className='flex flex-nowrap items-center gap-2 text-lg font-bold' id='expenses'>
             <HandCoinsIcon className='size-[22px] text-green-700' />
             My Groups
           </h2>
@@ -36,31 +36,31 @@ const GroupsPage = () => {
           key='add-new-group'
           className={cn(
             'flex cursor-pointer hover:shadow-lg',
-            newGroupState.loading ? 'opacity-40 pointer-events-none' : '',
+            newGroupState.loading ? 'pointer-events-none opacity-40' : '',
           )}
           onClick={addNewGroup}
         >
           <CardHeader className='flex-1 space-y-0'>
-            <CardTitle className='text-lg flex flex-row items-center gap-3 text-green-800'>
-              <PlusCircleIcon className='text-green-500 flex-shrink-0' /> Add New Group
+            <CardTitle className='flex flex-row items-center gap-3 text-lg text-green-800'>
+              <PlusCircleIcon className='flex-shrink-0 text-green-500' /> Add New Group
             </CardTitle>
           </CardHeader>
-          <CardContent className='p-6 flex items-center'>
+          <CardContent className='flex items-center p-6'>
             {!newGroupState.loading ? <p>🤑</p> : <Spinner className='text-green-600' />}
           </CardContent>
         </Card>
 
         {groups.map((group) => (
-          <Card key={group.id} className={cn('flex', newGroupState.loading ? 'opacity-40 pointer-events-none' : '')}>
-            <CardHeader className='flex-1 space-y-0 min-w-0 pr-0 justify-center'>
-              <CardTitle className='text-green-800 flex items-center gap-2 min-w-0 font-medium'>
+          <Card key={group.id} className={cn('flex', newGroupState.loading ? 'pointer-events-none opacity-40' : '')}>
+            <CardHeader className='min-w-0 flex-1 justify-center space-y-0 pr-0'>
+              <CardTitle className='flex min-w-0 items-center gap-2 font-medium text-green-800'>
                 <p>{getEmojiFromString(group.id)}</p>
-                <p className='text-ellipsis text-nowrap overflow-hidden min-w-0'>{group.name}</p>
+                <p className='min-w-0 overflow-hidden text-ellipsis text-nowrap'>{group.name}</p>
               </CardTitle>
             </CardHeader>
-            <CardContent className='p-6 flex items-center'>
+            <CardContent className='flex items-center p-6'>
               <Button
-                className='text-[12px] rounded-2xl shadow-none  h-6 px-5'
+                className='h-6 rounded-2xl px-5 text-[12px] shadow-none'
                 onClick={() => navigateToGroup(group.id)}
               >
                 Ver

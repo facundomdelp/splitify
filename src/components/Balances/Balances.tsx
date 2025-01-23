@@ -24,9 +24,9 @@ const Balances = ({ balances, rounded, setRounded }: Props) => {
 
   return (
     <>
-      <section className='text-sm min-w-0'>
+      <section className='min-w-0 text-sm'>
         <div className='flex items-center gap-2'>
-          <h2 className='text-lg font-bold flex flex-nowrap gap-2 items-center' id='balances'>
+          <h2 className='flex flex-nowrap items-center gap-2 text-lg font-bold' id='balances'>
             <CircleDollarSign className='size-[22px] text-green-700' />
             {t('Balances')}
           </h2>
@@ -37,20 +37,20 @@ const Balances = ({ balances, rounded, setRounded }: Props) => {
           </div>
         </div>
 
-        <ul className='mt-4 flex flex-col gap-3 min-w-0'>
+        <ul className='mt-4 flex min-w-0 flex-col gap-3'>
           {balances.map((balance, index) => (
-            <li key={index} className='flex items-center min-w-0 flex-wrap'>
-              <div className='flex items-center min-w-0 gap-1 mr-1'>
-                <p className='w-[20px] text-center mr-1'>{getEmojiFromString(balance.debtor)}</p>
-                <p className='text-ellipsis whitespace-nowrap overflow-hidden min-w-0'>{balance.debtor}</p>
+            <li key={index} className='flex min-w-0 flex-wrap items-center'>
+              <div className='mr-1 flex min-w-0 items-center gap-1'>
+                <p className='mr-1 w-[20px] text-center'>{getEmojiFromString(balance.debtor)}</p>
+                <p className='min-w-0 overflow-hidden text-ellipsis whitespace-nowrap'>{balance.debtor}</p>
                 <p className='whitespace-nowrap'>{t('owes')}</p>
-                <strong className='font-semibold whitespace-nowrap'>
+                <strong className='whitespace-nowrap font-semibold'>
                   ${formatAmount(balance.amount, rounded ? 0 : 2)}
                 </strong>
               </div>
-              <div className='flex items-center min-w-0 gap-1'>
+              <div className='flex min-w-0 items-center gap-1'>
                 <p className='whitespace-nowrap'>{t('to')}</p>
-                <p className='text-ellipsis whitespace-nowrap overflow-hidden min-w-0'>{balance.creditor}</p>
+                <p className='min-w-0 overflow-hidden text-ellipsis whitespace-nowrap'>{balance.creditor}</p>
                 <p className='w-[20px] text-center'>{getEmojiFromString(balance.creditor)}</p>
               </div>
             </li>

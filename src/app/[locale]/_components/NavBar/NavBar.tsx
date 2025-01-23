@@ -76,16 +76,16 @@ const NavBar = ({
         </VisuallyHidden>
         <DrawerContent
           className={cn(
-            'overflow-y-auto text-black h-full mr-12 w-[400px] max-w-[90vw] overflow-x-hidden border-none',
+            'mr-12 h-full w-[400px] max-w-[90vw] overflow-y-auto overflow-x-hidden border-none text-black',
             direction === 'left' ? 'mr-auto rounded-tl-none' : 'ml-auto mr-0 rounded-tr-none',
           )}
           aria-describedby={undefined}
         >
-          <header className='flex p-8 pb-6 bg-green-700'>
+          <header className='flex bg-green-700 p-8 pb-6'>
             <Image src='/Splitify.png' alt='Splitify' width={LOGO_WIDTH} height={LOGO_WIDTH / (10 / 3)} />
           </header>
 
-          <main className='p-8 flex flex-col gap-8 flex-1'>
+          <main className='flex flex-1 flex-col gap-8 p-8'>
             <nav className='space-y-9'>
               <NavSection title={t('General')}>
                 {isInstallable && (
@@ -158,7 +158,7 @@ const NavBar = ({
             </nav>
           </main>
 
-          <footer className='gap-3 flex justify-end text-gray-700 mt-auto p-8 h-[118px]'>
+          <footer className='mt-auto flex h-[118px] justify-end gap-3 p-8 text-gray-700'>
             <SocialMedia />
           </footer>
         </DrawerContent>

@@ -46,12 +46,12 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
 
   return (
     <section className='flex flex-col gap-2'>
-      <p className='text-[12px] flex items-center gap-1 flex-nowrap text-gray-600'>
+      <p className='flex flex-nowrap items-center gap-1 text-[12px] text-gray-600'>
         <UserRound className='size-[12px] text-green-700' />
         {t('Add expense')}
       </p>
       <form className='flex flex-col gap-3' onSubmit={handleSubmit}>
-        <div className='flex gap-3 flex-wrap'>
+        <div className='flex flex-wrap gap-3'>
           <Input
             className='min-w-36 flex-[2.5] placeholder:text-gray-300'
             name='name'
@@ -66,9 +66,9 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
             // I should have a modalForm prop in here, and render the modal from this component
           />
 
-          <div className='flex gap-4 ml-auto flex-1 flex-grow-1'>
-            <div className={cn('relative min-w-[5.5rem] flex-1 ml-auto', !bigAddButton ? 'max-w-24' : '')}>
-              <span className='absolute left-2 top-1/2 -translate-y-1/2 text-gray-500 text-sm leading-4'>$</span>
+          <div className='flex-grow-1 ml-auto flex flex-1 gap-4'>
+            <div className={cn('relative ml-auto min-w-[5.5rem] flex-1', !bigAddButton ? 'max-w-24' : '')}>
+              <span className='absolute left-2 top-1/2 -translate-y-1/2 text-sm leading-4 text-gray-500'>$</span>
               <Input
                 className='pl-6 text-sm'
                 type='number'
@@ -92,15 +92,15 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
         </div>
 
         {includeDetails && (
-          <div className='flex flex-col min-h-auto'>
+          <div className='min-h-auto flex flex-col'>
             <div
               className={cn(
-                'grid overflow-hidden transition-[grid-template-rows] duration-300 ease-in-out min-h-0',
+                'grid min-h-0 overflow-hidden transition-[grid-template-rows] duration-300 ease-in-out',
                 // !showDetails ? 'grid-rows-[0fr]' : 'grid-rows-[1fr]',
               )}
             >
-              <div className='flex flex-wrap gap-2 px-1 max-w-full min-h-0 border-y border-transparent'>
-                <div className='space-y-1 flex-1 min-w-40 min-h-0'>
+              <div className='flex min-h-0 max-w-full flex-wrap gap-2 border-y border-transparent px-1'>
+                <div className='min-h-0 min-w-40 flex-1 space-y-1'>
                   <Label htmlFor='title' className='text-xs'>
                     <strong>{t('Title')}</strong> ({t('optional')})
                   </Label>
@@ -117,7 +117,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
                   />
                 </div>
 
-                <div className='space-y-1 flex-1 min-w-40 min-h-0'>
+                <div className='min-h-0 min-w-40 flex-1 space-y-1'>
                   <Label htmlFor='date' className='text-xs'>
                     <strong>{t('Date')}</strong> ({t('optional')})
                   </Label>

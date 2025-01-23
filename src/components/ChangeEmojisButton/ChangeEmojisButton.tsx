@@ -15,7 +15,7 @@ const ChangeEmojisButton = () => {
   return (
     <Button
       variant='outline'
-      className='flex w-[40px] h-[30px] py-1 px-2 ml-auto justify-evenly'
+      className='ml-auto flex h-[30px] w-[40px] justify-evenly px-2 py-1'
       onClick={handleChangeEmojis}
       tabIndex={-1}
     >

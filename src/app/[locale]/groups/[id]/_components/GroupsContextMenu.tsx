@@ -33,9 +33,9 @@ const GroupsContextMenu = ({ groupId }: Props) => {
             <p className='text-sm'>{t('🤑 Copy this link and share it with your friends! 💸')} </p>
             <code
               title='Copy this link'
-              className='text-[10px] text-wrap p-2 bg-gray-50 flex items-center justify-center overflow-x-auto'
+              className='flex items-center justify-center overflow-x-auto text-wrap bg-gray-50 p-2 text-[10px]'
             >{`https://splitify.me/${locale}/groups/${groupId}`}</code>
-            <p className='text-[10px] pb-3'>{t('Your friends would be able to easily add expenses to this group')} </p>
+            <p className='pb-3 text-[10px]'>{t('Your friends would be able to easily add expenses to this group')} </p>
             <CopyToClipboard
               onClick={() => setOpenShareModal(false)}
               copyString={`https://splitify.me/${locale}/groups/${groupId}`}

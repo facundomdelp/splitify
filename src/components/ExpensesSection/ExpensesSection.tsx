@@ -58,7 +58,7 @@ const ExpensesSection = ({ expenses, addExpense, removeExpense, loadingExpenses,
 
           <section
             className={cn(
-              'flex flex-col gap-8 flex-1 min-w-0 cursor-default mx-4',
+              'mx-4 flex min-w-0 flex-1 cursor-default flex-col gap-8',
               disabled ? 'pointer-events-none' : '',
             )}
           >
@@ -69,7 +69,7 @@ const ExpensesSection = ({ expenses, addExpense, removeExpense, loadingExpenses,
       ) : (
         <section
           className={cn(
-            'flex flex-col gap-8 flex-1 min-w-0 cursor-default mx-4',
+            'mx-4 flex min-w-0 flex-1 cursor-default flex-col gap-8',
             disabled ? 'pointer-events-none' : '',
           )}
         >

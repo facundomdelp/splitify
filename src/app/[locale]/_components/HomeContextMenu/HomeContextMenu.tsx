@@ -53,7 +53,7 @@ const HomeContextMenu = ({ expenses, setExpenses, setBalances, convertIntoGroup 
       <ContextMenu>
         <ContextMenuItem onClick={() => setOpenTurnIntoGroupConfirmationModal(true)} disabled={expenses.length === 0}>
           <Wand /> {t('Turn into a Group ✈️')}
-          <Badge className='my-auto px-[6px] uppercase text-nowrap opacity-70 rounded-lg text-[6px] flex leading-[0.6rem] pointer-events-none'>
+          <Badge className='pointer-events-none my-auto flex text-nowrap rounded-lg px-[6px] text-[6px] uppercase leading-[0.6rem] opacity-70'>
             Beta
           </Badge>
         </ContextMenuItem>

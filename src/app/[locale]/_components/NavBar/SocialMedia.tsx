@@ -54,7 +54,7 @@ const SocialMedia = () => {
           key={`social-media-${slug}`}
           href={href}
           target='_blank'
-          className='hover:text-bordeaux hover:underline transition-all flex items-center gap-1'
+          className='hover:text-bordeaux flex items-center gap-1 transition-all hover:underline'
         >
           <Icon className='size-5' />
         </Link>

@@ -34,7 +34,7 @@ function DrawerModal({ open, setOpen, title, description, children, className }:
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className={cn('sm:max-w-[425px] text-gray-700', className)}>
+        <DialogContent className={cn('text-gray-700 sm:max-w-[425px]', className)}>
           <DialogHeader>
             <DialogTitle>{title}</DialogTitle>
             <DialogDescription>{description}</DialogDescription>
@@ -59,7 +59,7 @@ function DrawerModal({ open, setOpen, title, description, children, className }:
         </Close>
 
         {children}
-        <DrawerFooter className='pt-2 px-0'>
+        <DrawerFooter className='px-0 pt-2'>
           {/* <DrawerClose asChild>
             <Button variant='outline' className='text-gray-600'>
               {t('Cancel')}

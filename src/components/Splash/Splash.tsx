@@ -17,8 +17,8 @@ const Splash = () => {
 
   return (
     !metadata.isLoaded && (
-      <div className='absolute inset-0 flex items-center justify-center bg-green-950 text-white z-50'>
-        <div className='text-center opacity-0 animate-slide-up'>
+      <div className='absolute inset-0 z-50 flex items-center justify-center bg-green-950 text-white'>
+        <div className='animate-slide-up text-center opacity-0'>
           <Image src='/Isologo.png' alt='Splitify' width={ISOLOGO_SIZE} height={ISOLOGO_SIZE} />
         </div>
       </div>
