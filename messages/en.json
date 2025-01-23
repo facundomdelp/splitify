@@ -63,6 +63,9 @@
     "Copy": "Copy",
     "Copied!": "Copied!"
   },
+  "DrawerModal": {
+    "Cancel": "Cancel"
+  },
   "Expenses": {
     "Expenses": "Expenses",
     "Enter an Expense to get started!": "Enter an Expense to get started!"
