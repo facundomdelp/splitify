@@ -132,7 +132,8 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
               className={cn('text-gray-600', !showDetails ? '' : 'mt-3')}
               variant='outline'
               type='button'
-              onClick={handleShowDetails}
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => handleShowDetails()}
               disabled={disabled}
             >
               {!showDetails ? <PlusIcon /> : <MinusIcon />}
