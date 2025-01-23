@@ -57,6 +57,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
             placeholder={t('John Spliti')}
             onFocus={onFocus}
             disabled={disabled}
+            autoFocus={onFocus ? undefined : true}
           />
 
           <div className='flex gap-4 ml-auto flex-1 flex-grow-1'>

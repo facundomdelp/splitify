@@ -22,6 +22,7 @@ const Modal = ({ open, setOpen, title, children, closeOnBackdropClick = false, c
           'min-w-0 w-[80vw] max-w-[400px] flex flex-col justify-center rounded-xl text-gray-700 px-5',
           className,
         )}
+        onOpenAutoFocus={(e) => e.preventDefault()}
       >
         <DialogHeader>
           <DialogTitle className='mx-4'>{title}</DialogTitle>
