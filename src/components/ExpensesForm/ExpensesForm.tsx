@@ -3,14 +3,14 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { MinusIcon, Plus, PlusIcon, UserRound } from 'lucide-react'
+import { Plus, UserRound } from 'lucide-react'
 import { useExpensesForm } from './hooks'
-import { useRef } from 'react'
+import { FocusEventHandler, useRef } from 'react'
 import { useTranslations } from 'next-intl'
 import { cn } from '@/lib/utils'
 
 interface Props {
-  onFocus?: () => void
+  onFocus?: FocusEventHandler<HTMLInputElement>
   includeDetails?: boolean
   bigAddButton?: boolean
   onSubmit?: ({ name, amount }: { name: string; amount: number }) => void
@@ -25,8 +25,8 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
     handleName,
     amount,
     handleAmount,
-    handleShowDetails,
-    showDetails,
+    // handleShowDetails,
+    // showDetails,
     title,
     handleTitle,
     date,
@@ -57,6 +57,8 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
             placeholder={t('John Spliti')}
             onFocus={onFocus}
             disabled={disabled}
+            autoFocus={includeDetails} // This is for not auto-focussing when the form is open through a modal
+            // I should have a modalForm prop in here, and render the modal from this component
           />
 
           <div className='flex gap-4 ml-auto flex-1 flex-grow-1'>
@@ -89,7 +91,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
             <div
               className={cn(
                 'grid overflow-hidden transition-[grid-template-rows] duration-300 ease-in-out min-h-0',
-                !showDetails ? 'grid-rows-[0fr]' : 'grid-rows-[1fr]',
+                // !showDetails ? 'grid-rows-[0fr]' : 'grid-rows-[1fr]',
               )}
             >
               <div className='flex flex-wrap gap-2 px-1 max-w-full min-h-0 border-y border-transparent'>
@@ -105,7 +107,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
                     onChange={handleTitle}
                     value={title}
                     placeholder={t('For example: Taxi')}
-                    tabIndex={!showDetails ? -1 : undefined}
+                    // tabIndex={!showDetails ? -1 : undefined}
                     disabled={disabled}
                   />
                 </div>
@@ -121,14 +123,14 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
                     className={cn(!date ? 'text-gray-300' : 'text-black')}
                     onChange={handleDate}
                     value={date}
-                    tabIndex={!showDetails ? -1 : undefined}
+                    // tabIndex={!showDetails ? -1 : undefined}
                     disabled={disabled}
                   />
                 </div>
               </div>
             </div>
 
-            <Button
+            {/* <Button
               className={cn('text-gray-600', !showDetails ? '' : 'mt-3')}
               variant='outline'
               type='button'
@@ -138,7 +140,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
             >
               {!showDetails ? <PlusIcon /> : <MinusIcon />}
               {t('Details')}
-            </Button>
+            </Button> */}
           </div>
         )}
 

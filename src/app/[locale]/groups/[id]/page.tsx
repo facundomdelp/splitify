@@ -96,6 +96,7 @@ const GroupPage = () => {
                   loadingExpenses={loadingExpenses}
                   addExpense={addExpense}
                   removeExpense={removeExpense}
+                  modalForm
                 />,
                 <BalancesSection
                   key='balances-section'

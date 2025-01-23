@@ -12,9 +12,10 @@ interface Props {
   removeExpense: (id: string) => void
   loadingExpenses?: boolean
   disabled?: boolean
+  modalForm?: boolean
 }
 
-const ExpensesSection = ({ expenses, addExpense, removeExpense, loadingExpenses, disabled }: Props) => {
+const ExpensesSection = ({ expenses, addExpense, removeExpense, loadingExpenses, disabled, modalForm }: Props) => {
   const [openModal, setOpenModal] = useState(false)
 
   const handleSubmit = ({
@@ -44,16 +45,33 @@ const ExpensesSection = ({ expenses, addExpense, removeExpense, loadingExpenses,
       {/* <Modal open={openModal} setOpen={setOpenModal} title={t('Add Expense')} className='px-6 w-[90vw] max-w-[500px]'>
         <ExpensesForm includeDetails bigAddButton onSubmit={handleSubmit} disabled={disabled} />
       </Modal> */}
-      <DrawerModal open={openModal} setOpen={setOpenModal} title={t('Add Expense')} className='px-5'>
-        <ExpensesForm includeDetails bigAddButton onSubmit={handleSubmit} disabled={disabled} />
-      </DrawerModal>
+      {modalForm ? (
+        <>
+          <DrawerModal open={openModal} setOpen={setOpenModal} title={t('Add Expense')} className='px-5'>
+            <ExpensesForm includeDetails bigAddButton onSubmit={handleSubmit} disabled={disabled} />
+          </DrawerModal>
 
-      <section
-        className={cn('flex flex-col gap-8 flex-1 min-w-0 cursor-default mx-4', disabled ? 'pointer-events-none' : '')}
-      >
-        <ExpensesForm onFocus={() => setOpenModal(true)} disabled={disabled} />
-        <Expenses expenses={expenses} onRemoveExpense={removeExpense} loading={loadingExpenses} />
-      </section>
+          <section
+            className={cn(
+              'flex flex-col gap-8 flex-1 min-w-0 cursor-default mx-4',
+              disabled ? 'pointer-events-none' : '',
+            )}
+          >
+            <ExpensesForm onFocus={() => setOpenModal(true)} disabled={disabled} />
+            <Expenses expenses={expenses} onRemoveExpense={removeExpense} loading={loadingExpenses} />
+          </section>
+        </>
+      ) : (
+        <section
+          className={cn(
+            'flex flex-col gap-8 flex-1 min-w-0 cursor-default mx-4',
+            disabled ? 'pointer-events-none' : '',
+          )}
+        >
+          <ExpensesForm onSubmit={handleSubmit} disabled={disabled} />
+          <Expenses expenses={expenses} onRemoveExpense={removeExpense} loading={loadingExpenses} />
+        </section>
+      )}
     </>
   )
 }
