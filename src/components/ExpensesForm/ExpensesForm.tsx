@@ -40,13 +40,13 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
   const t = useTranslations('ExpensesForm')
 
   return (
-    <section className='flex flex-col gap-2 min-h-0'>
+    <section className='flex flex-col gap-2 min-h-0 overflow-auto'>
       <p className='text-[12px] flex items-center gap-1 flex-nowrap text-gray-600'>
         <UserRound className='size-[12px] text-green-700' />
         {t('Add expense')}
       </p>
       <form className='flex flex-col gap-3 min-h-0' onSubmit={handleSubmit}>
-        <div className='flex gap-3 flex-wrap min-h-0'>
+        <div className='flex gap-3 flex-wrap'>
           <Input
             className='min-w-36 flex-[2.5] placeholder:text-gray-300'
             name='name'

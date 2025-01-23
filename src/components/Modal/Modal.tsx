@@ -18,7 +18,7 @@ const Modal = ({ open, setOpen, title, children, closeOnBackdropClick = false, c
       <DialogContent
         onPointerDownOutside={!closeOnBackdropClick ? (e) => e.preventDefault() : undefined}
         className={cn(
-          'min-w-0 w-[80vw] max-w-[400px] max-h-[80vh] min-h-[200px] flex flex-col justify-center rounded-xl text-gray-700 px-5',
+          'min-w-0 w-[80vw] max-w-[400px] max-h-[50vh] min-h-[200px] flex flex-col justify-center rounded-xl text-gray-700 px-5',
           className,
         )}
         onOpenAutoFocus={(e) => e.preventDefault()}
@@ -26,7 +26,9 @@ const Modal = ({ open, setOpen, title, children, closeOnBackdropClick = false, c
         <DialogHeader>
           <DialogTitle className='mx-4'>{title}</DialogTitle>
         </DialogHeader>
-        <DialogDescription className='overflow-auto min-h-0'>{children}</DialogDescription>
+        <DialogDescription className='overflow-auto min-h-0' asChild>
+          {children}
+        </DialogDescription>
       </DialogContent>
     </Dialog>
   )
