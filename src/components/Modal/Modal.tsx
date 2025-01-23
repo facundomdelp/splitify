@@ -20,11 +20,9 @@ const Modal = ({ open, setOpen, title, children, closeOnBackdropClick = false, c
         onPointerDownOutside={!closeOnBackdropClick ? (e) => e.preventDefault() : undefined}
         className={cn(
           'min-w-0 w-[80vw] max-w-[400px] flex flex-col justify-center rounded-xl text-gray-700 px-5',
-          // focus ? 'top-5 translate-y-0' : '',
           className,
         )}
-        // onFocus={() => setIsFocus(true)}
-        // onBlur={() => setIsFocus(false)}
+        onOpenAutoFocus={(e) => e.preventDefault()}
       >
         <DialogHeader>
           <DialogTitle className='mx-4'>{title}</DialogTitle>
