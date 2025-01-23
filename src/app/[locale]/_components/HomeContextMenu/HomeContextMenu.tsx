@@ -1,12 +1,16 @@
+import React, { useState } from 'react'
+
+import { useTranslations } from 'next-intl'
+
+import { Balance } from '@/types/balance.types'
+import { Expense } from '@/types/expense.types'
+
 import ConfirmationModal from '@/components/ConfirmationModal'
 import ContextMenu from '@/components/ContextMenu'
 import { ContextMenuItem } from '@/components/ContextMenu/ContextMenu'
 import { Badge } from '@/components/ui/badge'
-import { Balance } from '@/types/balance.types'
-import { Expense } from '@/types/expense.types'
+
 import { Eraser, Wand } from 'lucide-react'
-import { useTranslations } from 'next-intl'
-import React, { useState } from 'react'
 
 interface Props {
   expenses: Expense[]

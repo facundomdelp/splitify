@@ -1,9 +1,11 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
-import { Dialog, DialogContent, DialogTitle, DialogFooter, DialogDescription } from '@/components/ui/dialog'
-import { useTranslations } from 'next-intl'
 import { ReactNode } from 'react'
+
+import { useTranslations } from 'next-intl'
+
+import { Button } from '@/components/ui/button'
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogTitle } from '@/components/ui/dialog'
 
 interface Props {
   open: boolean

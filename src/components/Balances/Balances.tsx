@@ -1,10 +1,14 @@
 'use client'
 
-import { formatAmount } from '@/lib/functions/formatAmount'
-import { Balance } from '@/types/balance.types'
-import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
 import { useTranslations } from 'next-intl'
+
+import { Balance } from '@/types/balance.types'
+
 import { Switch } from '@/components/ui/switch'
+
+import { formatAmount } from '@/utils/functions/formatAmount'
+import { useGetEmojiFromString } from '@/utils/hooks/useGetEmojiFromString'
+
 import { CircleDollarSign } from 'lucide-react'
 
 interface Props {

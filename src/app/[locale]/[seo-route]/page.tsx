@@ -1,11 +1,14 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
-import { SEO_ROUTES } from '@/seo/seoRoutes'
-import { useParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
+
 import { Locale } from '@/types/common.types'
+
+import { Button } from '@/components/ui/button'
+
+import { SEO_ROUTES } from '@/seo/seoRoutes'
 
 const SeoPage = () => {
   const params = useParams<{ locale: Locale; 'seo-route': string }>()

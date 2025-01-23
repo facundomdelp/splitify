@@ -1,7 +1,9 @@
+import { useMemo } from 'react'
+
 import { Balance } from '@/types/balance.types'
 import { Expense } from '@/types/expense.types'
+
 import { calculateBalances } from '../functions/calculateBalances'
-import { useMemo } from 'react'
 
 interface useCalculateBalancesProps {
   expenses: Expense[]

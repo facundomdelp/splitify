@@ -1,4 +1,5 @@
 import Image from 'next/image'
+
 import NavBar from '../NavBar/NavBar'
 
 const LOGO_WIDTH = 120

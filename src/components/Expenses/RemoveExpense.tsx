@@ -1,10 +1,14 @@
 'use client'
 
-import ConfirmationModal from '@/components/ConfirmationModal'
-import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
-import { X } from 'lucide-react'
-import { useTranslations } from 'next-intl'
 import { useState } from 'react'
+
+import { useTranslations } from 'next-intl'
+
+import ConfirmationModal from '@/components/ConfirmationModal'
+
+import { useGetEmojiFromString } from '@/utils/hooks/useGetEmojiFromString'
+
+import { X } from 'lucide-react'
 
 interface Props {
   id: string

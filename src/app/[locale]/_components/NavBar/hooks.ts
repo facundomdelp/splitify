@@ -1,6 +1,8 @@
-import { useRouter } from '@/i18n/routing'
-import { CustomError } from '@/lib/errors/CustomErrors'
 import { useState } from 'react'
+
+import { useRouter } from '@/i18n/routing'
+
+import { CustomError } from '@/utils/errors/CustomErrors'
 
 interface useHandleNavigationProps {
   setDrawerOpen: React.Dispatch<React.SetStateAction<boolean>>

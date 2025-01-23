@@ -1,4 +1,4 @@
-import { calculateBalances } from '@/lib/functions/calculateBalances'
+import { calculateBalances } from '@/utils/functions/calculateBalances'
 
 // npx tsx scripts/calculateBalances.ts
 

@@ -1,5 +1,7 @@
-import { addDoc, collection, doc, getDoc, Timestamp, updateDoc } from 'firebase/firestore'
-import { CustomError } from '@/lib/errors/CustomErrors'
+import { Timestamp, addDoc, collection, doc, getDoc, updateDoc } from 'firebase/firestore'
+
+import { CustomError } from '@/utils/errors/CustomErrors'
+
 import { db } from '..'
 import { tablesNames } from '../tableNames'
 

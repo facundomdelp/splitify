@@ -1,10 +1,14 @@
-import { CustomError } from '@/lib/errors/CustomErrors'
-import { generateId } from '@/lib/functions/generateId'
-import { useSetGroups } from '@/store/groups.store'
+import React, { useCallback, useEffect, useState } from 'react'
+
+import { useParams } from 'next/navigation'
+
 import { Expense, GetGroupExpensesResponse } from '@/types/expense.types'
 import { GetGroupResponse } from '@/types/group.types'
-import { useParams } from 'next/navigation'
-import React, { useCallback, useEffect, useState } from 'react'
+
+import { useSetGroups } from '@/store/groups.store'
+
+import { CustomError } from '@/utils/errors/CustomErrors'
+import { generateId } from '@/utils/functions/generateId'
 
 export const useGetGroup = () => {
   const { groups, setGroups, initialized } = useSetGroups()

@@ -1,16 +1,21 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
-import { useSetExpenses } from '@/store/expenses.store'
-import { useSetBalances } from '@/store/balances.store'
-import { useAddExpense, useConvertIntoGroup } from './hooks'
-import ExpensesSection from '@/components/ExpensesSection'
-import BalancesSection from '@/components/BalancesSection'
-import Spinner from '@/components/ui/spinner'
-import ExpensesBalancesTabs from '@/components/ExpensesBalancesTabs'
-import { useCalculateBalances } from '@/lib/hooks/useCalculateBalances'
 import { useState } from 'react'
+
+import { useTranslations } from 'next-intl'
+
 import HomeContextMenu from './_components/HomeContextMenu'
+import BalancesSection from '@/components/BalancesSection'
+import ExpensesBalancesTabs from '@/components/ExpensesBalancesTabs'
+import ExpensesSection from '@/components/ExpensesSection'
+import Spinner from '@/components/ui/spinner'
+
+import { useSetBalances } from '@/store/balances.store'
+import { useSetExpenses } from '@/store/expenses.store'
+
+import { useCalculateBalances } from '@/utils/hooks/useCalculateBalances'
+
+import { useAddExpense, useConvertIntoGroup } from './hooks'
 
 export default function Home() {
   const [expenses, setExpenses] = useSetExpenses()

@@ -1,14 +1,18 @@
-import { Inter } from 'next/font/google'
-import Header from './_components/Layout/Header'
-import Footer from './_components/Layout/Footer'
 import { GoogleTagManager } from '@next/third-parties/google'
-import Splash from '@/components/Splash'
+import { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations } from 'next-intl/server'
-import { routing } from '@/i18n/routing'
+import { Inter } from 'next/font/google'
 import { notFound } from 'next/navigation'
+
+import { routing } from '@/i18n/routing'
+
 import { Locale } from '@/types/common.types'
-import { Metadata } from 'next'
+
+import Footer from './_components/Layout/Footer'
+import Header from './_components/Layout/Header'
+import Splash from '@/components/Splash'
+
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] })

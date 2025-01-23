@@ -1,10 +1,11 @@
 'use client'
 
 import { ForwardRefExoticComponent, ReactNode, RefAttributes, useState } from 'react'
-import { cn } from '@/lib/utils'
-import { Globe, HandCoinsIcon, LucideProps, MenuIcon, RocketIcon } from 'lucide-react'
+
 import { useTranslations } from 'next-intl'
-import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
+import Image from 'next/image'
+
+import { Button } from '@/components/ui/button'
 import {
   Drawer,
   DrawerContent,
@@ -13,16 +14,23 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer'
-import { Button } from '@/components/ui/button'
-import { usePWAInstall } from '@/lib/hooks/usePWAInstall'
-import Image from 'next/image'
-import LocaleSelectorModal from './LocaleSelectorModal'
-import SocialMedia from './SocialMedia'
-import NavSection from './NavSection'
-import NavItem from './NavItem'
-import { useAddNewGroup, useHandleNavigation } from './hooks'
+
 import { useSetGroups } from '@/store/groups.store'
-import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
+
+import { useGetEmojiFromString } from '@/utils/hooks/useGetEmojiFromString'
+import { usePWAInstall } from '@/utils/hooks/usePWAInstall'
+
+import { useAddNewGroup, useHandleNavigation } from './hooks'
+
+import { Globe, HandCoinsIcon, LucideProps, MenuIcon, RocketIcon } from 'lucide-react'
+
+import { cn } from '@/lib/utils'
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
+
+import LocaleSelectorModal from './LocaleSelectorModal'
+import NavItem from './NavItem'
+import NavSection from './NavSection'
+import SocialMedia from './SocialMedia'
 
 const LOGO_WIDTH = 120
 

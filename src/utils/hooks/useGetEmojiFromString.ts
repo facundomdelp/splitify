@@ -1,7 +1,9 @@
+import { useCallback } from 'react'
+
+import { useGetMetadata } from '@/store/metadata.store'
+
 import { EMOJIS } from '../constants/emojis'
 import { hashStringToNumber } from '../functions/hashStringToNumber'
-import { useCallback } from 'react'
-import { useGetMetadata } from '../../store/metadata.store'
 
 const emojis = Object.keys(EMOJIS)
 const emojisLength = emojis.length

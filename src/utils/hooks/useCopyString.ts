@@ -1,8 +1,11 @@
-import { Balance } from '@/types/balance.types'
-import { useGetEmojiFromString } from './useGetEmojiFromString'
 import { useMemo } from 'react'
-import { formatAmount } from '../functions/formatAmount'
+
 import { useTranslations } from 'next-intl'
+
+import { Balance } from '@/types/balance.types'
+
+import { formatAmount } from '../functions/formatAmount'
+import { useGetEmojiFromString } from './useGetEmojiFromString'
 
 interface useCopyStringProps {
   balances: Balance[]

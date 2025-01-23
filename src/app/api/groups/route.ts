@@ -1,9 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
-import GroupService from '@/services/groups.services'
-import { AddGroupRequestBody } from '@/types/group.types'
-import { validateAddGroup } from '@/validators/groups.validators'
+
 import { Locale } from '@/types/common.types'
-import { handleErrors } from '@/lib/errors/handleErrors'
+import { AddGroupRequestBody } from '@/types/group.types'
+
+import { handleErrors } from '@/utils/errors/handleErrors'
+
+import GroupService from '@/services/groups.services'
+import { validateAddGroup } from '@/validators/groups.validators'
 
 const groupService = new GroupService()
 

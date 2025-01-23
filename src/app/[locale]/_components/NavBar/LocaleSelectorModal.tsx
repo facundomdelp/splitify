@@ -1,7 +1,9 @@
+import React from 'react'
+
+import { useTranslations } from 'next-intl'
+
 import LocaleSelector from '@/components/LocaleSelector'
 import Modal from '@/components/Modal'
-import { useTranslations } from 'next-intl'
-import React from 'react'
 
 interface Props {
   open: boolean

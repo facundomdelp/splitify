@@ -1,5 +1,6 @@
 import { z } from 'zod'
-import { idParam, ValidationResult } from '@/types/common.types'
+
+import { ValidationResult, idParam } from '@/types/common.types'
 import { AddExpenseRequestBody } from '@/types/expense.types'
 
 const validateExpenseIdSchema = z.object({

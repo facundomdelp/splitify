@@ -1,8 +1,10 @@
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
-import Image from 'next/image'
-import { Locale } from '@/types/common.types'
 import { useLocale } from 'next-intl'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+
+import { Locale } from '@/types/common.types'
+
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
 
 const AVAILABLE_LOCALES: Array<{ locale: Locale; description: string; src: string }> = [
   { locale: 'en', description: 'English', src: '/en.jpg' },

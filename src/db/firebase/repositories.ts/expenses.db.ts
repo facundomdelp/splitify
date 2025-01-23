@@ -1,4 +1,5 @@
-import { addDoc, collection, deleteDoc, doc, getDocs, query, Timestamp, where } from 'firebase/firestore'
+import { Timestamp, addDoc, collection, deleteDoc, doc, getDocs, query, where } from 'firebase/firestore'
+
 import { db } from '..'
 import { tablesNames } from '../tableNames'
 

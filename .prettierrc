@@ -4,5 +4,23 @@
   "singleQuote": true,
   "jsxSingleQuote": true,
   "printWidth": 120,
-  "endOfLine": "auto"
+  "endOfLine": "auto",
+  "importOrder": [
+    "^react",
+    "^next.*$|^@next/.*$",
+    "^@/i18n",
+    "^@/types",
+    "^@/components|/_components",
+    "^@/store",
+    "^@/utils",
+    "^./hooks",
+    "lucide-react",
+    "^@(.*)$",
+    "^['~/(*)']",
+    "^['.']"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "importOrderGroupNamespaceSpecifiers": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"]
 }

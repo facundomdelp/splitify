@@ -1,8 +1,11 @@
+import React from 'react'
+
+import { Balance } from '@/types/balance.types'
+
 import Balances from '@/components/Balances'
 import CopyToClipboard from '@/components/CopyToClipboard'
-import { useCopyString } from '@/lib/hooks/useCopyString'
-import { Balance } from '@/types/balance.types'
-import React from 'react'
+
+import { useCopyString } from '@/utils/hooks/useCopyString'
 
 interface Props {
   balances: Balance[]

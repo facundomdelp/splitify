@@ -1,4 +1,5 @@
 import { Locale } from '@/types/common.types'
+
 import { ADJECTIVES, NOUNS } from '../constants/names'
 
 export const generateRandomName = (locale?: Locale) => {

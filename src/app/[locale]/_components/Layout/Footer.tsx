@@ -1,8 +1,10 @@
-import { SEO_ROUTES } from '@/seo/seoRoutes'
-import { Locale } from '@/types/common.types'
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
+
+import { Locale } from '@/types/common.types'
+
+import { SEO_ROUTES } from '@/seo/seoRoutes'
 
 const LOCALES: Locale[] = ['en', 'es', 'pt']
 const ISOLOGO_SIZE = 65

@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+
 import { CustomError } from './CustomErrors'
 
 export function handleErrors(error: unknown) {

@@ -1,10 +1,14 @@
+import { ForwardRefExoticComponent, RefAttributes } from 'react'
+
+import { Link } from '@/i18n/routing'
+
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import Spinner from '@/components/ui/spinner'
-import { Link } from '@/i18n/routing'
-import { cn } from '@/lib/utils'
+
 import { ChevronRight, LucideProps } from 'lucide-react'
-import { ForwardRefExoticComponent, RefAttributes } from 'react'
+
+import { cn } from '@/lib/utils'
 
 interface Props {
   children: string

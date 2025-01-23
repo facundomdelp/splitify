@@ -1,7 +1,8 @@
 'use client'
 
-import { GeoLocation } from '@/types/common.types'
 import { useEffect, useState } from 'react'
+
+import { GeoLocation } from '@/types/common.types'
 
 export const useGetGeoLocation = () => {
   const [geoLocation, setGeoLocation] = useState<GeoLocation | null>(null)

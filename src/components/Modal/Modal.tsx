@@ -1,7 +1,9 @@
 import { ReactNode } from 'react'
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog'
+
 import { cn } from '@/lib/utils'
 import { DialogDescription } from '@radix-ui/react-dialog'
+
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog'
 
 interface Props {
   open: boolean

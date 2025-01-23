@@ -1,9 +1,12 @@
+import { useState } from 'react'
+
 import { useRouter } from '@/i18n/routing'
-import { CustomError } from '@/lib/errors/CustomErrors'
-import { generateId } from '@/lib/functions/generateId'
+
 import { Balance } from '@/types/balance.types'
 import { Expense } from '@/types/expense.types'
-import { useState } from 'react'
+
+import { CustomError } from '@/utils/errors/CustomErrors'
+import { generateId } from '@/utils/functions/generateId'
 
 interface useAddExpenseProps {
   setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>

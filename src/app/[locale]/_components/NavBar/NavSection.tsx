@@ -1,5 +1,6 @@
-import { slugify } from '@/lib/functions/slugify'
 import { ReactNode, useMemo } from 'react'
+
+import { slugify } from '@/utils/functions/slugify'
 
 interface Props {
   title: string

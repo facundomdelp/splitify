@@ -1,5 +1,4 @@
 // https://flowbite.com/docs/components/spinner/
-
 import { cn } from '@/lib/utils'
 
 interface Props {

@@ -1,8 +1,12 @@
 import React from 'react'
-import { Button } from '../ui/button'
+
+import { useGetEmojiFromString } from '@/utils/hooks/useGetEmojiFromString'
+
 import { useHandleChangeEmojis } from './hooks'
-import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
+
 import { cn } from '@/lib/utils'
+
+import { Button } from '../ui/button'
 
 const ChangeEmojisButton = () => {
   const { handleChangeEmojis, rotate, isChangeEmojiClicked } = useHandleChangeEmojis()

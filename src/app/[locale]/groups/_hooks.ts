@@ -1,6 +1,8 @@
-import { Locale } from '@/types/common.types'
-import { useParams, useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
+
+import { useParams, useRouter } from 'next/navigation'
+
+import { Locale } from '@/types/common.types'
 
 export const useAddNewGroup = () => {
   const [newGroupState, setNewGroupState] = useState({ loading: false, error: false })

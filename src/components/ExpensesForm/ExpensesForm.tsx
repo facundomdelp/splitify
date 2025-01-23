@@ -1,12 +1,17 @@
 'use client'
 
+import { FocusEventHandler, useRef } from 'react'
+
+import { useTranslations } from 'next-intl'
+
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Plus, UserRound } from 'lucide-react'
+
 import { useExpensesForm } from './hooks'
-import { FocusEventHandler, useRef } from 'react'
-import { useTranslations } from 'next-intl'
+
+import { Plus, UserRound } from 'lucide-react'
+
 import { cn } from '@/lib/utils'
 
 interface Props {

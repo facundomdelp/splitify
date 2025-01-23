@@ -1,6 +1,8 @@
-import Groups from '@/db/firebase/repositories.ts/groups.db'
-import { generateRandomName } from '@/lib/functions/generateRandomName'
 import { Locale } from '@/types/common.types'
+
+import { generateRandomName } from '@/utils/functions/generateRandomName'
+
+import Groups from '@/db/firebase/repositories.ts/groups.db'
 
 const groups = new Groups()
 

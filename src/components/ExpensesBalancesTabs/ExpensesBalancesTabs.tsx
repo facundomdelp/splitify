@@ -1,7 +1,10 @@
 import { ReactNode, useState } from 'react'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs'
-import CalculateButton from '@/components/CalculateButton/CalculateButton'
+
 import { useTranslations } from 'next-intl'
+
+import CalculateButton from '@/components/CalculateButton/CalculateButton'
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs'
 
 interface Props {
   children: [ReactNode, ReactNode]

@@ -1,12 +1,16 @@
+import React, { useState } from 'react'
+
+import { useLocale, useTranslations } from 'next-intl'
+
 import ConfirmationModal from '@/components/ConfirmationModal'
 import ContextMenu from '@/components/ContextMenu'
 import { ContextMenuItem } from '@/components/ContextMenu/ContextMenu'
 import CopyToClipboard from '@/components/CopyToClipboard'
 import Modal from '@/components/Modal'
-import { Share2, Trash2 } from 'lucide-react'
-import { useLocale, useTranslations } from 'next-intl'
-import React, { useState } from 'react'
+
 import { useRemoveGroup } from './hooks'
+
+import { Share2, Trash2 } from 'lucide-react'
 
 interface Props {
   groupId?: string

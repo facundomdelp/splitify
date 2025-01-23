@@ -1,5 +1,6 @@
-import { useSetMetadata } from '@/store/metadata.store'
 import { useState } from 'react'
+
+import { useSetMetadata } from '@/store/metadata.store'
 
 export const useHandleChangeEmojis = () => {
   const [isChangeEmojiClicked, setIsChangeEmojiClicked] = useState(false)

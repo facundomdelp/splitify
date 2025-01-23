@@ -1,7 +1,9 @@
+import React from 'react'
+
+import { useTranslations } from 'next-intl'
+
 import { Button } from '@/components/ui/button'
 import Spinner from '@/components/ui/spinner'
-import { useTranslations } from 'next-intl'
-import React from 'react'
 
 interface Props {
   disabled?: boolean

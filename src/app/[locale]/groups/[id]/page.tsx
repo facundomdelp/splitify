@@ -1,18 +1,24 @@
 'use client'
 
-import { useGetEmojiFromString } from '@/lib/hooks/useGetEmojiFromString'
-import { useAddExpense, useGetGroup, useGetGroupExpenses } from './hooks'
 import { useState } from 'react'
-import ExpensesSection from '@/components/ExpensesSection'
-import { Balance } from '@/types/balance.types'
-import BalancesSection from '@/components/BalancesSection'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
-import { TooltipArrow } from '@radix-ui/react-tooltip'
-import ExpensesBalancesTabs from '@/components/ExpensesBalancesTabs'
-import { useCalculateBalances } from '@/lib/hooks/useCalculateBalances'
-import GroupsContextMenu from './_components/GroupsContextMenu'
-import { CustomError } from '@/lib/errors/CustomErrors'
+
 import { useTranslations } from 'next-intl'
+
+import { Balance } from '@/types/balance.types'
+
+import GroupsContextMenu from './_components/GroupsContextMenu'
+import BalancesSection from '@/components/BalancesSection'
+import ExpensesBalancesTabs from '@/components/ExpensesBalancesTabs'
+import ExpensesSection from '@/components/ExpensesSection'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+
+import { CustomError } from '@/utils/errors/CustomErrors'
+import { useCalculateBalances } from '@/utils/hooks/useCalculateBalances'
+import { useGetEmojiFromString } from '@/utils/hooks/useGetEmojiFromString'
+
+import { useAddExpense, useGetGroup, useGetGroupExpenses } from './hooks'
+
+import { TooltipArrow } from '@radix-ui/react-tooltip'
 
 const GroupPage = () => {
   const { /* loading,  */ /* error,  */ group } = useGetGroup()

@@ -1,8 +1,10 @@
 'use client'
 
-import Image from 'next/image'
-import { useSetMetadata } from '../../store/metadata.store'
 import { useEffect } from 'react'
+
+import Image from 'next/image'
+
+import { useSetMetadata } from '@/store/metadata.store'
 
 const ISOLOGO_SIZE = 200
 
