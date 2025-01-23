@@ -5,11 +5,10 @@ import Link from 'next/link'
 import TiktokLogo from '@/components/icons/TiktokLogo'
 import XLogo from '@/components/icons/XLogo'
 
+import { COUNTRIES } from '@/utils/constants/countries'
 import { useGetGeoLocation } from '@/utils/hooks/useGetGeoLocation'
 
 import { MailIcon } from 'lucide-react'
-
-import { COUNTRIES } from '@/lib/constants/countries'
 
 const SocialMedia = () => {
   const userGeoLocation = useGetGeoLocation()
