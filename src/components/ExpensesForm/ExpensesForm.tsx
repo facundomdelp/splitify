@@ -40,13 +40,13 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
   const t = useTranslations('ExpensesForm')
 
   return (
-    <section className='flex flex-col gap-2'>
+    <section className='flex flex-col gap-2 min-h-0'>
       <p className='text-[12px] flex items-center gap-1 flex-nowrap text-gray-600'>
         <UserRound className='size-[12px] text-green-700' />
         {t('Add expense')}
       </p>
-      <form className='flex flex-col gap-3' onSubmit={handleSubmit}>
-        <div className='flex gap-3 flex-wrap'>
+      <form className='flex flex-col gap-3 min-h-0' onSubmit={handleSubmit}>
+        <div className='flex gap-3 flex-wrap min-h-0'>
           <Input
             className='min-w-36 flex-[2.5] placeholder:text-gray-300'
             name='name'
@@ -59,8 +59,8 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
             disabled={disabled}
           />
 
-          <div className='flex gap-4 ml-auto flex-1 flex-grow-1'>
-            <div className={cn('relative min-w-[5.5rem] flex-1 ml-auto', !bigAddButton ? 'max-w-24' : '')}>
+          <div className='flex gap-4 ml-auto flex-1 flex-grow-1 min-h-0'>
+            <div className={cn('relative min-w-[5.5rem] flex-1 ml-auto min-h-o', !bigAddButton ? 'max-w-24' : '')}>
               <span className='absolute left-2 top-1/2 -translate-y-1/2 text-gray-500 text-sm leading-4'>$</span>
               <Input
                 className='pl-6 text-sm'
@@ -85,15 +85,15 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
         </div>
 
         {includeDetails && (
-          <div className='flex flex-col'>
+          <div className='flex flex-col min-h-auto'>
             <div
               className={cn(
-                'grid overflow-hidden transition-[grid-template-rows] duration-300 ease-in-out',
+                'grid overflow-hidden transition-[grid-template-rows] duration-300 ease-in-out min-h-0',
                 !showDetails ? 'grid-rows-[0fr]' : 'grid-rows-[1fr]',
               )}
             >
               <div className='flex flex-wrap gap-2 px-1 max-w-full min-h-0 border-y border-transparent'>
-                <div className='space-y-1 flex-1 min-w-40'>
+                <div className='space-y-1 flex-1 min-w-40 min-h-0'>
                   <Label htmlFor='title' className='text-xs'>
                     <strong>{t('Title')}</strong> ({t('optional')})
                   </Label>
@@ -110,7 +110,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
                   />
                 </div>
 
-                <div className='space-y-1 flex-1 min-w-40'>
+                <div className='space-y-1 flex-1 min-w-40 min-h-0'>
                   <Label htmlFor='date' className='text-xs'>
                     <strong>{t('Date')}</strong> ({t('optional')})
                   </Label>

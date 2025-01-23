@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '../ui/dialog'
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog'
 import { cn } from '@/lib/utils'
+import { DialogDescription } from '@radix-ui/react-dialog'
 
 interface Props {
   open: boolean
@@ -17,16 +18,15 @@ const Modal = ({ open, setOpen, title, children, closeOnBackdropClick = false, c
       <DialogContent
         onPointerDownOutside={!closeOnBackdropClick ? (e) => e.preventDefault() : undefined}
         className={cn(
-          'min-w-0 w-[80vw] max-w-[400px] flex flex-col justify-center rounded-xl text-gray-700 px-5',
+          'min-w-0 w-[80vw] max-w-[400px] max-h-[80vh] min-h-[200px] flex flex-col justify-center rounded-xl text-gray-700 px-5',
           className,
         )}
         onOpenAutoFocus={(e) => e.preventDefault()}
       >
         <DialogHeader>
           <DialogTitle className='mx-4'>{title}</DialogTitle>
-          <DialogDescription />
         </DialogHeader>
-        {children}
+        <DialogDescription className='overflow-auto min-h-0'>{children}</DialogDescription>
       </DialogContent>
     </Dialog>
   )
