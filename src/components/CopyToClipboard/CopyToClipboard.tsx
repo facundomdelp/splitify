@@ -4,11 +4,11 @@ import { useState } from 'react'
 
 import { useTranslations } from 'next-intl'
 
+import { cn } from '@/lib/utils'
+
 import { copyToClipboard } from '@/utils/functions/copyToClipboard'
 
 import { Clipboard, CopyCheck } from 'lucide-react'
-
-import { cn } from '@/lib/utils'
 
 import { Button } from '../ui/button'
 

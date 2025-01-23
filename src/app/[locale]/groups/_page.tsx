@@ -1,5 +1,7 @@
 'use client'
 
+import { cn } from '@/lib/utils'
+
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import Spinner from '@/components/ui/spinner'
@@ -9,8 +11,6 @@ import { useSetGroups } from '@/store/groups.store'
 import { useGetEmojiFromString } from '@/utils/hooks/useGetEmojiFromString'
 
 import { HandCoinsIcon, PlusCircleIcon } from 'lucide-react'
-
-import { cn } from '@/lib/utils'
 
 import { useAddNewGroup, useNavigateToGroup } from './_hooks'
 

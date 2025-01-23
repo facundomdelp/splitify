@@ -1,5 +1,7 @@
 'use client'
 
+import { TooltipArrow } from '@radix-ui/react-tooltip'
+
 import { useState } from 'react'
 
 import { useTranslations } from 'next-intl'
@@ -17,8 +19,6 @@ import { useCalculateBalances } from '@/utils/hooks/useCalculateBalances'
 import { useGetEmojiFromString } from '@/utils/hooks/useGetEmojiFromString'
 
 import { useAddExpense, useGetGroup, useGetGroupExpenses } from './hooks'
-
-import { TooltipArrow } from '@radix-ui/react-tooltip'
 
 const GroupPage = () => {
   const { /* loading,  */ /* error,  */ group } = useGetGroup()

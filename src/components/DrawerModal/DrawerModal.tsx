@@ -1,6 +1,9 @@
+import { Close } from '@radix-ui/react-dialog'
 import { useMediaQuery } from 'usehooks-ts'
 
 import * as React from 'react'
+
+import { cn } from '@/lib/utils'
 
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import {
@@ -13,9 +16,6 @@ import {
 } from '@/components/ui/drawer'
 
 import { X } from 'lucide-react'
-
-import { cn } from '@/lib/utils'
-import { Close } from '@radix-ui/react-dialog'
 
 interface Props {
   open: boolean

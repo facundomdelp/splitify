@@ -2,6 +2,8 @@ import { useTranslations } from 'next-intl'
 
 import { Expense } from '@/types/expense.types'
 
+import { cn } from '@/lib/utils'
+
 import ChangeEmojisButton from '@/components/ChangeEmojisButton'
 
 import { formatAmount } from '@/utils/functions/formatAmount'
@@ -9,8 +11,6 @@ import { formatDate } from '@/utils/functions/formatDate'
 import { useGetEmojiFromString } from '@/utils/hooks/useGetEmojiFromString'
 
 import { UsersRound } from 'lucide-react'
-
-import { cn } from '@/lib/utils'
 
 import Spinner from '../ui/spinner'
 import { RemoveExpense } from './RemoveExpense'

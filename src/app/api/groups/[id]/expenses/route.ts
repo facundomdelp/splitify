@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+import ExpenseService from '@/services/expenses.services'
+
+import { validateAddExpense } from '@/validators/expenses.validators'
+import { validateGroupId } from '@/validators/groups.validators'
+
 import { AddExpenseRequestBody } from '@/types/expense.types'
 
 import { handleErrors } from '@/utils/errors/handleErrors'
-
-import ExpenseService from '@/services/expenses.services'
-import { validateAddExpense } from '@/validators/expenses.validators'
-import { validateGroupId } from '@/validators/groups.validators'
 
 const expenseService = new ExpenseService()
 

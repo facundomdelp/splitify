@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-import { handleErrors } from '@/utils/errors/handleErrors'
-
 import GroupService from '@/services/groups.services'
+
 import { validateGroupId } from '@/validators/groups.validators'
+
+import { handleErrors } from '@/utils/errors/handleErrors'
 
 const groupService = new GroupService()
 

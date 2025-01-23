@@ -4,15 +4,15 @@ import { FocusEventHandler, useRef } from 'react'
 
 import { useTranslations } from 'next-intl'
 
+import { cn } from '@/lib/utils'
+
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
-import { useExpensesForm } from './hooks'
-
 import { Plus, UserRound } from 'lucide-react'
 
-import { cn } from '@/lib/utils'
+import { useExpensesForm } from './hooks'
 
 interface Props {
   onFocus?: FocusEventHandler<HTMLInputElement>

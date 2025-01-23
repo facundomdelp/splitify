@@ -1,6 +1,6 @@
-import type { MetadataRoute } from 'next'
-
 import { SEO_ROUTES } from '@/seo/seoRoutes'
+
+import type { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const locales = ['en', 'es', 'pt']

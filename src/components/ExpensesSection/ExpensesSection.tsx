@@ -4,10 +4,10 @@ import { useTranslations } from 'next-intl'
 
 import { Expense } from '@/types/expense.types'
 
+import { cn } from '@/lib/utils'
+
 import { Expenses } from '@/components/Expenses/Expenses'
 import ExpensesForm from '@/components/ExpensesForm'
-
-import { cn } from '@/lib/utils'
 
 import DrawerModal from '../DrawerModal/DrawerModal'
 

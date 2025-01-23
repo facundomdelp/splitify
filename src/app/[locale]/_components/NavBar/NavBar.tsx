@@ -1,9 +1,13 @@
 'use client'
 
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
+
 import { ForwardRefExoticComponent, ReactNode, RefAttributes, useState } from 'react'
 
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
+
+import { cn } from '@/lib/utils'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -20,17 +24,13 @@ import { useSetGroups } from '@/store/groups.store'
 import { useGetEmojiFromString } from '@/utils/hooks/useGetEmojiFromString'
 import { usePWAInstall } from '@/utils/hooks/usePWAInstall'
 
-import { useAddNewGroup, useHandleNavigation } from './hooks'
-
 import { Globe, HandCoinsIcon, LucideProps, MenuIcon, RocketIcon } from 'lucide-react'
-
-import { cn } from '@/lib/utils'
-import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 
 import LocaleSelectorModal from './LocaleSelectorModal'
 import NavItem from './NavItem'
 import NavSection from './NavSection'
 import SocialMedia from './SocialMedia'
+import { useAddNewGroup, useHandleNavigation } from './hooks'
 
 const LOGO_WIDTH = 120
 

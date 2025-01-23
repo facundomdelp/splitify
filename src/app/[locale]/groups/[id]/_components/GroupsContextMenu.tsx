@@ -8,9 +8,9 @@ import { ContextMenuItem } from '@/components/ContextMenu/ContextMenu'
 import CopyToClipboard from '@/components/CopyToClipboard'
 import Modal from '@/components/Modal'
 
-import { useRemoveGroup } from './hooks'
-
 import { Share2, Trash2 } from 'lucide-react'
+
+import { useRemoveGroup } from './hooks'
 
 interface Props {
   groupId?: string
