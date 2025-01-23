@@ -12,8 +12,6 @@ interface Props {
 }
 
 const Modal = ({ open, setOpen, title, children, closeOnBackdropClick = false, className }: Props) => {
-  // const [focus, setIsFocus] = useState(false)
-
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent
