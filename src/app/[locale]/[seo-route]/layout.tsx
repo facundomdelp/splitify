@@ -1,10 +1,12 @@
-import { SEO_ROUTES } from '@/app/[locale]/[seo-route]/constants'
-
 import { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
+import { notFound } from 'next/navigation'
 
 import { routing } from '@/i18n/routing'
 
 import { Locale } from '@/types/common-types'
+
+import { SEO_ROUTES } from './constants'
 
 export async function generateMetadata({
   params,
@@ -14,7 +16,9 @@ export async function generateMetadata({
   const { locale, 'seo-route': seoRoute } = await params
 
   const baseUrl = 'https://splitify.me'
-  const localeSeoRoute = SEO_ROUTES[locale]
+  const localeSeoRoutes = SEO_ROUTES[locale]
+
+  const t = await getTranslations({ locale, namespace: 'Metadata' })
 
   const languages: Record<Locale, string> = {} as Record<Locale, string>
   routing.locales.forEach((loc) => {
@@ -23,10 +27,12 @@ export async function generateMetadata({
 
   const canonicalUrl = locale === routing.defaultLocale ? `${baseUrl}/${seoRoute}` : `${baseUrl}/${locale}/${seoRoute}`
 
+  const title = localeSeoRoutes.find((route) => route.slug === seoRoute)?.title || t('title')
+
   return {
     title: {
       template: `%s | Splitify`,
-      default: localeSeoRoute[seoRoute as keyof typeof localeSeoRoute],
+      default: title,
     },
     // description: localeSeoRoute.description,
     metadataBase: new URL(baseUrl),
@@ -35,7 +41,7 @@ export async function generateMetadata({
       languages,
     },
     openGraph: {
-      title: localeSeoRoute[seoRoute as keyof typeof localeSeoRoute],
+      title,
       // description: localeSeoRoute.description,
       url: canonicalUrl,
       siteName: 'Splitify',
@@ -45,7 +51,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title: localeSeoRoute[seoRoute as keyof typeof localeSeoRoute],
+      title,
       // description: localeSeoRoute.description,
     },
   }
@@ -53,16 +59,18 @@ export async function generateMetadata({
 
 export default async function SeoRouteLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode
+  params: Promise<{ locale: Locale; 'seo-route': string }>
 }>) {
-  // const awaitedParams = await params
+  const { locale, 'seo-route': seoRoute } = await params
 
-  // // const isValidRoute = Object.keys(SEO_ROUTES[awaitedParams.locale]).includes(awaitedParams['seo-route'])
+  const isValidRoute = SEO_ROUTES[locale].some((route) => route.slug === seoRoute)
 
-  // // if (!isValidRoute) {
-  // //   redirect('/')
-  // // }
+  if (!isValidRoute) {
+    notFound()
+  }
 
   return children
 }

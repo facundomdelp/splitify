@@ -44,13 +44,11 @@ const Footer = () => {
           </ul> */}
 
           <ul className='flex gap-2'>
-            {Object.entries(SEO_ROUTES[locale]).map(([route, name]) => {
-              return (
-                <li key={route}>
-                  <Link href={`${baseUrl}/${locale === 'en' ? '' : locale}/${route}`}>{name}</Link>
-                </li>
-              )
-            })}
+            {SEO_ROUTES[locale].map((route) => (
+              <li key={route.slug}>
+                <Link href={`${baseUrl}/${locale === 'en' ? '' : locale}/${route.slug}`}>{route.title}</Link>
+              </li>
+            ))}
           </ul>
         </nav>
         {/* SEO */}

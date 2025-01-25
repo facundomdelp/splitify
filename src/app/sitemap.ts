@@ -38,20 +38,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
-  // Generate sitemap entries for locale-specific routes
-  const localeSpecificEntries = Object.entries(SEO_ROUTES).flatMap(([locale, routes]) => {
-    return Object.keys(routes).map((route) => {
-      // For the default locale (en), don't include the locale prefix
-      const url = locale === 'en' ? `${baseUrl}/${route}` : `${baseUrl}/${locale}/${route}`
+  const seoRoutesEntries = Object.entries(SEO_ROUTES).flatMap(([locale, routes]) => {
+    return routes.map((route) => {
+      const url = locale === 'en' ? `${baseUrl}/${route.slug}` : `${baseUrl}/${locale}/${route.slug}`
 
       return {
         url,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
-        priority: 0.8, // Adjust priority as needed
+        priority: 0.8,
       }
     })
   })
 
-  return [...staticEntries, ...localeSpecificEntries]
+  return [...staticEntries, ...seoRoutesEntries]
 }
