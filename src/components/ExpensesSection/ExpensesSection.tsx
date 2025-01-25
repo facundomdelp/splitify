@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { useTranslations } from 'next-intl'
 
-import { Expense } from '@/types/expense.types'
+import { Expense } from '@/types/expense-types'
 
 import { cn } from '@/lib/utils'
 

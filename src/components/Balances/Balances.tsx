@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl'
 
-import { Balance } from '@/types/balance.types'
+import { Balance } from '@/types/balance-types'
 
 import { Switch } from '@/components/ui/switch'
 

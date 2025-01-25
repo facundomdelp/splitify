@@ -10,8 +10,8 @@ import ExpensesBalancesTabs from '@/components/ExpensesBalancesTabs'
 import ExpensesSection from '@/components/ExpensesSection'
 import Spinner from '@/components/ui/spinner'
 
-import { useSetBalances } from '@/store/balances.store'
-import { useSetExpenses } from '@/store/expenses.store'
+import { useSetBalances } from '@/store/balances-store'
+import { useSetExpenses } from '@/store/expenses-store'
 
 import { useCalculateBalances } from '@/utils/hooks/useCalculateBalances'
 

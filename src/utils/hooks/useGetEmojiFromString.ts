@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 
-import { useGetMetadata } from '@/store/metadata.store'
+import { useGetMetadata } from '@/store/metadata-store'
 
 import { EMOJIS } from '../constants/emojis'
 import { hashStringToNumber } from '../functions/hashStringToNumber'

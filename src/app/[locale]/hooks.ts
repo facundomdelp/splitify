@@ -2,8 +2,8 @@ import { useState } from 'react'
 
 import { useRouter } from '@/i18n/routing'
 
-import { Balance } from '@/types/balance.types'
-import { Expense } from '@/types/expense.types'
+import { Balance } from '@/types/balance-types'
+import { Expense } from '@/types/expense-types'
 
 import { CustomError } from '@/utils/errors/CustomErrors'
 import { generateId } from '@/utils/functions/generateId'

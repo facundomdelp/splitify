@@ -1,4 +1,4 @@
-import { Locale } from '@/types/common.types'
+import { Locale } from '@/types/common-types'
 
 import { ADJECTIVES, NOUNS } from '../constants/names'
 

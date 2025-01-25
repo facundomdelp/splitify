@@ -17,7 +17,7 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer'
 
-import { useSetGroups } from '@/store/groups.store'
+import { useSetGroups } from '@/store/groups-store'
 
 import { useGetEmojiFromString } from '@/utils/hooks/useGetEmojiFromString'
 import { usePWAInstall } from '@/utils/hooks/usePWAInstall'

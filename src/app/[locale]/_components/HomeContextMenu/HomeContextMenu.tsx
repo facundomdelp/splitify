@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 
 import { useTranslations } from 'next-intl'
 
-import { Balance } from '@/types/balance.types'
-import { Expense } from '@/types/expense.types'
+import { Balance } from '@/types/balance-types'
+import { Expense } from '@/types/expense-types'
 
 import ConfirmationModal from '@/components/ConfirmationModal'
 import ContextMenu from '@/components/ContextMenu'

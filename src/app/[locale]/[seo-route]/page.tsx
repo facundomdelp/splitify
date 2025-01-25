@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 
-import { Locale } from '@/types/common.types'
+import { Locale } from '@/types/common-types'
 
 import { Button } from '@/components/ui/button'
 

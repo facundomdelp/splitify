@@ -1,22 +1,17 @@
 import { MetadataRoute } from 'next'
-import { getTranslations } from 'next-intl/server'
 
 export default async function manifest(): Promise<MetadataRoute.Manifest> {
-  const locale = 'en'
-
-  const t = await getTranslations({
-    namespace: 'Manifest',
-    locale,
-  })
-
   return {
     name: 'Splitify',
     short_name: 'Splitify',
-    description: t('🤑 Simplify your group expenses with Splitify'),
+    description: '🤑 Simplify your group expenses with Splitify',
     start_url: '/',
     display: 'standalone',
     background_color: '#052E16',
     theme_color: '#22C55E',
+    lang: 'en',
+    orientation: 'portrait',
+    categories: ['finance', 'tools'],
     icons: [
       {
         src: '/splitify-192x192.png',
@@ -32,6 +27,12 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
         src: '/apple-touch-icon.png',
         sizes: '180x180',
         type: 'image/png',
+      },
+      {
+        src: '/splitify-maskable.png',
+        sizes: '192x192',
+        type: 'image/png',
+        purpose: 'maskable',
       },
     ],
   }
