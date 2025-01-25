@@ -7,7 +7,7 @@ import { notFound } from 'next/navigation'
 
 import { routing } from '@/i18n/routing'
 
-import { Locale } from '@/types/common.types'
+import { Locale } from '@/types/common-types'
 
 import Footer from './_components/Layout/Footer'
 import Header from './_components/Layout/Header'

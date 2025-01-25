@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
-import { ValidationResult, idParam } from '@/types/common.types'
-import { AddGroupRequestBody } from '@/types/group.types'
+import { ValidationResult, idParam } from '@/types/common-types'
+import { AddGroupRequestBody } from '@/types/group-types'
 
 const validateGroupIdSchema = z.object({
   id: z

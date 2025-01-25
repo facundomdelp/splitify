@@ -1,6 +1,6 @@
 import { useRouter } from '@/i18n/routing'
 
-import { useSetGroups } from '@/store/groups.store'
+import { useSetGroups } from '@/store/groups-store'
 
 interface useRemoveGroupProps {
   groupId?: string

@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-import GroupService from '@/services/groups.services'
+import GroupService from '@/services/groups-services'
 
-import { validateGroupId } from '@/validators/groups.validators'
+import { validateGroupId } from '@/validators/groups-validators'
 
 import { handleErrors } from '@/utils/errors/handleErrors'
 

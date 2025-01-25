@@ -4,7 +4,7 @@ import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { Locale } from '@/types/common.types'
+import { Locale } from '@/types/common-types'
 
 const LOCALES: Locale[] = ['en', 'es', 'pt']
 const ISOLOGO_SIZE = 65

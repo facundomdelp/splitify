@@ -2,10 +2,10 @@ import React, { useCallback, useEffect, useState } from 'react'
 
 import { useParams } from 'next/navigation'
 
-import { Expense, GetGroupExpensesResponse } from '@/types/expense.types'
-import { GetGroupResponse } from '@/types/group.types'
+import { Expense, GetGroupExpensesResponse } from '@/types/expense-types'
+import { GetGroupResponse } from '@/types/group-types'
 
-import { useSetGroups } from '@/store/groups.store'
+import { useSetGroups } from '@/store/groups-store'
 
 import { CustomError } from '@/utils/errors/CustomErrors'
 import { generateId } from '@/utils/functions/generateId'

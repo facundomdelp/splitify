@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Balance } from '@/types/balance.types'
+import { Balance } from '@/types/balance-types'
 
 import Balances from '@/components/Balances'
 import CopyToClipboard from '@/components/CopyToClipboard'

@@ -2,7 +2,7 @@ import { useLocalStorage } from 'usehooks-ts'
 
 import { useEffect, useState } from 'react'
 
-import { Groups } from '@/types/group.types'
+import { Groups } from '@/types/group-types'
 
 export const useSetGroups = () => {
   const [initialized, setInitialized] = useState(false)

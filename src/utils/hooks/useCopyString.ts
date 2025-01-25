@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 
 import { useTranslations } from 'next-intl'
 
-import { Balance } from '@/types/balance.types'
+import { Balance } from '@/types/balance-types'
 
 import { formatAmount } from '../functions/formatAmount'
 import { useGetEmojiFromString } from './useGetEmojiFromString'

@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 import { useTranslations } from 'next-intl'
 
-import { Balance } from '@/types/balance.types'
+import { Balance } from '@/types/balance-types'
 
 import GroupsContextMenu from './_components/GroupsContextMenu'
 import BalancesSection from '@/components/BalancesSection'

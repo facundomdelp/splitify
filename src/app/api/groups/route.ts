@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-import GroupService from '@/services/groups.services'
+import GroupService from '@/services/groups-services'
 
-import { validateAddGroup } from '@/validators/groups.validators'
+import { validateAddGroup } from '@/validators/groups-validators'
 
-import { Locale } from '@/types/common.types'
-import { AddGroupRequestBody } from '@/types/group.types'
+import { Locale } from '@/types/common-types'
+import { AddGroupRequestBody } from '@/types/group-types'
 
 import { handleErrors } from '@/utils/errors/handleErrors'
 

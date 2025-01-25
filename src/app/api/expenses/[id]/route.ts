@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-import ExpenseService from '@/services/expenses.services'
+import ExpenseService from '@/services/expenses-services'
 
-import { validateExpenseId } from '@/validators/expenses.validators'
+import { validateExpenseId } from '@/validators/expenses-validators'
 
 import { handleErrors } from '@/utils/errors/handleErrors'
 
