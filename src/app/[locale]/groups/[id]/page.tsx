@@ -12,11 +12,10 @@ import ExpensesBalancesTabs from '@/components/ExpensesBalancesTabs'
 import ExpensesSection from '@/components/ExpensesSection'
 import Tooltip from '@/components/Tooltip'
 
-import { CustomError } from '@/utils/errors/CustomErrors'
 import { useCalculateBalances } from '@/utils/hooks/useCalculateBalances'
 import { useGetEmojiFromString } from '@/utils/hooks/useGetEmojiFromString'
 
-import { useAddExpense, useGetGroup, useGetGroupExpenses } from './hooks'
+import { useAddExpense, useGetGroup, useGetGroupExpenses, useRemoveExpense } from './hooks'
 
 const GroupPage = () => {
   const { /* loading,  */ /* error,  */ group } = useGetGroup()
@@ -26,24 +25,7 @@ const GroupPage = () => {
   const [rounded, setRounded] = useState(false)
 
   const { addExpense } = useAddExpense({ groupId: group?.id, setExpenses })
-
-  const removeExpense = async (id: string) => {
-    const remainingExpenses = expenses.filter(({ id: expenseId }) => expenseId !== id)
-    setExpenses(remainingExpenses)
-
-    try {
-      const response = await fetch(`/api/expenses/${id}`, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-      })
-
-      if (!response.ok) {
-        throw new CustomError(response.status)
-      }
-    } catch {
-      // use an optimistic removing
-    }
-  }
+  const { removeExpense } = useRemoveExpense({ expenses, setExpenses })
 
   const { handleCalculateBalances, disabledBalances } = useCalculateBalances({
     expenses,

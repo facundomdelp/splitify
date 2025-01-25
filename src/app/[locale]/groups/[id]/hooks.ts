@@ -152,3 +152,30 @@ export const useAddExpense = ({ groupId, setExpenses }: useAddExpenseProps) => {
 
   return { addExpense }
 }
+
+interface useRemoveExpenseProps {
+  expenses: Expense[]
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
+}
+
+export const useRemoveExpense = ({ expenses, setExpenses }: useRemoveExpenseProps) => {
+  const removeExpense = async (id: string) => {
+    const remainingExpenses = expenses.filter(({ id: expenseId }) => expenseId !== id)
+    setExpenses(remainingExpenses)
+
+    try {
+      const response = await fetch(`/api/expenses/${id}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+      })
+
+      if (!response.ok) {
+        throw new CustomError(response.status)
+      }
+    } catch {
+      // use an optimistic removing
+    }
+  }
+
+  return { removeExpense }
+}
