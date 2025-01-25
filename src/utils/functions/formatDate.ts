@@ -1,5 +1,7 @@
-import { NAVIGATOR_LANGUAGE } from '../constants/navigatorLanguage'
+export const formatTimestampToDate = (timestamp: number) => {
+  const formatter = new Intl.DateTimeFormat(undefined, {
+    timeZone: 'UTC',
+  })
 
-export const formatDate = (value: number | string | Date) => {
-  return new Date(value).toLocaleDateString(NAVIGATOR_LANGUAGE)
+  return formatter.format(timestamp)
 }
