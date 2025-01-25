@@ -9,24 +9,24 @@ import { SEO_ROUTES } from '@/seo/seoRoutes'
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: Locale; facu: string }>
+  params: Promise<{ locale: Locale; 'seo-route': string }>
 }): Promise<Metadata> {
-  const { locale, facu } = await params
+  const { locale, 'seo-route': seoRoute } = await params
 
   const baseUrl = 'https://splitify.me'
   const localeSeoRoute = SEO_ROUTES[locale]
 
   const languages: Record<Locale, string> = {} as Record<Locale, string>
   routing.locales.forEach((loc) => {
-    languages[loc] = loc === routing.defaultLocale ? `${baseUrl}/${facu}` : `${baseUrl}/${loc}/${facu}`
+    languages[loc] = loc === routing.defaultLocale ? `${baseUrl}/${seoRoute}` : `${baseUrl}/${loc}/${seoRoute}`
   })
 
-  const canonicalUrl = locale === routing.defaultLocale ? `${baseUrl}/${facu}` : `${baseUrl}/${locale}/${facu}`
+  const canonicalUrl = locale === routing.defaultLocale ? `${baseUrl}/${seoRoute}` : `${baseUrl}/${locale}/${seoRoute}`
 
   return {
     title: {
       template: `%s | Splitify`,
-      default: localeSeoRoute[facu as keyof typeof localeSeoRoute],
+      default: localeSeoRoute[seoRoute as keyof typeof localeSeoRoute],
     },
     // description: localeSeoRoute.description,
     metadataBase: new URL(baseUrl),
@@ -35,7 +35,7 @@ export async function generateMetadata({
       languages,
     },
     openGraph: {
-      title: localeSeoRoute[facu as keyof typeof localeSeoRoute],
+      title: localeSeoRoute[seoRoute as keyof typeof localeSeoRoute],
       // description: localeSeoRoute.description,
       url: canonicalUrl,
       siteName: 'Splitify',
@@ -45,7 +45,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title: localeSeoRoute[facu as keyof typeof localeSeoRoute],
+      title: localeSeoRoute[seoRoute as keyof typeof localeSeoRoute],
       // description: localeSeoRoute.description,
     },
   }
@@ -53,14 +53,12 @@ export async function generateMetadata({
 
 export default async function SeoRouteLayout({
   children,
-  // params,
 }: Readonly<{
   children: React.ReactNode
-  params: Promise<{ locale: Locale; facu: string }>
 }>) {
   // const awaitedParams = await params
 
-  // // const isValidRoute = Object.keys(SEO_ROUTES[awaitedParams.locale]).includes(awaitedParams[facu])
+  // // const isValidRoute = Object.keys(SEO_ROUTES[awaitedParams.locale]).includes(awaitedParams['seo-route'])
 
   // // if (!isValidRoute) {
   // //   redirect('/')
