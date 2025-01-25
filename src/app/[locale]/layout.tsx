@@ -22,13 +22,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
   const baseUrl = 'https://splitify.me'
   const t = await getTranslations({ locale, namespace: 'Metadata' })
 
-  const languages: Record<string, string> = {}
+  const languages: Record<Locale, string> = {} as Record<Locale, string>
   routing.locales.forEach((loc) => {
-    languages[loc] = `${baseUrl}/${loc}`
+    languages[loc] = loc === routing.defaultLocale ? `${baseUrl}/` : `${baseUrl}/${loc}`
   })
-  languages['x-default'] = `${baseUrl}/en`
 
-  const canonicalUrl = `${baseUrl}/${locale}`
+  const canonicalUrl = locale === routing.defaultLocale ? `${baseUrl}/` : `${baseUrl}/${locale}`
 
   return {
     title: {
@@ -58,6 +57,47 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
     },
   }
 }
+
+// export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
+//   const { locale } = await params
+//   const baseUrl = 'https://splitify.me'
+//   const t = await getTranslations({ locale, namespace: 'Metadata' })
+
+//   const languages: Record<string, string> = {}
+//   routing.locales.forEach((loc) => {
+//     languages[loc] = `${baseUrl}/${loc}`
+//   })
+
+//   const canonicalUrl = `${baseUrl}/${locale}`
+
+//   return {
+//     title: {
+//       template: `%s | Splitify`,
+//       default: t('title'),
+//     },
+//     description: t('description'),
+//     keywords: t('keywords'),
+//     metadataBase: new URL(baseUrl),
+//     alternates: {
+//       canonical: canonicalUrl,
+//       languages,
+//     },
+//     openGraph: {
+//       title: t('title'),
+//       description: t('description'),
+//       url: canonicalUrl,
+//       siteName: 'Splitify',
+//       locale: locale,
+//       type: 'website',
+//       alternateLocale: routing.locales.filter((loc) => loc !== locale),
+//     },
+//     twitter: {
+//       card: 'summary_large_image',
+//       title: t('title'),
+//       description: t('description'),
+//     },
+//   }
+// }
 
 export default async function LocaleLayout({
   children,
