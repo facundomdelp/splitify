@@ -17,6 +17,7 @@
     "^@/components/(.*)$|/_components/(.*)$",
     "^@/store/(.*)$",
     "^@/utils/(.*)$",
+    "^@/seo/(.*)$",
     "^./hooks/(.*)$",
     "lucide-react",
     "^@radix-ui/(.*)$",
