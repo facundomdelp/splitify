@@ -12,6 +12,7 @@ import { useGetEmojiFromString } from '@/utils/hooks/useGetEmojiFromString'
 
 import { UsersRound } from 'lucide-react'
 
+import Amount from '../Amount'
 import Spinner from '../ui/spinner'
 import { RemoveExpense } from './RemoveExpense'
 
@@ -51,7 +52,7 @@ export const Expenses = ({ expenses, onRemoveExpense, readOnly = false, loading 
                   <div className='flex min-w-0 flex-col'>
                     <div className='flex min-w-0 items-center'>
                       <p className='min-w-0 overflow-hidden text-ellipsis whitespace-nowrap'>{name}</p>
-                      <p className='whitespace-nowrap'>: ${formatAmount(amount)}</p>
+                      <p className='whitespace-nowrap'>: ${<Amount>{amount}</Amount>}</p>
                       {!readOnly && !optimistic && (
                         <RemoveExpense id={id} name={name} onRemoveExpense={onRemoveExpense} />
                       )}

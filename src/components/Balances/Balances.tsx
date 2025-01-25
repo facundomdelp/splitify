@@ -6,10 +6,11 @@ import { Balance } from '@/types/balance-types'
 
 import { Switch } from '@/components/ui/switch'
 
-import { formatAmount } from '@/utils/functions/formatAmount'
 import { useGetEmojiFromString } from '@/utils/hooks/useGetEmojiFromString'
 
 import { CircleDollarSign } from 'lucide-react'
+
+import Amount from '../Amount'
 
 interface Props {
   balances: Balance[]
@@ -45,7 +46,7 @@ const Balances = ({ balances, rounded, setRounded }: Props) => {
                 <p className='min-w-0 overflow-hidden text-ellipsis whitespace-nowrap'>{balance.debtor}</p>
                 <p className='whitespace-nowrap'>{t('owes')}</p>
                 <strong className='whitespace-nowrap font-semibold'>
-                  ${formatAmount(balance.amount, rounded ? 0 : 2)}
+                  $<Amount fractionDigits={rounded ? 0 : 2}>{balance.amount}</Amount>
                 </strong>
               </div>
               <div className='flex min-w-0 items-center gap-1'>

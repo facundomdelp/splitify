@@ -21,7 +21,7 @@ export const useCopyString = ({ balances, rounded }: useCopyStringProps) => {
       [
         ...balances.map(
           (balance) =>
-            `${getEmojiFromString(balance.debtor)} ${balance.debtor} ${t('owes')} $${formatAmount(balance.amount, rounded ? 0 : 2)} ${t('to')} ${getEmojiFromString(balance.creditor)} ${balance.creditor}`,
+            `${getEmojiFromString(balance.debtor)} ${balance.debtor} ${t('owes')} $${formatAmount(balance.amount, navigator.language || navigator.languages[0], rounded ? 0 : 2)} ${t('to')} ${getEmojiFromString(balance.creditor)} ${balance.creditor}`,
         ),
         '\nhttps://splitify.me',
       ].join('\n'),
