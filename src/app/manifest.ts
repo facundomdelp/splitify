@@ -1,18 +1,12 @@
 import { MetadataRoute } from 'next'
 import { getTranslations } from 'next-intl/server'
 
-import { Locale } from '@/types/common-types'
+const DEFAULT_LOCALE = 'en'
 
-export default async function manifest({
-  params,
-}: {
-  params: Promise<{ locale: Locale }>
-}): Promise<MetadataRoute.Manifest> {
-  const { locale } = await params
-
+export default async function manifest(): Promise<MetadataRoute.Manifest> {
   const t = await getTranslations({
     namespace: 'Manifest',
-    locale,
+    DEFAULT_LOCALE,
   })
 
   return {
@@ -23,7 +17,7 @@ export default async function manifest({
     display: 'standalone',
     background_color: '#052E16',
     theme_color: '#22C55E',
-    lang: locale,
+    lang: DEFAULT_LOCALE,
     orientation: 'portrait',
     categories: ['finance', 'tools'],
     icons: [
