@@ -1,7 +1,5 @@
 'use client'
 
-import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
-
 import { ForwardRefExoticComponent, ReactNode, RefAttributes, useState } from 'react'
 
 import { useTranslations } from 'next-intl'
@@ -25,6 +23,8 @@ import { useGetEmojiFromString } from '@/utils/hooks/useGetEmojiFromString'
 import { usePWAInstall } from '@/utils/hooks/usePWAInstall'
 
 import { Globe, HandCoinsIcon, LucideProps, MenuIcon, RocketIcon } from 'lucide-react'
+
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 
 import LocaleSelectorModal from './LocaleSelectorModal'
 import NavItem from './NavItem'
