@@ -1,7 +1,5 @@
 'use client'
 
-import { TooltipArrow } from '@radix-ui/react-tooltip'
-
 import { useState } from 'react'
 
 import { useTranslations } from 'next-intl'
@@ -12,13 +10,12 @@ import GroupsContextMenu from './_components/GroupsContextMenu'
 import BalancesSection from '@/components/BalancesSection'
 import ExpensesBalancesTabs from '@/components/ExpensesBalancesTabs'
 import ExpensesSection from '@/components/ExpensesSection'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import Tooltip from '@/components/Tooltip'
 
-import { CustomError } from '@/utils/errors/CustomErrors'
 import { useCalculateBalances } from '@/utils/hooks/useCalculateBalances'
 import { useGetEmojiFromString } from '@/utils/hooks/useGetEmojiFromString'
 
-import { useAddExpense, useGetGroup, useGetGroupExpenses } from './hooks'
+import { useAddExpense, useGetGroup, useGetGroupExpenses, useRemoveExpense } from './hooks'
 
 const GroupPage = () => {
   const { /* loading,  */ /* error,  */ group } = useGetGroup()
@@ -28,24 +25,7 @@ const GroupPage = () => {
   const [rounded, setRounded] = useState(false)
 
   const { addExpense } = useAddExpense({ groupId: group?.id, setExpenses })
-
-  const removeExpense = async (id: string) => {
-    const remainingExpenses = expenses.filter(({ id: expenseId }) => expenseId !== id)
-    setExpenses(remainingExpenses)
-
-    try {
-      const response = await fetch(`/api/expenses/${id}`, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-      })
-
-      if (!response.ok) {
-        throw new CustomError(response.status)
-      }
-    } catch {
-      // use an optimistic removing
-    }
-  }
+  const { removeExpense } = useRemoveExpense({ expenses, setExpenses })
 
   const { handleCalculateBalances, disabledBalances } = useCalculateBalances({
     expenses,
@@ -74,7 +54,7 @@ const GroupPage = () => {
 
               {group && (
                 <div className='absolute right-2'>
-                  <TooltipProvider>
+                  {/* <TooltipProvider>
                     <Tooltip defaultOpen>
                       <TooltipTrigger asChild>
                         <div>
@@ -82,11 +62,16 @@ const GroupPage = () => {
                         </div>
                       </TooltipTrigger>
                       <TooltipContent className='mr-2 text-[10px] font-semibold' align='end' sideOffset={-4}>
-                        <TooltipArrow fill='green' />
+                        <TooltipArrow fill='green' className='mt-[-1px]' />
                         {t('Share Group!')}
                       </TooltipContent>
                     </Tooltip>
-                  </TooltipProvider>
+                  </TooltipProvider> */}
+                  <Tooltip content={t('Share Group!')} align='end' arrow openOnce>
+                    <div>
+                      <GroupsContextMenu groupId={group.id} />
+                    </div>
+                  </Tooltip>
                 </div>
               )}
             </div>

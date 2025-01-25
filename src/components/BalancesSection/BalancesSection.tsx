@@ -19,7 +19,7 @@ const BalancesSection = ({ balances, rounded, setRounded }: Props) => {
   return (
     <section className='mx-4 flex flex-1 flex-col justify-between gap-4'>
       <Balances balances={balances} rounded={rounded} setRounded={setRounded} />
-      <CopyToClipboard copyString={copyString} className='mx-4' />
+      <CopyToClipboard copyString={copyString} />
     </section>
   )
 }

@@ -15,7 +15,7 @@ import { useSetExpenses } from '@/store/expenses.store'
 
 import { useCalculateBalances } from '@/utils/hooks/useCalculateBalances'
 
-import { useAddExpense, useConvertIntoGroup } from './hooks'
+import { useAddExpense, useConvertIntoGroup, useRemoveExpense } from './hooks'
 
 export default function Home() {
   const [expenses, setExpenses] = useSetExpenses()
@@ -24,11 +24,7 @@ export default function Home() {
   const [rounded, setRounded] = useState(false)
 
   const { addExpense } = useAddExpense({ setExpenses })
-
-  const removeExpense = async (id: string) => {
-    const remainingExpenses = expenses.filter(({ id: expenseId }) => expenseId !== id)
-    setExpenses(remainingExpenses)
-  }
+  const { removeExpense } = useRemoveExpense({ expenses, setExpenses })
 
   const { handleCalculateBalances, disabledBalances } = useCalculateBalances({
     expenses,

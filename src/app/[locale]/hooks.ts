@@ -92,3 +92,17 @@ export const useConvertIntoGroup = ({ setExpenses, setBalances }: useConvertInto
 
   return { convertIntoGroup, convertToGroupState }
 }
+
+interface useRemoveExpenseProps {
+  expenses: Expense[]
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
+}
+
+export const useRemoveExpense = ({ expenses, setExpenses }: useRemoveExpenseProps) => {
+  const removeExpense = async (id: string) => {
+    const remainingExpenses = expenses.filter(({ id: expenseId }) => expenseId !== id)
+    setExpenses(remainingExpenses)
+  }
+
+  return { removeExpense }
+}

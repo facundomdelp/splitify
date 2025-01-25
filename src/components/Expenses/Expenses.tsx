@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
 import ChangeEmojisButton from '@/components/ChangeEmojisButton'
 
 import { formatAmount } from '@/utils/functions/formatAmount'
-import { formatDate } from '@/utils/functions/formatDate'
+import { formatTimestampToDate } from '@/utils/functions/formatDate'
 import { useGetEmojiFromString } from '@/utils/hooks/useGetEmojiFromString'
 
 import { UsersRound } from 'lucide-react'
@@ -58,7 +58,7 @@ export const Expenses = ({ expenses, onRemoveExpense, readOnly = false, loading 
                     </div>
                     {(title || date) && (
                       <div className='flex min-w-0 items-center gap-1 text-xs text-gray-500'>
-                        {date && <p>{formatDate(date)}</p>}
+                        {date && <p>{formatTimestampToDate(date)}</p>}
                         {title && date && <p>-</p>}
                         <p className='min-w-0 overflow-hidden text-ellipsis whitespace-nowrap'>{title}</p>
                       </div>
