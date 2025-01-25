@@ -29,6 +29,9 @@ const SeoPage = () => {
         <p className='text-justify text-sm text-gray-700'>{t('paragraph-2')}</p>
         <p className='text-justify text-sm text-gray-700'>{t('paragraph-3')}</p>
         <p className='text-justify text-sm text-gray-700'>{t('paragraph-4')}</p>
+        <Button className='w-full' asChild>
+          <Link href='/'>{t('Get Started')}</Link>
+        </Button>
       </div>
     </main>
   )
