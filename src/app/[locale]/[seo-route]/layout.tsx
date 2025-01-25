@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
-import { notFound } from 'next/navigation'
+import { redirect } from 'next/navigation'
 
 import { routing } from '@/i18n/routing'
 
@@ -68,8 +68,9 @@ export default async function SeoRouteLayout({
 
   const isValidRoute = SEO_ROUTES[locale].some((route) => route.slug === seoRoute)
 
+  // notFound no anda por algún motivo!
   if (!isValidRoute) {
-    notFound()
+    redirect('/')
   }
 
   return children
