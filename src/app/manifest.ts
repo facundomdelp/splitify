@@ -1,23 +1,15 @@
 import { MetadataRoute } from 'next'
-import { getTranslations } from 'next-intl/server'
-
-const DEFAULT_LOCALE = 'en'
 
 export default async function manifest(): Promise<MetadataRoute.Manifest> {
-  const t = await getTranslations({
-    namespace: 'Manifest',
-    DEFAULT_LOCALE,
-  })
-
   return {
-    name: t('name'),
-    short_name: t('short_name'),
-    description: t('description'),
+    name: 'Splitify',
+    short_name: 'Splitify',
+    description: '🤑 Simplify your group expenses with Splitify',
     start_url: '/',
     display: 'standalone',
     background_color: '#052E16',
     theme_color: '#22C55E',
-    lang: DEFAULT_LOCALE,
+    lang: 'en',
     orientation: 'portrait',
     categories: ['finance', 'tools'],
     icons: [
