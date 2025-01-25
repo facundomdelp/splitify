@@ -1,18 +1,18 @@
-import { SEO_ROUTES } from '@/seo/seoRoutes'
-
-import { useLocale, useTranslations } from 'next-intl'
+import { useLocale } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import { Locale } from '@/types/common-types'
 
+import { SEO_ROUTES } from '@/seo/seoRoutes'
+
 const LOCALES: Locale[] = ['en', 'es', 'pt']
 const ISOLOGO_SIZE = 65
 
+const baseUrl = 'https://splitify.me'
+
 const Footer = () => {
   const locale = useLocale() as Locale
-
-  const t = useTranslations('Footer')
 
   return (
     <footer className='flex w-full flex-shrink-0 items-center justify-center bg-green-950 px-3 py-2'>
@@ -24,7 +24,7 @@ const Footer = () => {
           <ul className='flex gap-2'>
             {LOCALES?.map((locale, index) => (
               <li key={`${index}-${locale}`}>
-                <Link href={`./${locale}`}>
+                <Link href={`${baseUrl}/${locale === 'en' ? '' : locale}`}>
                   <Image
                     src={`/${locale}.jpg`}
                     alt={`${locale} page`}
@@ -37,17 +37,17 @@ const Footer = () => {
             ))}
           </ul>
 
-          <ul>
+          {/* <ul>
             <li>
-              <Link href={`/${locale}/groups`}>{t('Spliti Groups')}</Link>
+              <Link href={`${baseUrl}/${locale === 'en' ? '' : locale}/groups`}>{t('Spliti Groups')}</Link>
             </li>
-          </ul>
+          </ul> */}
 
           <ul className='flex gap-2'>
             {Object.entries(SEO_ROUTES[locale]).map(([route, name]) => {
               return (
                 <li key={route}>
-                  <Link href={`/${locale}/${route}`}>{name}</Link>
+                  <Link href={`${baseUrl}/${locale === 'en' ? '' : locale}/${route}`}>{name}</Link>
                 </li>
               )
             })}
