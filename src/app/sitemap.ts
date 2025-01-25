@@ -1,6 +1,6 @@
-import type { MetadataRoute } from 'next'
+import { SEO_ROUTES } from '@/app/[locale]/[seo-route]/constants'
 
-import { SEO_ROUTES } from '@/seo/seoRoutes'
+import type { MetadataRoute } from 'next'
 
 const locales = ['en', 'es', 'pt']
 const defaultLocale = 'en'
