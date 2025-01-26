@@ -1,6 +1,6 @@
 'use client'
 
-import { FocusEventHandler, useRef } from 'react'
+import { useRef, useState } from 'react'
 
 import { useTranslations } from 'next-intl'
 
@@ -12,35 +12,85 @@ import { Label } from '@/components/ui/label'
 
 import { MinusIcon, Plus, PlusIcon, UserRound } from 'lucide-react'
 
+import DrawerModal from '../DrawerModal'
 import { useExpensesForm } from './hooks'
 
 interface Props {
-  onFocus?: FocusEventHandler<HTMLInputElement>
-  includeDetails?: boolean
-  bigAddButton?: boolean
   onSubmit?: ({ name, amount }: { name: string; amount: number }) => void
   disabled?: boolean
+  modalForm?: boolean
 }
 
-const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, onSubmit, disabled }: Props) => {
+const ExpensesForm = ({ onSubmit, disabled, modalForm }: Props) => {
+  const [openModal, setOpenModal] = useState(false)
+  const [showDetails, setShowDetails] = useState(false)
+
   const nameInputRef = useRef<HTMLInputElement>(null)
 
+  const t = useTranslations('ExpensesForm')
+
+  return (
+    <>
+      {modalForm && (
+        <DrawerModal open={openModal} setOpen={setOpenModal} title={t('Add Expense')} className='px-5'>
+          <Form
+            onSubmit={onSubmit}
+            setOpenModal={setOpenModal}
+            nameInputRef={nameInputRef}
+            showDetails={showDetails}
+            setShowDetails={setShowDetails}
+            disabled={disabled}
+            modalForm
+          />
+        </DrawerModal>
+      )}
+
+      <Form
+        onSubmit={onSubmit}
+        setOpenModal={setOpenModal}
+        nameInputRef={nameInputRef}
+        showDetails={showDetails}
+        setShowDetails={setShowDetails}
+        disabled={disabled}
+        onFocus={modalForm ? () => setOpenModal(true) : undefined}
+      />
+    </>
+  )
+}
+
+interface FormProps {
+  onSubmit?: ({ name, amount, title, date }: { name: string; amount: number; title?: string; date?: string }) => void
+  setOpenModal?: React.Dispatch<React.SetStateAction<boolean>>
+  nameInputRef: React.RefObject<HTMLInputElement>
+  showDetails: boolean
+  setShowDetails: React.Dispatch<React.SetStateAction<boolean>>
+  disabled?: boolean
+  onFocus?: React.FocusEventHandler<HTMLInputElement>
+  modalForm?: boolean
+}
+
+const Form = ({
+  onSubmit,
+  setOpenModal,
+  nameInputRef,
+  showDetails,
+  setShowDetails,
+  disabled,
+  onFocus,
+  modalForm,
+}: FormProps) => {
   const {
     name,
     handleName,
     amount,
     handleAmount,
     handleShowDetails,
-    showDetails,
     title,
     handleTitle,
     date,
     handleDate,
     handleSubmit,
-  } = useExpensesForm({
-    nameInputRef,
-    onSubmit,
-  })
+  } = useExpensesForm({ nameInputRef, onSubmit, setOpenModal, showDetails, setShowDetails })
 
   const t = useTranslations('ExpensesForm')
 
@@ -48,7 +98,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
     <section className='flex flex-col gap-2'>
       <p className='flex flex-nowrap items-center gap-1 text-[12px] text-gray-600'>
         <UserRound className='size-[12px] text-green-700' />
-        {t('Add expense')}
+        {t('Add Expense')}
       </p>
       <form className='flex flex-col gap-3' onSubmit={handleSubmit}>
         <div className='flex flex-wrap gap-3'>
@@ -62,12 +112,11 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
             placeholder={t('John Spliti')}
             onFocus={onFocus}
             disabled={disabled}
-            autoFocus={includeDetails} // This is for not auto-focussing when the form is open through a modal
-            // I should have a modalForm prop in here, and render the modal from this component
+            autoFocus={modalForm}
           />
 
           <div className='flex-grow-1 ml-auto flex flex-1 gap-4'>
-            <div className={cn('relative ml-auto min-w-[5.5rem] flex-1', !bigAddButton ? 'max-w-24' : '')}>
+            <div className={cn('relative ml-auto min-w-[5.5rem] flex-1', !modalForm ? 'max-w-24' : '')}>
               <span className='absolute left-2 top-1/2 -translate-y-1/2 text-sm leading-4 text-gray-500'>$</span>
               <Input
                 className='pl-6 text-sm'
@@ -83,7 +132,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
               />
             </div>
 
-            {!bigAddButton && (
+            {!modalForm && (
               <Button size='icon' className='w-10' type='submit' disabled={name.trim() === '' || disabled}>
                 <Plus />
               </Button>
@@ -91,7 +140,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
           </div>
         </div>
 
-        {includeDetails && (
+        {modalForm && (
           <div className='min-h-auto flex flex-col'>
             <div
               className={cn('overflow-hidden transition-all duration-500', !showDetails ? 'max-h-0' : 'max-h-[250px]')}
@@ -146,7 +195,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
           </div>
         )}
 
-        {bigAddButton && (
+        {modalForm && (
           <Button className='flex' type='submit' disabled={name.trim() === ''}>
             {t('ADD EXPENSE')}
           </Button>
