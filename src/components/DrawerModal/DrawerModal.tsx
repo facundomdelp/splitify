@@ -5,32 +5,36 @@ import * as React from 'react'
 import { cn } from '@/lib/utils'
 
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
-import {
-  Drawer,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-} from '@/components/ui/drawer'
+import { Drawer, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle } from '@/components/ui/drawer'
 
 import { X } from 'lucide-react'
 
 import { Close } from '@radix-ui/react-dialog'
 
 interface Props {
-  open: boolean
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>
+  open?: boolean
+  setOpen?: React.Dispatch<React.SetStateAction<boolean>>
   title: string
   description?: string
   children: React.ReactNode
   className?: string
+  snapPoints?: Array<string | number>
+  activeSnapPoint?: string | number | null
+  setActiveSnapPoint?: (activeSnapPoint: string | number | null) => void
 }
 
-function DrawerModal({ open, setOpen, title, description, children, className }: Props) {
+const DrawerModal = ({
+  open,
+  setOpen,
+  title,
+  description,
+  children,
+  className,
+  snapPoints,
+  activeSnapPoint,
+  setActiveSnapPoint,
+}: Props) => {
   const isDesktop = useMediaQuery('(min-width: 768px)')
-
-  // const t = useTranslations('DrawerModal')
 
   if (isDesktop) {
     return (
@@ -47,7 +51,14 @@ function DrawerModal({ open, setOpen, title, description, children, className }:
   }
 
   return (
-    <Drawer open={open} onOpenChange={setOpen}>
+    <Drawer
+      open={open}
+      onOpenChange={setOpen}
+      snapPoints={snapPoints || []}
+      activeSnapPoint={activeSnapPoint}
+      setActiveSnapPoint={setActiveSnapPoint}
+      fadeFromIndex={0}
+    >
       <DrawerContent className={cn('text-gray-700', className)}>
         <DrawerHeader className='text-left'>
           <DrawerTitle>{title}</DrawerTitle>
@@ -60,13 +71,6 @@ function DrawerModal({ open, setOpen, title, description, children, className }:
         </Close>
 
         {children}
-        <DrawerFooter className='px-0 pt-2'>
-          {/* <DrawerClose asChild>
-            <Button variant='outline' className='text-gray-600'>
-              {t('Cancel')}
-            </Button>
-          </DrawerClose> */}
-        </DrawerFooter>
       </DrawerContent>
     </Drawer>
   )

@@ -76,7 +76,7 @@
     "Balances": "Saldo"
   },
   "ExpensesForm": {
-    "Add expense": "Adicionar despesa",
+    "Add Expense": "Adicionar Despesa",
     "John Spliti": "João Spliti",
     "Title": "Título",
     "optional": "opcional",
@@ -84,9 +84,6 @@
     "Date": "Data",
     "Details": "Detalhes",
     "ADD EXPENSE": "ADICIONAR DESPESA"
-  },
-  "ExpensesSection": {
-    "Add Expense": "Adicionar Despesa"
   },
 
   "useCopyString": {
