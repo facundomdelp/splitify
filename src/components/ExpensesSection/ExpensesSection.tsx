@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils'
 import { Expenses } from '@/components/Expenses/Expenses'
 import ExpensesForm from '@/components/ExpensesForm'
 
-import DrawerModal from '../DrawerModal/DrawerModal'
+import DrawerModal from '../DrawerModal'
 
 interface Props {
   expenses: Expense[]
