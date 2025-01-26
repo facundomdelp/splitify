@@ -27,6 +27,7 @@ const ExpensesForm = ({ onSubmit, disabled, modalForm }: Props) => {
 
   const [snaps, setSnaps] = useState<string[]>([])
   const [snap, setSnap] = useState<string | null>(null)
+  console.log('👽 ~ file: ExpensesForm.tsx:28 ~ ExpensesForm ~ snaps:', snaps)
 
   const formWithDetailsRef = useRef<HTMLFormElement>(null)
   const formWithoutDetailsRef = useRef<HTMLFormElement>(null)
@@ -250,9 +251,11 @@ const Form = ({
           </div>
         )}
 
-        <Button className='flex' type='submit' disabled={name.trim() === ''}>
-          {t('ADD EXPENSE')}
-        </Button>
+        {modalForm && (
+          <Button className='flex' type='submit' disabled={name.trim() === ''}>
+            {t('ADD EXPENSE')}
+          </Button>
+        )}
       </form>
     </section>
   )
