@@ -36,7 +36,7 @@ const ExpensesForm = ({ onSubmit, disabled, modalForm }: Props) => {
     if (formWithDetailsRef.current && formWithoutDetailsRef.current) {
       setSnaps([
         `${formWithoutDetailsRef.current.offsetHeight + 56 + 13.8 + 8 + 16}px`,
-        `${formWithDetailsRef.current.offsetHeight + 56 + 13.8 + 8 + 16 + 12 + 52}px`,
+        `${formWithDetailsRef.current.offsetHeight + 56 + 13.8 + 8 + 16}px`,
       ])
     }
   }, [])
@@ -59,7 +59,7 @@ const ExpensesForm = ({ onSubmit, disabled, modalForm }: Props) => {
           open={open}
           setOpen={setOpen}
           title={t('Add Expense')}
-          className='px-5'
+          className='px-4'
           snapPoints={snaps}
           activeSnapPoint={snap}
         >
@@ -86,7 +86,7 @@ const ExpensesForm = ({ onSubmit, disabled, modalForm }: Props) => {
       />
 
       {/* Hidden for knowing the height */}
-      <div className='absolute left-[-500vw]'>
+      <div className='pointer-events-none invisible fixed top-0 z-0'>
         <Form
           formRef={formWithoutDetailsRef}
           showDetails={false}
