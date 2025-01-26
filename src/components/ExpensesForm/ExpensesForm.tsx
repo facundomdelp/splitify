@@ -93,9 +93,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
 
         {includeDetails && (
           <div className='min-h-auto flex flex-col'>
-            <div
-              className={cn('overflow-hidden transition-all duration-500', !showDetails ? 'max-h-0' : 'max-h-[500px]')}
-            >
+            <div className={cn('overflow-hidden transition-all duration-500', !showDetails ? 'h-0' : 'h-[200px]')}>
               <div className='flex min-h-0 max-w-full flex-wrap gap-2 border-y border-transparent px-1'>
                 <div className='min-h-0 min-w-40 flex-1 space-y-1'>
                   <Label htmlFor='title' className='text-xs'>
