@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 import { useTranslations } from 'next-intl'
 
@@ -22,20 +22,51 @@ interface Props {
 }
 
 const ExpensesForm = ({ onSubmit, disabled, modalForm }: Props) => {
-  const [openModal, setOpenModal] = useState(false)
+  const [open, setOpen] = useState(false)
   const [showDetails, setShowDetails] = useState(false)
 
+  const [snaps, setSnaps] = useState<string[]>([])
+  const [snap, setSnap] = useState<string | null>(null)
+  console.log('👽 ~ file: ExpensesForm.tsx:28 ~ ExpensesForm ~ snaps:', snaps)
+
+  const formWithDetailsRef = useRef<HTMLFormElement>(null)
+  const formWithoutDetailsRef = useRef<HTMLFormElement>(null)
   const nameInputRef = useRef<HTMLInputElement>(null)
+
+  useLayoutEffect(() => {
+    if (formWithDetailsRef.current && formWithoutDetailsRef.current) {
+      setSnaps([
+        `${formWithoutDetailsRef.current.offsetHeight + 56 + 13.8 + 8 + 16}px`,
+        `${formWithDetailsRef.current.offsetHeight + 56 + 13.8 + 8 + 16 + 12 + 52}px`,
+      ])
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!showDetails) {
+      setSnap(snaps[0])
+      return
+    }
+
+    setSnap(snaps[1])
+  }, [showDetails, snaps])
 
   const t = useTranslations('ExpensesForm')
 
   return (
     <>
       {modalForm && (
-        <DrawerModal open={openModal} setOpen={setOpenModal} title={t('Add Expense')} className='px-5'>
+        <DrawerModal
+          open={open}
+          setOpen={setOpen}
+          title={t('Add Expense')}
+          className='px-5'
+          snapPoints={snaps}
+          activeSnapPoint={snap}
+        >
           <Form
             onSubmit={onSubmit}
-            setOpenModal={setOpenModal}
+            setOpenModal={setOpen}
             nameInputRef={nameInputRef}
             showDetails={showDetails}
             setShowDetails={setShowDetails}
@@ -47,18 +78,43 @@ const ExpensesForm = ({ onSubmit, disabled, modalForm }: Props) => {
 
       <Form
         onSubmit={onSubmit}
-        setOpenModal={setOpenModal}
+        setOpenModal={setOpen}
         nameInputRef={nameInputRef}
         showDetails={showDetails}
         setShowDetails={setShowDetails}
         disabled={disabled}
-        onFocus={modalForm ? () => setOpenModal(true) : undefined}
+        onFocus={modalForm ? () => setOpen(true) : undefined}
       />
+
+      {/* Hidden for knowing the height */}
+      <div className='absolute left-[-500vw]'>
+        <Form
+          formRef={formWithoutDetailsRef}
+          showDetails={false}
+          onSubmit={onSubmit}
+          setOpenModal={setOpen}
+          nameInputRef={nameInputRef}
+          setShowDetails={setShowDetails}
+          disabled={disabled}
+          modalForm
+        />
+        <Form
+          formRef={formWithDetailsRef}
+          showDetails={true}
+          onSubmit={onSubmit}
+          setOpenModal={setOpen}
+          nameInputRef={nameInputRef}
+          setShowDetails={setShowDetails}
+          disabled={disabled}
+          modalForm
+        />
+      </div>
     </>
   )
 }
 
 interface FormProps {
+  formRef?: React.RefObject<HTMLFormElement>
   onSubmit?: ({ name, amount, title, date }: { name: string; amount: number; title?: string; date?: string }) => void
   setOpenModal?: React.Dispatch<React.SetStateAction<boolean>>
   nameInputRef: React.RefObject<HTMLInputElement>
@@ -70,6 +126,7 @@ interface FormProps {
 }
 
 const Form = ({
+  formRef,
   onSubmit,
   setOpenModal,
   nameInputRef,
@@ -100,7 +157,8 @@ const Form = ({
         <UserRound className='size-[12px] text-green-700' />
         {t('Add Expense')}
       </p>
-      <form className='flex flex-col gap-3' onSubmit={handleSubmit}>
+
+      <form ref={formRef} className='flex flex-col gap-3' onSubmit={handleSubmit}>
         <div className='flex flex-wrap gap-3'>
           <Input
             className='min-w-36 flex-[2.5] placeholder:text-gray-300'
@@ -142,9 +200,7 @@ const Form = ({
 
         {modalForm && (
           <div className='min-h-auto flex flex-col'>
-            <div
-              className={cn('overflow-hidden transition-all duration-500', !showDetails ? 'max-h-0' : 'max-h-[250px]')}
-            >
+            <div className={cn('overflow-hidden transition-all duration-500', !showDetails ? 'max-h-0' : 'max-h-full')}>
               <div className='flex min-h-0 max-w-full flex-wrap gap-2 border-y border-transparent px-1'>
                 <div className='min-h-0 min-w-40 flex-1 space-y-1'>
                   <Label htmlFor='title' className='text-xs'>
@@ -195,11 +251,9 @@ const Form = ({
           </div>
         )}
 
-        {modalForm && (
-          <Button className='flex' type='submit' disabled={name.trim() === ''}>
-            {t('ADD EXPENSE')}
-          </Button>
-        )}
+        <Button className='flex' type='submit' disabled={name.trim() === ''}>
+          {t('ADD EXPENSE')}
+        </Button>
       </form>
     </section>
   )
