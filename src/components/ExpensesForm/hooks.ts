@@ -4,17 +4,9 @@ interface useExpensesFormProps {
   nameInputRef: React.RefObject<HTMLInputElement>
   onSubmit?: ({ name, amount, title, date }: { name: string; amount: number; title?: string; date?: string }) => void
   setOpenModal?: React.Dispatch<React.SetStateAction<boolean>>
-  showDetails: boolean
-  setShowDetails: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const useExpensesForm = ({
-  nameInputRef,
-  onSubmit,
-  setOpenModal,
-  showDetails,
-  setShowDetails,
-}: useExpensesFormProps) => {
+export const useExpensesForm = ({ nameInputRef, onSubmit, setOpenModal }: useExpensesFormProps) => {
   const [name, setName] = useState('')
   const [amount, setAmount] = useState(0)
 
@@ -63,17 +55,6 @@ export const useExpensesForm = ({
     }
   }
 
-  const handleShowDetails = () => {
-    setShowDetails((prev) => !prev)
-
-    if (showDetails) {
-      setDate('')
-      return
-    }
-
-    setDate(new Date().toISOString().split('T')[0])
-  }
-
   const handleTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     const maxLength = e.target.maxLength
@@ -106,7 +87,6 @@ export const useExpensesForm = ({
     handleName,
     amount,
     handleAmount,
-    handleShowDetails,
     title,
     handleTitle,
     date,

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 
 import { useTranslations } from 'next-intl'
 
@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
-import { MinusIcon, Plus, PlusIcon, UserRound } from 'lucide-react'
+import { Plus, UserRound } from 'lucide-react'
 
 import DrawerModal from '../DrawerModal'
 import { useExpensesForm } from './hooks'
@@ -23,55 +23,16 @@ interface Props {
 
 const ExpensesForm = ({ onSubmit, disabled, modalForm }: Props) => {
   const [open, setOpen] = useState(false)
-  const [showDetails, setShowDetails] = useState(false)
 
-  const [snaps, setSnaps] = useState<string[]>([])
-  const [snap, setSnap] = useState<string | null>(null)
-
-  const formWithDetailsRef = useRef<HTMLFormElement>(null)
-  const formWithoutDetailsRef = useRef<HTMLFormElement>(null)
   const nameInputRef = useRef<HTMLInputElement>(null)
-
-  useLayoutEffect(() => {
-    if (formWithDetailsRef.current && formWithoutDetailsRef.current) {
-      setSnaps([
-        `${formWithoutDetailsRef.current.offsetHeight + 56 + 13.8 + 8 + 16}px`,
-        `${formWithDetailsRef.current.offsetHeight + 56 + 13.8 + 8 + 16}px`,
-      ])
-    }
-  }, [])
-
-  useEffect(() => {
-    if (!showDetails) {
-      setSnap(snaps[0])
-      return
-    }
-
-    setSnap(snaps[1])
-  }, [showDetails, snaps])
 
   const t = useTranslations('ExpensesForm')
 
   return (
     <>
       {modalForm && (
-        <DrawerModal
-          open={open}
-          setOpen={setOpen}
-          title={t('Add Expense')}
-          className='px-4'
-          snapPoints={snaps}
-          activeSnapPoint={snap}
-        >
-          <Form
-            onSubmit={onSubmit}
-            setOpenModal={setOpen}
-            nameInputRef={nameInputRef}
-            showDetails={showDetails}
-            setShowDetails={setShowDetails}
-            disabled={disabled}
-            modalForm
-          />
+        <DrawerModal open={open} setOpen={setOpen} title={t('Add Expense')} className='px-4'>
+          <Form onSubmit={onSubmit} setOpenModal={setOpen} nameInputRef={nameInputRef} disabled={disabled} modalForm />
         </DrawerModal>
       )}
 
@@ -79,35 +40,9 @@ const ExpensesForm = ({ onSubmit, disabled, modalForm }: Props) => {
         onSubmit={onSubmit}
         setOpenModal={setOpen}
         nameInputRef={nameInputRef}
-        showDetails={showDetails}
-        setShowDetails={setShowDetails}
         disabled={disabled}
         onFocus={modalForm ? () => setOpen(true) : undefined}
       />
-
-      {/* Hidden for knowing the height */}
-      <div className='pointer-events-none invisible fixed top-0 z-0'>
-        <Form
-          formRef={formWithoutDetailsRef}
-          showDetails={false}
-          onSubmit={onSubmit}
-          setOpenModal={setOpen}
-          nameInputRef={nameInputRef}
-          setShowDetails={setShowDetails}
-          disabled={disabled}
-          modalForm
-        />
-        <Form
-          formRef={formWithDetailsRef}
-          showDetails={true}
-          onSubmit={onSubmit}
-          setOpenModal={setOpen}
-          nameInputRef={nameInputRef}
-          setShowDetails={setShowDetails}
-          disabled={disabled}
-          modalForm
-        />
-      </div>
     </>
   )
 }
@@ -117,36 +52,14 @@ interface FormProps {
   onSubmit?: ({ name, amount, title, date }: { name: string; amount: number; title?: string; date?: string }) => void
   setOpenModal?: React.Dispatch<React.SetStateAction<boolean>>
   nameInputRef: React.RefObject<HTMLInputElement>
-  showDetails: boolean
-  setShowDetails: React.Dispatch<React.SetStateAction<boolean>>
   disabled?: boolean
   onFocus?: React.FocusEventHandler<HTMLInputElement>
   modalForm?: boolean
 }
 
-const Form = ({
-  formRef,
-  onSubmit,
-  setOpenModal,
-  nameInputRef,
-  showDetails,
-  setShowDetails,
-  disabled,
-  onFocus,
-  modalForm,
-}: FormProps) => {
-  const {
-    name,
-    handleName,
-    amount,
-    handleAmount,
-    handleShowDetails,
-    title,
-    handleTitle,
-    date,
-    handleDate,
-    handleSubmit,
-  } = useExpensesForm({ nameInputRef, onSubmit, setOpenModal, showDetails, setShowDetails })
+const Form = ({ formRef, onSubmit, setOpenModal, nameInputRef, disabled, onFocus, modalForm }: FormProps) => {
+  const { name, handleName, amount, handleAmount, title, handleTitle, date, handleDate, handleSubmit } =
+    useExpensesForm({ nameInputRef, onSubmit, setOpenModal })
 
   const t = useTranslations('ExpensesForm')
 
@@ -198,60 +111,42 @@ const Form = ({
         </div>
 
         {modalForm && (
-          <div className='min-h-auto flex flex-col'>
-            <div className={cn('overflow-hidden transition-all duration-500', !showDetails ? 'max-h-0' : 'max-h-full')}>
-              <div className='flex min-h-0 max-w-full flex-wrap gap-2 border-y border-transparent px-1'>
-                <div className='min-h-0 min-w-40 flex-1 space-y-1'>
-                  <Label htmlFor='title' className='text-xs'>
-                    <strong>{t('Title')}</strong> ({t('optional')})
-                  </Label>
-                  <Input
-                    id='Title'
-                    name='title'
-                    className='placeholder:text-gray-300'
-                    maxLength={50}
-                    onChange={handleTitle}
-                    value={title}
-                    placeholder={t('For example: Taxi')}
-                    tabIndex={!showDetails ? -1 : undefined}
-                    disabled={disabled}
-                  />
-                </div>
-
-                <div className='min-h-0 min-w-40 flex-1 space-y-1'>
-                  <Label htmlFor='date' className='text-xs'>
-                    <strong>{t('Date')}</strong> ({t('optional')})
-                  </Label>
-                  <Input
-                    id='date'
-                    type='date'
-                    name='date'
-                    className={cn(!date ? 'text-gray-300' : 'text-black')}
-                    onChange={handleDate}
-                    value={date}
-                    tabIndex={!showDetails ? -1 : undefined}
-                    disabled={disabled}
-                  />
-                </div>
-              </div>
+          <div className='flex min-h-0 max-w-full flex-wrap gap-2 border-y border-transparent px-1'>
+            <div className='min-h-0 min-w-40 flex-1 space-y-1'>
+              <Label htmlFor='date' className='text-xs'>
+                <strong>{t('Date')}</strong> ({t('optional')})
+              </Label>
+              <Input
+                id='date'
+                type='date'
+                name='date'
+                className={cn(!date ? 'text-gray-300' : 'text-black')}
+                onChange={handleDate}
+                value={date}
+                disabled={disabled}
+              />
             </div>
 
-            <Button
-              className={cn('text-gray-600', !showDetails ? '' : 'mt-3')}
-              variant='outline'
-              type='button'
-              onMouseDown={(e) => e.preventDefault()}
-              onClick={() => handleShowDetails()}
-              disabled={disabled}
-            >
-              {!showDetails ? <PlusIcon /> : <MinusIcon />}
-              {t('Details')}
-            </Button>
+            <div className='min-h-0 min-w-40 flex-1 space-y-1'>
+              <Label htmlFor='title' className='text-xs'>
+                <strong>{t('Title')}</strong> ({t('optional')})
+              </Label>
+              <Input
+                id='Title'
+                name='title'
+                className='placeholder:text-gray-300'
+                maxLength={50}
+                onChange={handleTitle}
+                value={title}
+                placeholder={t('For example: Taxi')}
+                disabled={disabled}
+              />
+            </div>
           </div>
         )}
 
         {modalForm && (
-          <Button className='flex' type='submit' disabled={name.trim() === ''}>
+          <Button className='mb-3' type='submit' disabled={name.trim() === ''}>
             {t('ADD EXPENSE')}
           </Button>
         )}
