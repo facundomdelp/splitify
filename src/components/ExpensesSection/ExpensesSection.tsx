@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils'
 import { Expenses } from '@/components/Expenses/Expenses'
 import ExpensesForm from '@/components/ExpensesForm'
 
-import DrawerModal from '../DrawerModal/DrawerModal'
+import DrawerModal from '../DrawerModal'
 
 interface Props {
   expenses: Expense[]
@@ -47,9 +47,6 @@ const ExpensesSection = ({ expenses, addExpense, removeExpense, loadingExpenses,
 
   return (
     <>
-      {/* <Modal open={openModal} setOpen={setOpenModal} title={t('Add Expense')} className='px-6 w-[90vw] max-w-[500px]'>
-        <ExpensesForm includeDetails bigAddButton onSubmit={handleSubmit} disabled={disabled} />
-      </Modal> */}
       {modalForm ? (
         <>
           <DrawerModal open={openModal} setOpen={setOpenModal} title={t('Add Expense')} className='px-5'>

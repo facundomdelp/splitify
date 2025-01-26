@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
-import { Plus, UserRound } from 'lucide-react'
+import { MinusIcon, Plus, PlusIcon, UserRound } from 'lucide-react'
 
 import { useExpensesForm } from './hooks'
 
@@ -30,8 +30,8 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
     handleName,
     amount,
     handleAmount,
-    // handleShowDetails,
-    // showDetails,
+    handleShowDetails,
+    showDetails,
     title,
     handleTitle,
     date,
@@ -94,10 +94,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
         {includeDetails && (
           <div className='min-h-auto flex flex-col'>
             <div
-              className={cn(
-                'grid min-h-0 overflow-hidden transition-[grid-template-rows] duration-300 ease-in-out',
-                // !showDetails ? 'grid-rows-[0fr]' : 'grid-rows-[1fr]',
-              )}
+              className={cn('overflow-hidden transition-all duration-500', !showDetails ? 'max-h-0' : 'max-h-[500px]')}
             >
               <div className='flex min-h-0 max-w-full flex-wrap gap-2 border-y border-transparent px-1'>
                 <div className='min-h-0 min-w-40 flex-1 space-y-1'>
@@ -112,7 +109,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
                     onChange={handleTitle}
                     value={title}
                     placeholder={t('For example: Taxi')}
-                    // tabIndex={!showDetails ? -1 : undefined}
+                    tabIndex={!showDetails ? -1 : undefined}
                     disabled={disabled}
                   />
                 </div>
@@ -128,14 +125,14 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
                     className={cn(!date ? 'text-gray-300' : 'text-black')}
                     onChange={handleDate}
                     value={date}
-                    // tabIndex={!showDetails ? -1 : undefined}
+                    tabIndex={!showDetails ? -1 : undefined}
                     disabled={disabled}
                   />
                 </div>
               </div>
             </div>
 
-            {/* <Button
+            <Button
               className={cn('text-gray-600', !showDetails ? '' : 'mt-3')}
               variant='outline'
               type='button'
@@ -145,7 +142,7 @@ const ExpensesForm = ({ onFocus, includeDetails = false, bigAddButton = false, o
             >
               {!showDetails ? <PlusIcon /> : <MinusIcon />}
               {t('Details')}
-            </Button> */}
+            </Button>
           </div>
         )}
 
