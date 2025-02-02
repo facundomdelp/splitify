@@ -2,7 +2,7 @@ import { Expense } from '@/types/expense-types'
 
 import { cn } from '@/lib/utils'
 
-import { Expenses } from '@/components/Expenses/Expenses'
+import Expenses from '@/components/Expenses'
 import ExpensesForm from '@/components/ExpensesForm'
 
 interface Props {

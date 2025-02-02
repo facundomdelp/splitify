@@ -6,18 +6,21 @@ import ConfirmationModal from '@/components/ConfirmationModal'
 import ContextMenu from '@/components/ContextMenu'
 import { ContextMenuItem } from '@/components/ContextMenu/ContextMenu'
 import CopyToClipboard from '@/components/CopyToClipboard'
+import EditGroupNameModal from '@/components/EditGroupName/EditGroupNameModal'
 import Modal from '@/components/Modal'
 
-import { Share2, Trash2 } from 'lucide-react'
+import { PencilIcon, Share2, Trash2 } from 'lucide-react'
 
 import { useRemoveGroup } from './hooks'
 
 interface Props {
-  groupId?: string
+  groupId: string
+  groupName: string
 }
 
-const GroupsContextMenu = ({ groupId }: Props) => {
+const GroupsContextMenu = ({ groupId, groupName }: Props) => {
   const [openShareModal, setOpenShareModal] = useState(false)
+  const [openEditGroupNameModal, setOpenEditGroupNameModal] = useState(false)
   const [openRemoveConfirmationModal, setOpenRemoveConfirmationModal] = useState(false)
 
   const { handleRemoveGroup } = useRemoveGroup({ groupId })
@@ -27,22 +30,26 @@ const GroupsContextMenu = ({ groupId }: Props) => {
 
   return (
     <>
-      {groupId && (
-        <Modal open={openShareModal} setOpen={setOpenShareModal} title={t('Share Group')} closeOnBackdropClick>
-          <div className='space-y-3 text-center'>
-            <p className='text-sm'>{t('🤑 Copy this link and share it with your friends! 💸')} </p>
-            <code
-              title='Copy this link'
-              className='flex items-center justify-center overflow-x-auto text-wrap bg-gray-50 p-2 text-[10px]'
-            >{`https://splitify.me/${locale}/groups/${groupId}`}</code>
-            <p className='pb-3 text-[10px]'>{t('Your friends would be able to easily add expenses to this group')} </p>
-            <CopyToClipboard
-              onClick={() => setOpenShareModal(false)}
-              copyString={`https://splitify.me/${locale}/groups/${groupId}`}
-            />
-          </div>
-        </Modal>
-      )}
+      <Modal open={openShareModal} setOpen={setOpenShareModal} title={t('Share Group')} closeOnBackdropClick>
+        <div className='space-y-3 text-center'>
+          <p className='text-sm'>{t('🤑 Copy this link and share it with your friends! 💸')} </p>
+          <code
+            title='Copy this link'
+            className='flex items-center justify-center break-all bg-gray-50 p-2 text-[9px]'
+          >{`https://splitify.me/${locale}/groups/${groupId}`}</code>
+          <p className='pb-3 text-[10px]'>{t('Your friends would be able to easily add expenses to this group')} </p>
+          <CopyToClipboard
+            onClick={() => setOpenShareModal(false)}
+            copyString={`https://splitify.me/${locale}/groups/${groupId}`}
+          />
+        </div>
+      </Modal>
+
+      <EditGroupNameModal
+        initialGroupName={groupName}
+        open={openEditGroupNameModal}
+        setOpen={setOpenEditGroupNameModal}
+      />
 
       <ConfirmationModal
         open={openRemoveConfirmationModal}
@@ -59,7 +66,10 @@ const GroupsContextMenu = ({ groupId }: Props) => {
         <ContextMenuItem key='share-group' onClick={() => setOpenShareModal(true)}>
           <Share2 /> {t('Share Group')}
         </ContextMenuItem>
-        <ContextMenuItem key='-group' onClick={() => setOpenRemoveConfirmationModal(true)}>
+        <ContextMenuItem key='edit-name' onClick={() => setOpenEditGroupNameModal(true)}>
+          <PencilIcon /> {t('Edit Name')}
+        </ContextMenuItem>
+        <ContextMenuItem key='remove-group' onClick={() => setOpenRemoveConfirmationModal(true)}>
           <Trash2 /> {t('Remove Group')}
         </ContextMenuItem>
       </ContextMenu>

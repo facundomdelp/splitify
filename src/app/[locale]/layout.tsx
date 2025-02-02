@@ -81,7 +81,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <Header />
 
-          <div className='mt-20 flex min-h-0 w-full flex-1 justify-center text-green-950'>{children}</div>
+          <div className='mt-20 flex min-h-0 w-full flex-1 justify-center text-slate-600'>{children}</div>
 
           <Footer />
 

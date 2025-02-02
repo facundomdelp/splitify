@@ -13,8 +13,8 @@ import { useGetEmojiFromString } from '@/utils/hooks/useGetEmojiFromString'
 import { UsersRound } from 'lucide-react'
 
 import Amount from '../Amount'
+import RemoveExpense from '../RemoveExpense'
 import Spinner from '../ui/spinner'
-import { RemoveExpense } from './RemoveExpense'
 
 interface Props {
   expenses: Expense[]
@@ -23,7 +23,7 @@ interface Props {
   loading?: boolean
 }
 
-export const Expenses = ({ expenses, onRemoveExpense, readOnly = false, loading }: Props) => {
+const Expenses = ({ expenses, onRemoveExpense, readOnly = false, loading }: Props) => {
   const getEmojiFromString = useGetEmojiFromString()
 
   const t = useTranslations('Expenses')
@@ -80,3 +80,5 @@ export const Expenses = ({ expenses, onRemoveExpense, readOnly = false, loading 
     </>
   )
 }
+
+export default Expenses

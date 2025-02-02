@@ -16,7 +16,7 @@ interface Props {
   onRemoveExpense: (id: string) => void
 }
 
-export const RemoveExpense = ({ id, name, onRemoveExpense }: Props) => {
+const RemoveExpense = ({ id, name, onRemoveExpense }: Props) => {
   const [open, setOpen] = useState(false)
 
   const getEmojiFromString = useGetEmojiFromString()
@@ -51,3 +51,5 @@ export const RemoveExpense = ({ id, name, onRemoveExpense }: Props) => {
     </>
   )
 }
+
+export default RemoveExpense
