@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl'
 
 import CalculateButton from '@/components/CalculateButton/CalculateButton'
 
+import ResetExpensesButton from '../ResetExpenses'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs'
 
 interface Props {
@@ -12,9 +13,17 @@ interface Props {
   disabled?: boolean
   disabledExpenses?: boolean
   disabledBalances?: boolean
+  onResetExpenses?: () => void
 }
 
-const ExpensesBalancesTabs = ({ children, onBalancesClick, disabled, disabledExpenses, disabledBalances }: Props) => {
+const ExpensesBalancesTabs = ({
+  children,
+  onBalancesClick,
+  disabled,
+  disabledExpenses,
+  disabledBalances,
+  onResetExpenses,
+}: Props) => {
   const [tabValue, setTabValue] = useState<'expenses' | 'balances'>('expenses')
 
   const handleCalculateButton = () => {
@@ -28,7 +37,7 @@ const ExpensesBalancesTabs = ({ children, onBalancesClick, disabled, disabledExp
     <Tabs
       value={tabValue}
       onValueChange={(value) => setTabValue(value as 'expenses' | 'balances')}
-      className='flex w-full flex-1 flex-col'
+      className='flex w-full flex-1 flex-col gap-4'
     >
       <div className='relative flex'>
         <TabsList className='mx-auto scale-90 xs:scale-100'>
@@ -46,14 +55,26 @@ const ExpensesBalancesTabs = ({ children, onBalancesClick, disabled, disabledExp
         </TabsList>
       </div>
 
-      <TabsContent className='flex-1' value='expenses'>
-        <div className='mt-2 flex h-full flex-col gap-4'>
-          {children[0]}
-          <CalculateButton onClick={handleCalculateButton} disabled={disabled || disabledBalances} />
-        </div>
+      <TabsContent className='mx-4 flex h-full flex-1 flex-col gap-4' value='expenses'>
+        {children[0]}
+
+        <section className='flex gap-4'>
+          {onResetExpenses && (
+            <ResetExpensesButton
+              handleResetExpenses={onResetExpenses}
+              className='flex-1 basis-1/2'
+              disabled={disabled || disabledBalances}
+            />
+          )}
+          <CalculateButton
+            onClick={handleCalculateButton}
+            disabled={disabled || disabledBalances}
+            className='flex-1 basis-1/2'
+          />
+        </section>
       </TabsContent>
-      <TabsContent className='flex-1' value='balances'>
-        <div className='mt-2 flex h-full flex-1 flex-col gap-4'>{children[1]}</div>
+      <TabsContent className='mx-4 mt-2 flex h-full flex-1 flex-col gap-4' value='balances'>
+        {children[1]}
       </TabsContent>
     </Tabs>
   )

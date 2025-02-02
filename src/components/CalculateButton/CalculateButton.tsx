@@ -9,17 +9,16 @@ interface Props {
   disabled?: boolean
   calculating?: boolean
   onClick?: () => void
+  className?: string
 }
 
-const CalculateButton = ({ disabled, calculating, onClick }: Props) => {
+const CalculateButton = ({ disabled, calculating, onClick, className }: Props) => {
   const t = useTranslations('CalculateButton')
 
   return (
-    <section className='mx-4 mt-auto flex'>
-      <Button className='flex-1' onClick={onClick} disabled={disabled}>
-        {!calculating ? t('Calculate Balances') : <Spinner />}
-      </Button>
-    </section>
+    <Button className={className} onClick={onClick} disabled={disabled}>
+      {!calculating ? t('Calculate Balances') : <Spinner />}
+    </Button>
   )
 }
 

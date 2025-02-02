@@ -28,9 +28,7 @@
   "HomeContextMenu": {
     "Do you want to turn these expenses into a ✈️ Group?": "Do you want to turn these expenses into a ✈️ Group?",
     "By turning it into a group, you can share a link so others can collaborate easily": "By turning it into a group, you can share a link so others can collaborate easily.",
-    "Are you sure you want to reset the expenses list?": "Are you sure you want to reset the expenses list?",
-    "Turn into a Group ✈️": "Turn into a Group ✈️",
-    "Reset Expenses": "Reset Expenses"
+    "Turn into a Group ✈️": "Turn into a Group ✈️"
   },
   "GroupPage": {
     "Share Group!": "Share Group!"
@@ -85,7 +83,10 @@
     "Details": "Details",
     "ADD EXPENSE": "ADD EXPENSE"
   },
-
+  "ResetExpenses": {
+    "Reset": "Reset",
+    "Are you sure you want to reset the expenses list?": "Are you sure you want to reset the expenses list?"
+  },
   "useCopyString": {
     "owes": "owes",
     "to": "to"

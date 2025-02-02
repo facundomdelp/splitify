@@ -34,9 +34,7 @@ const ExpensesSection = ({ expenses, addExpense, removeExpense, loadingExpenses,
   }
 
   return (
-    <section
-      className={cn('mx-4 flex min-w-0 flex-1 cursor-default flex-col gap-8', disabled ? 'pointer-events-none' : '')}
-    >
+    <section className={cn('flex min-w-0 flex-1 cursor-default flex-col gap-8', disabled ? 'pointer-events-none' : '')}>
       <ExpensesForm onSubmit={handleSubmit} disabled={disabled} modalForm={modalForm} />
       <Expenses expenses={expenses} onRemoveExpense={removeExpense} loading={loadingExpenses} />
     </section>

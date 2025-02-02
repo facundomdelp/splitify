@@ -10,7 +10,7 @@ import ContextMenu from '@/components/ContextMenu'
 import { ContextMenuItem } from '@/components/ContextMenu/ContextMenu'
 import { Badge } from '@/components/ui/badge'
 
-import { Eraser, Wand } from 'lucide-react'
+import { Wand } from 'lucide-react'
 
 interface Props {
   expenses: Expense[]
@@ -19,14 +19,8 @@ interface Props {
   convertIntoGroup: (expenses: Expense[]) => void
 }
 
-const HomeContextMenu = ({ expenses, setExpenses, setBalances, convertIntoGroup }: Props) => {
+const HomeContextMenu = ({ expenses, convertIntoGroup }: Props) => {
   const [openTurnIntoGroupConfirmationModal, setOpenTurnIntoGroupConfirmationModal] = useState(false)
-  const [openResetConfirmationModal, setOpenResetConfirmationModal] = useState(false)
-
-  const handleResetExpenses = () => {
-    setExpenses([])
-    setBalances([])
-  }
 
   const t = useTranslations('HomeContextMenu')
 
@@ -41,24 +35,12 @@ const HomeContextMenu = ({ expenses, setExpenses, setBalances, convertIntoGroup 
         onConfirm={() => convertIntoGroup(expenses)}
       />
 
-      <ConfirmationModal
-        key='reset-modal'
-        open={openResetConfirmationModal}
-        onOpenChange={setOpenResetConfirmationModal}
-        title={<>{t('Are you sure you want to reset the expenses list?')}</>}
-        onConfirm={handleResetExpenses}
-        destructive
-      />
-
       <ContextMenu>
         <ContextMenuItem onClick={() => setOpenTurnIntoGroupConfirmationModal(true)} disabled={expenses.length === 0}>
           <Wand /> {t('Turn into a Group ✈️')}
           <Badge className='pointer-events-none my-auto flex text-nowrap rounded-lg px-[6px] text-[6px] uppercase leading-[0.6rem] opacity-70'>
             Beta
           </Badge>
-        </ContextMenuItem>
-        <ContextMenuItem onClick={() => setOpenResetConfirmationModal(true)} disabled={expenses.length === 0}>
-          <Eraser /> {t('Reset Expenses')}
         </ContextMenuItem>
       </ContextMenu>
     </>

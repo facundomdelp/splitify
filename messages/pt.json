@@ -28,9 +28,7 @@
   "HomeContextMenu": {
     "Do you want to turn these expenses into a ✈️ Group?": "Você quer transformar essas despesas em um ✈️ Grupo?",
     "By turning it into a group, you can share a link so others can collaborate easily": "Ao transformá-lo em um grupo, você poderá compartilhar um link para que outros colaborem facilmente.",
-    "Are you sure you want to reset the expenses list?": "Tem certeza de que deseja redefinir a lista de despesas?",
-    "Turn into a Group ✈️": "Transformar em um Grupo ✈️",
-    "Reset Expenses": "Redefinir Despesas"
+    "Turn into a Group ✈️": "Transformar em um Grupo ✈️"
   },
   "GroupPage": {
     "Share Group!": "Compartilhar o Grupo!"
@@ -85,7 +83,10 @@
     "Details": "Detalhes",
     "ADD EXPENSE": "ADICIONAR DESPESA"
   },
-
+  "ResetExpenses": {
+    "Reset Expenses": "Redefinir",
+    "Are you sure you want to reset the expenses list?": "Tem certeza de que deseja redefinir a lista de despesas?"
+  },
   "useCopyString": {
     "owes": "deve",
     "to": "para"

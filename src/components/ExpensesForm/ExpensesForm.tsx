@@ -32,7 +32,7 @@ const ExpensesForm = ({ onSubmit, disabled, modalForm }: Props) => {
     <>
       <Button
         variant='outline'
-        className='border-2 border-green-500 text-green-500 hover:bg-inherit hover:text-green-500 hover:opacity-70'
+        className='border border-green-500 text-green-500 hover:bg-inherit hover:text-green-500 hover:opacity-70'
         onClick={() => setOpen(true)}
       >
         {t('Add Expense')}

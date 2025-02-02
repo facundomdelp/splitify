@@ -34,6 +34,11 @@ export default function Home() {
   })
   const { convertIntoGroup, convertToGroupState } = useConvertIntoGroup({ setExpenses, setBalances })
 
+  const handleResetExpenses = () => {
+    setExpenses([])
+    setBalances([])
+  }
+
   const t = useTranslations('Home')
 
   return (
@@ -69,6 +74,7 @@ export default function Home() {
         onBalancesClick={handleCalculateBalances}
         disabled={convertToGroupState.loading}
         disabledBalances={disabledBalances}
+        onResetExpenses={handleResetExpenses}
       >
         {[
           <ExpensesSection
