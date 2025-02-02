@@ -55,26 +55,29 @@ const ExpensesBalancesTabs = ({
         </TabsList>
       </div>
 
-      <TabsContent className='mx-4 flex h-full flex-1 flex-col gap-4' value='expenses'>
-        {children[0]}
-
-        <section className='flex gap-4'>
-          {onResetExpenses && (
-            <ResetExpensesButton
-              handleResetExpenses={onResetExpenses}
-              className='flex-1 basis-1/2'
+      <TabsContent className='mx-4 flex-1' value='expenses'>
+        {/* Don't remove this div since it's necessary for some browsers */}
+        <div className='flex h-full flex-1 flex-col gap-4'>
+          {children[0]}
+          <section className='flex gap-4'>
+            {onResetExpenses && (
+              <ResetExpensesButton
+                handleResetExpenses={onResetExpenses}
+                className='flex-1 basis-1/2'
+                disabled={disabled || disabledBalances}
+              />
+            )}
+            <CalculateButton
+              onClick={handleCalculateButton}
               disabled={disabled || disabledBalances}
+              className='flex-1 basis-1/2'
             />
-          )}
-          <CalculateButton
-            onClick={handleCalculateButton}
-            disabled={disabled || disabledBalances}
-            className='flex-1 basis-1/2'
-          />
-        </section>
+          </section>
+        </div>
       </TabsContent>
-      <TabsContent className='mx-4 mt-2 flex h-full flex-1 flex-col gap-4' value='balances'>
-        {children[1]}
+      <TabsContent className='mx-4 flex-1' value='balances'>
+        {/* Don't remove this div since it's necessary for some browsers */}
+        <div className='flex h-full flex-1 flex-col gap-4'>{children[1]}</div>
       </TabsContent>
     </Tabs>
   )
