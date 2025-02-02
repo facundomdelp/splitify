@@ -28,22 +28,28 @@ const ExpensesForm = ({ onSubmit, disabled, modalForm }: Props) => {
 
   const t = useTranslations('ExpensesForm')
 
-  return (
+  return modalForm ? (
     <>
-      {modalForm && (
-        <DrawerModal open={open} setOpen={setOpen} title={t('Add Expense')} className='px-4'>
-          <Form onSubmit={onSubmit} setOpenModal={setOpen} nameInputRef={nameInputRef} disabled={disabled} modalForm />
-        </DrawerModal>
-      )}
+      <Button
+        variant='outline'
+        className='border-2 border-green-500 text-green-500 hover:bg-inherit hover:text-green-500 hover:opacity-70'
+        onClick={() => setOpen(true)}
+      >
+        {t('Add Expense')}
+      </Button>
 
-      <Form
-        onSubmit={onSubmit}
-        setOpenModal={setOpen}
-        nameInputRef={nameInputRef}
-        disabled={disabled}
-        onFocus={modalForm ? () => setOpen(true) : undefined}
-      />
+      <DrawerModal open={open} setOpen={setOpen} title={t('Add Expense')} className='px-4'>
+        <Form onSubmit={onSubmit} setOpenModal={setOpen} nameInputRef={nameInputRef} disabled={disabled} modalForm />
+      </DrawerModal>
     </>
+  ) : (
+    <Form
+      onSubmit={onSubmit}
+      setOpenModal={setOpen}
+      nameInputRef={nameInputRef}
+      disabled={disabled}
+      onFocus={modalForm ? () => setOpen(true) : undefined}
+    />
   )
 }
 
