@@ -43,13 +43,7 @@ const ExpensesForm = ({ onSubmit, disabled, modalForm }: Props) => {
       </DrawerModal>
     </>
   ) : (
-    <Form
-      onSubmit={onSubmit}
-      setOpenModal={setOpen}
-      nameInputRef={nameInputRef}
-      disabled={disabled}
-      onFocus={modalForm ? () => setOpen(true) : undefined}
-    />
+    <Form onSubmit={onSubmit} setOpenModal={setOpen} nameInputRef={nameInputRef} disabled={disabled} />
   )
 }
 
@@ -59,11 +53,10 @@ interface FormProps {
   setOpenModal?: React.Dispatch<React.SetStateAction<boolean>>
   nameInputRef: React.RefObject<HTMLInputElement>
   disabled?: boolean
-  onFocus?: React.FocusEventHandler<HTMLInputElement>
   modalForm?: boolean
 }
 
-const Form = ({ formRef, onSubmit, setOpenModal, nameInputRef, disabled, onFocus, modalForm }: FormProps) => {
+const Form = ({ formRef, onSubmit, setOpenModal, nameInputRef, disabled, modalForm }: FormProps) => {
   const { name, handleName, amount, handleAmount, title, handleTitle, date, handleDate, handleSubmit } =
     useExpensesForm({ nameInputRef, onSubmit, setOpenModal })
 
@@ -86,7 +79,6 @@ const Form = ({ formRef, onSubmit, setOpenModal, nameInputRef, disabled, onFocus
             onChange={handleName}
             value={name}
             placeholder={t('John Spliti')}
-            onFocus={onFocus}
             disabled={disabled}
             autoFocus={modalForm}
           />
@@ -103,7 +95,6 @@ const Form = ({ formRef, onSubmit, setOpenModal, nameInputRef, disabled, onFocus
                 step={0.01}
                 onChange={handleAmount}
                 value={amount}
-                onFocus={onFocus}
                 disabled={disabled}
               />
             </div>

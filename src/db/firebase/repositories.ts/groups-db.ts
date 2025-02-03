@@ -52,6 +52,13 @@ class Groups {
       throw new CustomError(404, `Group with ID ${groupId} not found.`)
     }
   }
+
+  async updateGroup({ groupId, name }: { groupId: string; name?: string }) {
+    const groupRef = this.getGroupRef(groupId)
+    return await updateDoc(groupRef, {
+      name,
+    })
+  }
 }
 
 export default Groups

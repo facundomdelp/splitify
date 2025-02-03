@@ -35,11 +35,12 @@
   },
   "GroupsContextMenu": {
     "Share Group": "Compartilhar o Grupo",
+    "Remove Group": "Remover Grupo",
+    "Edit Name": "Editar Nome",
     "🤑 Copy this link and share it with your friends! 💸": "🤑 Copie este link e compartilhe com seus amigos! 💸",
     "Your friends would be able to easily add expenses to this group": "Seus amigos poderão adicionar despesas facilmente a este grupo.",
     "Are you sure you want to remove this group?": "Tem certeza de que deseja remover este grupo?",
-    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want": "Ao remover este grupo, ele não será excluído, você apenas deixará de vê-lo. Você pode usar o link novamente para acessá-lo quando quiser.",
-    "Remove Group": "Remover Grupo"
+    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want": "Ao remover este grupo, ele não será excluído, você apenas deixará de vê-lo. Você pode usar o link novamente para acessá-lo quando quiser."
   },
   "Balances": {
     "Balances": "Saldos",
@@ -57,6 +58,11 @@
   "CopyToClipboard": {
     "Copy": "Copiar",
     "Copied!": "Copiado!"
+  },
+  "EditGroupNameModal": {
+    "Edit Group Name": "Editar Nome do Grupo",
+    "Edit": "Editar",
+    "Name": "Nome"
   },
   "DrawerModal": {
     "Cancel": "Cancelar"
@@ -84,7 +90,7 @@
     "ADD EXPENSE": "ADICIONAR DESPESA"
   },
   "ResetExpenses": {
-    "Reset Expenses": "Redefinir",
+    "Reset": "Redefinir",
     "Are you sure you want to reset the expenses list?": "Tem certeza de que deseja redefinir a lista de despesas?"
   },
   "useCopyString": {

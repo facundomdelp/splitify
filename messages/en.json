@@ -35,11 +35,12 @@
   },
   "GroupsContextMenu": {
     "Share Group": "Share Group",
+    "Remove Group": "Remove Group",
+    "Edit Name": "Edit Name",
     "🤑 Copy this link and share it with your friends! 💸": "🤑 Copy this link and share it with your friends! 💸",
     "Your friends would be able to easily add expenses to this group": "Your friends can easily add expenses to this group.",
     "Are you sure you want to remove this group?": "Are you sure you want to remove this group?",
-    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want": "Removing this group won't delete it, you will simply stop seeing it. You can use the link again to access it whenever you want.",
-    "Remove Group": "Remove Group"
+    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want": "Removing this group won't delete it, you will simply stop seeing it. You can use the link again to access it whenever you want."
   },
   "Balances": {
     "Balances": "Balances",
@@ -57,6 +58,11 @@
   "CopyToClipboard": {
     "Copy": "Copy",
     "Copied!": "Copied!"
+  },
+  "EditGroupNameModal": {
+    "Edit Group Name": "Edit Group Name",
+    "Edit": "Edit",
+    "Name": "Name"
   },
   "DrawerModal": {
     "Cancel": "Cancel"
