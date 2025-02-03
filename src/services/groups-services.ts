@@ -18,6 +18,10 @@ class GroupService {
   async getGroup(groupId: string) {
     return groups.getGroup(groupId)
   }
+
+  async updateGroup({ groupId, name }: { groupId: string; name?: string }) {
+    return groups.updateGroup({ groupId, name })
+  }
 }
 
 export default GroupService

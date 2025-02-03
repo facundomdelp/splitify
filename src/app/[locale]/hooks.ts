@@ -59,20 +59,21 @@ export const useConvertIntoGroup = ({ setExpenses, setBalances }: useConvertInto
       const data = await addGroupResponse.json()
 
       for (const expense of expenses) {
+        const { name, amount, title, date } = expense
+
         // Bulk Add Expenses?
-        const addExpensesToGroup = await fetch('/api/expenses', {
+        const addExpensesToGroupResponse = await fetch(`/api/groups/${data.group}/expenses`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            groupId: data.group,
-            name: expense.name,
-            amount: expense.amount,
-            title: expense.title,
-            date: expense.date,
+            name,
+            amount,
+            title,
+            date,
           }),
         })
 
-        if (!addExpensesToGroup.ok) {
+        if (!addExpensesToGroupResponse.ok) {
           throw new CustomError(addGroupResponse.status)
         }
       }

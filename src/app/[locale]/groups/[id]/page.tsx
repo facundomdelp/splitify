@@ -55,7 +55,7 @@ const GroupPage = () => {
                 <div className='absolute right-2'>
                   <Tooltip content={t('Share Group!')} align='end' arrow openOnce>
                     <div>
-                      <GroupsContextMenu groupId={group.id} groupName={group.name} />
+                      <GroupsContextMenu groupId={group.id} />
                     </div>
                   </Tooltip>
                 </div>

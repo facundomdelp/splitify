@@ -60,7 +60,7 @@ const DrawerModal = ({
       fadeFromIndex={0}
     >
       <DrawerContent className={cn('text-gray-700', className)}>
-        <DrawerHeader className='text-left'>
+        <DrawerHeader className='px-0 text-left'>
           <DrawerTitle>{title}</DrawerTitle>
           <DrawerDescription>{description}</DrawerDescription>
         </DrawerHeader>

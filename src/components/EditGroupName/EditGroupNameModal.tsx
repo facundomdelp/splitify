@@ -11,9 +11,10 @@ interface Props {
   initialGroupName: string
   open: boolean
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
+  onSubmit: ({ groupName }: { groupName: string }) => void
 }
 
-const EditGroupNameModal = ({ initialGroupName, open, setOpen }: Props) => {
+const EditGroupNameModal = ({ initialGroupName, open, setOpen, onSubmit }: Props) => {
   const [groupName, setGroupName] = useState(initialGroupName)
 
   const handleGroupName = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,13 +28,18 @@ const EditGroupNameModal = ({ initialGroupName, open, setOpen }: Props) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    onSubmit({ groupName })
+
+    setGroupName('')
+    setOpen(false)
   }
 
   const t = useTranslations('EditGroupNameModal')
 
   return (
-    <DrawerModal open={open} setOpen={setOpen} title={t('Edit Group Name')}>
-      <form className='flex flex-col gap-4 px-4' onSubmit={handleSubmit}>
+    <DrawerModal open={open} setOpen={setOpen} title={t('Edit Group Name')} className='px-4'>
+      <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
         <div className='min-h-0 min-w-40 flex-1 space-y-1'>
           <Label htmlFor='date' className='text-xs'>
             <strong>Name</strong>
