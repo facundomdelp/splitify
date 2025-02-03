@@ -30,7 +30,7 @@ const Expenses = ({ expenses, onRemoveExpense, readOnly = false, loading }: Prop
 
   return (
     <>
-      <section className='flex min-h-[200px] min-w-0 flex-1 flex-col text-sm'>
+      <section className='flex min-h-[300px] min-w-0 flex-1 flex-col text-sm'>
         <div className='flex items-center'>
           <h2 className='flex flex-nowrap items-center gap-2 text-lg font-bold' id='expenses'>
             <UsersRound className='size-[22px] text-green-700' />

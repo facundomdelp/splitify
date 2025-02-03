@@ -54,7 +54,7 @@ export default function Home() {
             onClick={() => setShowExplanation(false)}
           />
           <h1 className='mb-1 mr-5 mt-0 text-sm font-bold'>{t('Simplify your group expenses with Splitify')}</h1>
-          <p className='text-slate-503 text-xs'>
+          <p className='text-xs text-slate-500'>
             <strong className='font-semibold'>{t('💸 How does it work?')}</strong>{' '}
             {t("Just enter each participant's name and how much they spent")}
           </p>
