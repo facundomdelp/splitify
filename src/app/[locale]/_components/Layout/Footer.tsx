@@ -46,7 +46,7 @@ const Footer = () => {
           <ul className='flex gap-2'>
             {SEO_ROUTES[locale].map((route) => (
               <li key={route.slug}>
-                <Link href={`${baseUrl}/${locale === 'en' ? '' : locale}/${route.slug}`}>{route.title}</Link>
+                <Link href={`${baseUrl}/${locale === 'en' ? '' : `${locale}/`}${route.slug}`}>{route.title}</Link>
               </li>
             ))}
           </ul>
