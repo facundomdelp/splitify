@@ -1,4 +1,4 @@
-import { SEO_ROUTES } from '@/app/[locale]/[seo-route]/constants'
+import { SEO_ROUTES } from '@/app/[locale]/[link]/constants'
 
 import type { MetadataRoute } from 'next'
 
@@ -8,7 +8,7 @@ const defaultLocale = 'en'
 const baseUrl = 'https://splitify.me'
 
 // Static routes
-const staticRoutes = ['']
+const staticRoutes = ['', 'faq', 'useful-links']
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticEntries = staticRoutes.flatMap((route) => {

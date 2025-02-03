@@ -1,5 +1,4 @@
 import { Metadata } from 'next'
-import { getTranslations } from 'next-intl/server'
 import { redirect } from 'next/navigation'
 
 import { routing } from '@/i18n/routing'
@@ -11,30 +10,28 @@ import { SEO_ROUTES } from './constants'
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: Locale; 'seo-route': string }>
+  params: Promise<{ locale: Locale; link: string }>
 }): Promise<Metadata> {
-  const { locale, 'seo-route': seoRoute } = await params
+  const { locale, link } = await params
 
   const baseUrl = 'https://splitify.me'
   const localeSeoRoutes = SEO_ROUTES[locale]
 
-  const t = await getTranslations({ locale, namespace: 'Metadata' })
-
   const languages: Record<Locale, string> = {} as Record<Locale, string>
   routing.locales.forEach((loc) => {
-    languages[loc] = loc === routing.defaultLocale ? `${baseUrl}/${seoRoute}` : `${baseUrl}/${loc}/${seoRoute}`
+    languages[loc] = loc === routing.defaultLocale ? `${baseUrl}/${link}` : `${baseUrl}/${loc}/${link}`
   })
 
-  const canonicalUrl = locale === routing.defaultLocale ? `${baseUrl}/${seoRoute}` : `${baseUrl}/${locale}/${seoRoute}`
+  const canonicalUrl = locale === routing.defaultLocale ? `${baseUrl}/${link}` : `${baseUrl}/${locale}/${link}`
 
-  const title = localeSeoRoutes.find((route) => route.slug === seoRoute)?.title || t('title')
+  const { title, description } = localeSeoRoutes.find((route) => route.slug === link)!
 
   return {
     title: {
       template: `%s | Splitify`,
       default: title,
     },
-    // description: localeSeoRoute.description,
+    description: description,
     metadataBase: new URL(baseUrl),
     alternates: {
       canonical: canonicalUrl,
@@ -42,7 +39,7 @@ export async function generateMetadata({
     },
     openGraph: {
       title,
-      // description: localeSeoRoute.description,
+      description: description,
       url: canonicalUrl,
       siteName: 'Splitify',
       locale: locale,
@@ -52,7 +49,7 @@ export async function generateMetadata({
     twitter: {
       card: 'summary_large_image',
       title,
-      // description: localeSeoRoute.description,
+      description: description,
     },
   }
 }
@@ -62,9 +59,9 @@ export default async function SeoRouteLayout({
   params,
 }: Readonly<{
   children: React.ReactNode
-  params: Promise<{ locale: Locale; 'seo-route': string }>
+  params: Promise<{ locale: Locale; link: string }>
 }>) {
-  const { locale, 'seo-route': seoRoute } = await params
+  const { locale, link: seoRoute } = await params
 
   const isValidRoute = SEO_ROUTES[locale].some((route) => route.slug === seoRoute)
 

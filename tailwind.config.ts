@@ -93,13 +93,13 @@ export default {
             transform: 'scale(100%)',
           },
           '25%': {
-            transform: 'scale(100.5%)',
+            transform: 'scale(101%)',
           },
           '50%': {
             transform: 'scale(100%)',
           },
           '75%': {
-            transform: 'scale(100.015%)',
+            transform: 'scale(100.5%)',
           },
           '100%': {
             transform: 'scale(100%)',

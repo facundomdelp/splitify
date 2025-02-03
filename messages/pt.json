@@ -10,7 +10,7 @@
     "Just enter each participant's name and how much they spent": "Basta inserir o nome de cada participante e quanto gastou (pode ser $0). Depois, clique em \"Calcular Saldos\", e o Splitify otimizará o número de transferências necessárias."
   },
   "Footer": {
-    "Spliti Groups": "Spliti Groups"
+    "Useful Links": "Links úteis"
   },
   "NavBar": {
     "Discover more!": "Descubra mais!",
@@ -98,10 +98,28 @@
     "to": "para"
   },
   "SeoPage": {
-    "Get Started": "Começar 🚀",
-    "paragraph-1": "🤑 Gerenciar despesas em grupo nunca foi tão simples! Splitify é a solução ideal para dividir contas de forma justa entre amigos, familiares ou colegas. Esqueça os cálculos manuais ou planilhas complicadas—nosso aplicativo torna todo o processo mais fácil. Seja em um jantar casual, uma viagem em grupo ou qualquer despesa compartilhada, o Splitify garante que todos saibam exatamente o que devem, eliminando desconfortos e confusões ao lidar com dinheiro.",
-    "paragraph-2": "💡 O que diferencia o Splitify é seu rastreamento em tempo real e recursos avançados de otimização. Adicione participantes, registre pagamentos e deixe o aplicativo fazer os cálculos para uma divisão justa e transparente. Com um algoritmo inteligente, o Splitify reduz o número de transações necessárias, garantindo que todos acertem suas contas de forma eficiente. Sem necessidade de contas ou logins, você pode começar a dividir as despesas de maneira rápida e segura.",
-    "paragraph-3": "💸 Splitify é mais do que uma calculadora de despesas: é uma ferramenta que promove harmonia nas finanças de grupos. Seja organizando um jantar ou planejando uma viagem de fim de semana, o Splitify transforma uma tarefa potencialmente estressante em uma experiência tranquila. Diga adeus aos mal-entendidos e olá à clareza e conveniência. Experimente o Splitify hoje e descubra a forma mais fácil de gerenciar custos compartilhados—seus amigos vão te agradecer!",
-    "paragraph-4": "🏗️ O Splitify foi projetado com simplicidade e flexibilidade, tornando-o ideal para qualquer ocasião. Seja dividindo despesas com colegas de quarto, planejando uma viagem em grupo ou gerenciando gastos compartilhados para um projeto, nossa interface intuitiva se adapta às suas necessidades. Acessível de qualquer dispositivo, o Splitify garante que gerenciar suas finanças seja fácil, onde quer que você esteja."
+    "Get Started": "Começar 🚀"
+  },
+  "UsefulLinksPage": {
+    "Find answers to common questions and troubleshooting": "Encontre respostas para perguntas comuns e solução de problemas.",
+    "Useful Links": "Links úteis",
+    "Here are some useful resources to help you navigate and make the most out of Splitify": "Aqui estão alguns recursos úteis para ajudá-lo a navegar e aproveitar ao máximo o Splitify."
+  },
+  "FaqPage": {
+    "Frequently Asked Questions": "Perguntas Frequentes",
+    "What is Splitify?": "O que é o Splitify?",
+    "Splitify is a simple tool to divide expenses and bills equally among friends and group members": "O Splitify é uma ferramenta simples para dividir despesas e contas igualmente entre amigos e membros de grupo.",
+    "How does it work?": "Como funciona?",
+    "You input the participants and their payments, and Splitify will calculate and suggest the best way to split the expenses": "Você insere os participantes e seus pagamentos, e o Splitify calculará e sugerirá a melhor maneira de dividir as despesas.",
+    "Do I need to create an account?": "Preciso criar uma conta?",
+    "No, Splitify works without the need to create an account or sign in": "Não, o Splitify funciona sem a necessidade de criar uma conta ou fazer login. Você pode começar a usar imediatamente.",
+    "Is it free to use?": "É grátis usar?",
+    "Yes, Splitify is completely free to use": "Sim, o Splitify é completamente gratuito. Não há taxas ocultas ou recursos premium.",
+    "Does Splitify optimize the number of necessary transfers?": "O Splitify otimiza o número de transferências necessárias?",
+    "Yes, Splitify uses an algorithm to minimize the number of transfers needed, making the payment process faster and more efficient": "Sim, o Splitify usa um algoritmo para minimizar o número de transferências necessárias, tornando o processo de pagamento mais rápido e eficiente.",
+    "Can I create a collaborative group with my friends?": "Posso criar um grupo colaborativo com meus amigos?",
+    "Yes, you can easily create a group, add your friends, and start splitting expenses together": "Sim, você pode criar facilmente um grupo, adicionar seus amigos e começar a dividir as despesas juntos. É perfeito para jantares compartilhados, viagens e muito mais!",
+    "Can I add details to each expense?": "Posso adicionar detalhes a cada despesa?",
+    "Yes, you can add more details such as the expense date, description, and even categorize the expense for better tracking": "Sim, você pode adicionar mais detalhes, como a data da despesa, descrição e até categorizar a despesa para um melhor controle."
   }
 }
