@@ -42,7 +42,7 @@ const EditGroupNameModal = ({ initialGroupName, open, setOpen, onSubmit }: Props
       <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
         <div className='min-h-0 min-w-40 flex-1 space-y-1'>
           <Label htmlFor='date' className='text-xs'>
-            <strong>Name</strong>
+            <strong>{t('Name')}</strong>
           </Label>
           <Input
             className='min-w-36 flex-[2.5] placeholder:text-gray-300'

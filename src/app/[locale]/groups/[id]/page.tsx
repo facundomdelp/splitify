@@ -45,7 +45,7 @@ const GroupPage = () => {
           <>
             <div className='relative flex items-center justify-center gap-1'>
               <h2
-                className='flex flex-nowrap justify-center gap-2 text-base font-bold text-green-800 xs:text-lg'
+                className='flex max-w-[75%] justify-center gap-2 text-balance text-center text-base font-bold text-green-800 xs:text-lg'
                 id='expenses'
               >
                 {getEmojiFromString(group.id)} {group.name}

@@ -61,7 +61,8 @@
   },
   "EditGroupNameModal": {
     "Edit Group Name": "Editar Nombre del Grupo",
-    "Edit": "Editar"
+    "Edit": "Editar",
+    "Name": "Nombre"
   },
   "DrawerModal": {
     "Cancel": "Cancelar"

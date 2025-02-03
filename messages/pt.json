@@ -61,7 +61,8 @@
   },
   "EditGroupNameModal": {
     "Edit Group Name": "Editar Nome do Grupo",
-    "Edit": "Editar"
+    "Edit": "Editar",
+    "Name": "Nome"
   },
   "DrawerModal": {
     "Cancel": "Cancelar"
@@ -89,7 +90,7 @@
     "ADD EXPENSE": "ADICIONAR DESPESA"
   },
   "ResetExpenses": {
-    "Reset Expenses": "Redefinir",
+    "Reset": "Redefinir",
     "Are you sure you want to reset the expenses list?": "Tem certeza de que deseja redefinir a lista de despesas?"
   },
   "useCopyString": {
