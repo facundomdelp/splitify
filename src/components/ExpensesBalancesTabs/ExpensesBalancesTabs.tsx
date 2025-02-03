@@ -14,6 +14,7 @@ interface Props {
   disabledExpenses?: boolean
   disabledBalances?: boolean
   onResetExpenses?: () => void
+  contextMenu?: ReactNode
 }
 
 const ExpensesBalancesTabs = ({
@@ -23,6 +24,7 @@ const ExpensesBalancesTabs = ({
   disabledExpenses,
   disabledBalances,
   onResetExpenses,
+  contextMenu,
 }: Props) => {
   const [tabValue, setTabValue] = useState<'expenses' | 'balances'>('expenses')
 
@@ -53,6 +55,8 @@ const ExpensesBalancesTabs = ({
             {t('Balances')}
           </TabsTrigger>
         </TabsList>
+
+        <div className='absolute right-2'>{contextMenu}</div>
       </div>
 
       <TabsContent className='mx-4 flex-1' value='expenses'>

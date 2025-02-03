@@ -15,9 +15,13 @@ import { useSetExpenses } from '@/store/expenses-store'
 
 import { useCalculateBalances } from '@/utils/hooks/useCalculateBalances'
 
+import { X } from 'lucide-react'
+
 import { useAddExpense, useConvertIntoGroup, useRemoveExpense } from './hooks'
 
 export default function Home() {
+  const [showExplanation, setShowExplanation] = useState(true)
+
   const [expenses, setExpenses] = useSetExpenses()
   const [balances, setBalances] = useSetBalances()
 
@@ -43,38 +47,37 @@ export default function Home() {
 
   return (
     <main className='text-dark relative my-6 flex w-full max-w-[600px] flex-col space-y-6'>
-      <div className='-mt-6 flex items-center justify-center gap-2'>
-        {/* SEO */}
-        <article className='hidden'>
-          <h1>{t('🤑 Splitify | Simplify your group expenses with Splitify')}</h1>
-          <p>{t('Splitify is the ultimate tool to divide expenses with friends, family, and colleagues')}</p>
-        </article>
-        {/* SEO */}
-
-        {/* If this is uncommented, then we should remove both -mt-6 and -top-6 from this page */}
-        {/*  <h2 className='text-lg font-bold flex flex-nowrap gap-2 justify-center text-green-800' id='expenses'>
-          ⚡{t('Spliti Quick')}
-        </h2> */}
-      </div>
-
-      <div className='absolute -top-6 right-2 z-10 -mt-6'>
-        {!convertToGroupState.loading ? (
-          <HomeContextMenu
-            expenses={expenses}
-            setExpenses={setExpenses}
-            setBalances={setBalances}
-            convertIntoGroup={convertIntoGroup}
+      {showExplanation && (
+        <article className='relative mx-4 rounded-md border border-green-600 bg-green-50 p-3'>
+          <X
+            className='absolute right-2 top-2 size-[18px] cursor-pointer text-gray-500 hover:text-gray-700'
+            onClick={() => setShowExplanation(false)}
           />
-        ) : (
-          <Spinner className='w-fit px-4 text-green-600' />
-        )}
-      </div>
+          <h1 className='mb-1 mt-0 text-sm font-bold'>{t('Welcome to Splitify 🤑')}</h1>
+          <p className='text-slate-503 text-xs'>
+            <strong className='font-semibold'>{t('💸 How does it work?')}</strong>{' '}
+            {t("Just enter each participant's name and how much they spent")}
+          </p>
+        </article>
+      )}
 
       <ExpensesBalancesTabs
         onBalancesClick={handleCalculateBalances}
         disabled={convertToGroupState.loading}
         disabledBalances={disabledBalances}
         onResetExpenses={handleResetExpenses}
+        contextMenu={
+          !convertToGroupState.loading ? (
+            <HomeContextMenu
+              expenses={expenses}
+              setExpenses={setExpenses}
+              setBalances={setBalances}
+              convertIntoGroup={convertIntoGroup}
+            />
+          ) : (
+            <Spinner className='w-fit px-4 text-green-600' />
+          )
+        }
       >
         {[
           <ExpensesSection

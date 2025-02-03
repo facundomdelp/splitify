@@ -4,13 +4,9 @@ import { useRouter } from 'next/navigation'
 
 import { Locale } from '@/types/common-types'
 
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
+import { AVAILABLE_LOCALES } from '@/utils/constants/availableLocales'
 
-const AVAILABLE_LOCALES: Array<{ locale: Locale; description: string; src: string }> = [
-  { locale: 'en', description: 'English', src: '/en.jpg' },
-  { locale: 'es', description: 'Español', src: '/es.jpg' },
-  { locale: 'pt', description: 'Português', src: '/pt.jpg' },
-]
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
 
 const LocaleSelector = () => {
   const locale = useLocale() as Locale
