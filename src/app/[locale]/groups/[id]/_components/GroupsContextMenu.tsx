@@ -9,7 +9,7 @@ import CopyToClipboard from '@/components/CopyToClipboard'
 import EditGroupNameModal from '@/components/EditGroupName/EditGroupNameModal'
 import Modal from '@/components/Modal'
 
-import { PencilIcon, Share2, Trash2 } from 'lucide-react'
+import { PencilIcon, RadioTower, Trash2 } from 'lucide-react'
 
 import { useRemoveGroup, useUpdateGroupName } from './hooks'
 
@@ -31,7 +31,7 @@ const GroupsContextMenu = ({ groupId }: Props) => {
   return (
     <>
       {openShareModal && (
-        <Modal open={openShareModal} setOpen={setOpenShareModal} title={t('Share Group')} closeOnBackdropClick>
+        <Modal open={openShareModal} setOpen={setOpenShareModal} title={t('Collaborate in Group')} closeOnBackdropClick>
           <div className='space-y-3 text-center'>
             <p className='text-sm'>{t('🤑 Copy this link and share it with your friends! 💸')} </p>
             <code
@@ -40,7 +40,7 @@ const GroupsContextMenu = ({ groupId }: Props) => {
             >{`https://splitify.me/${locale}/groups/${groupId}`}</code>
             <p className='pb-3 text-[10px]'>{t('Your friends would be able to easily add expenses to this group')} </p>
             <CopyToClipboard
-              onClick={() => setOpenShareModal(false)}
+              onClick={() => setTimeout(() => setOpenShareModal(false), 1000)}
               copyString={`https://splitify.me/${locale}/groups/${groupId}`}
             />
           </div>
@@ -71,7 +71,7 @@ const GroupsContextMenu = ({ groupId }: Props) => {
 
       <ContextMenu>
         <ContextMenuItem key='share-group' onClick={() => setOpenShareModal(true)}>
-          <Share2 /> {t('Share Group')}
+          <RadioTower /> {t('Collaborate in Group')}
         </ContextMenuItem>
         <ContextMenuItem key='edit-name' onClick={() => setOpenEditGroupNameModal(true)}>
           <PencilIcon /> {t('Edit Name')}

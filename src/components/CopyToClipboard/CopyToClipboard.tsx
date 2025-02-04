@@ -25,9 +25,10 @@ const CopyToClipboard = ({ copyString, className, onClick }: Props) => {
     copyToClipboard(copyString)
 
     setCopied(true)
+    onClick?.()
+
     setTimeout(() => {
       setCopied(false)
-      onClick?.()
     }, 3000)
   }
 

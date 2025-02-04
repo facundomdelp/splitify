@@ -1,8 +1,14 @@
-import { ReactNode } from 'react'
+'use client'
 
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
+
+import { usePathname, useRouter } from '@/i18n/routing'
+
+import { Locale } from '@/types/common-types'
+
+import { cn } from '@/lib/utils'
 
 import { AVAILABLE_LOCALES } from '@/utils/constants/availableLocales'
 
@@ -11,6 +17,13 @@ const baseUrl = 'https://splitify.me'
 
 const Footer = () => {
   const locale = useLocale()
+  const pathname = usePathname()
+  const router = useRouter()
+
+  const setLocale = (newLocale: Locale) => {
+    router.replace(pathname, { locale: newLocale })
+  }
+
   const t = useTranslations('Footer')
 
   return (
@@ -18,7 +31,7 @@ const Footer = () => {
       <div className='relative mt-1 flex max-w-[600px] flex-1 flex-col items-center justify-center bg-green-950 px-3'>
         <Image src='/Isologo.png' alt='Splitify' width={ISOLOGO_SIZE} height={ISOLOGO_SIZE} />
 
-        <nav className='flex w-full flex-col gap-3 bg-green-950 bg-opacity-90 px-3 py-1 text-xs xs:py-2 sm:py-4'>
+        <nav className='flex w-full flex-col gap-3 bg-green-950 bg-opacity-90 px-3 py-1 text-xs text-green-600 xs:py-2 sm:py-4'>
           <ul className='flex justify-center'>
             <Li key='useful-links'>
               <Link className='hover:underline' href={`${baseUrl}/${locale === 'en' ? '' : `${locale}/`}useful-links`}>
@@ -33,10 +46,8 @@ const Footer = () => {
             </Li>
 
             {AVAILABLE_LOCALES?.map(({ locale, description }, index) => (
-              <Li key={`${index}-${locale}`}>
-                <Link className='flex gap-2 hover:underline' href={`${baseUrl}/${locale === 'en' ? '' : locale}`}>
-                  {description}
-                </Link>
+              <Li key={`${index}-${locale}`} onClick={() => setLocale(locale)}>
+                {description}
               </Li>
             ))}
           </ul>
@@ -46,10 +57,18 @@ const Footer = () => {
   )
 }
 
-const Li = ({ children }: { children: ReactNode }) => (
-  <li className='flex text-nowrap text-[8px] after:mx-2 after:content-["•"] last:after:hidden xs:after:mx-4 sm:text-xs sm:after:mx-8'>
-    {children}
-  </li>
-)
+const Li = (props: React.ComponentProps<'li'>) => {
+  return (
+    <li
+      {...props}
+      className={cn(
+        'flex text-nowrap text-[8px] after:mx-2 after:content-["•"] last:after:hidden xs:after:mx-4 sm:text-xs sm:after:mx-8',
+        props.className,
+      )}
+    >
+      {props.children}
+    </li>
+  )
+}
 
 export default Footer

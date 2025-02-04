@@ -1,6 +1,7 @@
 import { useLocale } from 'next-intl'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+
+import { usePathname, useRouter } from '@/i18n/routing'
 
 import { Locale } from '@/types/common-types'
 
@@ -9,11 +10,12 @@ import { AVAILABLE_LOCALES } from '@/utils/constants/availableLocales'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
 
 const LocaleSelector = () => {
-  const locale = useLocale() as Locale
+  const locale = useLocale()
+  const pathname = usePathname()
   const router = useRouter()
 
   const setLocale = (newLocale: Locale) => {
-    router.push(`/${newLocale}`)
+    router.replace(pathname, { locale: newLocale })
   }
 
   return (

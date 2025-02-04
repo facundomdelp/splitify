@@ -45,7 +45,7 @@ const GroupPage = () => {
           <>
             <div className='relative flex items-center justify-center gap-1'>
               <h2
-                className='flex max-w-[75%] justify-center gap-2 text-balance text-center text-base font-bold text-green-800 xs:text-lg'
+                className='flex max-w-[75%] justify-center gap-2 text-balance text-center text-base font-bold text-green-900 xs:text-lg'
                 id='expenses'
               >
                 {getEmojiFromString(group.id)} {group.name}
@@ -53,7 +53,7 @@ const GroupPage = () => {
 
               {group && (
                 <div className='absolute right-2'>
-                  <Tooltip content={t('Share Group!')} align='end' arrow openOnce>
+                  <Tooltip content={t('Collaborate in Group!')} align='end' arrow openOnce>
                     <div>
                       <GroupsContextMenu groupId={group.id} />
                     </div>
