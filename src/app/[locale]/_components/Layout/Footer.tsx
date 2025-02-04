@@ -31,7 +31,7 @@ const Footer = () => {
       <div className='relative mt-1 flex max-w-[600px] flex-1 flex-col items-center justify-center bg-green-950 px-3'>
         <Image src='/Isologo.png' alt='Splitify' width={ISOLOGO_SIZE} height={ISOLOGO_SIZE} />
 
-        <nav className='flex w-full flex-col gap-3 bg-green-950 bg-opacity-90 px-3 py-1 text-xs text-green-600 xs:py-2 sm:py-4'>
+        <nav className='text-isologo flex w-full flex-col gap-3 bg-green-950 bg-opacity-90 px-3 py-1 text-xs xs:py-2 sm:py-4'>
           <ul className='flex justify-center'>
             <Li key='useful-links'>
               <Link className='hover:underline' href={`${baseUrl}/${locale === 'en' ? '' : `${locale}/`}useful-links`}>
@@ -47,7 +47,7 @@ const Footer = () => {
 
             {AVAILABLE_LOCALES?.map(({ locale, description }, index) => (
               <Li key={`${index}-${locale}`} onClick={() => setLocale(locale)}>
-                {description}
+                <span className='cursor-pointer hover:underline'>{description}</span>
               </Li>
             ))}
           </ul>
