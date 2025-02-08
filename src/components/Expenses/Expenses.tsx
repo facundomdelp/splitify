@@ -6,7 +6,6 @@ import { cn } from '@/lib/utils'
 
 import ChangeEmojisButton from '@/components/ChangeEmojisButton'
 
-import { formatAmount } from '@/utils/functions/formatAmount'
 import { formatTimestampToDate } from '@/utils/functions/formatDate'
 import { useGetEmojiFromString } from '@/utils/hooks/useGetEmojiFromString'
 
