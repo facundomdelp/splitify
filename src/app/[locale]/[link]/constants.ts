@@ -12,8 +12,8 @@ export const SEO_ROUTES = {
   ],
   es: [
     {
-      slug: 'dividir-gastos-entre-amigos-online',
-      title: 'Dividir Gastos entre Amigos Online',
+      slug: 'dividir-gastos-entre-amigos',
+      title: 'Dividir Gastos entre Amigos',
       description: 'Divide los gastos de forma justa con nuestra herramienta online.',
       firstParagraph:
         'Dividir gastos con amigos puede ser complicado, especialmente después de una cena o viaje. Nuestra herramienta online te ayuda a repartir costos de manera justa, asegurando que cada persona pague lo que le corresponde.',
@@ -23,8 +23,8 @@ export const SEO_ROUTES = {
   ],
   pt: [
     {
-      slug: 'dividir-despesas-com-amigos-online',
-      title: 'Dividir Despesas com Amigos Online',
+      slug: 'dividir-despesas-com-amigos',
+      title: 'Dividir Despesas com Amigos',
       description: 'Divida despesas de forma justa com nossa ferramenta online.',
       firstParagraph:
         'Dividir despesas com amigos pode ser um desafio, especialmente em jantares, viagens ou eventos. Com nossa ferramenta online, você pode calcular rapidamente quanto cada pessoa deve pagar, garantindo um equilíbrio justo.',

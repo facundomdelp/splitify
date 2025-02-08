@@ -76,7 +76,7 @@ export default async function LocaleLayout({
     <html lang={locale} className='h-full'>
       <GoogleTagManager gtmId='GTM-TSLLPXCB' />
       <body
-        className={`${inter.className} bg-dark relative flex min-h-full flex-col overflow-auto text-white antialiased`}
+        className={`${inter.className} bg-dark relative flex min-h-screen flex-col overflow-auto text-white antialiased`}
       >
         <NextIntlClientProvider messages={messages}>
           <Header />
