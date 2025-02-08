@@ -29,7 +29,7 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
         type: 'image/png',
       },
       {
-        src: '/splitify-maskable.png',
+        src: '/splitify-192x192.png',
         sizes: '192x192',
         type: 'image/png',
         purpose: 'maskable',

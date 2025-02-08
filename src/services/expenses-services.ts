@@ -8,7 +8,7 @@ class ExpenseService {
   }
 
   getGroupExpenses(groupId: string) {
-    return expenses.getGroupExpenses(groupId)
+    return expenses.getGroupExpenses(groupId, { orderBy: ['createdAt', 'asc'] })
   }
 
   /* Expenses are hard deleted */

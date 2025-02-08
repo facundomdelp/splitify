@@ -1,4 +1,16 @@
-import { Timestamp, addDoc, collection, deleteDoc, doc, getDocs, query, where } from 'firebase/firestore'
+import {
+  Timestamp,
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  orderBy as orderByDb,
+  query,
+  where,
+} from 'firebase/firestore'
+
+import { GetExpenseDto } from '@/types/expense-types'
 
 import { db } from '..'
 import { tablesNames } from '../tableNames'
@@ -37,21 +49,25 @@ class Expenses {
     ).id
   }
 
+  /* Expenses are hard deleted */
   async removeExpense(expenseId: string) {
-    // Expenses are hard deleted
     const expenseRef = this.getExpenseRef(expenseId)
     return await deleteDoc(expenseRef)
   }
 
-  async getGroupExpenses(groupId: string) {
-    const q = query(this.expenseCollection, where('groupId', '==', groupId))
+  async getGroupExpenses(groupId: string, params?: { orderBy?: [keyof GetExpenseDto, 'asc' | 'desc'] }) {
+    const q = query(
+      this.expenseCollection,
+      where('groupId', '==', groupId),
+      ...(params?.orderBy ? [orderByDb(...params.orderBy)] : []),
+    )
 
     const querySnapshot = await getDocs(q)
 
     return querySnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
-      date: doc.data().date ? doc.data().date.toMillis() : '',
+      date: doc.data().date ? doc.data().date.toMillis() : undefined,
     }))
   }
 }
