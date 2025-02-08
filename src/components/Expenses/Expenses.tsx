@@ -70,7 +70,9 @@ const Expenses = ({ expenses, onRemoveExpense, readOnly = false, loading }: Prop
             })}
             <li className='mt-auto flex justify-between py-3 font-semibold'>
               <p>TOTAL</p>
-              <p>$ {formatAmount(expenses.reduce((acc, cv) => acc + cv.amount, 0))}</p>
+              <p>
+                $ <Amount>{expenses.reduce((acc, cv) => acc + cv.amount, 0)}</Amount>
+              </p>
             </li>
           </ul>
         ) : (
