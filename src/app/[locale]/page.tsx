@@ -17,15 +17,14 @@ import { useCalculateBalances } from '@/utils/hooks/useCalculateBalances'
 
 import { X } from 'lucide-react'
 
-import { useAddExpense, useConvertIntoGroup, useRemoveExpense } from './hooks'
+import { useAddExpense, useConvertIntoGroup, useHideTitleBanner, useRemoveExpense } from './hooks'
 
 export default function Home() {
-  const [showExplanation, setShowExplanation] = useState(true)
-
   const [expenses, setExpenses] = useSetExpenses()
   const [balances, setBalances] = useSetBalances()
-
   const [rounded, setRounded] = useState(false)
+
+  const { hideTitleBanner, handleCloseTitle } = useHideTitleBanner()
 
   const { addExpense } = useAddExpense({ setExpenses })
   const { removeExpense } = useRemoveExpense({ expenses, setExpenses })
@@ -47,11 +46,11 @@ export default function Home() {
 
   return (
     <main className='text-dark relative my-6 flex w-full max-w-[600px] flex-col space-y-6'>
-      {showExplanation && (
+      {!hideTitleBanner && (
         <article className='relative mx-4 rounded-md border border-green-600 bg-green-50 p-3'>
           <X
             className='absolute right-2 top-2 size-[18px] cursor-pointer text-gray-500 hover:text-gray-700'
-            onClick={() => setShowExplanation(false)}
+            onClick={handleCloseTitle}
           />
           <h1 className='mb-1 mr-5 mt-0 text-sm font-bold'>{t('Simplify your group expenses with Splitify 🤑')}</h1>
           <p className='text-xs text-slate-500'>

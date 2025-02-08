@@ -5,6 +5,8 @@ import { useRouter } from '@/i18n/routing'
 import { Balance } from '@/types/balance-types'
 import { Expense } from '@/types/expense-types'
 
+import { useSetMetadata } from '@/store/metadata-store'
+
 import { CustomError } from '@/utils/errors/CustomErrors'
 import { generateId } from '@/utils/functions/generateId'
 
@@ -106,4 +108,17 @@ export const useRemoveExpense = ({ expenses, setExpenses }: useRemoveExpenseProp
   }
 
   return { removeExpense }
+}
+
+export const useHideTitleBanner = () => {
+  const [{ hideTitleBanner }, setMetadata] = useSetMetadata()
+
+  const handleCloseTitle = () => {
+    setMetadata((prev) => ({
+      ...prev,
+      hideTitleBanner: true,
+    }))
+  }
+
+  return { hideTitleBanner, handleCloseTitle }
 }
