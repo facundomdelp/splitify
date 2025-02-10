@@ -147,15 +147,13 @@ export const useAddExpense = ({ groupId, setExpenses }: useAddExpenseProps) => {
 }
 
 interface useRemoveExpenseProps {
-  expenses: Expense[]
   setExpenses: React.Dispatch<React.SetStateAction<(Expense & { optimistic?: boolean })[]>>
 }
 
-export const useRemoveExpense = ({ expenses, setExpenses }: useRemoveExpenseProps) => {
+export const useRemoveExpense = ({ setExpenses }: useRemoveExpenseProps) => {
   const removeExpense = useCallback(
     async (id: string) => {
-      const remainingExpenses = expenses.filter(({ id: expenseId }) => expenseId !== id)
-      setExpenses(remainingExpenses)
+      setExpenses((prev) => prev.filter(({ id: expenseId }) => expenseId !== id))
 
       try {
         const response = await fetch(`/api/expenses/${id}`, {
@@ -170,7 +168,7 @@ export const useRemoveExpense = ({ expenses, setExpenses }: useRemoveExpenseProp
         // TODO: Put it again in red with a warning, a tooltip and a try again button
       }
     },
-    [expenses, setExpenses],
+    [setExpenses],
   )
 
   return { removeExpense }

@@ -27,7 +27,7 @@ export default function Home() {
   const { hideTitleBanner, handleCloseTitle } = useHideTitleBanner()
 
   const { addExpense } = useAddExpense({ setExpenses })
-  const { removeExpense } = useRemoveExpense({ expenses, setExpenses })
+  const { removeExpense } = useRemoveExpense({ setExpenses })
 
   const { handleCalculateBalances, disabledBalances } = useCalculateBalances({
     expenses,
