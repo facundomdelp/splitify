@@ -82,7 +82,13 @@ const NavBar = ({
           aria-describedby={undefined}
         >
           <header className='flex bg-green-700 p-8 pb-6'>
-            <Image src='/Splitify.png' alt='Splitify' width={LOGO_WIDTH} height={LOGO_WIDTH / (10 / 3)} />
+            <Image
+              className='drop-shadow-lg'
+              src='/Splitify.png'
+              alt='Splitify'
+              width={LOGO_WIDTH}
+              height={LOGO_WIDTH / (10 / 3)}
+            />
           </header>
 
           <main className='flex flex-1 flex-col gap-8 p-8'>

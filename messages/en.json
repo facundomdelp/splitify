@@ -94,6 +94,11 @@
     "Are you sure you want to remove": "Are you sure you want to remove",
     "from the list?": "from the list?"
   },
+  "ManageExpense": {
+    "Manage Expense": "Manage Expense",
+    "Edit": "Edit",
+    "Remove": "Remove"
+  },
   "ResetExpenses": {
     "Reset": "Reset",
     "Are you sure you want to reset the expenses list?": "Are you sure you want to reset the expenses list?"

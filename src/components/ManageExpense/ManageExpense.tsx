@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import { useTranslations } from 'next-intl'
+
 import DrawerModal from '@/components/DrawerModal'
 import ExpenseForm from '@/components/ExpenseForm'
 
@@ -30,6 +32,8 @@ interface Props {
 const ManageExpense = ({ id, name, amount, title, date, onRemoveExpense, onEditExpense }: Props) => {
   const [open, setOpen] = useState(false)
 
+  const t = useTranslations('ManageExpense')
+
   return (
     <>
       <Edit3
@@ -38,15 +42,14 @@ const ManageExpense = ({ id, name, amount, title, date, onRemoveExpense, onEditE
       />
 
       {open && (
-        <DrawerModal open={open} setOpen={setOpen} title='Manage Expense' className='px-4'>
+        <DrawerModal open={open} setOpen={setOpen} title={t('Manage Expense')} className='px-4'>
           <ExpenseForm
             initialValues={{ name, amount, title, date }}
-            submitButtonCopy='Edit'
-            autoFocus
+            submitButtonCopy={t('Edit')}
             fullForm
             onSubmit={(expense) => onEditExpense({ id, ...expense })}
             closeModal={() => setOpen(false)}
-            secondaryButton={{ copy: 'Remove', variant: 'destructive', onClick: () => onRemoveExpense(id) }}
+            secondaryButton={{ copy: t('Remove'), variant: 'destructive', onClick: () => onRemoveExpense(id) }}
           />
         </DrawerModal>
       )}

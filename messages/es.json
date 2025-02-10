@@ -94,6 +94,11 @@
     "Are you sure you want to remove": "¿Estas seguro de que quieres eliminar a",
     "from the list?": "de la lista"
   },
+  "ManageExpense": {
+    "Manage Expense": "Gestionar gasto",
+    "Edit": "Editar",
+    "Remove": "Eliminar"
+  },
   "ResetExpenses": {
     "Reset": "Restablecer",
     "Are you sure you want to reset the expenses list?": "¿Estás seguro de que quieres restablecer la lista de gastos?"

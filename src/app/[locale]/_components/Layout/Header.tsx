@@ -7,7 +7,7 @@ const LOGO_WIDTH = 120
 const Header = () => {
   return (
     <header
-      className='fixed top-0 z-10 flex h-20 w-full flex-shrink-0 items-center justify-center bg-green-500 shadow-md'
+      className='fixed top-0 z-10 flex h-20 w-full flex-shrink-0 items-center justify-center bg-green-500 shadow-lg'
       id='header'
     >
       <div className='relative mt-2 flex max-w-[600px] items-center justify-center'>
