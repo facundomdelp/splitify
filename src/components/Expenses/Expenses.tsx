@@ -2,22 +2,23 @@ import { useTranslations } from 'next-intl'
 
 import { Expense as ExpenseType } from '@/types/expense-types'
 
+import Amount from '@/components/Amount'
 import ChangeEmojisButton from '@/components/ChangeEmojisButton'
+import EditExpense from '@/components/EditExpense'
+import Expense from '@/components/Expense'
+import RemoveExpense from '@/components/RemoveExpense'
+import Spinner from '@/components/ui/spinner'
 
 import { UsersRound } from 'lucide-react'
-
-import Amount from '../Amount'
-import Expense from '../Expense'
-import RemoveExpense from '../RemoveExpense'
-import Spinner from '../ui/spinner'
 
 interface Props {
   expenses: ExpenseType[]
   onRemoveExpense: (id: string) => void
+  onEditExpense?: (expense: ExpenseType) => void
   loading?: boolean
 }
 
-const Expenses = ({ expenses, onRemoveExpense, loading }: Props) => {
+const Expenses = ({ expenses, onRemoveExpense, onEditExpense, loading }: Props) => {
   const t = useTranslations('Expenses')
 
   return (
@@ -41,7 +42,13 @@ const Expenses = ({ expenses, onRemoveExpense, loading }: Props) => {
               <Expense
                 key={expense.id}
                 {...expense}
-                action={<RemoveExpense id={expense.id} name={expense.name} onRemoveExpense={onRemoveExpense} />}
+                action={
+                  !onEditExpense ? (
+                    <RemoveExpense id={expense.id} name={expense.name} onRemoveExpense={onRemoveExpense} />
+                  ) : (
+                    <EditExpense />
+                  )
+                }
               />
             ))}
             <li className='mt-auto flex justify-between py-3 font-semibold'>

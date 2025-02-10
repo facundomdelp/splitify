@@ -4,10 +4,10 @@ import { Expense as ExpenseType } from '@/types/expense-types'
 
 import { cn } from '@/lib/utils'
 
+import Amount from '@/components/Amount'
+
 import { formatTimestampToDate } from '@/utils/functions/formatDate'
 import { useGetEmojiFromString } from '@/utils/hooks/useGetEmojiFromString'
-
-import Amount from '../Amount'
 
 interface Props {
   optimistic?: boolean

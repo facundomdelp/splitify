@@ -1,8 +1,8 @@
 import { ReactNode, useState } from 'react'
 
-import { TooltipArrow } from '@radix-ui/react-tooltip'
+import { Tooltip as TooltipComponent, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 
-import { Tooltip as TooltipComponent, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip'
+import { TooltipArrow } from '@radix-ui/react-tooltip'
 
 interface Props {
   children: ReactNode

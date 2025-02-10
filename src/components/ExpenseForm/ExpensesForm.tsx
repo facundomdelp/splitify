@@ -6,27 +6,27 @@ import { useTranslations } from 'next-intl'
 
 import { cn } from '@/lib/utils'
 
+import DrawerModal from '@/components/DrawerModal'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
 import { Plus, UserRound } from 'lucide-react'
 
-import DrawerModal from '../DrawerModal'
 import { useExpensesForm } from './hooks'
 
 interface Props {
-  onSubmit?: ({ name, amount }: { name: string; amount: number }) => void
+  onSubmit?: ({ name, amount, title, date }: { name: string; amount: number; title?: string; date?: number }) => void
   disabled?: boolean
   modalForm?: boolean
 }
 
-const ExpensesForm = ({ onSubmit, disabled, modalForm }: Props) => {
+const ExpenseForm = ({ onSubmit, disabled, modalForm }: Props) => {
   const [open, setOpen] = useState(false)
 
   const nameInputRef = useRef<HTMLInputElement>(null)
 
-  const t = useTranslations('ExpensesForm')
+  const t = useTranslations('ExpenseForm')
 
   return modalForm ? (
     <>
@@ -49,7 +49,7 @@ const ExpensesForm = ({ onSubmit, disabled, modalForm }: Props) => {
 
 interface FormProps {
   formRef?: React.RefObject<HTMLFormElement>
-  onSubmit?: ({ name, amount, title, date }: { name: string; amount: number; title?: string; date?: string }) => void
+  onSubmit?: ({ name, amount, title, date }: { name: string; amount: number; title?: string; date?: number }) => void
   setOpenModal?: React.Dispatch<React.SetStateAction<boolean>>
   nameInputRef: React.RefObject<HTMLInputElement>
   disabled?: boolean
@@ -60,7 +60,7 @@ const Form = ({ formRef, onSubmit, setOpenModal, nameInputRef, disabled, modalFo
   const { name, handleName, amount, handleAmount, title, handleTitle, date, handleDate, handleSubmit } =
     useExpensesForm({ nameInputRef, onSubmit, setOpenModal })
 
-  const t = useTranslations('ExpensesForm')
+  const t = useTranslations('ExpenseForm')
 
   return (
     <section className='flex flex-col gap-2'>
@@ -152,4 +152,4 @@ const Form = ({ formRef, onSubmit, setOpenModal, nameInputRef, disabled, modalFo
   )
 }
 
-export default ExpensesForm
+export default ExpenseForm

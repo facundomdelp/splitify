@@ -2,19 +2,28 @@ import { Expense } from '@/types/expense-types'
 
 import { cn } from '@/lib/utils'
 
+import ExpenseForm from '@/components/ExpenseForm'
 import Expenses from '@/components/Expenses'
-import ExpensesForm from '@/components/ExpensesForm'
 
 interface Props {
   expenses: Expense[]
-  addExpense: (expense: Pick<Expense, 'name' | 'amount' | 'title' | 'date'>) => void
+  addExpense: (expense: Omit<Expense, 'id'>) => void
   removeExpense: (id: string) => void
+  editExpense?: (expense: Expense) => void
   loadingExpenses?: boolean
   disabled?: boolean
   modalForm?: boolean
 }
 
-const ExpensesSection = ({ expenses, addExpense, removeExpense, loadingExpenses, disabled, modalForm }: Props) => {
+const ExpensesSection = ({
+  expenses,
+  addExpense,
+  removeExpense,
+  editExpense,
+  loadingExpenses,
+  disabled,
+  modalForm,
+}: Props) => {
   const handleSubmit = ({
     name,
     amount,
@@ -28,15 +37,19 @@ const ExpensesSection = ({ expenses, addExpense, removeExpense, loadingExpenses,
   }) => {
     name = name.trim()
     title = title?.trim()
-    date = date ? new Date(date).getTime() : undefined
 
     addExpense({ name, amount, title, date })
   }
 
   return (
     <section className={cn('flex min-w-0 flex-1 cursor-default flex-col gap-8', disabled ? 'pointer-events-none' : '')}>
-      <ExpensesForm onSubmit={handleSubmit} disabled={disabled} modalForm={modalForm} />
-      <Expenses expenses={expenses} onRemoveExpense={removeExpense} loading={loadingExpenses} />
+      <ExpenseForm onSubmit={handleSubmit} disabled={disabled} modalForm={modalForm} />
+      <Expenses
+        expenses={expenses}
+        onRemoveExpense={removeExpense}
+        onEditExpense={editExpense}
+        loading={loadingExpenses}
+      />
     </section>
   )
 }

@@ -1,9 +1,9 @@
 import { ReactNode } from 'react'
 
-import { EllipsisVertical } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 
-import { Button } from '../ui/button'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu'
+import { EllipsisVertical } from 'lucide-react'
 
 interface ContextMenuItemProps {
   children: ReactNode
@@ -13,7 +13,11 @@ interface ContextMenuItemProps {
 
 export const ContextMenuItem = ({ children, onClick, disabled }: ContextMenuItemProps) => {
   return (
-    <DropdownMenuItem className='text-xs text-gray-600' onClick={onClick} disabled={disabled}>
+    <DropdownMenuItem
+      className='cursor-pointer text-xs text-gray-600 [&>svg]:hover:text-green-600'
+      onClick={onClick}
+      disabled={disabled}
+    >
       {children}
     </DropdownMenuItem>
   )

@@ -9,7 +9,7 @@ import CopyToClipboard from '@/components/CopyToClipboard'
 import EditGroupNameModal from '@/components/EditGroupName/EditGroupNameModal'
 import Modal from '@/components/Modal'
 
-import { PencilIcon, RadioTower, Trash2 } from 'lucide-react'
+import { Edit3, RadioTower, Trash2 } from 'lucide-react'
 
 import { useRemoveGroup, useUpdateGroupName } from './hooks'
 
@@ -78,7 +78,7 @@ const GroupsContextMenu = ({ groupId }: Props) => {
           <RadioTower /> {t('Collaborate in Group')}
         </ContextMenuItem>
         <ContextMenuItem key='edit-name' onClick={() => setOpenEditGroupNameModal(true)}>
-          <PencilIcon /> {t('Edit Name')}
+          <Edit3 /> {t('Edit Name')}
         </ContextMenuItem>
         <ContextMenuItem key='remove-group' onClick={() => setOpenRemoveConfirmationModal(true)}>
           <Trash2 /> {t('Remove Group')}

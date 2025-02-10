@@ -3,9 +3,8 @@ import { ReactNode, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
 import CalculateButton from '@/components/CalculateButton/CalculateButton'
-
-import ResetExpensesButton from '../ResetExpenses'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs'
+import ResetExpensesButton from '@/components/ResetExpenses'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 interface Props {
   children: [ReactNode, ReactNode]

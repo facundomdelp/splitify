@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 interface useExpensesFormProps {
   nameInputRef: React.RefObject<HTMLInputElement>
-  onSubmit?: ({ name, amount, title, date }: { name: string; amount: number; title?: string; date?: string }) => void
+  onSubmit?: ({ name, amount, title, date }: { name: string; amount: number; title?: string; date?: number }) => void
   setOpenModal?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
@@ -71,7 +71,7 @@ export const useExpensesForm = ({ nameInputRef, onSubmit, setOpenModal }: useExp
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    onSubmit?.({ name, amount, title, date })
+    onSubmit?.({ name, amount, title, date: date ? new Date(date).getTime() : undefined })
 
     setName('')
     setAmount(0)

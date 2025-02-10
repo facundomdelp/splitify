@@ -73,6 +73,7 @@ const GroupPage = () => {
                   loadingExpenses={loadingExpenses}
                   addExpense={addExpense}
                   removeExpense={removeExpense}
+                  editExpense={() => null}
                   modalForm
                 />,
                 <BalancesSection

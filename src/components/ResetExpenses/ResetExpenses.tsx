@@ -6,11 +6,10 @@ import { useTranslations } from 'next-intl'
 
 import { cn } from '@/lib/utils'
 
+import ConfirmationModal from '@/components/ConfirmationModal'
 import { Button } from '@/components/ui/button'
 
 import { Eraser } from 'lucide-react'
-
-import ConfirmationModal from '../ConfirmationModal'
 
 interface Props {
   handleResetExpenses: () => void

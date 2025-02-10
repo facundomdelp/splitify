@@ -4,13 +4,12 @@ import { useTranslations } from 'next-intl'
 
 import { Balance } from '@/types/balance-types'
 
+import Amount from '@/components/Amount'
 import { Switch } from '@/components/ui/switch'
 
 import { useGetEmojiFromString } from '@/utils/hooks/useGetEmojiFromString'
 
 import { CircleDollarSign } from 'lucide-react'
-
-import Amount from '../Amount'
 
 interface Props {
   balances: Balance[]

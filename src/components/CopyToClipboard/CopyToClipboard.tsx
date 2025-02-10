@@ -6,11 +6,11 @@ import { useTranslations } from 'next-intl'
 
 import { cn } from '@/lib/utils'
 
+import { Button } from '@/components/ui/button'
+
 import { copyToClipboard } from '@/utils/functions/copyToClipboard'
 
 import { Clipboard, CopyCheck } from 'lucide-react'
-
-import { Button } from '../ui/button'
 
 interface Props {
   copyString: string
