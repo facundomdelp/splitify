@@ -61,7 +61,7 @@ export const useGetGroup = () => {
 }
 
 export const useGetGroupExpenses = () => {
-  const [expenses, setExpenses] = useState<(Expense & { optimistic?: boolean })[]>([])
+  const [expenses, setExpenses] = useState<(Expense & { optimistic?: boolean })[]>()
   const [{ loading, error }, setGetExpensesState] = useState<{ loading: boolean; error: number | null }>({
     loading: true,
     error: null,
@@ -92,17 +92,17 @@ export const useGetGroupExpenses = () => {
   }, [id])
 
   useEffect(() => {
-    if (expenses.length === 0) {
+    if (!expenses) {
       getGroupExpenses()
     }
-  }, [expenses.length, getGroupExpenses])
+  }, [expenses, getGroupExpenses])
 
-  return { expenses, setExpenses, loading, error }
+  return { expenses: expenses || [], setExpenses, loading, error }
 }
 
 interface useAddExpenseProps {
   groupId?: string
-  setExpenses: React.Dispatch<React.SetStateAction<(Expense & { optimistic?: boolean })[]>>
+  setExpenses: React.Dispatch<React.SetStateAction<(Expense & { optimistic?: boolean })[] | undefined>>
 }
 
 export const useAddExpense = ({ groupId, setExpenses }: useAddExpenseProps) => {
@@ -132,7 +132,7 @@ export const useAddExpense = ({ groupId, setExpenses }: useAddExpenseProps) => {
         const data = await response.json()
 
         setExpenses((prevExpenses) =>
-          prevExpenses.map((expense) =>
+          prevExpenses?.map((expense) =>
             expense.id === expenseUiId ? { ...expense, optimistic: false, id: data.expense } : expense,
           ),
         )
@@ -147,13 +147,13 @@ export const useAddExpense = ({ groupId, setExpenses }: useAddExpenseProps) => {
 }
 
 interface useRemoveExpenseProps {
-  setExpenses: React.Dispatch<React.SetStateAction<(Expense & { optimistic?: boolean })[]>>
+  setExpenses: React.Dispatch<React.SetStateAction<(Expense & { optimistic?: boolean })[] | undefined>>
 }
 
 export const useRemoveExpense = ({ setExpenses }: useRemoveExpenseProps) => {
   const removeExpense = useCallback(
     async (id: string) => {
-      setExpenses((prev) => prev.filter(({ id: expenseId }) => expenseId !== id))
+      setExpenses((prevExpenses) => prevExpenses?.filter(({ id: expenseId }) => expenseId !== id))
 
       try {
         const response = await fetch(`/api/expenses/${id}`, {
@@ -175,7 +175,7 @@ export const useRemoveExpense = ({ setExpenses }: useRemoveExpenseProps) => {
 }
 
 interface useAddExpenseProps {
-  setExpenses: React.Dispatch<React.SetStateAction<(Expense & { optimistic?: boolean })[]>>
+  setExpenses: React.Dispatch<React.SetStateAction<(Expense & { optimistic?: boolean })[] | undefined>>
 }
 
 export const useEditExpense = ({ setExpenses }: useAddExpenseProps) => {
@@ -194,7 +194,7 @@ export const useEditExpense = ({ setExpenses }: useAddExpenseProps) => {
       date?: number
     }) => {
       setExpenses((prevExpenses) =>
-        prevExpenses.map((expense) =>
+        prevExpenses?.map((expense) =>
           expense.id === id ? { id, name, amount, title, date, optimistic: true } : expense,
         ),
       )
@@ -216,7 +216,7 @@ export const useEditExpense = ({ setExpenses }: useAddExpenseProps) => {
         }
 
         setExpenses((prevExpenses) =>
-          prevExpenses.map((expense) => (expense.id === id ? { ...expense, optimistic: false, id } : expense)),
+          prevExpenses?.map((expense) => (expense.id === id ? { ...expense, optimistic: false, id } : expense)),
         )
       } catch {
         // Put in red with a warning, a tooltip and a try again button
