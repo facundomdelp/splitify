@@ -16,22 +16,9 @@ interface Props {
   description?: string
   children: React.ReactNode
   className?: string
-  snapPoints?: Array<string | number>
-  activeSnapPoint?: string | number | null
-  setActiveSnapPoint?: (activeSnapPoint: string | number | null) => void
 }
 
-const DrawerModal = ({
-  open,
-  setOpen,
-  title,
-  description,
-  children,
-  className,
-  snapPoints,
-  activeSnapPoint,
-  setActiveSnapPoint,
-}: Props) => {
+const DrawerModal = ({ open, setOpen, title, description, children, className }: Props) => {
   const isDesktop = useMediaQuery('(min-width: 768px)')
 
   if (isDesktop) {
@@ -52,12 +39,12 @@ const DrawerModal = ({
     <Drawer
       open={open}
       onOpenChange={setOpen}
-      snapPoints={snapPoints || []}
-      activeSnapPoint={activeSnapPoint}
-      setActiveSnapPoint={setActiveSnapPoint}
-      fadeFromIndex={0}
+      // snapPoints={snapPoints || []}
+      // activeSnapPoint={activeSnapPoint}
+      // setActiveSnapPoint={setActiveSnapPoint}
+      // fadeFromIndex={0}
     >
-      <DrawerContent className={cn('text-gray-700', className)}>
+      <DrawerContent className={cn('pb-3 text-gray-700', className)}>
         <DrawerHeader className='px-0 text-left'>
           <DrawerTitle>{title}</DrawerTitle>
           <DrawerDescription>{description}</DrawerDescription>

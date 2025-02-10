@@ -1,12 +1,11 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { MouseEventHandler, useRef } from 'react'
 
 import { useTranslations } from 'next-intl'
 
 import { cn } from '@/lib/utils'
 
-import DrawerModal from '@/components/DrawerModal'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -18,47 +17,30 @@ import { useExpensesForm } from './hooks'
 interface Props {
   onSubmit?: ({ name, amount, title, date }: { name: string; amount: number; title?: string; date?: number }) => void
   disabled?: boolean
-  modalForm?: boolean
+  closeModal?: () => void
+  autoFocus?: boolean
+  fullForm?: boolean
+  submitButtonCopy: string
+  secondaryButton?: {
+    copy: string
+    variant: 'link' | 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost'
+    onClick: MouseEventHandler<HTMLButtonElement>
+  }
 }
 
-const ExpenseForm = ({ onSubmit, disabled, modalForm }: Props) => {
-  const [open, setOpen] = useState(false)
-
+const ExpenseForm = ({
+  onSubmit,
+  disabled,
+  closeModal,
+  autoFocus,
+  fullForm,
+  submitButtonCopy,
+  secondaryButton,
+}: Props) => {
   const nameInputRef = useRef<HTMLInputElement>(null)
 
-  const t = useTranslations('ExpenseForm')
-
-  return modalForm ? (
-    <>
-      <Button
-        variant='outline'
-        className='border border-green-500 text-green-500 hover:bg-inherit hover:text-green-500 hover:opacity-70'
-        onClick={() => setOpen(true)}
-      >
-        {t('Add Expense')}
-      </Button>
-
-      <DrawerModal open={open} setOpen={setOpen} title={t('Add Expense')} className='px-4'>
-        <Form onSubmit={onSubmit} setOpenModal={setOpen} nameInputRef={nameInputRef} disabled={disabled} modalForm />
-      </DrawerModal>
-    </>
-  ) : (
-    <Form onSubmit={onSubmit} setOpenModal={setOpen} nameInputRef={nameInputRef} disabled={disabled} />
-  )
-}
-
-interface FormProps {
-  formRef?: React.RefObject<HTMLFormElement>
-  onSubmit?: ({ name, amount, title, date }: { name: string; amount: number; title?: string; date?: number }) => void
-  setOpenModal?: React.Dispatch<React.SetStateAction<boolean>>
-  nameInputRef: React.RefObject<HTMLInputElement>
-  disabled?: boolean
-  modalForm?: boolean
-}
-
-const Form = ({ formRef, onSubmit, setOpenModal, nameInputRef, disabled, modalForm }: FormProps) => {
   const { name, handleName, amount, handleAmount, title, handleTitle, date, handleDate, handleSubmit } =
-    useExpensesForm({ nameInputRef, onSubmit, setOpenModal })
+    useExpensesForm({ nameInputRef, onSubmit, closeModal })
 
   const t = useTranslations('ExpenseForm')
 
@@ -69,7 +51,7 @@ const Form = ({ formRef, onSubmit, setOpenModal, nameInputRef, disabled, modalFo
         {t('Add Expense')}
       </p>
 
-      <form ref={formRef} className='flex flex-col gap-3' onSubmit={handleSubmit}>
+      <form className='flex flex-col gap-3' onSubmit={handleSubmit}>
         <div className='flex flex-wrap gap-3'>
           <Input
             className='min-w-36 flex-[2.5] placeholder:text-gray-300'
@@ -80,11 +62,11 @@ const Form = ({ formRef, onSubmit, setOpenModal, nameInputRef, disabled, modalFo
             value={name}
             placeholder={t('John Spliti')}
             disabled={disabled}
-            autoFocus={modalForm}
+            autoFocus={autoFocus}
           />
 
           <div className='flex-grow-1 ml-auto flex flex-1 gap-4'>
-            <div className={cn('relative ml-auto min-w-[5.5rem] flex-1', !modalForm ? 'max-w-24' : '')}>
+            <div className={cn('relative ml-auto min-w-[5.5rem] flex-1', !fullForm ? 'max-w-24' : '')}>
               <span className='absolute left-2 top-1/2 -translate-y-1/2 text-sm leading-4 text-gray-500'>$</span>
               <Input
                 className='pl-6 text-sm'
@@ -99,7 +81,7 @@ const Form = ({ formRef, onSubmit, setOpenModal, nameInputRef, disabled, modalFo
               />
             </div>
 
-            {!modalForm && (
+            {!fullForm && (
               <Button size='icon' className='w-10' type='submit' disabled={name.trim() === '' || disabled}>
                 <Plus />
               </Button>
@@ -107,7 +89,7 @@ const Form = ({ formRef, onSubmit, setOpenModal, nameInputRef, disabled, modalFo
           </div>
         </div>
 
-        {modalForm && (
+        {fullForm && (
           <div className='flex min-h-0 max-w-full flex-wrap gap-2 border-y border-transparent px-1'>
             <div className='min-h-0 min-w-40 flex-1 space-y-1'>
               <Label htmlFor='date' className='text-xs'>
@@ -142,10 +124,17 @@ const Form = ({ formRef, onSubmit, setOpenModal, nameInputRef, disabled, modalFo
           </div>
         )}
 
-        {modalForm && (
-          <Button className='mb-3' type='submit' disabled={name.trim() === ''}>
-            {t('ADD EXPENSE')}
-          </Button>
+        {fullForm && (
+          <div className='flex gap-3'>
+            {secondaryButton && (
+              <Button className='flex-1' onClick={secondaryButton?.onClick} variant={secondaryButton?.variant}>
+                {secondaryButton.copy}
+              </Button>
+            )}
+            <Button className='flex-1' type='submit' disabled={name.trim() === ''}>
+              {submitButtonCopy}
+            </Button>
+          </div>
         )}
       </form>
     </section>

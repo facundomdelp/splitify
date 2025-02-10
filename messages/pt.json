@@ -72,6 +72,11 @@
     "Expenses": "Despesas",
     "Enter an Expense to get started!": "Adicione uma Despesa para começar!"
   },
+  "ExpenseSection": {
+    "Add Expense": "Adicionar Despesa",
+    "Add": "Adicionar",
+    "Edit Expense": "Editar Despesa"
+  },
   "RemoveExpense": {
     "Are you sure you want to remove": "Tem certeza de que deseja remover",
     "from the list?": "da lista?"
@@ -87,8 +92,7 @@
     "optional": "opcional",
     "For example: Taxi": "Por exemplo: Táxi",
     "Date": "Data",
-    "Details": "Detalhes",
-    "ADD EXPENSE": "ADICIONAR DESPESA"
+    "Details": "Detalhes"
   },
   "ResetExpenses": {
     "Reset": "Redefinir",

@@ -3,10 +3,10 @@ import { useState } from 'react'
 interface useExpensesFormProps {
   nameInputRef: React.RefObject<HTMLInputElement>
   onSubmit?: ({ name, amount, title, date }: { name: string; amount: number; title?: string; date?: number }) => void
-  setOpenModal?: React.Dispatch<React.SetStateAction<boolean>>
+  closeModal?: () => void
 }
 
-export const useExpensesForm = ({ nameInputRef, onSubmit, setOpenModal }: useExpensesFormProps) => {
+export const useExpensesForm = ({ nameInputRef, onSubmit, closeModal }: useExpensesFormProps) => {
   const [name, setName] = useState('')
   const [amount, setAmount] = useState(0)
 
@@ -75,7 +75,7 @@ export const useExpensesForm = ({ nameInputRef, onSubmit, setOpenModal }: useExp
 
     setName('')
     setAmount(0)
-    setOpenModal?.(false)
+    closeModal?.()
 
     if (nameInputRef.current) {
       nameInputRef.current.focus()
