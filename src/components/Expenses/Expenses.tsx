@@ -4,7 +4,7 @@ import { Expense as ExpenseType } from '@/types/expense-types'
 
 import Amount from '@/components/Amount'
 import ChangeEmojisButton from '@/components/ChangeEmojisButton'
-import EditExpense from '@/components/EditExpense'
+import ManageExpense from '@/components/EditExpense'
 import Expense from '@/components/Expense'
 import RemoveExpense from '@/components/RemoveExpense'
 import Spinner from '@/components/ui/spinner'
@@ -46,7 +46,7 @@ const Expenses = ({ expenses, onRemoveExpense, onEditExpense, loading }: Props) 
                   !onEditExpense ? (
                     <RemoveExpense id={expense.id} name={expense.name} onRemoveExpense={onRemoveExpense} />
                   ) : (
-                    <EditExpense />
+                    <ManageExpense id={expense.id} onRemoveExpense={onRemoveExpense} onEditExpense={onEditExpense} />
                   )
                 }
               />

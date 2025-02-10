@@ -11,7 +11,13 @@ const Header = () => {
       id='header'
     >
       <div className='relative mt-2 flex max-w-[600px] items-center justify-center'>
-        <Image src='/Splitify.png' alt='Splitify' width={LOGO_WIDTH} height={LOGO_WIDTH / (10 / 3)} />
+        <Image
+          className='drop-shadow-lg'
+          src='/Splitify.png'
+          alt='Splitify'
+          width={LOGO_WIDTH}
+          height={LOGO_WIDTH / (10 / 3)}
+        />
       </div>
 
       <NavBar className='absolute right-4 top-1/2 -translate-y-1/2' />

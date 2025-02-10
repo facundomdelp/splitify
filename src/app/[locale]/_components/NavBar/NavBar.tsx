@@ -65,7 +65,7 @@ const NavBar = ({
       <Drawer direction={direction} open={drawerOpen} onOpenChange={setDrawerOpen}>
         <DrawerTrigger asChild className={className}>
           <Button variant='ghost' size='icon' aria-label='Open navigation menu' className='[&_svg]:size-8'>
-            <Icon />
+            <Icon className='drop-shadow-lg' />
           </Button>
         </DrawerTrigger>
         <VisuallyHidden>

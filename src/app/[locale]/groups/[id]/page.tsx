@@ -15,7 +15,7 @@ import Tooltip from '@/components/Tooltip'
 import { useCalculateBalances } from '@/utils/hooks/useCalculateBalances'
 import { useGetEmojiFromString } from '@/utils/hooks/useGetEmojiFromString'
 
-import { useAddExpense, useGetGroup, useGetGroupExpenses, useRemoveExpense } from './hooks'
+import { useAddExpense, useEditExpense, useGetGroup, useGetGroupExpenses, useRemoveExpense } from './hooks'
 
 const GroupPage = () => {
   const { /* loading,  */ /* error,  */ group } = useGetGroup()
@@ -26,6 +26,7 @@ const GroupPage = () => {
 
   const { addExpense } = useAddExpense({ groupId: group?.id, setExpenses })
   const { removeExpense } = useRemoveExpense({ expenses, setExpenses })
+  const { editExpense } = useEditExpense({ groupId: group?.id, setExpenses })
 
   const { handleCalculateBalances, disabledBalances } = useCalculateBalances({
     expenses,
@@ -73,7 +74,7 @@ const GroupPage = () => {
                   loadingExpenses={loadingExpenses}
                   addExpense={addExpense}
                   removeExpense={removeExpense}
-                  editExpense={() => null}
+                  editExpense={editExpense}
                   modalForm
                 />,
                 <BalancesSection

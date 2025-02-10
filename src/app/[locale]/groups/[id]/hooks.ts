@@ -146,7 +146,7 @@ export const useAddExpense = ({ groupId, setExpenses }: useAddExpenseProps) => {
         ),
       )
     } catch {
-      // Put in red with a warning, a tooltip and a try again button
+      // TODO: Put it in red with a warning, a tooltip and a try again button
     }
   }
 
@@ -173,9 +173,54 @@ export const useRemoveExpense = ({ expenses, setExpenses }: useRemoveExpenseProp
         throw new CustomError(response.status)
       }
     } catch {
-      // use an optimistic removing
+      // TODO: Put it again in red with a warning, a tooltip and a try again button
     }
   }
 
   return { removeExpense }
+}
+
+interface useAddExpenseProps {
+  groupId?: string
+  setExpenses: React.Dispatch<React.SetStateAction<(Expense & { optimistic?: boolean })[]>>
+}
+
+export const useEditExpense = ({ groupId, setExpenses }: useAddExpenseProps) => {
+  const editExpense = async ({
+    id,
+    name,
+    amount,
+    title,
+    date,
+  }: {
+    id: string
+    name: string
+    amount: number
+    title?: string
+    date?: number
+  }) => {
+    if (!groupId) return
+    setExpenses((prev) => [...(prev ?? []), { id, name, amount, title, date }])
+
+    try {
+      const response = await fetch(`/api/groups/${groupId}/expenses/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          amount,
+          title,
+          date,
+        }),
+      })
+
+      if (!response.ok) {
+        throw new CustomError(response.status)
+      }
+    } catch {
+      // Put in red with a warning, a tooltip and a try again button
+    }
+  }
+
+  return { editExpense }
 }
