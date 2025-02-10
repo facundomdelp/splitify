@@ -7,10 +7,11 @@ import {
   getDocs,
   orderBy as orderByDb,
   query,
+  updateDoc,
   where,
 } from 'firebase/firestore'
 
-import { GetExpenseDto } from '@/types/expense-types'
+import { GroupExpense } from '@/types/expense-types'
 
 import { db } from '..'
 import { tablesNames } from '../tableNames'
@@ -55,7 +56,7 @@ class Expenses {
     return await deleteDoc(expenseRef)
   }
 
-  async getGroupExpenses(groupId: string, params?: { orderBy?: [keyof GetExpenseDto, 'asc' | 'desc'] }) {
+  async getGroupExpenses(groupId: string, params?: { orderBy?: [keyof GroupExpense, 'asc' | 'desc'] }) {
     const q = query(
       this.expenseCollection,
       where('groupId', '==', groupId),
@@ -69,6 +70,29 @@ class Expenses {
       ...doc.data(),
       date: doc.data().date ? doc.data().date.toMillis() : undefined,
     }))
+  }
+
+  async updateExpense({
+    expenseId,
+    name,
+    amount,
+    title,
+    date,
+  }: {
+    expenseId: string
+    name: string
+    amount: number
+    title?: string
+    date?: Date
+  }) {
+    const expenseRef = this.getExpenseRef(expenseId)
+
+    return await updateDoc(expenseRef, {
+      name,
+      amount,
+      title: title || '',
+      date: date ? Timestamp.fromDate(date) : '',
+    })
   }
 }
 

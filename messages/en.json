@@ -72,23 +72,32 @@
     "Expenses": "Expenses",
     "Enter an Expense to get started!": "Enter an Expense to get started!"
   },
-  "RemoveExpense": {
-    "Are you sure you want to remove": "Are you sure you want to remove",
-    "from the list?": "from the list?"
+  "ExpenseSection": {
+    "Add Expense": "Add Expense",
+    "Add": "Add",
+    "Edit Expense": "Edit Expense"
   },
   "ExpensesBalancesTabs": {
     "Expenses": "Expenses",
     "Balances": "Balances"
   },
-  "ExpensesForm": {
+  "ExpenseForm": {
     "Add Expense": "Add Expense",
     "John Spliti": "John Spliti",
     "Title": "Title",
     "optional": "optional",
     "For example: Taxi": "For example: Taxi",
     "Date": "Date",
-    "Details": "Details",
-    "ADD EXPENSE": "ADD EXPENSE"
+    "Details": "Details"
+  },
+  "ExpenseRemoveConfirmModal": {
+    "Are you sure you want to remove": "Are you sure you want to remove",
+    "from the list?": "from the list?"
+  },
+  "ManageExpense": {
+    "Manage Expense": "Manage Expense",
+    "Edit": "Edit",
+    "Remove": "Remove"
   },
   "ResetExpenses": {
     "Reset": "Reset",

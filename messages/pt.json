@@ -72,23 +72,32 @@
     "Expenses": "Despesas",
     "Enter an Expense to get started!": "Adicione uma Despesa para começar!"
   },
-  "RemoveExpense": {
-    "Are you sure you want to remove": "Tem certeza de que deseja remover",
-    "from the list?": "da lista?"
+  "ExpenseSection": {
+    "Add Expense": "Adicionar Despesa",
+    "Add": "Adicionar",
+    "Edit Expense": "Editar Despesa"
   },
   "ExpensesBalancesTabs": {
     "Expenses": "Despesas",
     "Balances": "Saldo"
   },
-  "ExpensesForm": {
+  "ExpenseForm": {
     "Add Expense": "Adicionar Despesa",
     "John Spliti": "João Spliti",
     "Title": "Título",
     "optional": "opcional",
     "For example: Taxi": "Por exemplo: Táxi",
     "Date": "Data",
-    "Details": "Detalhes",
-    "ADD EXPENSE": "ADICIONAR DESPESA"
+    "Details": "Detalhes"
+  },
+  "ExpenseRemoveConfirmModal": {
+    "Are you sure you want to remove": "Tem certeza de que deseja remover",
+    "from the list?": "da lista?"
+  },
+  "ManageExpense": {
+    "Manage Expense": "Gerenciar despesa",
+    "Edit": "Editar",
+    "Remove": "Remover"
   },
   "ResetExpenses": {
     "Reset": "Redefinir",

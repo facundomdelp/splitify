@@ -1,10 +1,9 @@
-import React from 'react'
-
 import { cn } from '@/lib/utils'
+
+import { Button } from '@/components/ui/button'
 
 import { useGetEmojiFromString } from '@/utils/hooks/useGetEmojiFromString'
 
-import { Button } from '../ui/button'
 import { useHandleChangeEmojis } from './hooks'
 
 const ChangeEmojisButton = () => {

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 import { useRouter } from '@/i18n/routing'
 
@@ -15,20 +15,13 @@ interface useAddExpenseProps {
 }
 
 export const useAddExpense = ({ setExpenses }: useAddExpenseProps) => {
-  const addExpense = async ({
-    name,
-    amount,
-    title,
-    date,
-  }: {
-    name: string
-    amount: number
-    title?: string
-    date?: number
-  }) => {
-    const expenseUiId = generateId()
-    setExpenses((prev) => [...(prev ?? []), { id: expenseUiId, optimistic: false, name, amount, title, date }])
-  }
+  const addExpense = useCallback(
+    async ({ name, amount, title, date }: { name: string; amount: number; title?: string; date?: number }) => {
+      const expenseUiId = generateId()
+      setExpenses((prev) => [...(prev ?? []), { id: expenseUiId, optimistic: false, name, amount, title, date }])
+    },
+    [setExpenses],
+  )
 
   return { addExpense }
 }
@@ -45,53 +38,56 @@ export const useConvertIntoGroup = ({ setExpenses, setBalances }: useConvertInto
   })
   const router = useRouter()
 
-  const convertIntoGroup = async (expenses: Expense[]) => {
-    setConvertToGroupState({ error: false, loading: true })
+  const convertIntoGroup = useCallback(
+    async (expenses: Expense[]) => {
+      setConvertToGroupState({ error: false, loading: true })
 
-    try {
-      const addGroupResponse = await fetch('/api/groups', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-      })
-
-      if (!addGroupResponse.ok) {
-        throw new CustomError(addGroupResponse.status)
-      }
-
-      const data = await addGroupResponse.json()
-
-      for (const expense of expenses) {
-        const { name, amount, title, date } = expense
-
-        // Bulk Add Expenses?
-        const addExpensesToGroupResponse = await fetch(`/api/groups/${data.group}/expenses`, {
+      try {
+        const addGroupResponse = await fetch('/api/groups', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name,
-            amount,
-            title,
-            date,
-          }),
         })
 
-        if (!addExpensesToGroupResponse.ok) {
+        if (!addGroupResponse.ok) {
           throw new CustomError(addGroupResponse.status)
         }
+
+        const data = await addGroupResponse.json()
+
+        for (const expense of expenses) {
+          const { name, amount, title, date } = expense
+
+          // Bulk Add Expenses?
+          const addExpensesToGroupResponse = await fetch(`/api/groups/${data.group}/expenses`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name,
+              amount,
+              title,
+              date,
+            }),
+          })
+
+          if (!addExpensesToGroupResponse.ok) {
+            throw new CustomError(addGroupResponse.status)
+          }
+        }
+
+        setExpenses([])
+        setBalances([])
+
+        router.push(`/groups/${data.group}`)
+      } catch {
+        setConvertToGroupState((prev) => ({ ...prev, error: true }))
+      } finally {
+        setTimeout(() => {
+          setConvertToGroupState((prev) => ({ ...prev, loading: false }))
+        }, 500)
       }
-
-      setExpenses([])
-      setBalances([])
-
-      router.push(`/groups/${data.group}`)
-    } catch {
-      setConvertToGroupState((prev) => ({ ...prev, error: true }))
-    } finally {
-      setTimeout(() => {
-        setConvertToGroupState((prev) => ({ ...prev, loading: false }))
-      }, 500)
-    }
-  }
+    },
+    [router, setBalances, setExpenses],
+  )
 
   return { convertIntoGroup, convertToGroupState }
 }
@@ -102,10 +98,13 @@ interface useRemoveExpenseProps {
 }
 
 export const useRemoveExpense = ({ expenses, setExpenses }: useRemoveExpenseProps) => {
-  const removeExpense = async (id: string) => {
-    const remainingExpenses = expenses.filter(({ id: expenseId }) => expenseId !== id)
-    setExpenses(remainingExpenses)
-  }
+  const removeExpense = useCallback(
+    async (id: string) => {
+      const remainingExpenses = expenses.filter(({ id: expenseId }) => expenseId !== id)
+      setExpenses(remainingExpenses)
+    },
+    [expenses, setExpenses],
+  )
 
   return { removeExpense }
 }

@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 import { useTranslations } from 'next-intl'
 
-import DrawerModal from '../DrawerModal'
-import { Button } from '../ui/button'
-import { Input } from '../ui/input'
-import { Label } from '../ui/label'
+import DrawerModal from '@/components/DrawerModal'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 
 interface Props {
   initialGroupName: string

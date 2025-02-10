@@ -1,0 +1,60 @@
+import { useState } from 'react'
+
+import { useTranslations } from 'next-intl'
+
+import DrawerModal from '@/components/DrawerModal'
+import ExpenseForm from '@/components/ExpenseForm'
+
+import { Edit3 } from 'lucide-react'
+
+interface Props {
+  id: string
+  name: string
+  amount: number
+  title?: string
+  date?: number
+  onRemoveExpense: (id: string) => void
+  onEditExpense: ({
+    id,
+    name,
+    amount,
+    title,
+    date,
+  }: {
+    id: string
+    name: string
+    amount: number
+    title?: string
+    date?: number
+  }) => void
+}
+
+const ManageExpense = ({ id, name, amount, title, date, onRemoveExpense, onEditExpense }: Props) => {
+  const [open, setOpen] = useState(false)
+
+  const t = useTranslations('ManageExpense')
+
+  return (
+    <>
+      <Edit3
+        className='mx-1 size-[15px] shrink-0 cursor-pointer items-center text-gray-500 hover:text-green-600'
+        onClick={() => setOpen(true)}
+      />
+
+      {open && (
+        <DrawerModal open={open} setOpen={setOpen} title={t('Manage Expense')} className='px-4'>
+          <ExpenseForm
+            initialValues={{ name, amount, title, date }}
+            submitButtonCopy={t('Edit')}
+            fullForm
+            onSubmit={(expense) => onEditExpense({ id, ...expense })}
+            closeModal={() => setOpen(false)}
+            secondaryButton={{ copy: t('Remove'), variant: 'destructive', onClick: () => onRemoveExpense(id) }}
+          />
+        </DrawerModal>
+      )}
+    </>
+  )
+}
+
+export default ManageExpense

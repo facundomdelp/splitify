@@ -2,11 +2,7 @@
 
 import { useState } from 'react'
 
-import { useTranslations } from 'next-intl'
-
-import ConfirmationModal from '@/components/ConfirmationModal'
-
-import { useGetEmojiFromString } from '@/utils/hooks/useGetEmojiFromString'
+import ExpenseRemoveConfirmModal from '@/components/ExpenseRemoveConfirmModal'
 
 import { X } from 'lucide-react'
 
@@ -19,10 +15,6 @@ interface Props {
 const RemoveExpense = ({ id, name, onRemoveExpense }: Props) => {
   const [open, setOpen] = useState(false)
 
-  const getEmojiFromString = useGetEmojiFromString()
-
-  const t = useTranslations('RemoveExpense')
-
   return (
     <>
       <X
@@ -30,24 +22,7 @@ const RemoveExpense = ({ id, name, onRemoveExpense }: Props) => {
         onClick={() => setOpen(true)}
       />
 
-      <ConfirmationModal
-        open={open}
-        onOpenChange={setOpen}
-        title={
-          <>
-            {t('Are you sure you want to remove')}
-            <div className='flex min-w-0 flex-nowrap space-x-1'>
-              <p>{getEmojiFromString(name)}</p>
-              <strong className='block max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-semibold'>
-                {name}
-              </strong>
-            </div>
-            {t('from the list?')}
-          </>
-        }
-        onConfirm={() => onRemoveExpense(id)}
-        destructive
-      />
+      <ExpenseRemoveConfirmModal open={open} setOpen={setOpen} name={name} onConfirm={() => onRemoveExpense(id)} />
     </>
   )
 }

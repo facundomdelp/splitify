@@ -5,9 +5,9 @@ import { usePathname, useRouter } from '@/i18n/routing'
 
 import { Locale } from '@/types/common-types'
 
-import { AVAILABLE_LOCALES } from '@/utils/constants/availableLocales'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
+import { AVAILABLE_LOCALES } from '@/utils/constants/availableLocales'
 
 const LocaleSelector = () => {
   const locale = useLocale()

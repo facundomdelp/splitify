@@ -11,16 +11,16 @@ import { handleErrors } from '@/utils/errors/handleErrors'
 
 const expenseService = new ExpenseService()
 
-export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params
-  const [data, errors] = validateGroupId({ id })
+export async function GET(_request: NextRequest, { params }: { params: Promise<{ groupId: string }> }) {
+  const { groupId } = await params
+  const [data, errors] = validateGroupId({ groupId })
 
   if (!data || errors) {
     return NextResponse.json({ errors }, { status: 400 })
   }
 
   try {
-    const result = await expenseService.getGroupExpenses(data.id)
+    const result = await expenseService.getGroupExpenses(data.groupId)
 
     return NextResponse.json({ group: result }, { status: 201 })
   } catch (error) {
@@ -28,9 +28,9 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
   }
 }
 
-export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params
-  const [groupIdData, groupIdErrors] = validateGroupId({ id })
+export async function POST(request: NextRequest, { params }: { params: Promise<{ groupId: string }> }) {
+  const { groupId } = await params
+  const [groupIdData, groupIdErrors] = validateGroupId({ groupId })
 
   if (!groupIdData || groupIdErrors) {
     return NextResponse.json({ groupIdErrors }, { status: 400 })
@@ -45,7 +45,7 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
   }
 
   try {
-    const result = await expenseService.addExpense({ groupId: groupIdData.id, ...data })
+    const result = await expenseService.addExpense({ groupId: groupIdData.groupId, ...data })
 
     return NextResponse.json({ message: 'Expsense added successfully!', expense: result }, { status: 201 })
   } catch (error) {

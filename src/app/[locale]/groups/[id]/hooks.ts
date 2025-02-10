@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import { useParams } from 'next/navigation'
 
-import { Expense, GetGroupExpensesResponse } from '@/types/expense-types'
+import { Expense } from '@/types/expense-types'
 import { GetGroupResponse } from '@/types/group-types'
 
 import { useSetGroups } from '@/store/groups-store'
@@ -61,7 +61,7 @@ export const useGetGroup = () => {
 }
 
 export const useGetGroupExpenses = () => {
-  const [expenses, setExpenses] = useState<Expense[]>([])
+  const [expenses, setExpenses] = useState<(Expense & { optimistic?: boolean })[]>([])
   const [{ loading, error }, setGetExpensesState] = useState<{ loading: boolean; error: number | null }>({
     loading: true,
     error: null,
@@ -80,7 +80,7 @@ export const useGetGroupExpenses = () => {
         throw new CustomError(response.status)
       }
 
-      const data: GetGroupExpensesResponse = await response.json()
+      const data: { group: Expense[] } = await response.json()
       setExpenses(data.group)
     } catch (e) {
       if (e instanceof CustomError) {
@@ -102,80 +102,130 @@ export const useGetGroupExpenses = () => {
 
 interface useAddExpenseProps {
   groupId?: string
-  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
+  setExpenses: React.Dispatch<React.SetStateAction<(Expense & { optimistic?: boolean })[]>>
 }
 
 export const useAddExpense = ({ groupId, setExpenses }: useAddExpenseProps) => {
-  const addExpense = async ({
-    name,
-    amount,
-    title,
-    date,
-  }: {
-    name: string
-    amount: number
-    title?: string
-    date?: number
-  }) => {
-    if (!groupId) return
+  const addExpense = useCallback(
+    async ({ name, amount, title, date }: { name: string; amount: number; title?: string; date?: number }) => {
+      if (!groupId) return
 
-    const expenseUiId = generateId()
-    setExpenses((prev) => [...(prev ?? []), { id: expenseUiId, optimistic: true, name, amount, title, date }])
+      const expenseUiId = generateId()
+      setExpenses((prev) => [...(prev ?? []), { id: expenseUiId, optimistic: true, name, amount, title, date }])
 
-    try {
-      const response = await fetch(`/api/groups/${groupId}/expenses`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name,
-          amount,
-          title,
-          date,
-        }),
-      })
+      try {
+        const response = await fetch(`/api/groups/${groupId}/expenses`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name,
+            amount,
+            title,
+            date,
+          }),
+        })
 
-      if (!response.ok) {
-        throw new CustomError(response.status)
+        if (!response.ok) {
+          throw new CustomError(response.status)
+        }
+
+        const data = await response.json()
+
+        setExpenses((prevExpenses) =>
+          prevExpenses.map((expense) =>
+            expense.id === expenseUiId ? { ...expense, optimistic: false, id: data.expense } : expense,
+          ),
+        )
+      } catch {
+        // TODO: Put it in red with a warning, a tooltip and a try again button
       }
-
-      const data = await response.json()
-
-      setExpenses((prevExpenses) =>
-        prevExpenses.map((expense) =>
-          expense.id === expenseUiId ? { ...expense, optimistic: false, id: data.expense } : expense,
-        ),
-      )
-    } catch {
-      // Put in red with a warning, a tooltip and a try again button
-    }
-  }
+    },
+    [groupId, setExpenses],
+  )
 
   return { addExpense }
 }
 
 interface useRemoveExpenseProps {
   expenses: Expense[]
-  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
+  setExpenses: React.Dispatch<React.SetStateAction<(Expense & { optimistic?: boolean })[]>>
 }
 
 export const useRemoveExpense = ({ expenses, setExpenses }: useRemoveExpenseProps) => {
-  const removeExpense = async (id: string) => {
-    const remainingExpenses = expenses.filter(({ id: expenseId }) => expenseId !== id)
-    setExpenses(remainingExpenses)
+  const removeExpense = useCallback(
+    async (id: string) => {
+      const remainingExpenses = expenses.filter(({ id: expenseId }) => expenseId !== id)
+      setExpenses(remainingExpenses)
 
-    try {
-      const response = await fetch(`/api/expenses/${id}`, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-      })
+      try {
+        const response = await fetch(`/api/expenses/${id}`, {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+        })
 
-      if (!response.ok) {
-        throw new CustomError(response.status)
+        if (!response.ok) {
+          throw new CustomError(response.status)
+        }
+      } catch {
+        // TODO: Put it again in red with a warning, a tooltip and a try again button
       }
-    } catch {
-      // use an optimistic removing
-    }
-  }
+    },
+    [expenses, setExpenses],
+  )
 
   return { removeExpense }
+}
+
+interface useAddExpenseProps {
+  setExpenses: React.Dispatch<React.SetStateAction<(Expense & { optimistic?: boolean })[]>>
+}
+
+export const useEditExpense = ({ setExpenses }: useAddExpenseProps) => {
+  const editExpense = useCallback(
+    async ({
+      id,
+      name,
+      amount,
+      title,
+      date,
+    }: {
+      id: string
+      name: string
+      amount: number
+      title?: string
+      date?: number
+    }) => {
+      setExpenses((prevExpenses) =>
+        prevExpenses.map((expense) =>
+          expense.id === id ? { id, name, amount, title, date, optimistic: true } : expense,
+        ),
+      )
+
+      try {
+        const response = await fetch(`/api/expenses/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name,
+            amount,
+            title,
+            date,
+          }),
+        })
+
+        if (!response.ok) {
+          throw new CustomError(response.status)
+        }
+
+        setExpenses((prevExpenses) =>
+          prevExpenses.map((expense) => (expense.id === id ? { ...expense, optimistic: false, id } : expense)),
+        )
+      } catch {
+        // Put in red with a warning, a tooltip and a try again button
+      }
+    },
+    [setExpenses],
+  )
+
+  return { editExpense }
 }
