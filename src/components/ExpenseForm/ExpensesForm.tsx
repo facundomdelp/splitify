@@ -131,7 +131,7 @@ const ExpenseForm = ({
           )}
 
           {fullForm && (
-            <div className='flex gap-3'>
+            <div className='mt-1 flex gap-3'>
               {secondaryButton && (
                 <Button
                   type='button'
