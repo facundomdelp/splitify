@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 
 import { useParams } from 'next/navigation'
 
-import { Expense, GetGroupExpensesResponse } from '@/types/expense-types'
+import { Expense } from '@/types/expense-types'
 import { GetGroupResponse } from '@/types/group-types'
 
 import { useSetGroups } from '@/store/groups-store'
@@ -61,7 +61,7 @@ export const useGetGroup = () => {
 }
 
 export const useGetGroupExpenses = () => {
-  const [expenses, setExpenses] = useState<Expense[]>([])
+  const [expenses, setExpenses] = useState<(Expense & { optimistic?: boolean })[]>([])
   const [{ loading, error }, setGetExpensesState] = useState<{ loading: boolean; error: number | null }>({
     loading: true,
     error: null,
@@ -80,7 +80,7 @@ export const useGetGroupExpenses = () => {
         throw new CustomError(response.status)
       }
 
-      const data: GetGroupExpensesResponse = await response.json()
+      const data: { group: Expense[] } = await response.json()
       setExpenses(data.group)
     } catch (e) {
       if (e instanceof CustomError) {
@@ -102,7 +102,7 @@ export const useGetGroupExpenses = () => {
 
 interface useAddExpenseProps {
   groupId?: string
-  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
+  setExpenses: React.Dispatch<React.SetStateAction<(Expense & { optimistic?: boolean })[]>>
 }
 
 export const useAddExpense = ({ groupId, setExpenses }: useAddExpenseProps) => {
@@ -155,7 +155,7 @@ export const useAddExpense = ({ groupId, setExpenses }: useAddExpenseProps) => {
 
 interface useRemoveExpenseProps {
   expenses: Expense[]
-  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
+  setExpenses: React.Dispatch<React.SetStateAction<(Expense & { optimistic?: boolean })[]>>
 }
 
 export const useRemoveExpense = ({ expenses, setExpenses }: useRemoveExpenseProps) => {

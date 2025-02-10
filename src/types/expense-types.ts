@@ -2,18 +2,12 @@ export type Expense = {
   id: string
   name: string
   amount: number
-  optimistic?: boolean
   title?: string
   date?: number
 }
 
-export type GetExpenseDto = {
-  id: string
+export type GroupExpense = Expense & {
   groupId: string
-  name: string
-  amount: number
-  title?: string
-  date?: number
   createdAt: number
 }
 
@@ -22,8 +16,4 @@ export type AddExpenseRequestBody = {
   amount: number
   title?: string
   date?: number
-}
-
-export type GetGroupExpensesResponse = {
-  group: Array<Expense>
 }

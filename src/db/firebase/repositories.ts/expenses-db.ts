@@ -10,7 +10,7 @@ import {
   where,
 } from 'firebase/firestore'
 
-import { GetExpenseDto } from '@/types/expense-types'
+import { GroupExpense } from '@/types/expense-types'
 
 import { db } from '..'
 import { tablesNames } from '../tableNames'
@@ -55,7 +55,7 @@ class Expenses {
     return await deleteDoc(expenseRef)
   }
 
-  async getGroupExpenses(groupId: string, params?: { orderBy?: [keyof GetExpenseDto, 'asc' | 'desc'] }) {
+  async getGroupExpenses(groupId: string, params?: { orderBy?: [keyof GroupExpense, 'asc' | 'desc'] }) {
     const q = query(
       this.expenseCollection,
       where('groupId', '==', groupId),

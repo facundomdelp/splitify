@@ -10,7 +10,7 @@ import { handleErrors } from '@/utils/errors/handleErrors'
 
 const groupService = new GroupService()
 
-export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function GET(_request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const [data, errors] = validateGroupId({ id })
 
