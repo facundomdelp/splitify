@@ -1,17 +1,18 @@
 import { useState } from 'react'
 
 interface useExpensesFormProps {
+  initialValues: { name: string; amount: number; title?: string; date?: number }
   nameInputRef: React.RefObject<HTMLInputElement>
   onSubmit?: ({ name, amount, title, date }: { name: string; amount: number; title?: string; date?: number }) => void
   closeModal?: () => void
 }
 
-export const useExpensesForm = ({ nameInputRef, onSubmit, closeModal }: useExpensesFormProps) => {
-  const [name, setName] = useState('')
-  const [amount, setAmount] = useState(0)
+export const useExpensesForm = ({ initialValues, nameInputRef, onSubmit, closeModal }: useExpensesFormProps) => {
+  const [name, setName] = useState(initialValues.name)
+  const [amount, setAmount] = useState(initialValues.amount)
 
-  const [title, setTitle] = useState('')
-  const [date, setDate] = useState('')
+  const [title, setTitle] = useState(initialValues.title)
+  const [date, setDate] = useState(initialValues.date ? new Date(initialValues.date).toISOString().split('T')[0] : '')
 
   const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value

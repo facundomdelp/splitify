@@ -17,3 +17,5 @@ export type AddExpenseRequestBody = {
   title?: string
   date?: number
 }
+
+export type UpdateExpenseRequestBody = AddExpenseRequestBody

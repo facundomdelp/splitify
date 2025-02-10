@@ -15,6 +15,10 @@ class ExpenseService {
   removeExpense(expenseId: string) {
     return expenses.removeExpense(expenseId)
   }
+
+  updateExpense(data: { expenseId: string; name: string; amount: number; title?: string; date?: Date }) {
+    return expenses.updateExpense(data)
+  }
 }
 
 export default ExpenseService

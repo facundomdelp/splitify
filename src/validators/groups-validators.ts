@@ -1,17 +1,17 @@
 import { z } from 'zod'
 
-import { ValidationResult, idParam } from '@/types/common-types'
+import { ValidationResult } from '@/types/common-types'
 import { AddGroupRequestBody, UpdateGroupRequestBody } from '@/types/group-types'
 
 const validateGroupIdSchema = z.object({
-  id: z
+  groupId: z
     .string()
     .length(20, 'Invalid Group ID')
     .regex(/^[A-Za-z0-9\-_]+$/, 'Invalid Group ID'),
 })
 
-export const validateGroupId = ({ id }: Partial<idParam>): ValidationResult<idParam> => {
-  const validationResult = validateGroupIdSchema.safeParse({ id })
+export const validateGroupId = ({ groupId }: Partial<{ groupId: string }>): ValidationResult<{ groupId: string }> => {
+  const validationResult = validateGroupIdSchema.safeParse({ groupId })
   let errors: Array<{ field: string; message: string }> | null = null
 
   if (!validationResult.success) {

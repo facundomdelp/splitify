@@ -7,6 +7,10 @@ import { Edit3 } from 'lucide-react'
 
 interface Props {
   id: string
+  name: string
+  amount: number
+  title?: string
+  date?: number
   onRemoveExpense: (id: string) => void
   onEditExpense: ({
     id,
@@ -23,7 +27,7 @@ interface Props {
   }) => void
 }
 
-const ManageExpense = ({ id, onRemoveExpense, onEditExpense }: Props) => {
+const ManageExpense = ({ id, name, amount, title, date, onRemoveExpense, onEditExpense }: Props) => {
   const [open, setOpen] = useState(false)
 
   return (
@@ -36,6 +40,7 @@ const ManageExpense = ({ id, onRemoveExpense, onEditExpense }: Props) => {
       {open && (
         <DrawerModal open={open} setOpen={setOpen} title='Manage Expense' className='px-4'>
           <ExpenseForm
+            initialValues={{ name, amount, title, date }}
             submitButtonCopy='Edit'
             autoFocus
             fullForm

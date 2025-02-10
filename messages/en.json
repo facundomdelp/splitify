@@ -77,10 +77,6 @@
     "Add": "Add",
     "Edit Expense": "Edit Expense"
   },
-  "RemoveExpense": {
-    "Are you sure you want to remove": "Are you sure you want to remove",
-    "from the list?": "from the list?"
-  },
   "ExpensesBalancesTabs": {
     "Expenses": "Expenses",
     "Balances": "Balances"
@@ -93,6 +89,10 @@
     "For example: Taxi": "For example: Taxi",
     "Date": "Date",
     "Details": "Details"
+  },
+  "ExpenseRemoveConfirmModal": {
+    "Are you sure you want to remove": "Are you sure you want to remove",
+    "from the list?": "from the list?"
   },
   "ResetExpenses": {
     "Reset": "Reset",

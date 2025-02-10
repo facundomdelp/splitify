@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import { useParams } from 'next/navigation'
 
@@ -181,11 +181,10 @@ export const useRemoveExpense = ({ expenses, setExpenses }: useRemoveExpenseProp
 }
 
 interface useAddExpenseProps {
-  groupId?: string
   setExpenses: React.Dispatch<React.SetStateAction<(Expense & { optimistic?: boolean })[]>>
 }
 
-export const useEditExpense = ({ groupId, setExpenses }: useAddExpenseProps) => {
+export const useEditExpense = ({ setExpenses }: useAddExpenseProps) => {
   const editExpense = async ({
     id,
     name,
@@ -199,11 +198,14 @@ export const useEditExpense = ({ groupId, setExpenses }: useAddExpenseProps) => 
     title?: string
     date?: number
   }) => {
-    if (!groupId) return
-    setExpenses((prev) => [...(prev ?? []), { id, name, amount, title, date }])
+    setExpenses((prevExpenses) =>
+      prevExpenses.map((expense) =>
+        expense.id === id ? { id, name, amount, title, date, optimistic: true } : expense,
+      ),
+    )
 
     try {
-      const response = await fetch(`/api/groups/${groupId}/expenses/${id}`, {
+      const response = await fetch(`/api/expenses/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -217,6 +219,10 @@ export const useEditExpense = ({ groupId, setExpenses }: useAddExpenseProps) => 
       if (!response.ok) {
         throw new CustomError(response.status)
       }
+
+      setExpenses((prevExpenses) =>
+        prevExpenses.map((expense) => (expense.id === id ? { ...expense, optimistic: false, id } : expense)),
+      )
     } catch {
       // Put in red with a warning, a tooltip and a try again button
     }

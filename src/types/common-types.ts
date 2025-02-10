@@ -42,7 +42,3 @@ type ValidationError = {
 }
 
 export type ValidationResult<T> = [T | null, ValidationError[] | null]
-
-export type idParam = {
-  id: string
-}

@@ -7,6 +7,7 @@ import {
   getDocs,
   orderBy as orderByDb,
   query,
+  updateDoc,
   where,
 } from 'firebase/firestore'
 
@@ -69,6 +70,29 @@ class Expenses {
       ...doc.data(),
       date: doc.data().date ? doc.data().date.toMillis() : undefined,
     }))
+  }
+
+  async updateExpense({
+    expenseId,
+    name,
+    amount,
+    title,
+    date,
+  }: {
+    expenseId: string
+    name: string
+    amount: number
+    title?: string
+    date?: Date
+  }) {
+    const expenseRef = this.getExpenseRef(expenseId)
+
+    return await updateDoc(expenseRef, {
+      name,
+      amount,
+      title: title || '',
+      date: date ? Timestamp.fromDate(date) : '',
+    })
   }
 }
 

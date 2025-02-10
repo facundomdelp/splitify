@@ -1,7 +1,5 @@
 'use client'
 
-import React from 'react'
-
 import { formatAmount } from '@/utils/functions/formatAmount'
 
 interface Props {

@@ -10,16 +10,16 @@ import { handleErrors } from '@/utils/errors/handleErrors'
 
 const groupService = new GroupService()
 
-export async function GET(_request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params
-  const [data, errors] = validateGroupId({ id })
+export async function GET(_request: NextRequest, { params }: { params: Promise<{ groupId: string }> }) {
+  const { groupId } = await params
+  const [data, errors] = validateGroupId({ groupId })
 
   if (!data || errors) {
     return NextResponse.json({ errors }, { status: 400 })
   }
 
   try {
-    const result = await groupService.getGroup(data.id)
+    const result = await groupService.getGroup(data.groupId)
 
     return NextResponse.json({ group: result }, { status: 200 })
   } catch (error) {
@@ -27,9 +27,9 @@ export async function GET(_request: NextRequest, { params }: { params: Promise<{
   }
 }
 
-export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params
-  const [groupIdData, groupIdErrors] = validateGroupId({ id })
+export async function PUT(request: NextRequest, { params }: { params: Promise<{ groupId: string }> }) {
+  const { groupId } = await params
+  const [groupIdData, groupIdErrors] = validateGroupId({ groupId })
 
   if (!groupIdData || groupIdErrors) {
     return NextResponse.json({ errors: groupIdErrors }, { status: 400 })
@@ -45,7 +45,7 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
 
   try {
     const result = await groupService.updateGroup({
-      groupId: groupIdData.id,
+      groupId: groupIdData.groupId,
       name: data.name,
     })
 

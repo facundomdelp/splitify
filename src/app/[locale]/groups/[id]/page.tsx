@@ -26,7 +26,7 @@ const GroupPage = () => {
 
   const { addExpense } = useAddExpense({ groupId: group?.id, setExpenses })
   const { removeExpense } = useRemoveExpense({ expenses, setExpenses })
-  const { editExpense } = useEditExpense({ groupId: group?.id, setExpenses })
+  const { editExpense } = useEditExpense({ setExpenses })
 
   const { handleCalculateBalances, disabledBalances } = useCalculateBalances({
     expenses,
