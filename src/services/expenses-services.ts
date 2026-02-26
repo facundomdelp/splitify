@@ -1,4 +1,4 @@
-import Expenses from '@/db/firebase/repositories.ts/expenses-db'
+import Expenses from '@/db/firebase/repositories/expenses-db'
 
 const expenses = new Expenses()
 

@@ -1,4 +1,4 @@
-import Groups from '@/db/firebase/repositories.ts/groups-db'
+import Groups from '@/db/firebase/repositories/groups-db'
 
 import { Locale } from '@/types/common-types'
 
