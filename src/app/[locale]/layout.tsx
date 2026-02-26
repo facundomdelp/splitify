@@ -37,9 +37,18 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
     description: t('description'),
     keywords: t('keywords'),
     metadataBase: new URL(baseUrl),
+    applicationName: 'Splitify',
+    authors: [{ name: 'Splitify' }],
+    creator: 'Splitify',
+    formatDetection: {
+      telephone: false,
+    },
     alternates: {
       canonical: canonicalUrl,
-      languages,
+      languages: {
+        ...languages,
+        'x-default': `${baseUrl}/`,
+      },
     },
     openGraph: {
       title: t('title'),
@@ -49,11 +58,35 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
       locale: locale,
       type: 'website',
       alternateLocale: routing.locales.filter((loc) => loc !== locale),
+      images: [
+        {
+          url: `${baseUrl}/Splitify-banner.jpg`,
+          width: 1200,
+          height: 630,
+          alt: 'Splitify - Simplify your group expenses',
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: t('title'),
       description: t('description'),
+      images: [`${baseUrl}/Splitify-banner.jpg`],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+    icons: {
+      icon: '/splitify-192x192.png',
+      apple: '/apple-touch-icon.png',
     },
   }
 }
@@ -72,8 +105,41 @@ export default async function LocaleLayout({
 
   const messages = await getMessages()
 
+  const baseUrl = 'https://splitify.me'
+  const canonicalUrl = locale === routing.defaultLocale ? `${baseUrl}/` : `${baseUrl}/${locale}`
+
+  const webAppJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'Splitify',
+    url: canonicalUrl,
+    applicationCategory: 'FinanceApplication',
+    operatingSystem: 'All',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    description:
+      'Simplify your group expenses with Splitify. Add participants, calculate balances, and share costs fairly.',
+    image: `${baseUrl}/Splitify-banner.jpg`,
+  }
+
+  const organizationJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Splitify',
+    url: baseUrl,
+    logo: `${baseUrl}/splitify-512x512.png`,
+    sameAs: [],
+  }
+
   return (
     <html lang={locale} className='h-full'>
+      <head>
+        <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }} />
+        <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
+      </head>
       <GoogleTagManager gtmId='GTM-TSLLPXCB' />
       <body
         className={`${inter.className} bg-dark relative flex min-h-screen flex-col overflow-auto text-white antialiased`}
