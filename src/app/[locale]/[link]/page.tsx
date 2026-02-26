@@ -13,7 +13,7 @@ import { SEO_ROUTES } from './constants'
 
 const SeoPage = () => {
   const { locale, link } = useParams<{ locale: Locale; link: string }>()
-  const localeSeoRoutes = SEO_ROUTES[locale]
+  const localeSeoRoutes = SEO_ROUTES[locale as keyof typeof SEO_ROUTES]
 
   const t = useTranslations('SeoPage')
 
