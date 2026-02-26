@@ -5,8 +5,8 @@ import { ADJECTIVES, NOUNS } from '../constants/names'
 export const generateRandomName = (locale?: Locale) => {
   locale = locale || 'en'
 
-  const adjective = ADJECTIVES[locale]
-  const nouns = NOUNS[locale]
+  const adjective = ADJECTIVES[locale as keyof typeof ADJECTIVES]
+  const nouns = NOUNS[locale as keyof typeof NOUNS]
 
   const randomAdjective = adjective[Math.floor(Math.random() * adjective.length)]
   const randomNoun = nouns[Math.floor(Math.random() * nouns.length)]
