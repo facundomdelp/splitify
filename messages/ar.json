@@ -1,0 +1,135 @@
+{
+  "Metadata": {
+    "title": "🤑 Splitify | بسّط نفقات مجموعتك",
+    "description": "💸 يجعل Splitify تقسيم نفقات المجموعة سهلاً! أضف المشاركين، واحسب الأرصدة، وشارك التكاليف بشكل عادل. لا حاجة لحساب!",
+    "keywords": "حاسبة تقسيم الفاتورة, تقسيم الفاتورة, حاسبة تقسيم التكاليف"
+  },
+  "Home": {
+    "Simplify your group expenses with Splitify 🤑": "بسّط نفقات مجموعتك مع Splitify 🤑",
+    "💸 How does it work?": "💸 كيف يعمل؟",
+    "Just enter each participant's name and how much they spent": "فقط أدخل اسم كل مشارك والمبلغ الذي أنفقه (يمكن أن يكون 0$). ثم انقر على \"حساب الأرصدة\"، وسيقوم Splitify بتحسين عدد التحويلات المطلوبة."
+  },
+  "Footer": {
+    "Useful Links": "روابط مفيدة"
+  },
+  "NavBar": {
+    "Discover more!": "اكتشف المزيد!",
+    "General": "عام",
+    "Install App": "تثبيت التطبيق",
+    "Language": "اللغة",
+    "Spliti Quick": "تقسيم سريع",
+    "Spliti Groups": "مجموعات التقسيم"
+  },
+  "LocaleSelectorModal": {
+    "Language": "اللغة",
+    "Would you like to select a different language?": "هل تريد اختيار لغة مختلفة؟",
+    "Send us an email!": "أرسل لنا بريداً إلكترونياً!"
+  },
+  "HomeContextMenu": {
+    "Do you want to turn these expenses into a ✈️ Group?": "هل تريد تحويل هذه النفقات إلى ✈️ مجموعة؟",
+    "By turning it into a group, you can share a link so others can collaborate easily": "بتحويلها إلى مجموعة، يمكنك مشاركة رابط حتى يتمكن الآخرون من التعاون بسهولة.",
+    "Turn into a Group ✈️": "تحويل إلى مجموعة ✈️"
+  },
+  "GroupPage": {
+    "Collaborate in Group!": "تعاون في المجموعة!"
+  },
+  "GroupsContextMenu": {
+    "Collaborate in Group": "تعاون في المجموعة",
+    "Remove Group": "إزالة المجموعة",
+    "Edit Name": "تحرير الاسم",
+    "🤑 Copy this link and share it with your friends! 💸": "🤑 انسخ هذا الرابط وشاركه مع أصدقائك! 💸",
+    "Your friends would be able to easily add expenses to this group": "سيتمكن أصدقاؤك من إضافة النفقات إلى هذه المجموعة بسهولة.",
+    "I invite you to collaborate in the group 🤝": "أدعوك للتعاون في المجموعة 🤝",
+    "Are you sure you want to remove this group?": "هل أنت متأكد أنك تريد إزالة هذه المجموعة؟",
+    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want": "إزالة هذه المجموعة لن تحذفها، ستتوقف فقط عن رؤيتها. يمكنك استخدام الرابط مرة أخرى للوصول إليها متى شئت."
+  },
+  "Balances": {
+    "Balances": "الأرصدة",
+    "Round": "تقريب",
+    "owes": "مدين بـ",
+    "to": "لـ"
+  },
+  "CalculateButton": {
+    "Calculate Balances": "حساب الأرصدة"
+  },
+  "ConfirmationModal": {
+    "Yes": "نعم",
+    "No": "لا"
+  },
+  "CopyToClipboard": {
+    "Copy": "نسخ",
+    "Copied!": "تم النسخ!"
+  },
+  "EditGroupNameModal": {
+    "Edit Group Name": "تحرير اسم المجموعة",
+    "Edit": "تحرير",
+    "Name": "الاسم"
+  },
+  "DrawerModal": {
+    "Cancel": "إلغاء"
+  },
+  "Expenses": {
+    "Expenses": "النفقات",
+    "Enter an Expense to get started!": "أدخل نفقة للبدء!"
+  },
+  "ExpenseSection": {
+    "Add Expense": "إضافة نفقة",
+    "Add": "إضافة",
+    "Edit Expense": "تحرير النفقة"
+  },
+  "ExpensesBalancesTabs": {
+    "Expenses": "النفقات",
+    "Balances": "الأرصدة"
+  },
+  "ExpenseForm": {
+    "Add Expense": "إضافة نفقة",
+    "John Spliti": "أحمد محمد",
+    "Title": "العنوان",
+    "optional": "اختياري",
+    "For example: Taxi": "على سبيل المثال: سيارة أجرة",
+    "Date": "التاريخ",
+    "Details": "التفاصيل"
+  },
+  "ExpenseRemoveConfirmModal": {
+    "Are you sure you want to remove": "هل أنت متأكد أنك تريد إزالة",
+    "from the list?": "من القائمة؟"
+  },
+  "ManageExpense": {
+    "Manage Expense": "إدارة النفقة",
+    "Edit": "تحرير",
+    "Remove": "إزالة"
+  },
+  "ResetExpenses": {
+    "Reset": "إعادة تعيين",
+    "Are you sure you want to reset the expenses list?": "هل أنت متأكد أنك تريد إعادة تعيين قائمة النفقات؟"
+  },
+  "useCopyString": {
+    "owes": "مدين بـ",
+    "to": "لـ"
+  },
+  "SeoPage": {
+    "Get Started": "ابدأ الآن 🚀"
+  },
+  "UsefulLinksPage": {
+    "Find answers to common questions and troubleshooting": "ابحث عن إجابات للأسئلة الشائعة وحل المشاكل.",
+    "Useful Links": "روابط مفيدة",
+    "Here are some useful resources to help you navigate and make the most out of Splitify": "فيما يلي بعض الموارد المفيدة لمساعدتك على التنقل وتحقيق أقصى استفادة من Splitify."
+  },
+  "FaqPage": {
+    "Frequently Asked Questions": "الأسئلة الشائعة",
+    "What is Splitify?": "ما هو Splitify؟",
+    "Splitify is a simple tool to divide expenses and bills equally among friends and group members": "Splitify هو أداة بسيطة لتقسيم النفقات والفواتير بالتساوي بين الأصدقاء وأعضاء المجموعة.",
+    "How does it work?": "كيف يعمل؟",
+    "You input the participants and their payments, and Splitify will calculate and suggest the best way to split the expenses": "تقوم بإدخال المشاركين ومدفوعاتهم، وسيقوم Splitify بحساب واقتراح أفضل طريقة لتقسيم النفقات.",
+    "Do I need to create an account?": "هل أحتاج إلى إنشاء حساب؟",
+    "No, Splitify works without the need to create an account or sign in": "لا، يعمل Splitify دون الحاجة إلى إنشاء حساب أو تسجيل الدخول. يمكنك البدء في استخدامه على الفور.",
+    "Is it free to use?": "هل هو مجاني الاستخدام؟",
+    "Yes, Splitify is completely free to use": "نعم، Splitify مجاني تماماً للاستخدام. لا توجد رسوم مخفية أو ميزات مميزة.",
+    "Does Splitify optimize the number of necessary transfers?": "هل يقوم Splitify بتحسين عدد التحويلات الضرورية؟",
+    "Yes, Splitify uses an algorithm to minimize the number of transfers needed, making the payment process faster and more efficient": "نعم، يستخدم Splitify خوارزمية لتقليل عدد التحويلات المطلوبة، مما يجعل عملية الدفع أسرع وأكثر كفاءة.",
+    "Can I create a collaborative group with my friends?": "هل يمكنني إنشاء مجموعة تعاونية مع أصدقائي؟",
+    "Yes, you can easily create a group, add your friends, and start splitting expenses together": "نعم، يمكنك بسهولة إنشاء مجموعة وإضافة أصدقائك والبدء في تقسيم النفقات معاً. إنه مثالي للعشاء المشترك والرحلات وغيرها!",
+    "Can I add details to each expense?": "هل يمكنني إضافة تفاصيل لكل نفقة؟",
+    "Yes, you can add more details such as the expense date, description, and even categorize the expense for better tracking": "نعم، يمكنك إضافة المزيد من التفاصيل مثل تاريخ النفقة والوصف، وحتى تصنيف النفقة لتتبع أفضل."
+  }
+}

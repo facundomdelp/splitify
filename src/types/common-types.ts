@@ -1,4 +1,4 @@
-export type Locale = 'en' | 'es' | 'pt'
+export type Locale = 'en' | 'es' | 'pt-BR' | 'pt-PT' | 'zh-CN' | 'zh-TW' | 'ar' | 'fr' | 'ja' | 'ru' | 'de' | 'id'
 
 export type Metadata = {
   isLoaded: boolean

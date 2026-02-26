@@ -4,25 +4,13 @@ import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { usePathname, useRouter } from '@/i18n/routing'
-
-import { Locale } from '@/types/common-types'
-
 import { cn } from '@/lib/utils'
-
-import { AVAILABLE_LOCALES } from '@/utils/constants/availableLocales'
 
 const ISOLOGO_SIZE = 65
 const baseUrl = 'https://splitify.me'
 
 const Footer = () => {
   const locale = useLocale()
-  const pathname = usePathname()
-  const router = useRouter()
-
-  const setLocale = (newLocale: Locale) => {
-    router.replace(pathname, { locale: newLocale })
-  }
 
   const t = useTranslations('Footer')
 
@@ -44,12 +32,6 @@ const Footer = () => {
                 FAQ
               </Link>
             </Li>
-
-            {AVAILABLE_LOCALES?.map(({ locale, description }, index) => (
-              <Li key={`${index}-${locale}`} onClick={() => setLocale(locale)}>
-                <span className='cursor-pointer hover:underline'>{description}</span>
-              </Li>
-            ))}
           </ul>
         </nav>
       </div>

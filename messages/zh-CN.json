@@ -1,0 +1,135 @@
+{
+  "Metadata": {
+    "title": "🤑 Splitify | 简化您的团体费用",
+    "description": "💸 Splitify 让团体费用分摊变得简单！添加参与者，计算余额，公平分摊费用。无需注册！",
+    "keywords": "账单分摊计算器, 分账计算器, 费用分摊, 账单分摊"
+  },
+  "Home": {
+    "Simplify your group expenses with Splitify 🤑": "使用 Splitify 简化您的团体费用 🤑",
+    "💸 How does it work?": "💸 如何使用？",
+    "Just enter each participant's name and how much they spent": "只需输入每位参与者的姓名和他们花费的金额（可以是 ¥0）。然后点击\"计算余额\"，Splitify 将优化所需的转账次数。"
+  },
+  "Footer": {
+    "Useful Links": "实用链接"
+  },
+  "NavBar": {
+    "Discover more!": "了解更多！",
+    "General": "常规",
+    "Install App": "安装应用",
+    "Language": "语言",
+    "Spliti Quick": "快速分账",
+    "Spliti Groups": "团体分账"
+  },
+  "LocaleSelectorModal": {
+    "Language": "语言",
+    "Would you like to select a different language?": "您想选择其他语言吗？",
+    "Send us an email!": "给我们发送电子邮件！"
+  },
+  "HomeContextMenu": {
+    "Do you want to turn these expenses into a ✈️ Group?": "您想将这些费用转换为 ✈️ 团体吗？",
+    "By turning it into a group, you can share a link so others can collaborate easily": "将其转换为团体后，您可以分享链接，让其他人轻松协作。",
+    "Turn into a Group ✈️": "转换为团体 ✈️"
+  },
+  "GroupPage": {
+    "Collaborate in Group!": "在团体中协作！"
+  },
+  "GroupsContextMenu": {
+    "Collaborate in Group": "在团体中协作",
+    "Remove Group": "删除团体",
+    "Edit Name": "编辑名称",
+    "🤑 Copy this link and share it with your friends! 💸": "🤑 复制此链接并与朋友分享！💸",
+    "Your friends would be able to easily add expenses to this group": "您的朋友可以轻松地向此团体添加费用。",
+    "I invite you to collaborate in the group 🤝": "我邀请您在团体中协作 🤝",
+    "Are you sure you want to remove this group?": "您确定要删除此团体吗？",
+    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want": "删除此团体不会删除它，您只是不再看到它。您可以随时再次使用链接访问它。"
+  },
+  "Balances": {
+    "Balances": "余额",
+    "Round": "四舍五入",
+    "owes": "欠",
+    "to": "给"
+  },
+  "CalculateButton": {
+    "Calculate Balances": "计算余额"
+  },
+  "ConfirmationModal": {
+    "Yes": "是",
+    "No": "否"
+  },
+  "CopyToClipboard": {
+    "Copy": "复制",
+    "Copied!": "已复制！"
+  },
+  "EditGroupNameModal": {
+    "Edit Group Name": "编辑团体名称",
+    "Edit": "编辑",
+    "Name": "名称"
+  },
+  "DrawerModal": {
+    "Cancel": "取消"
+  },
+  "Expenses": {
+    "Expenses": "费用",
+    "Enter an Expense to get started!": "输入费用开始使用！"
+  },
+  "ExpenseSection": {
+    "Add Expense": "添加费用",
+    "Add": "添加",
+    "Edit Expense": "编辑费用"
+  },
+  "ExpensesBalancesTabs": {
+    "Expenses": "费用",
+    "Balances": "余额"
+  },
+  "ExpenseForm": {
+    "Add Expense": "添加费用",
+    "John Spliti": "张三",
+    "Title": "标题",
+    "optional": "可选",
+    "For example: Taxi": "例如：出租车",
+    "Date": "日期",
+    "Details": "详情"
+  },
+  "ExpenseRemoveConfirmModal": {
+    "Are you sure you want to remove": "您确定要删除",
+    "from the list?": "吗？"
+  },
+  "ManageExpense": {
+    "Manage Expense": "管理费用",
+    "Edit": "编辑",
+    "Remove": "删除"
+  },
+  "ResetExpenses": {
+    "Reset": "重置",
+    "Are you sure you want to reset the expenses list?": "您确定要重置费用列表吗？"
+  },
+  "useCopyString": {
+    "owes": "欠",
+    "to": "给"
+  },
+  "SeoPage": {
+    "Get Started": "开始使用 🚀"
+  },
+  "UsefulLinksPage": {
+    "Find answers to common questions and troubleshooting": "查找常见问题的答案和故障排除。",
+    "Useful Links": "实用链接",
+    "Here are some useful resources to help you navigate and make the most out of Splitify": "以下是一些有用的资源，可帮助您浏览并充分利用 Splitify。"
+  },
+  "FaqPage": {
+    "Frequently Asked Questions": "常见问题",
+    "What is Splitify?": "Splitify 是什么？",
+    "Splitify is a simple tool to divide expenses and bills equally among friends and group members": "Splitify 是一个简单的工具，可以在朋友和团体成员之间平均分摊费用和账单。",
+    "How does it work?": "如何使用？",
+    "You input the participants and their payments, and Splitify will calculate and suggest the best way to split the expenses": "您输入参与者及其付款，Splitify 将计算并建议分摊费用的最佳方式。",
+    "Do I need to create an account?": "我需要创建账户吗？",
+    "No, Splitify works without the need to create an account or sign in": "不需要，Splitify 无需创建账户或登录即可使用。您可以立即开始使用。",
+    "Is it free to use?": "它是免费的吗？",
+    "Yes, Splitify is completely free to use": "是的，Splitify 完全免费使用。没有隐藏费用或高级功能。",
+    "Does Splitify optimize the number of necessary transfers?": "Splitify 会优化必要的转账次数吗？",
+    "Yes, Splitify uses an algorithm to minimize the number of transfers needed, making the payment process faster and more efficient": "是的，Splitify 使用算法来最小化所需的转账次数，使付款过程更快、更高效。",
+    "Can I create a collaborative group with my friends?": "我可以与朋友创建协作团体吗？",
+    "Yes, you can easily create a group, add your friends, and start splitting expenses together": "是的，您可以轻松创建团体，添加朋友，并开始一起分摊费用。非常适合聚餐、旅行等！",
+    "Can I add details to each expense?": "我可以为每笔费用添加详细信息吗？",
+    "Yes, you can add more details such as the expense date, description, and even categorize the expense for better tracking": "是的，您可以添加更多详细信息，例如费用日期、描述，甚至可以对费用进行分类以便更好地跟踪。"
+  }
+}

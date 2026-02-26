@@ -2,7 +2,7 @@ import { SEO_ROUTES } from '@/app/[locale]/[link]/constants'
 
 import type { MetadataRoute } from 'next'
 
-const locales = ['en', 'es', 'pt']
+const locales = ['en', 'es', 'pt-BR', 'pt-PT', 'zh-CN', 'zh-TW', 'ar', 'fr', 'ja', 'ru', 'de', 'id']
 const defaultLocale = 'en'
 
 const baseUrl = 'https://splitify.me'

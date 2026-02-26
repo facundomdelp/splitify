@@ -1,0 +1,135 @@
+{
+  "Metadata": {
+    "title": "🤑 Splitify | Упростите групповые расходы",
+    "description": "💸 Splitify упрощает разделение групповых расходов! Добавляйте участников, рассчитывайте балансы и справедливо делите расходы. Не требуется регистрация!",
+    "keywords": "калькулятор разделения счета, разделить счет, калькулятор разделения расходов"
+  },
+  "Home": {
+    "Simplify your group expenses with Splitify 🤑": "Упростите свои групповые расходы с Splitify 🤑",
+    "💸 How does it work?": "💸 Как это работает?",
+    "Just enter each participant's name and how much they spent": "Просто введите имя каждого участника и сумму, которую он потратил (может быть 0₽). Затем нажмите «Рассчитать балансы», и Splitify оптимизирует количество необходимых переводов."
+  },
+  "Footer": {
+    "Useful Links": "Полезные ссылки"
+  },
+  "NavBar": {
+    "Discover more!": "Узнайте больше!",
+    "General": "Общие",
+    "Install App": "Установить приложение",
+    "Language": "Язык",
+    "Spliti Quick": "Быстрое разделение",
+    "Spliti Groups": "Групповое разделение"
+  },
+  "LocaleSelectorModal": {
+    "Language": "Язык",
+    "Would you like to select a different language?": "Хотите выбрать другой язык?",
+    "Send us an email!": "Отправьте нам письмо!"
+  },
+  "HomeContextMenu": {
+    "Do you want to turn these expenses into a ✈️ Group?": "Хотите превратить эти расходы в ✈️ Группу?",
+    "By turning it into a group, you can share a link so others can collaborate easily": "Превратив это в группу, вы можете поделиться ссылкой, чтобы другие могли легко сотрудничать.",
+    "Turn into a Group ✈️": "Превратить в группу ✈️"
+  },
+  "GroupPage": {
+    "Collaborate in Group!": "Сотрудничайте в группе!"
+  },
+  "GroupsContextMenu": {
+    "Collaborate in Group": "Сотрудничать в группе",
+    "Remove Group": "Удалить группу",
+    "Edit Name": "Редактировать имя",
+    "🤑 Copy this link and share it with your friends! 💸": "🤑 Скопируйте эту ссылку и поделитесь ею с друзьями! 💸",
+    "Your friends would be able to easily add expenses to this group": "Ваши друзья смогут легко добавлять расходы в эту группу.",
+    "I invite you to collaborate in the group 🤝": "Приглашаю вас к сотрудничеству в группе 🤝",
+    "Are you sure you want to remove this group?": "Вы уверены, что хотите удалить эту группу?",
+    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want": "Удаление этой группы не удалит ее, вы просто перестанете ее видеть. Вы можете снова использовать ссылку для доступа к ней в любое время."
+  },
+  "Balances": {
+    "Balances": "Балансы",
+    "Round": "Округлить",
+    "owes": "должен",
+    "to": "кому"
+  },
+  "CalculateButton": {
+    "Calculate Balances": "Рассчитать балансы"
+  },
+  "ConfirmationModal": {
+    "Yes": "Да",
+    "No": "Нет"
+  },
+  "CopyToClipboard": {
+    "Copy": "Копировать",
+    "Copied!": "Скопировано!"
+  },
+  "EditGroupNameModal": {
+    "Edit Group Name": "Редактировать название группы",
+    "Edit": "Редактировать",
+    "Name": "Название"
+  },
+  "DrawerModal": {
+    "Cancel": "Отмена"
+  },
+  "Expenses": {
+    "Expenses": "Расходы",
+    "Enter an Expense to get started!": "Введите расход, чтобы начать!"
+  },
+  "ExpenseSection": {
+    "Add Expense": "Добавить расход",
+    "Add": "Добавить",
+    "Edit Expense": "Редактировать расход"
+  },
+  "ExpensesBalancesTabs": {
+    "Expenses": "Расходы",
+    "Balances": "Балансы"
+  },
+  "ExpenseForm": {
+    "Add Expense": "Добавить расход",
+    "John Spliti": "Иван Петров",
+    "Title": "Название",
+    "optional": "необязательно",
+    "For example: Taxi": "Например: Такси",
+    "Date": "Дата",
+    "Details": "Детали"
+  },
+  "ExpenseRemoveConfirmModal": {
+    "Are you sure you want to remove": "Вы уверены, что хотите удалить",
+    "from the list?": "из списка?"
+  },
+  "ManageExpense": {
+    "Manage Expense": "Управление расходами",
+    "Edit": "Редактировать",
+    "Remove": "Удалить"
+  },
+  "ResetExpenses": {
+    "Reset": "Сбросить",
+    "Are you sure you want to reset the expenses list?": "Вы уверены, что хотите сбросить список расходов?"
+  },
+  "useCopyString": {
+    "owes": "должен",
+    "to": "кому"
+  },
+  "SeoPage": {
+    "Get Started": "Начать 🚀"
+  },
+  "UsefulLinksPage": {
+    "Find answers to common questions and troubleshooting": "Найдите ответы на распространенные вопросы и устранение неполадок.",
+    "Useful Links": "Полезные ссылки",
+    "Here are some useful resources to help you navigate and make the most out of Splitify": "Вот несколько полезных ресурсов, которые помогут вам ориентироваться и максимально эффективно использовать Splitify."
+  },
+  "FaqPage": {
+    "Frequently Asked Questions": "Часто задаваемые вопросы",
+    "What is Splitify?": "Что такое Splitify?",
+    "Splitify is a simple tool to divide expenses and bills equally among friends and group members": "Splitify — это простой инструмент для равномерного разделения расходов и счетов между друзьями и участниками группы.",
+    "How does it work?": "Как это работает?",
+    "You input the participants and their payments, and Splitify will calculate and suggest the best way to split the expenses": "Вы вводите участников и их платежи, а Splitify рассчитает и предложит лучший способ разделения расходов.",
+    "Do I need to create an account?": "Нужно ли мне создавать учетную запись?",
+    "No, Splitify works without the need to create an account or sign in": "Нет, Splitify работает без необходимости создания учетной записи или входа в систему. Вы можете начать использовать его немедленно.",
+    "Is it free to use?": "Это бесплатно?",
+    "Yes, Splitify is completely free to use": "Да, Splitify полностью бесплатен. Нет скрытых платежей или премиум-функций.",
+    "Does Splitify optimize the number of necessary transfers?": "Оптимизирует ли Splitify количество необходимых переводов?",
+    "Yes, Splitify uses an algorithm to minimize the number of transfers needed, making the payment process faster and more efficient": "Да, Splitify использует алгоритм для минимизации количества необходимых переводов, делая процесс оплаты быстрее и эффективнее.",
+    "Can I create a collaborative group with my friends?": "Могу ли я создать совместную группу с друзьями?",
+    "Yes, you can easily create a group, add your friends, and start splitting expenses together": "Да, вы можете легко создать группу, добавить друзей и начать вместе делить расходы. Это идеально подходит для совместных ужинов, поездок и многого другого!",
+    "Can I add details to each expense?": "Могу ли я добавить детали к каждому расходу?",
+    "Yes, you can add more details such as the expense date, description, and even categorize the expense for better tracking": "Да, вы можете добавить больше деталей, таких как дата расхода, описание и даже классифицировать расход для лучшего отслеживания."
+  }
+}

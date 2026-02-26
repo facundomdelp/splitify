@@ -2,12 +2,12 @@
   "Metadata": {
     "title": "🤑 Splitify | Simplifique suas despesas em grupo",
     "description": "💸 O Splitify facilita dividir despesas em grupo! Adicione participantes, calcule saldos e distribua os custos de forma justa, sem precisar criar um usuário!",
-    "keywords": "dividir contas entre amigos, dividir despesas online, app para dividir contas, dividir gastos grátis, dividir contas em grupo, calculadora de despesas compartilhadas, como dividir gastos facilmente, dividir contas sem app, dividir despesas com Mercado Pago, melhor app para dividir contas, dividir despesas de viagem, split contas online"
+    "keywords": "dividir contas entre amigos, dividir despesas online, app para dividir contas, dividir gastos grátis, dividir contas em grupo, calculadora de despesas compartilhadas, como dividir gastos facilmente, dividir contas sem app, dividir despesas com Pix, melhor app para dividir contas, dividir despesas de viagem, split contas online"
   },
   "Home": {
-    "Simplify your group expenses with Splitify 🤑": "Simplifique suas despesas em grupo com Splitify\u00A0🤑",
+    "Simplify your group expenses with Splitify 🤑": "Simplifique suas despesas em grupo com Splitify 🤑",
     "💸 How does it work?": "💸 Como funciona?",
-    "Just enter each participant's name and how much they spent": "Basta inserir o nome de cada participante e quanto gastou (pode ser $0). Depois, clique em \"Calcular Saldos\", e o Splitify otimizará o número de transferências necessárias."
+    "Just enter each participant's name and how much they spent": "Basta inserir o nome de cada participante e quanto gastou (pode ser R$0). Depois, clique em \"Calcular Saldos\", e o Splitify otimizará o número de transferências necessárias."
   },
   "Footer": {
     "Useful Links": "Links úteis"
@@ -37,7 +37,7 @@
     "Collaborate in Group": "Colaborar em Grupo",
     "Remove Group": "Remover Grupo",
     "Edit Name": "Editar Nome",
-    "🤑 Copy this link and share it with your friends! 💸": "🤑 Copie este link e compartilhe com seus amigos!\u00A0💸",
+    "🤑 Copy this link and share it with your friends! 💸": "🤑 Copie este link e compartilhe com seus amigos! 💸",
     "Your friends would be able to easily add expenses to this group": "Seus amigos poderão adicionar despesas facilmente a este grupo.",
     "I invite you to collaborate in the group 🤝": "Convido você a colaborar no grupo 🤝",
     "Are you sure you want to remove this group?": "Tem certeza de que deseja remover este grupo?",
@@ -83,7 +83,7 @@
   },
   "ExpenseForm": {
     "Add Expense": "Adicionar Despesa",
-    "John Spliti": "João Spliti",
+    "John Spliti": "João Silva",
     "Title": "Título",
     "optional": "opcional",
     "For example: Taxi": "Por exemplo: Táxi",

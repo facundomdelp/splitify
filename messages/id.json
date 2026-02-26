@@ -1,0 +1,135 @@
+{
+  "Metadata": {
+    "title": "🤑 Splitify | Sederhanakan pengeluaran grup Anda",
+    "description": "💸 Splitify memudahkan pembagian pengeluaran grup! Tambahkan peserta, hitung saldo, dan bagikan biaya secara adil. Tidak perlu akun!",
+    "keywords": "kalkulator bagi tagihan, pembagi tagihan, kalkulator bagi biaya"
+  },
+  "Home": {
+    "Simplify your group expenses with Splitify 🤑": "Sederhanakan pengeluaran grup Anda dengan Splitify 🤑",
+    "💸 How does it work?": "💸 Bagaimana cara kerjanya?",
+    "Just enter each participant's name and how much they spent": "Cukup masukkan nama setiap peserta dan berapa banyak yang mereka keluarkan (bisa Rp0). Kemudian, klik \"Hitung Saldo\", dan Splitify akan mengoptimalkan jumlah transfer yang diperlukan."
+  },
+  "Footer": {
+    "Useful Links": "Tautan Berguna"
+  },
+  "NavBar": {
+    "Discover more!": "Temukan lebih banyak!",
+    "General": "Umum",
+    "Install App": "Pasang Aplikasi",
+    "Language": "Bahasa",
+    "Spliti Quick": "Pembagian Cepat",
+    "Spliti Groups": "Grup Pembagian"
+  },
+  "LocaleSelectorModal": {
+    "Language": "Bahasa",
+    "Would you like to select a different language?": "Apakah Anda ingin memilih bahasa yang berbeda?",
+    "Send us an email!": "Kirimkan kami email!"
+  },
+  "HomeContextMenu": {
+    "Do you want to turn these expenses into a ✈️ Group?": "Apakah Anda ingin mengubah pengeluaran ini menjadi ✈️ Grup?",
+    "By turning it into a group, you can share a link so others can collaborate easily": "Dengan mengubahnya menjadi grup, Anda dapat membagikan tautan agar orang lain dapat berkolaborasi dengan mudah.",
+    "Turn into a Group ✈️": "Ubah menjadi Grup ✈️"
+  },
+  "GroupPage": {
+    "Collaborate in Group!": "Berkolaborasi dalam Grup!"
+  },
+  "GroupsContextMenu": {
+    "Collaborate in Group": "Berkolaborasi dalam Grup",
+    "Remove Group": "Hapus Grup",
+    "Edit Name": "Edit Nama",
+    "🤑 Copy this link and share it with your friends! 💸": "🤑 Salin tautan ini dan bagikan dengan teman-teman Anda! 💸",
+    "Your friends would be able to easily add expenses to this group": "Teman-teman Anda dapat dengan mudah menambahkan pengeluaran ke grup ini.",
+    "I invite you to collaborate in the group 🤝": "Saya mengundang Anda untuk berkolaborasi dalam grup 🤝",
+    "Are you sure you want to remove this group?": "Apakah Anda yakin ingin menghapus grup ini?",
+    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want": "Menghapus grup ini tidak akan menghapusnya, Anda hanya akan berhenti melihatnya. Anda dapat menggunakan tautan lagi untuk mengaksesnya kapan pun Anda mau."
+  },
+  "Balances": {
+    "Balances": "Saldo",
+    "Round": "Bulatkan",
+    "owes": "berhutang",
+    "to": "kepada"
+  },
+  "CalculateButton": {
+    "Calculate Balances": "Hitung Saldo"
+  },
+  "ConfirmationModal": {
+    "Yes": "Ya",
+    "No": "Tidak"
+  },
+  "CopyToClipboard": {
+    "Copy": "Salin",
+    "Copied!": "Tersalin!"
+  },
+  "EditGroupNameModal": {
+    "Edit Group Name": "Edit Nama Grup",
+    "Edit": "Edit",
+    "Name": "Nama"
+  },
+  "DrawerModal": {
+    "Cancel": "Batal"
+  },
+  "Expenses": {
+    "Expenses": "Pengeluaran",
+    "Enter an Expense to get started!": "Masukkan Pengeluaran untuk memulai!"
+  },
+  "ExpenseSection": {
+    "Add Expense": "Tambah Pengeluaran",
+    "Add": "Tambah",
+    "Edit Expense": "Edit Pengeluaran"
+  },
+  "ExpensesBalancesTabs": {
+    "Expenses": "Pengeluaran",
+    "Balances": "Saldo"
+  },
+  "ExpenseForm": {
+    "Add Expense": "Tambah Pengeluaran",
+    "John Spliti": "Budi Santoso",
+    "Title": "Judul",
+    "optional": "opsional",
+    "For example: Taxi": "Misalnya: Taksi",
+    "Date": "Tanggal",
+    "Details": "Detail"
+  },
+  "ExpenseRemoveConfirmModal": {
+    "Are you sure you want to remove": "Apakah Anda yakin ingin menghapus",
+    "from the list?": "dari daftar?"
+  },
+  "ManageExpense": {
+    "Manage Expense": "Kelola Pengeluaran",
+    "Edit": "Edit",
+    "Remove": "Hapus"
+  },
+  "ResetExpenses": {
+    "Reset": "Reset",
+    "Are you sure you want to reset the expenses list?": "Apakah Anda yakin ingin mereset daftar pengeluaran?"
+  },
+  "useCopyString": {
+    "owes": "berhutang",
+    "to": "kepada"
+  },
+  "SeoPage": {
+    "Get Started": "Mulai Sekarang 🚀"
+  },
+  "UsefulLinksPage": {
+    "Find answers to common questions and troubleshooting": "Temukan jawaban untuk pertanyaan umum dan pemecahan masalah.",
+    "Useful Links": "Tautan Berguna",
+    "Here are some useful resources to help you navigate and make the most out of Splitify": "Berikut adalah beberapa sumber daya berguna untuk membantu Anda menavigasi dan memanfaatkan Splitify sebaik-baiknya."
+  },
+  "FaqPage": {
+    "Frequently Asked Questions": "Pertanyaan yang Sering Diajukan",
+    "What is Splitify?": "Apa itu Splitify?",
+    "Splitify is a simple tool to divide expenses and bills equally among friends and group members": "Splitify adalah alat sederhana untuk membagi pengeluaran dan tagihan secara merata di antara teman dan anggota grup.",
+    "How does it work?": "Bagaimana cara kerjanya?",
+    "You input the participants and their payments, and Splitify will calculate and suggest the best way to split the expenses": "Anda memasukkan peserta dan pembayaran mereka, dan Splitify akan menghitung dan menyarankan cara terbaik untuk membagi pengeluaran.",
+    "Do I need to create an account?": "Apakah saya perlu membuat akun?",
+    "No, Splitify works without the need to create an account or sign in": "Tidak, Splitify bekerja tanpa perlu membuat akun atau masuk. Anda dapat langsung mulai menggunakannya.",
+    "Is it free to use?": "Apakah gratis untuk digunakan?",
+    "Yes, Splitify is completely free to use": "Ya, Splitify sepenuhnya gratis untuk digunakan. Tidak ada biaya tersembunyi atau fitur premium.",
+    "Does Splitify optimize the number of necessary transfers?": "Apakah Splitify mengoptimalkan jumlah transfer yang diperlukan?",
+    "Yes, Splitify uses an algorithm to minimize the number of transfers needed, making the payment process faster and more efficient": "Ya, Splitify menggunakan algoritma untuk meminimalkan jumlah transfer yang diperlukan, membuat proses pembayaran lebih cepat dan lebih efisien.",
+    "Can I create a collaborative group with my friends?": "Bisakah saya membuat grup kolaboratif dengan teman-teman saya?",
+    "Yes, you can easily create a group, add your friends, and start splitting expenses together": "Ya, Anda dapat dengan mudah membuat grup, menambahkan teman-teman Anda, dan mulai membagi pengeluaran bersama. Sempurna untuk makan malam bersama, perjalanan, dan banyak lagi!",
+    "Can I add details to each expense?": "Bisakah saya menambahkan detail ke setiap pengeluaran?",
+    "Yes, you can add more details such as the expense date, description, and even categorize the expense for better tracking": "Ya, Anda dapat menambahkan lebih banyak detail seperti tanggal pengeluaran, deskripsi, dan bahkan mengkategorikan pengeluaran untuk pelacakan yang lebih baik."
+  }
+}

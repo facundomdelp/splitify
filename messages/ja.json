@@ -1,0 +1,135 @@
+{
+  "Metadata": {
+    "title": "🤑 Splitify | グループ支出を簡単に",
+    "description": "💸 Splitifyでグループ支出の分割が簡単に！参加者を追加し、残高を計算し、費用を公平に分担できます。アカウント不要！",
+    "keywords": "割り勘計算機, 支払い分割計算機, 割り勘, 費用分割"
+  },
+  "Home": {
+    "Simplify your group expenses with Splitify 🤑": "Splitifyでグループ支出を簡単に 🤑",
+    "💸 How does it work?": "💸 使い方は？",
+    "Just enter each participant's name and how much they spent": "各参加者の名前と支出額を入力するだけです（0円でも可）。次に「残高を計算」をクリックすると、Splitifyが必要な送金回数を最適化します。"
+  },
+  "Footer": {
+    "Useful Links": "便利なリンク"
+  },
+  "NavBar": {
+    "Discover more!": "もっと見る！",
+    "General": "一般",
+    "Install App": "アプリをインストール",
+    "Language": "言語",
+    "Spliti Quick": "クイック分割",
+    "Spliti Groups": "グループ分割"
+  },
+  "LocaleSelectorModal": {
+    "Language": "言語",
+    "Would you like to select a different language?": "別の言語を選択しますか？",
+    "Send us an email!": "メールを送信してください！"
+  },
+  "HomeContextMenu": {
+    "Do you want to turn these expenses into a ✈️ Group?": "これらの支出を ✈️ グループに変換しますか？",
+    "By turning it into a group, you can share a link so others can collaborate easily": "グループに変換すると、リンクを共有して他の人が簡単に協力できるようになります。",
+    "Turn into a Group ✈️": "グループに変換 ✈️"
+  },
+  "GroupPage": {
+    "Collaborate in Group!": "グループで協力しましょう！"
+  },
+  "GroupsContextMenu": {
+    "Collaborate in Group": "グループで協力",
+    "Remove Group": "グループを削除",
+    "Edit Name": "名前を編集",
+    "🤑 Copy this link and share it with your friends! 💸": "🤑 このリンクをコピーして友達と共有してください！💸",
+    "Your friends would be able to easily add expenses to this group": "友達はこのグループに簡単に支出を追加できます。",
+    "I invite you to collaborate in the group 🤝": "グループでの協力にご招待します 🤝",
+    "Are you sure you want to remove this group?": "このグループを削除してもよろしいですか？",
+    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want": "このグループを削除しても削除されません。表示されなくなるだけです。いつでもリンクを再度使用してアクセスできます。"
+  },
+  "Balances": {
+    "Balances": "残高",
+    "Round": "四捨五入",
+    "owes": "が",
+    "to": "に支払う"
+  },
+  "CalculateButton": {
+    "Calculate Balances": "残高を計算"
+  },
+  "ConfirmationModal": {
+    "Yes": "はい",
+    "No": "いいえ"
+  },
+  "CopyToClipboard": {
+    "Copy": "コピー",
+    "Copied!": "コピーしました！"
+  },
+  "EditGroupNameModal": {
+    "Edit Group Name": "グループ名を編集",
+    "Edit": "編集",
+    "Name": "名前"
+  },
+  "DrawerModal": {
+    "Cancel": "キャンセル"
+  },
+  "Expenses": {
+    "Expenses": "支出",
+    "Enter an Expense to get started!": "支出を入力して開始してください！"
+  },
+  "ExpenseSection": {
+    "Add Expense": "支出を追加",
+    "Add": "追加",
+    "Edit Expense": "支出を編集"
+  },
+  "ExpensesBalancesTabs": {
+    "Expenses": "支出",
+    "Balances": "残高"
+  },
+  "ExpenseForm": {
+    "Add Expense": "支出を追加",
+    "John Spliti": "田中太郎",
+    "Title": "タイトル",
+    "optional": "オプション",
+    "For example: Taxi": "例：タクシー",
+    "Date": "日付",
+    "Details": "詳細"
+  },
+  "ExpenseRemoveConfirmModal": {
+    "Are you sure you want to remove": "削除してもよろしいですか",
+    "from the list?": "？"
+  },
+  "ManageExpense": {
+    "Manage Expense": "支出を管理",
+    "Edit": "編集",
+    "Remove": "削除"
+  },
+  "ResetExpenses": {
+    "Reset": "リセット",
+    "Are you sure you want to reset the expenses list?": "支出リストをリセットしてもよろしいですか？"
+  },
+  "useCopyString": {
+    "owes": "が",
+    "to": "に支払う"
+  },
+  "SeoPage": {
+    "Get Started": "始める 🚀"
+  },
+  "UsefulLinksPage": {
+    "Find answers to common questions and troubleshooting": "よくある質問とトラブルシューティングの答えを見つけましょう。",
+    "Useful Links": "便利なリンク",
+    "Here are some useful resources to help you navigate and make the most out of Splitify": "以下は、Splitifyをナビゲートして最大限に活用するのに役立つ便利なリソースです。"
+  },
+  "FaqPage": {
+    "Frequently Asked Questions": "よくある質問",
+    "What is Splitify?": "Splitifyとは何ですか？",
+    "Splitify is a simple tool to divide expenses and bills equally among friends and group members": "Splitifyは、友達やグループメンバー間で支出や請求書を均等に分割するためのシンプルなツールです。",
+    "How does it work?": "使い方は？",
+    "You input the participants and their payments, and Splitify will calculate and suggest the best way to split the expenses": "参加者とその支払いを入力すると、Splitifyが支出を分割する最適な方法を計算して提案します。",
+    "Do I need to create an account?": "アカウントを作成する必要がありますか？",
+    "No, Splitify works without the need to create an account or sign in": "いいえ、Splitifyはアカウントを作成したりサインインしたりする必要なく動作します。すぐに使い始めることができます。",
+    "Is it free to use?": "無料で使用できますか？",
+    "Yes, Splitify is completely free to use": "はい、Splitifyは完全に無料で使用できます。隠れた料金やプレミアム機能はありません。",
+    "Does Splitify optimize the number of necessary transfers?": "Splitifyは必要な送金回数を最適化しますか？",
+    "Yes, Splitify uses an algorithm to minimize the number of transfers needed, making the payment process faster and more efficient": "はい、Splitifyはアルゴリズムを使用して必要な送金回数を最小限に抑え、支払いプロセスをより速く、より効率的にします。",
+    "Can I create a collaborative group with my friends?": "友達と共同グループを作成できますか？",
+    "Yes, you can easily create a group, add your friends, and start splitting expenses together": "はい、簡単にグループを作成し、友達を追加して、一緒に支出を分割し始めることができます。共同の食事、旅行などに最適です！",
+    "Can I add details to each expense?": "各支出に詳細を追加できますか？",
+    "Yes, you can add more details such as the expense date, description, and even categorize the expense for better tracking": "はい、支出日、説明などの詳細を追加でき、より良い追跡のために支出を分類することもできます。"
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "Metadata": {
+    "title": "🤑 Splitify | Simplifique as suas despesas em grupo",
+    "description": "💸 O Splitify facilita dividir despesas em grupo! Adicione participantes, calcule saldos e distribua os custos de forma justa, sem precisar de criar um utilizador!",
+    "keywords": "dividir contas entre amigos, dividir despesas online, app para dividir contas, dividir gastos grátis, dividir contas em grupo, calculadora de despesas partilhadas, como dividir gastos facilmente, dividir contas sem app, dividir despesas com MB WAY, melhor app para dividir contas, dividir despesas de viagem, split contas online"
+  },
+  "Home": {
+    "Simplify your group expenses with Splitify 🤑": "Simplifique as suas despesas em grupo com Splitify 🤑",
+    "💸 How does it work?": "💸 Como funciona?",
+    "Just enter each participant's name and how much they spent": "Basta inserir o nome de cada participante e quanto gastou (pode ser 0€). Depois, clique em \"Calcular Saldos\", e o Splitify otimizará o número de transferências necessárias."
+  },
+  "Footer": {
+    "Useful Links": "Ligações úteis"
+  },
+  "NavBar": {
+    "Discover more!": "Descubra mais!",
+    "General": "Geral",
+    "Install App": "Instalar Aplicação",
+    "Language": "Idioma",
+    "Spliti Quick": "Spliti Quick",
+    "Spliti Groups": "Spliti Groups"
+  },
+  "LocaleSelectorModal": {
+    "Language": "Idioma",
+    "Would you like to select a different language?": "Gostaria de selecionar um idioma diferente?",
+    "Send us an email!": "Envie-nos um e-mail!"
+  },
+  "HomeContextMenu": {
+    "Do you want to turn these expenses into a ✈️ Group?": "Quer transformar estas despesas num ✈️ Grupo?",
+    "By turning it into a group, you can share a link so others can collaborate easily": "Ao transformá-lo num grupo, poderá partilhar uma ligação para que outros colaborem facilmente.",
+    "Turn into a Group ✈️": "Transformar num Grupo ✈️"
+  },
+  "GroupPage": {
+    "Collaborate in Group!": "Colaborar em Grupo!"
+  },
+  "GroupsContextMenu": {
+    "Collaborate in Group": "Colaborar em Grupo",
+    "Remove Group": "Remover Grupo",
+    "Edit Name": "Editar Nome",
+    "🤑 Copy this link and share it with your friends! 💸": "🤑 Copie esta ligação e partilhe com os seus amigos! 💸",
+    "Your friends would be able to easily add expenses to this group": "Os seus amigos poderão adicionar despesas facilmente a este grupo.",
+    "I invite you to collaborate in the group 🤝": "Convido-o a colaborar no grupo 🤝",
+    "Are you sure you want to remove this group?": "Tem a certeza de que deseja remover este grupo?",
+    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want": "Ao remover este grupo, ele não será eliminado, apenas deixará de o ver. Pode usar a ligação novamente para aceder quando quiser."
+  },
+  "Balances": {
+    "Balances": "Saldos",
+    "Round": "Arredondar",
+    "owes": "deve",
+    "to": "a"
+  },
+  "CalculateButton": {
+    "Calculate Balances": "Calcular Saldos"
+  },
+  "ConfirmationModal": {
+    "Yes": "Sim",
+    "No": "Não"
+  },
+  "CopyToClipboard": {
+    "Copy": "Copiar",
+    "Copied!": "Copiado!"
+  },
+  "EditGroupNameModal": {
+    "Edit Group Name": "Editar Nome do Grupo",
+    "Edit": "Editar",
+    "Name": "Nome"
+  },
+  "DrawerModal": {
+    "Cancel": "Cancelar"
+  },
+  "Expenses": {
+    "Expenses": "Despesas",
+    "Enter an Expense to get started!": "Adicione uma Despesa para começar!"
+  },
+  "ExpenseSection": {
+    "Add Expense": "Adicionar Despesa",
+    "Add": "Adicionar",
+    "Edit Expense": "Editar Despesa"
+  },
+  "ExpensesBalancesTabs": {
+    "Expenses": "Despesas",
+    "Balances": "Saldo"
+  },
+  "ExpenseForm": {
+    "Add Expense": "Adicionar Despesa",
+    "John Spliti": "João Silva",
+    "Title": "Título",
+    "optional": "opcional",
+    "For example: Taxi": "Por exemplo: Táxi",
+    "Date": "Data",
+    "Details": "Detalhes"
+  },
+  "ExpenseRemoveConfirmModal": {
+    "Are you sure you want to remove": "Tem a certeza de que deseja remover",
+    "from the list?": "da lista?"
+  },
+  "ManageExpense": {
+    "Manage Expense": "Gerir despesa",
+    "Edit": "Editar",
+    "Remove": "Remover"
+  },
+  "ResetExpenses": {
+    "Reset": "Redefinir",
+    "Are you sure you want to reset the expenses list?": "Tem a certeza de que deseja redefinir a lista de despesas?"
+  },
+  "useCopyString": {
+    "owes": "deve",
+    "to": "a"
+  },
+  "SeoPage": {
+    "Get Started": "Começar 🚀"
+  },
+  "UsefulLinksPage": {
+    "Find answers to common questions and troubleshooting": "Encontre respostas para perguntas comuns e resolução de problemas.",
+    "Useful Links": "Ligações úteis",
+    "Here are some useful resources to help you navigate and make the most out of Splitify": "Aqui estão alguns recursos úteis para o ajudar a navegar e aproveitar ao máximo o Splitify."
+  },
+  "FaqPage": {
+    "Frequently Asked Questions": "Perguntas Frequentes",
+    "What is Splitify?": "O que é o Splitify?",
+    "Splitify is a simple tool to divide expenses and bills equally among friends and group members": "O Splitify é uma ferramenta simples para dividir despesas e contas igualmente entre amigos e membros de grupo.",
+    "How does it work?": "Como funciona?",
+    "You input the participants and their payments, and Splitify will calculate and suggest the best way to split the expenses": "Insere os participantes e os seus pagamentos, e o Splitify calculará e sugerirá a melhor maneira de dividir as despesas.",
+    "Do I need to create an account?": "Preciso de criar uma conta?",
+    "No, Splitify works without the need to create an account or sign in": "Não, o Splitify funciona sem a necessidade de criar uma conta ou fazer login. Pode começar a usar imediatamente.",
+    "Is it free to use?": "É grátis usar?",
+    "Yes, Splitify is completely free to use": "Sim, o Splitify é completamente gratuito. Não há taxas ocultas ou recursos premium.",
+    "Does Splitify optimize the number of necessary transfers?": "O Splitify otimiza o número de transferências necessárias?",
+    "Yes, Splitify uses an algorithm to minimize the number of transfers needed, making the payment process faster and more efficient": "Sim, o Splitify usa um algoritmo para minimizar o número de transferências necessárias, tornando o processo de pagamento mais rápido e eficiente.",
+    "Can I create a collaborative group with my friends?": "Posso criar um grupo colaborativo com os meus amigos?",
+    "Yes, you can easily create a group, add your friends, and start splitting expenses together": "Sim, pode criar facilmente um grupo, adicionar os seus amigos e começar a dividir as despesas juntos. É perfeito para jantares partilhados, viagens e muito mais!",
+    "Can I add details to each expense?": "Posso adicionar detalhes a cada despesa?",
+    "Yes, you can add more details such as the expense date, description, and even categorize the expense for better tracking": "Sim, pode adicionar mais detalhes, como a data da despesa, descrição e até categorizar a despesa para um melhor controlo."
+  }
+}
