@@ -18,7 +18,8 @@
     "Install App": "Установить приложение",
     "Language": "Язык",
     "Spliti Quick": "Быстрое разделение",
-    "Spliti Groups": "Групповое разделение"
+    "Spliti Collabs": "Совместное разделение",
+    "Add New Group": "Добавить новую группу"
   },
   "LocaleSelectorModal": {
     "Language": "Язык",

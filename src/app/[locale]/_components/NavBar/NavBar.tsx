@@ -130,12 +130,12 @@ const NavBar = ({
                 ))}
               </NavSection>
 
-              <NavSection title='Spliti Groups ✈️'>
+              <NavSection title={`${t('Spliti Collabs')} ✈️`}>
                 {[
                   {
                     slug: 'add-new-group',
                     icon: HandCoinsIcon,
-                    name: `Add New Group`,
+                    name: t('Add New Group'),
                     onClick: addNewGroup,
                     loading: newGroupState.loading,
                     strong: true,

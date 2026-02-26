@@ -18,7 +18,8 @@
     "Install App": "アプリをインストール",
     "Language": "言語",
     "Spliti Quick": "クイック分割",
-    "Spliti Groups": "グループ分割"
+    "Spliti Collabs": "コラボ分割",
+    "Add New Group": "新しいグループを追加"
   },
   "LocaleSelectorModal": {
     "Language": "言語",

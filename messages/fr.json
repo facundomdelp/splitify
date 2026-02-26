@@ -18,7 +18,8 @@
     "Install App": "Installer l'application",
     "Language": "Langue",
     "Spliti Quick": "Partage rapide",
-    "Spliti Groups": "Groupes de partage"
+    "Spliti Collabs": "Partage collaboratif",
+    "Add New Group": "Ajouter un nouveau groupe"
   },
   "LocaleSelectorModal": {
     "Language": "Langue",

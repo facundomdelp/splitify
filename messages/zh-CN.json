@@ -18,7 +18,8 @@
     "Install App": "安装应用",
     "Language": "语言",
     "Spliti Quick": "快速分账",
-    "Spliti Groups": "团体分账"
+    "Spliti Collabs": "协作分账",
+    "Add New Group": "添加新群组"
   },
   "LocaleSelectorModal": {
     "Language": "语言",
