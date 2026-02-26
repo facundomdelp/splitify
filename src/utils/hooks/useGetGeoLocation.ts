@@ -10,7 +10,7 @@ export const useGetGeoLocation = () => {
   useEffect(() => {
     const fetchLocation = async () => {
       try {
-        const response = await fetch('https://ipapi.co/json')
+        const response = await fetch('/api/geolocation')
         const data = await response.json()
         setGeoLocation(data)
       } catch {
