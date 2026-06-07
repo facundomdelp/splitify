@@ -46,6 +46,7 @@ export const useConvertIntoGroup = ({ setExpenses, setBalances }: useConvertInto
         const addGroupResponse = await fetch('/api/groups', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({}),
         })
 
         if (!addGroupResponse.ok) {
@@ -70,7 +71,7 @@ export const useConvertIntoGroup = ({ setExpenses, setBalances }: useConvertInto
           })
 
           if (!addExpensesToGroupResponse.ok) {
-            throw new CustomError(addGroupResponse.status)
+            throw new CustomError(addExpensesToGroupResponse.status)
           }
         }
 
