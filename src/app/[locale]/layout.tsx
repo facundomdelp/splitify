@@ -17,10 +17,7 @@ import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] })
 
-export const viewport: Viewport = {
-  themeColor: '#22C55E',
-  colorScheme: 'light',
-}
+export const viewport: Viewport = { themeColor: '#22C55E', colorScheme: 'light' }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params
@@ -35,26 +32,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const canonicalUrl = locale === routing.defaultLocale ? `${baseUrl}/` : `${baseUrl}/${locale}`
 
   return {
-    title: {
-      template: `%s | Splitify`,
-      default: t('title'),
-    },
+    title: { template: `%s | Splitify`, default: t('title') },
     description: t('description'),
     keywords: t('keywords'),
     metadataBase: new URL(baseUrl),
     applicationName: 'Splitify',
     authors: [{ name: 'Splitify' }],
     creator: 'Splitify',
-    formatDetection: {
-      telephone: false,
-    },
-    alternates: {
-      canonical: canonicalUrl,
-      languages: {
-        ...languages,
-        'x-default': `${baseUrl}/`,
-      },
-    },
+    formatDetection: { telephone: false },
+    alternates: { canonical: canonicalUrl, languages: { ...languages, 'x-default': `${baseUrl}/` } },
     openGraph: {
       title: t('title'),
       description: t('description'),
@@ -89,20 +75,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         'max-snippet': -1,
       },
     },
-    icons: {
-      icon: '/splitify-192x192.png',
-      apple: '/apple-touch-icon.png',
-    },
+    icons: { icon: '/splitify-192x192.png', apple: '/apple-touch-icon.png' },
   }
 }
 
 export default async function LocaleLayout({
   children,
   params,
-}: Readonly<{
-  children: React.ReactNode
-  params: Promise<{ locale: string }>
-}>) {
+}: Readonly<{ children: React.ReactNode; params: Promise<{ locale: string }> }>) {
   const { locale } = await params
   if (!routing.locales.includes(locale as Locale)) {
     notFound()
@@ -120,11 +100,7 @@ export default async function LocaleLayout({
     url: canonicalUrl,
     applicationCategory: 'FinanceApplication',
     operatingSystem: 'All',
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'USD',
-    },
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
     description:
       'Simplify your group expenses with Splitify. Add participants, calculate balances, and share costs fairly.',
     image: `${baseUrl}/Splitify-banner.jpg`,
