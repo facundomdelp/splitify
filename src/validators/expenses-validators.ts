@@ -17,9 +17,9 @@ export const validateExpenseId = ({
   let errors: Array<{ field: string; message: string }> | null = null
 
   if (!validationResult.success) {
-    errors = validationResult.error.errors.map((error) => ({
-      field: error.path.join('.'),
-      message: error.message,
+    errors = validationResult.error.issues.map((issue) => ({
+      field: issue.path.join('.'),
+      message: issue.message,
     }))
   }
 
@@ -49,9 +49,9 @@ export const validateAddExpense = (
   let errors: Array<{ field: string; message: string }> | null = null
 
   if (!validationResult.success) {
-    errors = validationResult.error.errors.map((error) => ({
-      field: error.path.join('.'),
-      message: error.message,
+    errors = validationResult.error.issues.map((issue) => ({
+      field: issue.path.join('.'),
+      message: issue.message,
     }))
   }
 
@@ -81,9 +81,9 @@ export const validateUpdateExpense = (
   let errors: Array<{ field: string; message: string }> | null = null
 
   if (!validationResult.success) {
-    errors = validationResult.error.errors.map((error) => ({
-      field: error.path.join('.'),
-      message: error.message,
+    errors = validationResult.error.issues.map((issue) => ({
+      field: issue.path.join('.'),
+      message: issue.message,
     }))
   }
 

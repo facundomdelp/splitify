@@ -49,6 +49,10 @@ const ExpenseForm = ({
 
   const nameInputRef = useRef<HTMLInputElement>(null)
 
+  const [defaultValues] = useState<ExpenseDraft>(
+    () => initialValues ?? { name: '', amount: 0, title: '', date: fullForm ? Date.now() : undefined },
+  )
+
   const {
     name,
     handleName,
@@ -64,7 +68,7 @@ const ExpenseForm = ({
     handleRemoveSharer,
     handleSubmit,
   } = useExpensesForm({
-    initialValues: initialValues ?? { name: '', amount: 0, title: '', date: fullForm ? Date.now() : undefined },
+    initialValues: defaultValues,
     participants,
     nameInputRef,
     onSubmit,
@@ -96,9 +100,9 @@ const ExpenseForm = ({
               autoFocus={autoFocus}
             />
 
-            <div className='flex-grow-1 ml-auto flex flex-1 gap-4'>
-              <div className={cn('relative ml-auto min-w-[5.5rem] flex-1', !fullForm ? 'max-w-24' : '')}>
-                <span className='absolute left-2 top-1/2 -translate-y-1/2 text-sm leading-4 text-gray-500'>$</span>
+            <div className='ml-auto flex flex-1 grow gap-4'>
+              <div className={cn('relative ml-auto min-w-22 flex-1', !fullForm ? 'max-w-24' : '')}>
+                <span className='absolute top-1/2 left-2 -translate-y-1/2 text-sm leading-4 text-gray-500'>$</span>
                 <Input
                   className='pl-6 text-sm'
                   type='number'

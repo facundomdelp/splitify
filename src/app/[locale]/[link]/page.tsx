@@ -32,7 +32,7 @@ const SeoPage = () => {
         <div className='flex flex-col gap-10'>
           <p className='text-justify text-sm leading-6 text-gray-700'>🤑 {firstParagraph}</p>
 
-          <Button className='w-full animate-beat' asChild>
+          <Button className='animate-beat w-full' asChild>
             <Link href='/'>{t('Get Started')}</Link>
           </Button>
 

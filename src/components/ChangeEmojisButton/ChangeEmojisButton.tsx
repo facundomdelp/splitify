@@ -18,7 +18,7 @@ const ChangeEmojisButton = () => {
       tabIndex={-1}
     >
       {
-        <div className={cn(rotate ? 'rotate-[360deg] transition-transform duration-500' : '')}>
+        <div className={cn(rotate ? 'rotate-360 transition-transform duration-500' : '')}>
           {!isChangeEmojiClicked ? '🤑' : getEmojiFromString('🤑')}
         </div>
       }

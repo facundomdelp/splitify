@@ -13,7 +13,7 @@ const UsefulLinksPage = () => {
     <div className='w-full bg-green-50'>
       <section className='mx-auto w-full max-w-[600px] px-4 py-8'>
         <h1 className='text-2xl font-semibold text-green-900'>{t('Useful Links')}</h1>
-        <p className='mb-8 mt-4 text-base text-gray-700'>
+        <p className='mt-4 mb-8 text-base text-gray-700'>
           {t('Here are some useful resources to help you navigate and make the most out of Splitify')}
         </p>
 

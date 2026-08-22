@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { useTranslations } from 'next-intl'
 
@@ -17,24 +17,33 @@ const FEATURES = [
 ] as const
 
 interface Props {
-  standOut: boolean
+  visible: boolean
   onClick: () => void
   disabled?: boolean
 }
 
-const TurnIntoGroupCta = ({ standOut, onClick, disabled }: Props) => {
-  const [highlighted, setHighlighted] = useState(standOut)
+const TurnIntoGroupCta = ({ visible, onClick, disabled }: Props) => {
+  const [highlighted, setHighlighted] = useState(false)
+  const standOutPlayed = useRef(false)
 
   const t = useTranslations('TurnIntoGroupCta')
   const tGroup = useTranslations('HomeContextMenu')
 
   useEffect(() => {
-    if (!highlighted) return
+    if (!visible || standOutPlayed.current) return
 
-    const timeout = setTimeout(() => setHighlighted(false), HIGHLIGHT_DURATION)
+    standOutPlayed.current = true
 
-    return () => clearTimeout(timeout)
-  }, [highlighted])
+    const start = requestAnimationFrame(() => setHighlighted(true))
+    const end = setTimeout(() => setHighlighted(false), HIGHLIGHT_DURATION)
+
+    return () => {
+      cancelAnimationFrame(start)
+      clearTimeout(end)
+    }
+  }, [visible])
+
+  if (!visible) return null
 
   return (
     <button
@@ -51,7 +60,7 @@ const TurnIntoGroupCta = ({ standOut, onClick, disabled }: Props) => {
       {highlighted && (
         <span
           aria-hidden
-          className='pointer-events-none absolute inset-y-0 w-1/2 animate-shine bg-gradient-to-r from-transparent via-green-200/60 to-transparent'
+          className='animate-shine pointer-events-none absolute inset-y-0 w-1/2 bg-linear-to-r from-transparent via-green-200/60 to-transparent'
         />
       )}
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { useTranslations } from 'next-intl'
 
@@ -29,7 +29,6 @@ export default function Home() {
   const [balances, setBalances] = useSetBalances()
   const [rounded, setRounded] = useState(false)
   const [openTurnIntoGroupModal, setOpenTurnIntoGroupModal] = useState(false)
-  const [standOutPlayed, setStandOutPlayed] = useState(false)
 
   const { hideTitleBanner, handleCloseTitle } = useHideTitleBanner()
 
@@ -51,11 +50,6 @@ export default function Home() {
 
   const canTurnIntoGroup = getParticipantNames(expenses).length >= TURN_INTO_GROUP_THRESHOLD
 
-  useEffect(() => {
-    if (canTurnIntoGroup) setStandOutPlayed(true)
-    if (!expenses.length) setStandOutPlayed(false)
-  }, [canTurnIntoGroup, expenses.length])
-
   const t = useTranslations('Home')
   const tGroup = useTranslations('HomeContextMenu')
 
@@ -64,10 +58,10 @@ export default function Home() {
       {!hideTitleBanner && (
         <article className='relative mx-4 rounded-md border border-green-600 bg-green-50 p-3'>
           <X
-            className='absolute right-2 top-2 size-[18px] cursor-pointer text-gray-500 hover:text-gray-700'
+            className='absolute top-2 right-2 size-[18px] cursor-pointer text-gray-500 hover:text-gray-700'
             onClick={handleCloseTitle}
           />
-          <h1 className='mb-1 mr-5 mt-0 text-sm font-bold'>{t('Simplify your group expenses with Splitify 🤑')}</h1>
+          <h1 className='mt-0 mr-5 mb-1 text-sm font-bold'>{t('Simplify your group expenses with Splitify 🤑')}</h1>
           <p className='text-xs text-slate-500'>
             <strong className='font-semibold'>{t('💸 How does it work?')}</strong>{' '}
             {t("Just enter each participant's name and how much they spent")}
@@ -97,9 +91,9 @@ export default function Home() {
               disabled={convertToGroupState.loading}
             />
 
-            {canTurnIntoGroup && (
+            {expenses.length > 0 && (
               <TurnIntoGroupCta
-                standOut={!standOutPlayed}
+                visible={canTurnIntoGroup}
                 onClick={() => setOpenTurnIntoGroupModal(true)}
                 disabled={convertToGroupState.loading}
               />

@@ -25,7 +25,7 @@ const ParticipantRemoveConfirmModal = ({ open, onOpenChange, name, hasExpenses, 
           {t('Are you sure you want to remove')}
           <div className='flex min-w-0 flex-nowrap space-x-1'>
             <p>{getEmojiFromString(name)}</p>
-            <strong className='block max-w-full overflow-hidden text-ellipsis whitespace-nowrap font-semibold'>
+            <strong className='block max-w-full overflow-hidden font-semibold text-ellipsis whitespace-nowrap'>
               {name}
             </strong>
           </div>

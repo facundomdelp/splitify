@@ -22,7 +22,7 @@ export const viewport: Viewport = {
   colorScheme: 'light',
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params
   const baseUrl = 'https://splitify.me'
   const t = await getTranslations({ locale, namespace: 'Metadata' })
@@ -101,7 +101,7 @@ export default async function LocaleLayout({
   params,
 }: Readonly<{
   children: React.ReactNode
-  params: Promise<{ locale: Locale }>
+  params: Promise<{ locale: string }>
 }>) {
   const { locale } = await params
   if (!routing.locales.includes(locale as Locale)) {

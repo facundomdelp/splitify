@@ -14,7 +14,7 @@ interface ContextMenuItemProps {
 export const ContextMenuItem = ({ children, onClick, disabled }: ContextMenuItemProps) => {
   return (
     <DropdownMenuItem
-      className='cursor-pointer text-xs text-gray-600 [&>svg]:hover:text-green-600'
+      className='cursor-pointer text-xs text-gray-600 hover:[&>svg]:text-green-600'
       onClick={onClick}
       disabled={disabled}
     >

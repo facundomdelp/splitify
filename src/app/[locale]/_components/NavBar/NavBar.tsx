@@ -76,8 +76,8 @@ const NavBar = ({
         </VisuallyHidden>
         <DrawerContent
           className={cn(
-            'mr-12 h-full w-[400px] max-w-[90vw] overflow-y-auto overflow-x-hidden border-none text-black',
-            direction === 'left' ? 'mr-auto rounded-tl-none' : 'ml-auto mr-0 rounded-tr-none',
+            'mr-12 h-full w-[400px] max-w-[90vw] overflow-x-hidden overflow-y-auto border-none text-black',
+            direction === 'left' ? 'mr-auto rounded-tl-none' : 'mr-0 ml-auto rounded-tr-none',
           )}
           aria-describedby={undefined}
         >

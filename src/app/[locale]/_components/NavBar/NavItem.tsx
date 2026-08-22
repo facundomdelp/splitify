@@ -21,6 +21,28 @@ interface Props {
   handleNavigation?: React.MouseEventHandler<HTMLAnchorElement>
 }
 
+type NavChildrenProps = Pick<Props, 'children' | 'icon' | 'emoji' | 'strong' | 'loading' | 'disabled'>
+
+const NavChildren = ({ children, icon: Icon, emoji, strong, loading, disabled }: NavChildrenProps) => (
+  <>
+    {Icon ? (
+      <Icon className={cn('size-[20px] shrink-0 text-green-700', disabled ? 'cursor-not-allowed text-gray-400' : '')} />
+    ) : (
+      emoji
+    )}
+    <div className='flex min-w-0 gap-2'>
+      <span className={cn('min-w-0 overflow-hidden text-nowrap text-ellipsis', strong ? 'font-bold' : '')}>
+        {children}
+      </span>
+    </div>
+    {!loading ? (
+      <ChevronRight className='ml-auto size-[20px] shrink-0' />
+    ) : (
+      <Spinner className='ml-auto size-[20px] shrink-0 text-green-600' />
+    )}
+  </>
+)
+
 const NavItem = ({
   children,
   icon: Icon,
@@ -32,33 +54,17 @@ const NavItem = ({
   disabled,
   handleNavigation,
 }: Props) => {
-  const NavChildren = () => (
-    <>
-      {Icon ? (
-        <Icon
-          className={cn('size-[20px] flex-shrink-0 text-green-700', disabled ? 'cursor-not-allowed text-gray-400' : '')}
-        />
-      ) : (
-        emoji
-      )}
-      <div className='flex min-w-0 gap-2'>
-        <span className={cn('min-w-0 overflow-hidden text-ellipsis text-nowrap', strong ? 'font-bold' : '')}>
-          {children}
-        </span>
-      </div>
-      {!loading ? (
-        <ChevronRight className='ml-auto size-[20px] flex-shrink-0' />
-      ) : (
-        <Spinner className='ml-auto size-[20px] flex-shrink-0 text-green-600' />
-      )}
-    </>
+  const navChildren = (
+    <NavChildren icon={Icon} emoji={emoji} strong={strong} loading={loading} disabled={disabled}>
+      {children}
+    </NavChildren>
   )
 
   return (
     <li className={cn('border-b py-3 text-sm text-gray-600', disabled ? 'cursor-not-allowed' : '')}>
       {href && !disabled ? (
         <Link href={href} className='flex flex-nowrap items-center gap-4' onClick={handleNavigation}>
-          <NavChildren />
+          {navChildren}
         </Link>
       ) : (
         <Button
@@ -67,7 +73,7 @@ const NavItem = ({
           onClick={onClick}
           disabled={disabled}
         >
-          <NavChildren />
+          {navChildren}
         </Button>
       )}
     </li>

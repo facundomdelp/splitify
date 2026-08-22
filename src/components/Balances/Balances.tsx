@@ -44,7 +44,7 @@ const Balances = ({ balances, rounded, setRounded }: Props) => {
                 <p className='mr-1 w-[20px] text-center'>{getEmojiFromString(balance.debtor)}</p>
                 <p className='min-w-0 overflow-hidden text-ellipsis whitespace-nowrap'>{balance.debtor}</p>
                 <p className='whitespace-nowrap'>{t('owes')}</p>
-                <strong className='whitespace-nowrap font-semibold'>
+                <strong className='font-semibold whitespace-nowrap'>
                   $<Amount fractionDigits={rounded ? 0 : 2}>{balance.amount}</Amount>
                 </strong>
               </div>

@@ -3,14 +3,12 @@ import { redirect } from 'next/navigation'
 
 import { routing } from '@/i18n/routing'
 
-import { Locale } from '@/types/common-types'
-
 import { SEO_ROUTES } from './constants'
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: Locale; link: string }>
+  params: Promise<{ locale: string; link: string }>
 }): Promise<Metadata> {
   const { locale, link } = await params
 
@@ -72,7 +70,7 @@ export default async function SeoRouteLayout({
   params,
 }: Readonly<{
   children: React.ReactNode
-  params: Promise<{ locale: Locale; link: string }>
+  params: Promise<{ locale: string; link: string }>
 }>) {
   const { locale, link: seoRoute } = await params
 

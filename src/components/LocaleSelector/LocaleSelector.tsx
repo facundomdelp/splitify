@@ -56,7 +56,7 @@ const LocaleSelector = () => {
     <>
       <button
         onClick={() => setOpen(true)}
-        className='flex h-9 w-full items-center gap-2 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm'
+        className='border-input flex h-9 w-full items-center gap-2 rounded-md border bg-transparent px-3 py-1 text-sm shadow-xs'
       >
         {currentLocale && (
           <>
@@ -83,11 +83,11 @@ const LocaleSelector = () => {
               <button
                 key={loc}
                 onClick={() => setLocale(loc as Locale)}
-                className='flex items-center gap-3 rounded-md px-3 py-2.5 text-left hover:bg-accent'
+                className='hover:bg-accent flex items-center gap-3 rounded-md px-3 py-2.5 text-left'
               >
                 <Image src={src} alt={description} width={20} height={20} className='rounded-full' />
                 <span className='flex-1 text-sm'>{description}</span>
-                {locale === loc && <Check className='h-4 w-4 text-primary' />}
+                {locale === loc && <Check className='text-primary h-4 w-4' />}
               </button>
             ))}
           </div>

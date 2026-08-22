@@ -42,7 +42,7 @@ const GroupsPage = () => {
         >
           <CardHeader className='flex-1 space-y-0'>
             <CardTitle className='flex flex-row items-center gap-3 text-lg text-green-800'>
-              <PlusCircleIcon className='flex-shrink-0 text-green-500' /> Add New Group
+              <PlusCircleIcon className='shrink-0 text-green-500' /> Add New Group
             </CardTitle>
           </CardHeader>
           <CardContent className='flex items-center p-6'>
@@ -55,7 +55,7 @@ const GroupsPage = () => {
             <CardHeader className='min-w-0 flex-1 justify-center space-y-0 pr-0'>
               <CardTitle className='flex min-w-0 items-center gap-2 font-medium text-green-800'>
                 <p>{getEmojiFromString(group.id)}</p>
-                <p className='min-w-0 overflow-hidden text-ellipsis text-nowrap'>{group.name}</p>
+                <p className='min-w-0 overflow-hidden text-nowrap text-ellipsis'>{group.name}</p>
               </CardTitle>
             </CardHeader>
             <CardContent className='flex items-center p-6'>

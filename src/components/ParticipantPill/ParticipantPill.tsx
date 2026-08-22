@@ -31,7 +31,7 @@ const ParticipantPill = ({ name, onRemove, disabled, className }: Props) => {
       {onRemove && (
         <button
           type='button'
-          className='pr-2 text-gray-400 transition-colors hover:text-destructive disabled:pointer-events-none disabled:opacity-40'
+          className='hover:text-destructive pr-2 text-gray-400 transition-colors disabled:pointer-events-none disabled:opacity-40'
           onClick={onRemove}
           disabled={disabled}
           aria-label={t('Remove {name}', { name })}

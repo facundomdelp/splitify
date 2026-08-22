@@ -3,11 +3,9 @@ import { getTranslations } from 'next-intl/server'
 
 import { routing } from '@/i18n/routing'
 
-import { Locale } from '@/types/common-types'
-
 const baseUrl = 'https://splitify.me'
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'FaqPage' })
 
@@ -48,7 +46,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
 export default async function FaqLayout({
   children,
   params,
-}: Readonly<{ children: React.ReactNode; params: Promise<{ locale: Locale }> }>) {
+}: Readonly<{ children: React.ReactNode; params: Promise<{ locale: string }> }>) {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'FaqPage' })
 

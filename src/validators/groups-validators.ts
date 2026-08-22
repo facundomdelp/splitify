@@ -15,9 +15,9 @@ export const validateGroupId = ({ groupId }: Partial<{ groupId: string }>): Vali
   let errors: Array<{ field: string; message: string }> | null = null
 
   if (!validationResult.success) {
-    errors = validationResult.error.errors.map((error) => ({
-      field: error.path.join('.'),
-      message: error.message,
+    errors = validationResult.error.issues.map((issue) => ({
+      field: issue.path.join('.'),
+      message: issue.message,
     }))
   }
 
@@ -33,9 +33,9 @@ export const validateAddGroup = (body: Partial<AddGroupRequestBody>): Validation
   let errors: Array<{ field: string; message: string }> | null = null
 
   if (!validationResult.success) {
-    errors = validationResult.error.errors.map((error) => ({
-      field: error.path.join('.'),
-      message: error.message,
+    errors = validationResult.error.issues.map((issue) => ({
+      field: issue.path.join('.'),
+      message: issue.message,
     }))
   }
 
@@ -53,9 +53,9 @@ export const validateUpdateGroup = (
   let errors: Array<{ field: string; message: string }> | null = null
 
   if (!validationResult.success) {
-    errors = validationResult.error.errors.map((error) => ({
-      field: error.path.join('.'),
-      message: error.message,
+    errors = validationResult.error.issues.map((issue) => ({
+      field: issue.path.join('.'),
+      message: issue.message,
     }))
   }
 

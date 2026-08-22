@@ -5,7 +5,7 @@ import { ExpenseDraft } from '@/types/expense-types'
 interface useExpensesFormProps {
   initialValues: ExpenseDraft
   participants: string[]
-  nameInputRef: React.RefObject<HTMLInputElement>
+  nameInputRef: React.RefObject<HTMLInputElement | null>
   onSubmit?: (expense: ExpenseDraft) => void
   closeModal?: () => void
 }

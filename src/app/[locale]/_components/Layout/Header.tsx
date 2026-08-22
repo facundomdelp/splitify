@@ -36,7 +36,7 @@ const Header = () => {
   return (
     <header
       ref={headerRef}
-      className='fixed top-0 z-10 flex h-20 w-full flex-shrink-0 items-center justify-center border-b shadow-lg'
+      className='fixed top-0 z-10 flex h-20 w-full shrink-0 items-center justify-center border-b shadow-lg'
       style={{
         backgroundColor: 'rgb(34 197 94 / calc(1 - 0.4 * var(--glass, 0)))',
         backdropFilter: 'blur(calc(20px * var(--glass, 0))) saturate(calc(100% + 90% * var(--glass, 0)))',
@@ -56,7 +56,7 @@ const Header = () => {
         />
       </div>
 
-      <NavBar className='absolute right-4 top-1/2 -translate-y-1/2' />
+      <NavBar className='absolute top-1/2 right-4 -translate-y-1/2' />
     </header>
   )
 }

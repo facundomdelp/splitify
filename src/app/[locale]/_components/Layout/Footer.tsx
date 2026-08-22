@@ -38,7 +38,7 @@ const Footer = () => {
           </div>
 
           <nav aria-labelledby='footer-resources'>
-            <h2 id='footer-resources' className='text-xs font-semibold uppercase tracking-wider text-white'>
+            <h2 id='footer-resources' className='text-xs font-semibold tracking-wider text-white uppercase'>
               {t('Resources')}
             </h2>
             <ul className='mt-3 flex flex-col gap-2'>
@@ -56,7 +56,7 @@ const Footer = () => {
           </nav>
 
           <nav aria-labelledby='footer-follow'>
-            <h2 id='footer-follow' className='text-xs font-semibold uppercase tracking-wider text-white'>
+            <h2 id='footer-follow' className='text-xs font-semibold tracking-wider text-white uppercase'>
               {t('Follow us')}
             </h2>
             <ul className='mt-3 flex gap-4'>

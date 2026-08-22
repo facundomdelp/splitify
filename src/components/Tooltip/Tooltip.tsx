@@ -26,7 +26,7 @@ const Tooltip = ({ children, content, arrow, openOnce, align }: Props) => {
       <TooltipComponent defaultOpen={openOnce} open={isTooltipOpen} onOpenChange={handleOpenChange}>
         <TooltipTrigger asChild>{children}</TooltipTrigger>
         <TooltipContent className='text-[10px] font-semibold' align={align} sideOffset={-4}>
-          {arrow && <TooltipArrow className='mt-[-1px] fill-green-600' />}
+          {arrow && <TooltipArrow className='-mt-px fill-green-600' />}
           {content}
         </TooltipContent>
       </TooltipComponent>
