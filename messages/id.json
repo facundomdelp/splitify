@@ -95,6 +95,20 @@
     "Are you sure you want to remove": "Apakah Anda yakin ingin menghapus",
     "from the list?": "dari daftar?"
   },
+  "ParticipantPill": {
+    "Remove {name}": "Hapus {name}"
+  },
+  "ExpenseSharing": {
+    "Shared with": "Dibagi dengan",
+    "Everyone": "Semua orang",
+    "Add someone else": "Tambah orang lain",
+    "Add the people sharing this expense": "Tambahkan orang yang berbagi pengeluaran ini"
+  },
+  "ParticipantRemoveConfirmModal": {
+    "Are you sure you want to remove": "Apakah Anda yakin ingin menghapus",
+    "from the group?": "dari grup?",
+    "All their expenses will be removed as well": "Semua pengeluarannya juga akan dihapus"
+  },
   "ManageExpense": {
     "Manage Expense": "Kelola Pengeluaran",
     "Edit": "Edit",

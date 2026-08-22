@@ -1,18 +1,49 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
+
+import { ExpenseDraft } from '@/types/expense-types'
 
 interface useExpensesFormProps {
-  initialValues: { name: string; amount: number; title?: string; date?: number }
+  initialValues: ExpenseDraft
+  participants: string[]
   nameInputRef: React.RefObject<HTMLInputElement>
-  onSubmit?: ({ name, amount, title, date }: { name: string; amount: number; title?: string; date?: number }) => void
+  onSubmit?: (expense: ExpenseDraft) => void
   closeModal?: () => void
 }
 
-export const useExpensesForm = ({ initialValues, nameInputRef, onSubmit, closeModal }: useExpensesFormProps) => {
+export const useExpensesForm = ({
+  initialValues,
+  participants,
+  nameInputRef,
+  onSubmit,
+  closeModal,
+}: useExpensesFormProps) => {
   const [name, setName] = useState(initialValues.name)
   const [amount, setAmount] = useState(initialValues.amount)
 
   const [title, setTitle] = useState(initialValues.title)
   const [date, setDate] = useState(initialValues.date ? new Date(initialValues.date).toISOString().split('T')[0] : '')
+
+  const [extraNames, setExtraNames] = useState<string[]>([])
+  const [excludedNames, setExcludedNames] = useState<string[]>(() =>
+    initialValues.sharedWith?.length
+      ? participants.filter((participant) => !initialValues.sharedWith?.includes(participant))
+      : [],
+  )
+
+  const knownNames = useMemo(
+    () => [...new Set([...participants, ...extraNames, name.trim()])].filter((known) => known !== ''),
+    [extraNames, name, participants],
+  )
+
+  const sharedWith = useMemo(
+    () => knownNames.filter((known) => !excludedNames.includes(known)),
+    [knownNames, excludedNames],
+  )
+
+  const sharingSuggestions = useMemo(
+    () => knownNames.filter((known) => excludedNames.includes(known)),
+    [knownNames, excludedNames],
+  )
 
   const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
@@ -69,13 +100,32 @@ export const useExpensesForm = ({ initialValues, nameInputRef, onSubmit, closeMo
     setDate(e.target.value)
   }
 
+  const handleAddSharer = (participant: string) => {
+    setExtraNames((prev) => (prev.includes(participant) ? prev : [...prev, participant]))
+    setExcludedNames((prev) => prev.filter((excluded) => excluded !== participant))
+  }
+
+  const handleRemoveSharer = (participant: string) => {
+    setExcludedNames((prev) => (prev.includes(participant) ? prev : [...prev, participant]))
+  }
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    onSubmit?.({ name, amount, title, date: date ? new Date(date).getTime() : undefined })
+    const sharedWithEveryone = !excludedNames.length && !extraNames.length
+
+    onSubmit?.({
+      name,
+      amount,
+      title,
+      date: date ? new Date(date).getTime() : undefined,
+      sharedWith: sharedWithEveryone ? [] : sharedWith,
+    })
 
     setName('')
     setAmount(0)
+    setExtraNames([])
+    setExcludedNames([])
     closeModal?.()
 
     if (nameInputRef.current) {
@@ -92,6 +142,10 @@ export const useExpensesForm = ({ initialValues, nameInputRef, onSubmit, closeMo
     handleTitle,
     date,
     handleDate,
+    sharedWith,
+    sharingSuggestions,
+    handleAddSharer,
+    handleRemoveSharer,
     handleSubmit,
   }
 }

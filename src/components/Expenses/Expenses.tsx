@@ -9,16 +9,19 @@ import ManageExpense from '@/components/ManageExpense'
 import RemoveExpense from '@/components/RemoveExpense'
 import Spinner from '@/components/ui/spinner'
 
+import { getPartialSharers } from '@/utils/functions/getParticipants'
+
 import { UsersRound } from 'lucide-react'
 
 interface Props {
   expenses: ExpenseType[]
+  participants: string[]
   onRemoveExpense: (id: string) => void
   onEditExpense?: (expense: ExpenseType) => void
   loading?: boolean
 }
 
-const Expenses = ({ expenses, onRemoveExpense, onEditExpense, loading }: Props) => {
+const Expenses = ({ expenses, participants, onRemoveExpense, onEditExpense, loading }: Props) => {
   const t = useTranslations('Expenses')
 
   return (
@@ -42,16 +45,14 @@ const Expenses = ({ expenses, onRemoveExpense, onEditExpense, loading }: Props) 
               <Expense
                 key={expense.id}
                 {...expense}
+                sharers={getPartialSharers(expense, participants)}
                 action={
                   !onEditExpense ? (
                     <RemoveExpense id={expense.id} name={expense.name} onRemoveExpense={onRemoveExpense} />
                   ) : (
                     <ManageExpense
-                      id={expense.id}
-                      name={expense.name}
-                      amount={expense.amount}
-                      title={expense.title}
-                      date={expense.date}
+                      expense={expense}
+                      participants={participants}
                       onRemoveExpense={onRemoveExpense}
                       onEditExpense={onEditExpense}
                     />

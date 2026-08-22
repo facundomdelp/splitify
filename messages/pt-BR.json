@@ -95,6 +95,20 @@
     "Are you sure you want to remove": "Tem certeza de que deseja remover",
     "from the list?": "da lista?"
   },
+  "ParticipantPill": {
+    "Remove {name}": "Remover {name}"
+  },
+  "ExpenseSharing": {
+    "Shared with": "Compartilhado com",
+    "Everyone": "Todos",
+    "Add someone else": "Adicionar outra pessoa",
+    "Add the people sharing this expense": "Adicione as pessoas que compartilham esta despesa"
+  },
+  "ParticipantRemoveConfirmModal": {
+    "Are you sure you want to remove": "Tem certeza de que deseja remover",
+    "from the group?": "do grupo?",
+    "All their expenses will be removed as well": "Todas as despesas dessa pessoa também serão removidas"
+  },
   "ManageExpense": {
     "Manage Expense": "Gerenciar despesa",
     "Edit": "Editar",

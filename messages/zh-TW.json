@@ -95,6 +95,20 @@
     "Are you sure you want to remove": "您確定要刪除",
     "from the list?": "嗎？"
   },
+  "ParticipantPill": {
+    "Remove {name}": "刪除{name}"
+  },
+  "ExpenseSharing": {
+    "Shared with": "分攤給",
+    "Everyone": "所有人",
+    "Add someone else": "新增其他人",
+    "Add the people sharing this expense": "新增分攤這筆費用的人"
+  },
+  "ParticipantRemoveConfirmModal": {
+    "Are you sure you want to remove": "您確定要刪除",
+    "from the group?": "嗎？",
+    "All their expenses will be removed as well": "該成員的所有費用也將被刪除"
+  },
   "ManageExpense": {
     "Manage Expense": "管理費用",
     "Edit": "編輯",

@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
 
+import { calculateBalances } from '@/core/calculateBalances'
+
 import { Balance } from '@/types/balance-types'
 import { Expense } from '@/types/expense-types'
-
-import { calculateBalances } from '../functions/calculateBalances'
 
 interface useCalculateBalancesProps {
   expenses: Expense[]
@@ -13,28 +13,12 @@ interface useCalculateBalancesProps {
 }
 
 export const useCalculateBalances = ({ expenses, balances, setBalances, setRounded }: useCalculateBalancesProps) => {
-  const handleCalculateBalances = () => {
-    if (!expenses) return
+  const calculatedBalances = useMemo(() => calculateBalances(expenses ?? []), [expenses])
 
-    setBalances(calculateBalances(expenses))
+  const handleCalculateBalances = () => {
+    setBalances(calculatedBalances)
     setRounded?.(balances.some((balance) => balance.amount % 1 === 0))
   }
 
-  const disabledBalances = useMemo(() => {
-    return (
-      !expenses ||
-      new Set(expenses.map(({ name }) => name)).size < 2 ||
-      new Set(
-        Object.values(
-          expenses.reduce<Record<string, number>>(
-            (acc, { amount, name }) => ({ ...acc, [name]: (acc[name] ? acc[name] : 0) + amount }),
-            {},
-          ),
-        ),
-      ).size === 1 ||
-      expenses.reduce((acc, { amount }) => amount + acc, 0) === 0
-    )
-  }, [expenses])
-
-  return { handleCalculateBalances, disabledBalances }
+  return { handleCalculateBalances, disabledBalances: calculatedBalances.length === 0 }
 }

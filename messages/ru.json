@@ -95,6 +95,20 @@
     "Are you sure you want to remove": "Вы уверены, что хотите удалить",
     "from the list?": "из списка?"
   },
+  "ParticipantPill": {
+    "Remove {name}": "Удалить {name}"
+  },
+  "ExpenseSharing": {
+    "Shared with": "Делится с",
+    "Everyone": "Все",
+    "Add someone else": "Добавить кого-то ещё",
+    "Add the people sharing this expense": "Добавьте людей, которые делят этот расход"
+  },
+  "ParticipantRemoveConfirmModal": {
+    "Are you sure you want to remove": "Вы уверены, что хотите удалить",
+    "from the group?": "из группы?",
+    "All their expenses will be removed as well": "Все их расходы также будут удалены"
+  },
   "ManageExpense": {
     "Manage Expense": "Управление расходами",
     "Edit": "Редактировать",

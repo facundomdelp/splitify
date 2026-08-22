@@ -39,6 +39,7 @@ const addExpenseSchema = z.object({
     .optional()
     .transform((val) => (val ? new Date(val) : undefined))
     .refine((date) => !date || !isNaN(date.getTime()), { message: 'Invalid date format' }),
+  sharedWith: z.array(z.string().max(50, 'Participant name is too long')).max(100, 'Too many participants').optional(),
 })
 
 export const validateAddExpense = (
@@ -70,6 +71,7 @@ const updateExpenseSchema = z.object({
     .optional()
     .transform((val) => (val ? new Date(val) : undefined))
     .refine((date) => !date || !isNaN(date.getTime()), { message: 'Invalid date format' }),
+  sharedWith: z.array(z.string().max(50, 'Participant name is too long')).max(100, 'Too many participants').optional(),
 })
 
 export const validateUpdateExpense = (

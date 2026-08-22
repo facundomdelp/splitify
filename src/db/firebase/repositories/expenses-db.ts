@@ -31,12 +31,14 @@ class Expenses {
     amount,
     title,
     date,
+    sharedWith,
   }: {
     groupId: string
     name: string
     amount: number
     title?: string
     date?: Date
+    sharedWith?: string[]
   }) {
     return (
       await addDoc(this.expenseCollection, {
@@ -46,6 +48,7 @@ class Expenses {
         amount,
         title: title || '',
         date: date ? Timestamp.fromDate(date) : '',
+        sharedWith: sharedWith || [],
       })
     ).id
   }
@@ -69,6 +72,7 @@ class Expenses {
       id: doc.id,
       ...doc.data(),
       date: doc.data().date ? doc.data().date.toMillis() : undefined,
+      sharedWith: doc.data().sharedWith || [],
     }))
   }
 
@@ -78,12 +82,14 @@ class Expenses {
     amount,
     title,
     date,
+    sharedWith,
   }: {
     expenseId: string
     name: string
     amount: number
     title?: string
     date?: Date
+    sharedWith?: string[]
   }) {
     const expenseRef = this.getExpenseRef(expenseId)
 
@@ -92,6 +98,7 @@ class Expenses {
       amount,
       title: title || '',
       date: date ? Timestamp.fromDate(date) : '',
+      sharedWith: sharedWith || [],
     })
   }
 }

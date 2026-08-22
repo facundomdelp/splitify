@@ -2,37 +2,26 @@ import { useState } from 'react'
 
 import { useTranslations } from 'next-intl'
 
+import { Expense } from '@/types/expense-types'
+
 import DrawerModal from '@/components/DrawerModal'
 import ExpenseForm from '@/components/ExpenseForm'
 
 import { Edit3 } from 'lucide-react'
 
 interface Props {
-  id: string
-  name: string
-  amount: number
-  title?: string
-  date?: number
+  expense: Expense
+  participants: string[]
   onRemoveExpense: (id: string) => void
-  onEditExpense: ({
-    id,
-    name,
-    amount,
-    title,
-    date,
-  }: {
-    id: string
-    name: string
-    amount: number
-    title?: string
-    date?: number
-  }) => void
+  onEditExpense: (expense: Expense) => void
 }
 
-const ManageExpense = ({ id, name, amount, title, date, onRemoveExpense, onEditExpense }: Props) => {
+const ManageExpense = ({ expense, participants, onRemoveExpense, onEditExpense }: Props) => {
   const [open, setOpen] = useState(false)
 
   const t = useTranslations('ManageExpense')
+
+  const { id, ...initialValues } = expense
 
   return (
     <>
@@ -44,10 +33,11 @@ const ManageExpense = ({ id, name, amount, title, date, onRemoveExpense, onEditE
       {open && (
         <DrawerModal open={open} setOpen={setOpen} title={t('Manage Expense')} className='px-4'>
           <ExpenseForm
-            initialValues={{ name, amount, title, date }}
+            initialValues={initialValues}
+            participants={participants}
             submitButtonCopy={t('Edit')}
             fullForm
-            onSubmit={(expense) => onEditExpense({ id, ...expense })}
+            onSubmit={(values) => onEditExpense({ id, ...values })}
             closeModal={() => setOpen(false)}
             secondaryButton={{ copy: t('Remove'), variant: 'destructive', onClick: () => onRemoveExpense(id) }}
           />

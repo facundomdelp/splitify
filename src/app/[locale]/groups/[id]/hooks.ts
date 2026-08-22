@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 
 import { useParams } from 'next/navigation'
 
-import { Expense } from '@/types/expense-types'
+import { Expense, ExpenseDraft } from '@/types/expense-types'
 import { GetGroupResponse } from '@/types/group-types'
 
 import { useSetGroups } from '@/store/groups-store'
@@ -107,22 +107,17 @@ interface useAddExpenseProps {
 
 export const useAddExpense = ({ groupId, setExpenses }: useAddExpenseProps) => {
   const addExpense = useCallback(
-    async ({ name, amount, title, date }: { name: string; amount: number; title?: string; date?: number }) => {
+    async (expense: ExpenseDraft) => {
       if (!groupId) return
 
       const expenseUiId = generateId()
-      setExpenses((prev) => [...(prev ?? []), { id: expenseUiId, optimistic: true, name, amount, title, date }])
+      setExpenses((prev) => [...(prev ?? []), { ...expense, id: expenseUiId, optimistic: true }])
 
       try {
         const response = await fetch(`/api/groups/${groupId}/expenses`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name,
-            amount,
-            title,
-            date,
-          }),
+          body: JSON.stringify(expense),
         })
 
         if (!response.ok) {
@@ -180,35 +175,18 @@ interface useAddExpenseProps {
 
 export const useEditExpense = ({ setExpenses }: useAddExpenseProps) => {
   const editExpense = useCallback(
-    async ({
-      id,
-      name,
-      amount,
-      title,
-      date,
-    }: {
-      id: string
-      name: string
-      amount: number
-      title?: string
-      date?: number
-    }) => {
+    async ({ id, name, amount, title, date, sharedWith }: Expense) => {
+      const values = { name, amount, title, date, sharedWith }
+
       setExpenses((prevExpenses) =>
-        prevExpenses?.map((expense) =>
-          expense.id === id ? { id, name, amount, title, date, optimistic: true } : expense,
-        ),
+        prevExpenses?.map((expense) => (expense.id === id ? { ...values, id, optimistic: true } : expense)),
       )
 
       try {
         const response = await fetch(`/api/expenses/${id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name,
-            amount,
-            title,
-            date,
-          }),
+          body: JSON.stringify(values),
         })
 
         if (!response.ok) {
@@ -226,4 +204,31 @@ export const useEditExpense = ({ setExpenses }: useAddExpenseProps) => {
   )
 
   return { editExpense }
+}
+
+interface useRemoveParticipantProps {
+  expenses: Expense[]
+  removeExpense: (id: string) => Promise<void>
+  editExpense: (expense: Expense) => Promise<void>
+}
+
+export const useRemoveParticipant = ({ expenses, removeExpense, editExpense }: useRemoveParticipantProps) => {
+  const removeParticipant = useCallback(
+    async (participant: string) => {
+      await Promise.all(
+        expenses.map((expense) => {
+          if (expense.name === participant) return removeExpense(expense.id)
+
+          if (!expense.sharedWith?.includes(participant)) return undefined
+
+          const remainingSharers = expense.sharedWith.filter((sharer) => sharer !== participant)
+
+          return editExpense({ ...expense, sharedWith: remainingSharers.length ? remainingSharers : [expense.name] })
+        }),
+      )
+    },
+    [editExpense, expenses, removeExpense],
+  )
+
+  return { removeParticipant }
 }

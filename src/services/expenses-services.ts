@@ -3,7 +3,14 @@ import Expenses from '@/db/firebase/repositories/expenses-db'
 const expenses = new Expenses()
 
 class ExpenseService {
-  addExpense(data: { groupId: string; name: string; amount: number; title?: string; date?: Date }) {
+  addExpense(data: {
+    groupId: string
+    name: string
+    amount: number
+    title?: string
+    date?: Date
+    sharedWith?: string[]
+  }) {
     return expenses.addExpense(data)
   }
 
@@ -16,7 +23,14 @@ class ExpenseService {
     return expenses.removeExpense(expenseId)
   }
 
-  updateExpense(data: { expenseId: string; name: string; amount: number; title?: string; date?: Date }) {
+  updateExpense(data: {
+    expenseId: string
+    name: string
+    amount: number
+    title?: string
+    date?: Date
+    sharedWith?: string[]
+  }) {
     return expenses.updateExpense(data)
   }
 }

@@ -4,9 +4,12 @@ import { useRef, useState } from 'react'
 
 import { useTranslations } from 'next-intl'
 
+import { ExpenseDraft } from '@/types/expense-types'
+
 import { cn } from '@/lib/utils'
 
 import ExpenseRemoveConfirmModal from '@/components/ExpenseRemoveConfirmModal'
+import ExpenseSharing from '@/components/ExpenseSharing'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -16,8 +19,9 @@ import { Plus, UserRound } from 'lucide-react'
 import { useExpensesForm } from './hooks'
 
 interface Props {
-  initialValues?: { name: string; amount: number; title?: string; date?: number }
-  onSubmit?: ({ name, amount, title, date }: { name: string; amount: number; title?: string; date?: number }) => void
+  initialValues?: ExpenseDraft
+  participants?: string[]
+  onSubmit?: (expense: ExpenseDraft) => void
   disabled?: boolean
   closeModal?: () => void
   autoFocus?: boolean
@@ -31,7 +35,8 @@ interface Props {
 }
 
 const ExpenseForm = ({
-  initialValues = { name: '', amount: 0, title: '', date: NaN },
+  initialValues,
+  participants = [],
   onSubmit,
   disabled,
   closeModal,
@@ -44,8 +49,27 @@ const ExpenseForm = ({
 
   const nameInputRef = useRef<HTMLInputElement>(null)
 
-  const { name, handleName, amount, handleAmount, title, handleTitle, date, handleDate, handleSubmit } =
-    useExpensesForm({ initialValues, nameInputRef, onSubmit, closeModal })
+  const {
+    name,
+    handleName,
+    amount,
+    handleAmount,
+    title,
+    handleTitle,
+    date,
+    handleDate,
+    sharedWith,
+    sharingSuggestions,
+    handleAddSharer,
+    handleRemoveSharer,
+    handleSubmit,
+  } = useExpensesForm({
+    initialValues: initialValues ?? { name: '', amount: 0, title: '', date: fullForm ? Date.now() : undefined },
+    participants,
+    nameInputRef,
+    onSubmit,
+    closeModal,
+  })
 
   const t = useTranslations('ExpenseForm')
 
@@ -96,10 +120,20 @@ const ExpenseForm = ({
           </div>
 
           {fullForm && (
+            <ExpenseSharing
+              sharedWith={sharedWith}
+              suggestions={sharingSuggestions}
+              onAdd={handleAddSharer}
+              onRemove={handleRemoveSharer}
+              disabled={disabled}
+            />
+          )}
+
+          {fullForm && (
             <div className='flex min-h-0 max-w-full flex-wrap gap-2 border-y border-transparent px-1'>
               <div className='min-h-0 min-w-40 flex-1 space-y-1'>
                 <Label htmlFor='date' className='text-xs'>
-                  <strong>{t('Date')}</strong> ({t('optional')})
+                  <strong>{t('Date')}</strong>
                 </Label>
                 <Input
                   id='date'
@@ -117,7 +151,7 @@ const ExpenseForm = ({
                   <strong>{t('Title')}</strong> ({t('optional')})
                 </Label>
                 <Input
-                  id='Title'
+                  id='title'
                   name='title'
                   className='placeholder:text-gray-300'
                   maxLength={50}

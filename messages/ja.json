@@ -95,6 +95,20 @@
     "Are you sure you want to remove": "削除してもよろしいですか",
     "from the list?": "？"
   },
+  "ParticipantPill": {
+    "Remove {name}": "{name}を削除"
+  },
+  "ExpenseSharing": {
+    "Shared with": "分担者",
+    "Everyone": "全員",
+    "Add someone else": "他の人を追加",
+    "Add the people sharing this expense": "この支出を分担する人を追加してください"
+  },
+  "ParticipantRemoveConfirmModal": {
+    "Are you sure you want to remove": "削除してもよろしいですか",
+    "from the group?": "？",
+    "All their expenses will be removed as well": "その人の支出もすべて削除されます"
+  },
   "ManageExpense": {
     "Manage Expense": "支出を管理",
     "Edit": "編集",
