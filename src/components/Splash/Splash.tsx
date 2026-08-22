@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 import { useSetMetadata } from '@/store/metadata-store'
 
-const ISOLOGO_SIZE = 200
+const LOGO_WIDTH = 220
 
 const Splash = () => {
   const [metadata, setMetadata] = useSetMetadata()
@@ -19,7 +19,13 @@ const Splash = () => {
     !metadata.isLoaded && (
       <div className='absolute inset-0 z-50 flex items-center justify-center bg-green-950 text-white'>
         <div className='animate-slide-up text-center opacity-0'>
-          <Image src='/Isologo.png' alt='Splitify' width={ISOLOGO_SIZE} height={ISOLOGO_SIZE} />
+          <Image
+            className='drop-shadow-lg'
+            src='/Splitify.png'
+            alt='Splitify'
+            width={LOGO_WIDTH}
+            height={LOGO_WIDTH / (10 / 3)}
+          />
         </div>
       </div>
     )

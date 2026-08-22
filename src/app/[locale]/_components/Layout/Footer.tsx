@@ -1,55 +1,88 @@
 'use client'
 
-import { useLocale, useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import Link from 'next/link'
 
-import { cn } from '@/lib/utils'
+import { Link } from '@/i18n/routing'
 
-const ISOLOGO_SIZE = 65
-const baseUrl = 'https://splitify.me'
+import TiktokLogo from '@/components/icons/TiktokLogo'
+import XLogo from '@/components/icons/XLogo'
+
+import { MailIcon } from 'lucide-react'
+
+const LOGO_WIDTH = 130
+const LINK_CLASS = 'text-xs text-green-200/80 transition-colors hover:text-white'
+
+const SOCIALS = [
+  { key: 'x', href: 'https://x.com/splitify_me', label: 'X', icon: XLogo },
+  { key: 'tiktok', href: 'https://www.tiktok.com/@.splitify', label: 'TikTok', icon: TiktokLogo },
+  { key: 'mail', href: 'mailto:splitify.me@gmail.com', label: 'Email', icon: MailIcon },
+] as const
 
 const Footer = () => {
-  const locale = useLocale()
-
   const t = useTranslations('Footer')
 
   return (
-    <footer className='flex w-full justify-center bg-green-950 py-2'>
-      <div className='relative mt-1 flex max-w-[600px] flex-1 flex-col items-center justify-center bg-green-950 px-3'>
-        <Image src='/Isologo.png' alt='Splitify' width={ISOLOGO_SIZE} height={ISOLOGO_SIZE} />
+    <footer className='w-full bg-green-950 text-green-200'>
+      <div className='mx-auto flex w-full max-w-[600px] flex-col px-6 py-10'>
+        <div className='flex flex-col gap-8 sm:flex-row sm:justify-between'>
+          <div className='max-w-[260px]'>
+            <Image
+              className='drop-shadow-lg'
+              src='/Splitify.png'
+              alt='Splitify'
+              width={LOGO_WIDTH}
+              height={LOGO_WIDTH / (10 / 3)}
+            />
+            <p className='mt-3 text-xs leading-5 text-green-200/70'>{t('Split group expenses with friends')}</p>
+          </div>
 
-        <nav className='flex w-full flex-col gap-3 bg-green-950 bg-opacity-90 px-3 py-1 text-xs text-isologo xs:pt-2 sm:pb-2 sm:pt-4'>
-          <ul className='flex justify-center'>
-            <Li key='useful-links'>
-              <Link className='hover:underline' href={`${baseUrl}/${locale === 'en' ? '' : `${locale}/`}useful-links`}>
-                {t('Useful Links')}
-              </Link>
-            </Li>
+          <nav aria-labelledby='footer-resources'>
+            <h2 id='footer-resources' className='text-xs font-semibold uppercase tracking-wider text-white'>
+              {t('Resources')}
+            </h2>
+            <ul className='mt-3 flex flex-col gap-2'>
+              <li>
+                <Link className={LINK_CLASS} href='/faq'>
+                  FAQ
+                </Link>
+              </li>
+              <li>
+                <Link className={LINK_CLASS} href='/useful-links'>
+                  {t('Useful Links')}
+                </Link>
+              </li>
+            </ul>
+          </nav>
 
-            <Li key='faq'>
-              <Link className='hover:underline' href={`${baseUrl}/${locale === 'en' ? '' : `${locale}/`}faq`}>
-                FAQ
-              </Link>
-            </Li>
-          </ul>
-        </nav>
+          <nav aria-labelledby='footer-follow'>
+            <h2 id='footer-follow' className='text-xs font-semibold uppercase tracking-wider text-white'>
+              {t('Follow us')}
+            </h2>
+            <ul className='mt-3 flex gap-4'>
+              {SOCIALS.map(({ key, href, label, icon: Icon }) => (
+                <li key={key}>
+                  <a
+                    href={href}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    aria-label={label}
+                    className='block text-green-200/80 transition-colors hover:text-white'
+                  >
+                    <Icon className='size-5' />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+
+        <div className='mt-8 flex flex-col items-center gap-1 border-t border-green-200/15 pt-5 text-[11px] text-green-200/60 sm:flex-row sm:justify-between'>
+          <p>© {new Date().getFullYear()} Splitify</p>
+          <p>{t('All rights reserved')}</p>
+        </div>
       </div>
     </footer>
-  )
-}
-
-const Li = (props: React.ComponentProps<'li'>) => {
-  return (
-    <li
-      {...props}
-      className={cn(
-        'flex text-nowrap text-[8px] after:mx-2 after:content-["•"] last:after:hidden xs:after:mx-4 sm:text-xs sm:after:mx-8',
-        props.className,
-      )}
-    >
-      {props.children}
-    </li>
   )
 }
 

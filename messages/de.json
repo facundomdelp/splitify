@@ -10,7 +10,11 @@
     "Just enter each participant's name and how much they spent": "Geben Sie einfach den Namen jedes Teilnehmers und den ausgegebenen Betrag ein (kann 0 € sein). Klicken Sie dann auf \"Salden berechnen\", und Splitify optimiert die Anzahl der erforderlichen Überweisungen."
   },
   "Footer": {
-    "Useful Links": "Nützliche Links"
+    "Useful Links": "Nützliche Links",
+    "Split group expenses with friends": "Teile Gruppenausgaben fair mit Freunden – ganz ohne Konto.",
+    "Resources": "Ressourcen",
+    "Follow us": "Folge uns",
+    "All rights reserved": "Alle Rechte vorbehalten"
   },
   "NavBar": {
     "Discover more!": "Entdecken Sie mehr!",
@@ -25,6 +29,12 @@
     "Language": "Sprache",
     "Would you like to select a different language?": "Möchten Sie eine andere Sprache auswählen?",
     "Send us an email!": "Senden Sie uns eine E-Mail!"
+  },
+  "TurnIntoGroupCta": {
+    "Share a link": "Link teilen",
+    "Split with only some": "Nur mit einigen teilen",
+    "Dates and titles": "Daten und Titel",
+    "and more": "und mehr"
   },
   "HomeContextMenu": {
     "Do you want to turn these expenses into a ✈️ Group?": "Möchten Sie diese Ausgaben in eine ✈️ Gruppe umwandeln?",
@@ -89,7 +99,9 @@
     "optional": "optional",
     "For example: Taxi": "Zum Beispiel: Taxi",
     "Date": "Datum",
-    "Details": "Details"
+    "Details": "Details",
+    "Who paid": "Wer hat bezahlt",
+    "Amount": "Betrag"
   },
   "ExpenseRemoveConfirmModal": {
     "Are you sure you want to remove": "Sind Sie sicher, dass Sie entfernen möchten",
@@ -128,7 +140,8 @@
   "UsefulLinksPage": {
     "Find answers to common questions and troubleshooting": "Finden Sie Antworten auf häufig gestellte Fragen und Fehlerbehebung.",
     "Useful Links": "Nützliche Links",
-    "Here are some useful resources to help you navigate and make the most out of Splitify": "Hier sind einige nützliche Ressourcen, die Ihnen helfen, sich zurechtzufinden und das Beste aus Splitify herauszuholen."
+    "Here are some useful resources to help you navigate and make the most out of Splitify": "Hier sind einige nützliche Ressourcen, die Ihnen helfen, sich zurechtzufinden und das Beste aus Splitify herauszuholen.",
+    "Useful Links and Guides": "Nützliche Links und Anleitungen"
   },
   "FaqPage": {
     "Frequently Asked Questions": "Häufig gestellte Fragen",

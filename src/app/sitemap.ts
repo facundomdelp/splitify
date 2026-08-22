@@ -6,6 +6,7 @@ const locales = ['en', 'es', 'pt-BR', 'pt-PT', 'zh-CN', 'zh-TW', 'ar', 'fr', 'ja
 const defaultLocale = 'en'
 
 const baseUrl = 'https://splitify.me'
+const lastModified = new Date('2026-08-22')
 
 // Static routes
 const staticRoutes = ['', 'faq', 'useful-links']
@@ -34,7 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
       return {
         url,
-        lastModified: new Date('2026-02-26'),
+        lastModified,
         changeFrequency: route === '' ? ('daily' as const) : ('weekly' as const),
         priority: route === '' ? 1 : 0.8,
         alternates: {
@@ -50,7 +51,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
       return {
         url,
-        lastModified: new Date('2026-02-26'),
+        lastModified,
         changeFrequency: 'weekly' as const,
         priority: 0.7,
       }

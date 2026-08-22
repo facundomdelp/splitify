@@ -25,7 +25,7 @@ const UsefulLinksPage = () => {
             href={`${baseUrl}/${locale === 'en' ? '' : `${locale}/`}faq`}
           />
 
-          {SEO_ROUTES[locale as keyof typeof SEO_ROUTES].map(({ slug, title, description }) => (
+          {(SEO_ROUTES[locale as keyof typeof SEO_ROUTES] ?? []).map(({ slug, title, description }) => (
             <LinkCard
               key={slug}
               title={title}

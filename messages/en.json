@@ -10,7 +10,11 @@
     "Just enter each participant's name and how much they spent": "Just enter each participant's name and how much they spent (it can be $0). Then, click \"Calculate Balances\", and Splitify will optimize the number of transfers needed."
   },
   "Footer": {
-    "Useful Links": "Useful Links"
+    "Useful Links": "Useful Links",
+    "Split group expenses with friends": "Split group expenses with friends, fairly and without an account.",
+    "Resources": "Resources",
+    "Follow us": "Follow us",
+    "All rights reserved": "All rights reserved"
   },
   "NavBar": {
     "Discover more!": "Discover more!",
@@ -25,6 +29,12 @@
     "Language": "Language",
     "Would you like to select a different language?": "Would you like to select a different language?",
     "Send us an email!": "Send us an email!"
+  },
+  "TurnIntoGroupCta": {
+    "Share a link": "Share a link",
+    "Split with only some": "Split with only some",
+    "Dates and titles": "Dates and titles",
+    "and more": "and more"
   },
   "HomeContextMenu": {
     "Do you want to turn these expenses into a ✈️ Group?": "Do you want to turn these expenses into a ✈️ Group?",
@@ -89,7 +99,9 @@
     "optional": "optional",
     "For example: Taxi": "For example: Taxi",
     "Date": "Date",
-    "Details": "Details"
+    "Details": "Details",
+    "Who paid": "Who paid",
+    "Amount": "Amount"
   },
   "ExpenseRemoveConfirmModal": {
     "Are you sure you want to remove": "Are you sure you want to remove",
@@ -128,7 +140,8 @@
   "UsefulLinksPage": {
     "Find answers to common questions and troubleshooting": "Encuentra respuestas a preguntas comunes y solución de problemas.",
     "Useful Links": "Useful Links",
-    "Here are some useful resources to help you navigate and make the most out of Splitify": "Here are some useful resources to help you navigate and make the most out of Splitify."
+    "Here are some useful resources to help you navigate and make the most out of Splitify": "Here are some useful resources to help you navigate and make the most out of Splitify.",
+    "Useful Links and Guides": "Useful Links and Guides"
   },
   "FaqPage": {
     "Frequently Asked Questions": "Frequently Asked Questions",

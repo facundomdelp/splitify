@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useParams } from 'next/navigation'
+import { notFound, useParams } from 'next/navigation'
 
 import { Locale } from '@/types/common-types'
 
@@ -13,11 +13,17 @@ import { SEO_ROUTES } from './constants'
 
 const SeoPage = () => {
   const { locale, link } = useParams<{ locale: Locale; link: string }>()
-  const localeSeoRoutes = SEO_ROUTES[locale as keyof typeof SEO_ROUTES]
+  const localeSeoRoutes = SEO_ROUTES[locale as keyof typeof SEO_ROUTES] ?? []
 
   const t = useTranslations('SeoPage')
 
-  const { title, firstParagraph, secondParagraph } = localeSeoRoutes.find((route) => route.slug === link)!
+  const seoRoute = localeSeoRoutes.find((route) => route.slug === link)
+
+  if (!seoRoute) {
+    notFound()
+  }
+
+  const { title, firstParagraph, secondParagraph } = seoRoute
 
   return (
     <main className='flex w-full justify-center bg-green-50 p-10'>

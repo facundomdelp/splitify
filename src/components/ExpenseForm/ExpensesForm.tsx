@@ -86,6 +86,7 @@ const ExpenseForm = ({
             <Input
               className='min-w-36 flex-[2.5] placeholder:text-gray-300'
               name='name'
+              aria-label={t('Who paid')}
               ref={nameInputRef}
               maxLength={50}
               onChange={handleName}
@@ -102,6 +103,7 @@ const ExpenseForm = ({
                   className='pl-6 text-sm'
                   type='number'
                   name='amount'
+                  aria-label={t('Amount')}
                   max={1000000000}
                   min={0}
                   step={0.01}
@@ -112,7 +114,13 @@ const ExpenseForm = ({
               </div>
 
               {!fullForm && (
-                <Button size='icon' className='w-10' type='submit' disabled={name.trim() === '' || disabled}>
+                <Button
+                  size='icon'
+                  className='w-10'
+                  type='submit'
+                  aria-label={t('Add Expense')}
+                  disabled={name.trim() === '' || disabled}
+                >
                   <Plus />
                 </Button>
               )}

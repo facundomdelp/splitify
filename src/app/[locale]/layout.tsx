@@ -1,5 +1,5 @@
 import { GoogleTagManager } from '@next/third-parties/google'
-import { Metadata } from 'next'
+import { Metadata, Viewport } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations } from 'next-intl/server'
 import { Inter } from 'next/font/google'
@@ -16,6 +16,11 @@ import Splash from '@/components/Splash'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] })
+
+export const viewport: Viewport = {
+  themeColor: '#22C55E',
+  colorScheme: 'light',
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
   const { locale } = await params
@@ -123,6 +128,27 @@ export default async function LocaleLayout({
     description:
       'Simplify your group expenses with Splitify. Add participants, calculate balances, and share costs fairly.',
     image: `${baseUrl}/Splitify-banner.jpg`,
+    inLanguage: locale,
+    isAccessibleForFree: true,
+    browserRequirements: 'Requires JavaScript',
+    featureList: [
+      'Split a bill between friends in seconds',
+      'Share an expense with only some of the group',
+      'Settle up with the fewest transfers possible',
+      'Collaborative groups you can share with a link',
+      'Works without creating an account',
+    ],
+    screenshot: `${baseUrl}/SplitiQuick-en.png`,
+  }
+
+  const webSiteJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Splitify',
+    alternateName: ['Splitify me', 'Splitify app', 'splitify.me'],
+    url: baseUrl,
+    inLanguage: locale,
+    publisher: { '@type': 'Organization', name: 'Splitify', url: baseUrl },
   }
 
   const organizationJsonLd = {
@@ -131,13 +157,15 @@ export default async function LocaleLayout({
     name: 'Splitify',
     url: baseUrl,
     logo: `${baseUrl}/splitify-512x512.png`,
-    sameAs: [],
+    email: 'splitify.me@gmail.com',
+    sameAs: ['https://x.com/splitify_me', 'https://www.tiktok.com/@.splitify'],
   }
 
   return (
     <html lang={locale} className='h-full'>
       <head>
         <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }} />
+        <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }} />
         <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
       </head>
       <GoogleTagManager gtmId='GTM-TSLLPXCB' />
@@ -147,7 +175,9 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <Header />
 
-          <div className='mt-20 flex min-h-0 w-full flex-1 justify-center text-slate-600'>{children}</div>
+          <div className='mt-20 flex min-h-[calc(100vh-5rem)] w-full flex-1 justify-center text-slate-600'>
+            {children}
+          </div>
 
           <Footer />
 

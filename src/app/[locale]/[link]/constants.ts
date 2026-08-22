@@ -21,7 +21,7 @@ export const SEO_ROUTES = {
         'Simplemente ingresa el monto total, quién pagó y cuántos participaron, y el cálculo se realiza automáticamente. Ya no necesitas hacer cuentas manuales ni preocuparte por pagos desiguales. Esta solución es perfecta para cualquier ocasión en la que compartir gastos sea necesario.',
     },
   ],
-  pt: [
+  'pt-BR': [
     {
       slug: 'dividir-despesas-com-amigos',
       title: 'Dividir Despesas com Amigos',

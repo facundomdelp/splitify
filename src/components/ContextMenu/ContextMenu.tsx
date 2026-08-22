@@ -25,13 +25,14 @@ export const ContextMenuItem = ({ children, onClick, disabled }: ContextMenuItem
 
 interface Props {
   children: ReactNode
+  ariaLabel?: string
 }
 
-const ContextMenu = ({ children }: Props) => {
+const ContextMenu = ({ children, ariaLabel = 'Open menu' }: Props) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant='ghost' className='p-1'>
+        <Button variant='ghost' className='p-1' aria-label={ariaLabel}>
           <EllipsisVertical className='text-gray-600' />
         </Button>
       </DropdownMenuTrigger>

@@ -21,19 +21,27 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
   languages['x-default'] = `${baseUrl}/useful-links`
 
   return {
-    title: t('Useful Links'),
+    title: t('Useful Links and Guides'),
     description: t('Here are some useful resources to help you navigate and make the most out of Splitify'),
     alternates: {
       canonical: canonicalUrl,
       languages,
     },
     openGraph: {
-      title: `${t('Useful Links')} | Splitify`,
+      title: `${t('Useful Links and Guides')} | Splitify`,
       description: t('Here are some useful resources to help you navigate and make the most out of Splitify'),
       url: canonicalUrl,
       siteName: 'Splitify',
       locale: locale,
       type: 'website',
+      images: [
+        {
+          url: `${baseUrl}/Splitify-banner.jpg`,
+          width: 1200,
+          height: 630,
+          alt: 'Splitify - Simplify your group expenses',
+        },
+      ],
     },
   }
 }

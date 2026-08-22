@@ -33,6 +33,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
       siteName: 'Splitify',
       locale: locale,
       type: 'website',
+      images: [
+        {
+          url: `${baseUrl}/Splitify-banner.jpg`,
+          width: 1200,
+          height: 630,
+          alt: 'Splitify - Simplify your group expenses',
+        },
+      ],
     },
   }
 }

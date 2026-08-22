@@ -54,7 +54,6 @@ export default {
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))',
         },
-        isologo: '#49BEB7',
       },
       borderRadius: {
         lg: 'var(--radius)',

@@ -10,7 +10,11 @@
     "Just enter each participant's name and how much they spent": "只需输入每位参与者的姓名和他们花费的金额（可以是 ¥0）。然后点击\"计算余额\"，Splitify 将优化所需的转账次数。"
   },
   "Footer": {
-    "Useful Links": "实用链接"
+    "Useful Links": "实用链接",
+    "Split group expenses with friends": "和朋友公平分摊团体费用，无需注册账号。",
+    "Resources": "资源",
+    "Follow us": "关注我们",
+    "All rights reserved": "版权所有"
   },
   "NavBar": {
     "Discover more!": "了解更多！",
@@ -25,6 +29,12 @@
     "Language": "语言",
     "Would you like to select a different language?": "您想选择其他语言吗？",
     "Send us an email!": "给我们发送电子邮件！"
+  },
+  "TurnIntoGroupCta": {
+    "Share a link": "分享链接",
+    "Split with only some": "只和部分人分摊",
+    "Dates and titles": "日期和标题",
+    "and more": "还有更多"
   },
   "HomeContextMenu": {
     "Do you want to turn these expenses into a ✈️ Group?": "您想将这些费用转换为 ✈️ 团体吗？",
@@ -89,7 +99,9 @@
     "optional": "可选",
     "For example: Taxi": "例如：出租车",
     "Date": "日期",
-    "Details": "详情"
+    "Details": "详情",
+    "Who paid": "谁付的钱",
+    "Amount": "金额"
   },
   "ExpenseRemoveConfirmModal": {
     "Are you sure you want to remove": "您确定要删除",
@@ -128,7 +140,8 @@
   "UsefulLinksPage": {
     "Find answers to common questions and troubleshooting": "查找常见问题的答案和故障排除。",
     "Useful Links": "实用链接",
-    "Here are some useful resources to help you navigate and make the most out of Splitify": "以下是一些有用的资源，可帮助您浏览并充分利用 Splitify。"
+    "Here are some useful resources to help you navigate and make the most out of Splitify": "以下是一些有用的资源，可帮助您浏览并充分利用 Splitify。",
+    "Useful Links and Guides": "实用链接与指南"
   },
   "FaqPage": {
     "Frequently Asked Questions": "常见问题",

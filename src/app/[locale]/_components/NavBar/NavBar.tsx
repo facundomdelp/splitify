@@ -139,7 +139,6 @@ const NavBar = ({
                     onClick: addNewGroup,
                     loading: newGroupState.loading,
                     strong: true,
-                    beta: true,
                   },
                   ...(groups
                     ? groups.map(({ id, name }) => ({
@@ -147,17 +146,11 @@ const NavBar = ({
                         emoji: getEmojiFromString(id),
                         name: name,
                         href: `/groups/${id}`,
-                        beta: false,
                       }))
                     : []),
                 ].map(({ slug, name, ...props }) => (
                   <NavItem key={slug} disabled={newGroupState.loading} {...props} handleNavigation={handleNavigation}>
                     {name}
-                    {/* {beta && (
-                      <Badge className='uppercase text-nowrap opacity-70 rounded-lg text-[9px] flex leading-3 px-2 pointer-events-none'>
-                        Beta
-                      </Badge>
-                    )} */}
                   </NavItem>
                 ))}
               </NavSection>

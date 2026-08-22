@@ -10,7 +10,11 @@
     "Just enter each participant's name and how much they spent": "各参加者の名前と支出額を入力するだけです（0円でも可）。次に「残高を計算」をクリックすると、Splitifyが必要な送金回数を最適化します。"
   },
   "Footer": {
-    "Useful Links": "便利なリンク"
+    "Useful Links": "便利なリンク",
+    "Split group expenses with friends": "友達とのグループの支出を、公平に、アカウントなしで分担。",
+    "Resources": "リソース",
+    "Follow us": "フォローする",
+    "All rights reserved": "All rights reserved"
   },
   "NavBar": {
     "Discover more!": "もっと見る！",
@@ -25,6 +29,12 @@
     "Language": "言語",
     "Would you like to select a different language?": "別の言語を選択しますか？",
     "Send us an email!": "メールを送信してください！"
+  },
+  "TurnIntoGroupCta": {
+    "Share a link": "リンクを共有",
+    "Split with only some": "一部の人だけで分担",
+    "Dates and titles": "日付とタイトル",
+    "and more": "ほかにも"
   },
   "HomeContextMenu": {
     "Do you want to turn these expenses into a ✈️ Group?": "これらの支出を ✈️ グループに変換しますか？",
@@ -89,7 +99,9 @@
     "optional": "オプション",
     "For example: Taxi": "例：タクシー",
     "Date": "日付",
-    "Details": "詳細"
+    "Details": "詳細",
+    "Who paid": "支払った人",
+    "Amount": "金額"
   },
   "ExpenseRemoveConfirmModal": {
     "Are you sure you want to remove": "削除してもよろしいですか",
@@ -128,7 +140,8 @@
   "UsefulLinksPage": {
     "Find answers to common questions and troubleshooting": "よくある質問とトラブルシューティングの答えを見つけましょう。",
     "Useful Links": "便利なリンク",
-    "Here are some useful resources to help you navigate and make the most out of Splitify": "以下は、Splitifyをナビゲートして最大限に活用するのに役立つ便利なリソースです。"
+    "Here are some useful resources to help you navigate and make the most out of Splitify": "以下は、Splitifyをナビゲートして最大限に活用するのに役立つ便利なリソースです。",
+    "Useful Links and Guides": "便利なリンクとガイド"
   },
   "FaqPage": {
     "Frequently Asked Questions": "よくある質問",

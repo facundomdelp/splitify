@@ -10,7 +10,11 @@
     "Just enter each participant's name and how much they spent": "فقط أدخل اسم كل مشارك والمبلغ الذي أنفقه (يمكن أن يكون 0$). ثم انقر على \"حساب الأرصدة\"، وسيقوم Splitify بتحسين عدد التحويلات المطلوبة."
   },
   "Footer": {
-    "Useful Links": "روابط مفيدة"
+    "Useful Links": "روابط مفيدة",
+    "Split group expenses with friends": "قسّم نفقات المجموعة مع أصدقائك بعدل ودون حساب.",
+    "Resources": "موارد",
+    "Follow us": "تابعنا",
+    "All rights reserved": "جميع الحقوق محفوظة"
   },
   "NavBar": {
     "Discover more!": "اكتشف المزيد!",
@@ -25,6 +29,12 @@
     "Language": "اللغة",
     "Would you like to select a different language?": "هل تريد اختيار لغة مختلفة؟",
     "Send us an email!": "أرسل لنا بريداً إلكترونياً!"
+  },
+  "TurnIntoGroupCta": {
+    "Share a link": "شارك رابطًا",
+    "Split with only some": "قسّم مع البعض فقط",
+    "Dates and titles": "التواريخ والعناوين",
+    "and more": "والمزيد"
   },
   "HomeContextMenu": {
     "Do you want to turn these expenses into a ✈️ Group?": "هل تريد تحويل هذه النفقات إلى ✈️ مجموعة؟",
@@ -89,7 +99,9 @@
     "optional": "اختياري",
     "For example: Taxi": "على سبيل المثال: سيارة أجرة",
     "Date": "التاريخ",
-    "Details": "التفاصيل"
+    "Details": "التفاصيل",
+    "Who paid": "من دفع",
+    "Amount": "المبلغ"
   },
   "ExpenseRemoveConfirmModal": {
     "Are you sure you want to remove": "هل أنت متأكد أنك تريد إزالة",
@@ -128,7 +140,8 @@
   "UsefulLinksPage": {
     "Find answers to common questions and troubleshooting": "ابحث عن إجابات للأسئلة الشائعة وحل المشاكل.",
     "Useful Links": "روابط مفيدة",
-    "Here are some useful resources to help you navigate and make the most out of Splitify": "فيما يلي بعض الموارد المفيدة لمساعدتك على التنقل وتحقيق أقصى استفادة من Splitify."
+    "Here are some useful resources to help you navigate and make the most out of Splitify": "فيما يلي بعض الموارد المفيدة لمساعدتك على التنقل وتحقيق أقصى استفادة من Splitify.",
+    "Useful Links and Guides": "روابط وأدلة مفيدة"
   },
   "FaqPage": {
     "Frequently Asked Questions": "الأسئلة الشائعة",

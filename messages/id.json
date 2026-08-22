@@ -10,7 +10,11 @@
     "Just enter each participant's name and how much they spent": "Cukup masukkan nama setiap peserta dan berapa banyak yang mereka keluarkan (bisa Rp0). Kemudian, klik \"Hitung Saldo\", dan Splitify akan mengoptimalkan jumlah transfer yang diperlukan."
   },
   "Footer": {
-    "Useful Links": "Tautan Berguna"
+    "Useful Links": "Tautan Berguna",
+    "Split group expenses with friends": "Bagi pengeluaran grup bersama teman, adil dan tanpa akun.",
+    "Resources": "Sumber Daya",
+    "Follow us": "Ikuti kami",
+    "All rights reserved": "Hak cipta dilindungi"
   },
   "NavBar": {
     "Discover more!": "Temukan lebih banyak!",
@@ -25,6 +29,12 @@
     "Language": "Bahasa",
     "Would you like to select a different language?": "Apakah Anda ingin memilih bahasa yang berbeda?",
     "Send us an email!": "Kirimkan kami email!"
+  },
+  "TurnIntoGroupCta": {
+    "Share a link": "Bagikan tautan",
+    "Split with only some": "Bagi dengan sebagian",
+    "Dates and titles": "Tanggal dan judul",
+    "and more": "dan lainnya"
   },
   "HomeContextMenu": {
     "Do you want to turn these expenses into a ✈️ Group?": "Apakah Anda ingin mengubah pengeluaran ini menjadi ✈️ Grup?",
@@ -89,7 +99,9 @@
     "optional": "opsional",
     "For example: Taxi": "Misalnya: Taksi",
     "Date": "Tanggal",
-    "Details": "Detail"
+    "Details": "Detail",
+    "Who paid": "Siapa yang membayar",
+    "Amount": "Jumlah"
   },
   "ExpenseRemoveConfirmModal": {
     "Are you sure you want to remove": "Apakah Anda yakin ingin menghapus",
@@ -128,7 +140,8 @@
   "UsefulLinksPage": {
     "Find answers to common questions and troubleshooting": "Temukan jawaban untuk pertanyaan umum dan pemecahan masalah.",
     "Useful Links": "Tautan Berguna",
-    "Here are some useful resources to help you navigate and make the most out of Splitify": "Berikut adalah beberapa sumber daya berguna untuk membantu Anda menavigasi dan memanfaatkan Splitify sebaik-baiknya."
+    "Here are some useful resources to help you navigate and make the most out of Splitify": "Berikut adalah beberapa sumber daya berguna untuk membantu Anda menavigasi dan memanfaatkan Splitify sebaik-baiknya.",
+    "Useful Links and Guides": "Tautan dan panduan berguna"
   },
   "FaqPage": {
     "Frequently Asked Questions": "Pertanyaan yang Sering Diajukan",

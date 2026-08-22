@@ -10,7 +10,11 @@
     "Just enter each participant's name and how much they spent": "只需輸入每位參與者的姓名和他們花費的金額（可以是 $0）。然後點擊\"計算餘額\"，Splitify 將優化所需的轉帳次數。"
   },
   "Footer": {
-    "Useful Links": "實用連結"
+    "Useful Links": "實用連結",
+    "Split group expenses with friends": "和朋友公平分攤團體費用，無需註冊帳號。",
+    "Resources": "資源",
+    "Follow us": "追蹤我們",
+    "All rights reserved": "版權所有"
   },
   "NavBar": {
     "Discover more!": "了解更多！",
@@ -25,6 +29,12 @@
     "Language": "語言",
     "Would you like to select a different language?": "您想選擇其他語言嗎？",
     "Send us an email!": "給我們發送電子郵件！"
+  },
+  "TurnIntoGroupCta": {
+    "Share a link": "分享連結",
+    "Split with only some": "只和部分人分攤",
+    "Dates and titles": "日期和標題",
+    "and more": "還有更多"
   },
   "HomeContextMenu": {
     "Do you want to turn these expenses into a ✈️ Group?": "您想將這些費用轉換為 ✈️ 團體嗎？",
@@ -89,7 +99,9 @@
     "optional": "選用",
     "For example: Taxi": "例如：計程車",
     "Date": "日期",
-    "Details": "詳情"
+    "Details": "詳情",
+    "Who paid": "誰付的錢",
+    "Amount": "金額"
   },
   "ExpenseRemoveConfirmModal": {
     "Are you sure you want to remove": "您確定要刪除",
@@ -128,7 +140,8 @@
   "UsefulLinksPage": {
     "Find answers to common questions and troubleshooting": "尋找常見問題的答案和疑難排解。",
     "Useful Links": "實用連結",
-    "Here are some useful resources to help you navigate and make the most out of Splitify": "以下是一些有用的資源，可幫助您瀏覽並充分利用 Splitify。"
+    "Here are some useful resources to help you navigate and make the most out of Splitify": "以下是一些有用的資源，可幫助您瀏覽並充分利用 Splitify。",
+    "Useful Links and Guides": "實用連結與指南"
   },
   "FaqPage": {
     "Frequently Asked Questions": "常見問題",

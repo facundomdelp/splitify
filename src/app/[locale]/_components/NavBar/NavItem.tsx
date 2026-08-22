@@ -4,7 +4,6 @@ import { Link } from '@/i18n/routing'
 
 import { cn } from '@/lib/utils'
 
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import Spinner from '@/components/ui/spinner'
 
@@ -19,7 +18,6 @@ interface Props {
   strong?: boolean
   loading?: boolean
   disabled?: boolean
-  beta?: boolean
   handleNavigation?: React.MouseEventHandler<HTMLAnchorElement>
 }
 
@@ -32,7 +30,6 @@ const NavItem = ({
   strong,
   loading,
   disabled,
-  beta,
   handleNavigation,
 }: Props) => {
   const NavChildren = () => (
@@ -48,11 +45,6 @@ const NavItem = ({
         <span className={cn('min-w-0 overflow-hidden text-ellipsis text-nowrap', strong ? 'font-bold' : '')}>
           {children}
         </span>
-        {beta && (
-          <Badge className='pointer-events-none my-auto flex text-nowrap rounded-lg px-2 text-[8px] uppercase leading-[0.6rem] opacity-70'>
-            Beta
-          </Badge>
-        )}
       </div>
       {!loading ? (
         <ChevronRight className='ml-auto size-[20px] flex-shrink-0' />
