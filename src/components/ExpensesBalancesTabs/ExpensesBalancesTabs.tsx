@@ -12,6 +12,7 @@ interface Props {
   disabled?: boolean
   disabledExpenses?: boolean
   disabledBalances?: boolean
+  disabledReset?: boolean
   onResetExpenses?: () => void
   contextMenu?: ReactNode
 }
@@ -22,6 +23,7 @@ const ExpensesBalancesTabs = ({
   disabled,
   disabledExpenses,
   disabledBalances,
+  disabledReset,
   onResetExpenses,
   contextMenu,
 }: Props) => {
@@ -67,7 +69,7 @@ const ExpensesBalancesTabs = ({
               <ResetExpensesButton
                 handleResetExpenses={onResetExpenses}
                 className='flex-1 basis-1/2'
-                disabled={disabled || disabledBalances}
+                disabled={disabled || disabledReset}
               />
             )}
             <CalculateButton

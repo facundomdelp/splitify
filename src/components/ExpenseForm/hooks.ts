@@ -2,6 +2,8 @@ import { useMemo, useState } from 'react'
 
 import { ExpenseDraft } from '@/types/expense-types'
 
+import { parseAmount, sanitizeAmountInput, toAmountInput } from '@/utils/functions/parseAmount'
+
 interface useExpensesFormProps {
   initialValues: ExpenseDraft
   participants: string[]
@@ -17,8 +19,10 @@ export const useExpensesForm = ({
   onSubmit,
   closeModal,
 }: useExpensesFormProps) => {
+  const language = typeof navigator !== 'undefined' ? navigator.language : undefined
+
   const [name, setName] = useState(initialValues.name)
-  const [amount, setAmount] = useState(initialValues.amount)
+  const [amountInput, setAmountInput] = useState(() => toAmountInput(initialValues.amount, language))
 
   const [title, setTitle] = useState(initialValues.title)
   const [date, setDate] = useState(initialValues.date ? new Date(initialValues.date).toISOString().split('T')[0] : '')
@@ -55,36 +59,11 @@ export const useExpensesForm = ({
   }
 
   const handleAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
+    setAmountInput(sanitizeAmountInput(e.target.value, language))
+  }
 
-    if (value.startsWith('0') && value.length > 1 && !value.includes('.')) {
-      e.target.value = value.slice(1)
-    }
-
-    const decimalIndex = value.indexOf('.')
-    if (decimalIndex !== -1 && value.slice(decimalIndex + 1).length > 2) {
-      e.target.value = value.slice(0, decimalIndex + 3)
-      return
-    }
-
-    const amount = parseFloat(value)
-
-    if (!amount) {
-      setAmount(0)
-      return
-    }
-
-    const max = parseFloat(e.target.max)
-    const min = parseFloat(e.target.min)
-    const step = parseFloat(e.target.step)
-
-    if (amount >= min && amount <= max) {
-      const roundedAmount = Number(amount.toFixed(2))
-      const steps = Math.round((roundedAmount - min) / step)
-      const adjustedAmount = Number((min + steps * step).toFixed(2))
-
-      setAmount(adjustedAmount)
-    }
+  const handleAmountBlur = () => {
+    setAmountInput(toAmountInput(parseAmount(amountInput, language), language))
   }
 
   const handleTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -116,14 +95,14 @@ export const useExpensesForm = ({
 
     onSubmit?.({
       name,
-      amount,
+      amount: parseAmount(amountInput, language),
       title,
       date: date ? new Date(date).getTime() : undefined,
       sharedWith: sharedWithEveryone ? [] : sharedWith,
     })
 
     setName('')
-    setAmount(0)
+    setAmountInput('')
     setExtraNames([])
     setExcludedNames([])
     closeModal?.()
@@ -136,8 +115,9 @@ export const useExpensesForm = ({
   return {
     name,
     handleName,
-    amount,
+    amountInput,
     handleAmount,
+    handleAmountBlur,
     title,
     handleTitle,
     date,

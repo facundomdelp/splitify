@@ -73,6 +73,7 @@ export default function Home() {
         onBalancesClick={handleCalculateBalances}
         disabled={convertToGroupState.loading}
         disabledBalances={disabledBalances}
+        disabledReset={!expenses.length}
         onResetExpenses={handleResetExpenses}
         contextMenu={
           !convertToGroupState.loading ? (

@@ -56,8 +56,9 @@ const ExpenseForm = ({
   const {
     name,
     handleName,
-    amount,
+    amountInput,
     handleAmount,
+    handleAmountBlur,
     title,
     handleTitle,
     date,
@@ -105,14 +106,14 @@ const ExpenseForm = ({
                 <span className='absolute top-1/2 left-2 -translate-y-1/2 text-sm leading-4 text-gray-500'>$</span>
                 <Input
                   className='pl-6 text-sm'
-                  type='number'
+                  type='text'
+                  inputMode='decimal'
                   name='amount'
                   aria-label={t('Amount')}
-                  max={1000000000}
-                  min={0}
-                  step={0.01}
+                  placeholder='0'
                   onChange={handleAmount}
-                  value={amount}
+                  onBlur={handleAmountBlur}
+                  value={amountInput}
                   disabled={disabled}
                 />
               </div>
