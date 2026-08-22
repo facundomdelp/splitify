@@ -24,7 +24,7 @@ const DrawerModal = ({ open, setOpen, title, description, children, className }:
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className={cn('text-gray-700 sm:max-w-[425px]', className)}>
+        <DialogContent className={cn('max-h-[85dvh] overflow-y-auto text-gray-700 sm:max-w-[425px]', className)}>
           <DialogHeader>
             <DialogTitle>{title}</DialogTitle>
             <DialogDescription>{description}</DialogDescription>
@@ -55,7 +55,7 @@ const DrawerModal = ({ open, setOpen, title, description, children, className }:
           <span className='sr-only'>Close</span>
         </Close>
 
-        {children}
+        <div className='min-h-0 flex-1 overflow-y-auto overscroll-contain'>{children}</div>
       </DrawerContent>
     </Drawer>
   )
