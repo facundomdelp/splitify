@@ -55,7 +55,7 @@ const DrawerModal = ({ open, setOpen, title, description, children, className }:
           <span className='sr-only'>Close</span>
         </Close>
 
-        <div className='min-h-0 flex-1 overflow-y-auto overscroll-contain'>{children}</div>
+        <div className='-mx-2 min-h-0 flex-1 overflow-y-auto overscroll-contain px-2'>{children}</div>
       </DrawerContent>
     </Drawer>
   )
