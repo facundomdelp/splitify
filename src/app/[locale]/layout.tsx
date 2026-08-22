@@ -17,7 +17,11 @@ import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] })
 
-export const viewport: Viewport = { themeColor: '#22C55E', colorScheme: 'light' }
+export const viewport: Viewport = {
+  themeColor: '#22C55E',
+  colorScheme: 'light',
+  interactiveWidget: 'resizes-content',
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params
