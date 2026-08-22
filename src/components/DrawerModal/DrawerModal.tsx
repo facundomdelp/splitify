@@ -44,7 +44,7 @@ const DrawerModal = ({ open, setOpen, title, description, children, className }:
       // setActiveSnapPoint={setActiveSnapPoint}
       // fadeFromIndex={0}
     >
-      <DrawerContent className={cn('pb-3 text-gray-700', className)}>
+      <DrawerContent className={cn('max-h-[85dvh] pb-3 text-gray-700', className)}>
         <DrawerHeader className='px-0 text-left'>
           <DrawerTitle>{title}</DrawerTitle>
           <DrawerDescription>{description}</DrawerDescription>
