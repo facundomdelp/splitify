@@ -47,6 +47,7 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
     const result = await groupService.updateGroup({
       groupId: groupIdData.groupId,
       name: data.name,
+      currency: data.currency,
     })
 
     return NextResponse.json({ group: result }, { status: 200 })

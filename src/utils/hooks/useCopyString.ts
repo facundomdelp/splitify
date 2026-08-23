@@ -1,8 +1,10 @@
 import { useMemo } from 'react'
 
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 
 import { Balance } from '@/types/balance-types'
+
+import { useResolvedCurrency } from '@/components/CurrencyProvider'
 
 import { formatAmount } from '../functions/formatAmount'
 import { useGetEmojiFromString } from './useGetEmojiFromString'
@@ -14,6 +16,8 @@ interface useCopyStringProps {
 
 export const useCopyString = ({ balances, rounded }: useCopyStringProps) => {
   const getEmojiFromString = useGetEmojiFromString()
+  const locale = useLocale()
+  const currency = useResolvedCurrency()
   const t = useTranslations('useCopyString')
 
   return useMemo(
@@ -21,10 +25,10 @@ export const useCopyString = ({ balances, rounded }: useCopyStringProps) => {
       [
         ...balances.map(
           (balance) =>
-            `${getEmojiFromString(balance.debtor)} ${balance.debtor} ${t('owes')} $${formatAmount(balance.amount, navigator.language || navigator.languages[0], rounded ? 0 : 2)} ${t('to')} ${getEmojiFromString(balance.creditor)} ${balance.creditor}`,
+            `${getEmojiFromString(balance.debtor)} ${balance.debtor} ${t('owes')} ${formatAmount(balance.amount, { language: locale, fractionDigits: rounded ? 0 : 2, currency })} ${t('to')} ${getEmojiFromString(balance.creditor)} ${balance.creditor}`,
         ),
         '\nhttps://splitify.me',
       ].join('\n'),
-    [balances, getEmojiFromString, t, rounded],
+    [balances, getEmojiFromString, t, rounded, locale, currency],
   )
 }

@@ -4,11 +4,14 @@ import { useParams, useRouter } from 'next/navigation'
 
 import { Locale } from '@/types/common-types'
 
+import { useGetCurrency } from '@/utils/hooks/useCurrency'
+
 export const useAddNewGroup = () => {
   const [newGroupState, setNewGroupState] = useState({ loading: false, error: false })
 
   const router = useRouter()
   const { locale } = useParams<{ locale: Locale }>()
+  const currency = useGetCurrency()
 
   const addNewGroup = useCallback(async () => {
     setNewGroupState({ error: false, loading: true })
@@ -17,7 +20,7 @@ export const useAddNewGroup = () => {
       const response = await fetch('/api/groups', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({}),
+        body: JSON.stringify({ currency }),
       })
 
       const data = await response.json()
@@ -29,7 +32,7 @@ export const useAddNewGroup = () => {
         setNewGroupState((prev) => ({ ...prev, loading: false }))
       }, 500)
     }
-  }, [locale, router])
+  }, [currency, locale, router])
 
   return { newGroupState, addNewGroup }
 }

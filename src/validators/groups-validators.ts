@@ -3,6 +3,10 @@ import { z } from 'zod'
 import { ValidationResult } from '@/types/common-types'
 import { AddGroupRequestBody, UpdateGroupRequestBody } from '@/types/group-types'
 
+import { AVAILABLE_CURRENCIES } from '@/utils/constants/availableCurrencies'
+
+const currencySchema = z.enum(AVAILABLE_CURRENCIES, { message: 'Unsupported currency' }).optional()
+
 const validateGroupIdSchema = z.object({
   groupId: z
     .string()
@@ -26,6 +30,7 @@ export const validateGroupId = ({ groupId }: Partial<{ groupId: string }>): Vali
 
 const addGroupSchema = z.object({
   name: z.string().max(100, 'Group name is too long').optional(),
+  currency: currencySchema,
 })
 
 export const validateAddGroup = (body: Partial<AddGroupRequestBody>): ValidationResult<AddGroupRequestBody> => {
@@ -44,6 +49,7 @@ export const validateAddGroup = (body: Partial<AddGroupRequestBody>): Validation
 
 const updateGroupSchema = z.object({
   name: z.string().max(100, 'Group name is too long').optional(),
+  currency: currencySchema,
 })
 
 export const validateUpdateGroup = (

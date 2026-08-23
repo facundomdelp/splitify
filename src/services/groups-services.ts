@@ -7,20 +7,20 @@ import { generateRandomName } from '@/utils/functions/generateRandomName'
 const groups = new Groups()
 
 class GroupService {
-  async addGroup({ name, locale }: { name?: string; locale?: Locale }) {
+  async addGroup({ name, locale, currency }: { name?: string; locale?: Locale; currency?: string }) {
     if (!name) {
       name = generateRandomName(locale)
     }
 
-    return groups.addGroup({ name })
+    return groups.addGroup({ name, currency })
   }
 
   async getGroup(groupId: string) {
     return groups.getGroup(groupId)
   }
 
-  async updateGroup({ groupId, name }: { groupId: string; name?: string }) {
-    return groups.updateGroup({ groupId, name })
+  async updateGroup({ groupId, name, currency }: { groupId: string; name?: string; currency?: string }) {
+    return groups.updateGroup({ groupId, name, currency })
   }
 }
 

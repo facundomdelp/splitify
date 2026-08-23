@@ -65,3 +65,34 @@ export const useUpdateGroupName = ({ groupId }: useUpdateGroupName) => {
 
   return { handleEditGroupName, groupName }
 }
+
+interface useUpdateGroupCurrency {
+  groupId?: string
+}
+export const useUpdateGroupCurrency = ({ groupId }: useUpdateGroupCurrency) => {
+  const { groups, setGroups } = useSetGroups()
+
+  const handleEditGroupCurrency = async (currency: string) => {
+    const originalGroups = structuredClone(groups)
+
+    setGroups(groups.map((group) => (group.id === groupId ? { ...group, currency } : group)))
+
+    try {
+      const response = await fetch(`/api/groups/${groupId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ currency }),
+      })
+
+      if (!response.ok) {
+        throw new CustomError(response.status)
+      }
+    } catch {
+      setGroups(originalGroups)
+    }
+  }
+
+  const groupCurrency = useMemo(() => groups.find((group) => group.id === groupId)?.currency, [groupId, groups])
+
+  return { handleEditGroupCurrency, groupCurrency }
+}

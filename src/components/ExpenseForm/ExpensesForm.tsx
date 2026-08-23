@@ -57,6 +57,7 @@ const ExpenseForm = ({
     name,
     handleName,
     amountInput,
+    currencySymbol,
     handleAmount,
     handleAmountBlur,
     title,
@@ -103,7 +104,9 @@ const ExpenseForm = ({
 
             <div className='ml-auto flex flex-1 grow gap-4'>
               <div className={cn('relative ml-auto min-w-22 flex-1', !fullForm ? 'max-w-24' : '')}>
-                <span className='absolute top-1/2 left-2 -translate-y-1/2 text-sm leading-4 text-gray-500'>$</span>
+                <span className='absolute top-1/2 left-2 -translate-y-1/2 text-sm leading-4 text-gray-500'>
+                  {currencySymbol}
+                </span>
                 <Input
                   className='pl-6 text-sm'
                   type='text'

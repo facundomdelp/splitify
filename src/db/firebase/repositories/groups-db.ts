@@ -24,12 +24,13 @@ class Groups {
     return data
   }
 
-  async addGroup({ name }: { name: string }) {
+  async addGroup({ name, currency }: { name: string; currency?: string }) {
     return (
       await addDoc(this.groupCollection, {
         createdAt: Timestamp.fromDate(new Date()),
         deletedAt: null,
         name,
+        currency: currency || null,
       })
     ).id
   }
@@ -53,10 +54,11 @@ class Groups {
     }
   }
 
-  async updateGroup({ groupId, name }: { groupId: string; name?: string }) {
+  async updateGroup({ groupId, name, currency }: { groupId: string; name?: string; currency?: string }) {
     const groupRef = this.getGroupRef(groupId)
     return await updateDoc(groupRef, {
-      name,
+      ...(name !== undefined ? { name } : {}),
+      ...(currency !== undefined ? { currency } : {}),
     })
   }
 }

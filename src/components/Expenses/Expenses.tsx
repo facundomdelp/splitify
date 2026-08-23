@@ -63,7 +63,7 @@ const Expenses = ({ expenses, participants, onRemoveExpense, onEditExpense, load
             <li className='mt-auto flex justify-between py-3 font-semibold'>
               <p>TOTAL</p>
               <p>
-                $ <Amount>{expenses.reduce((acc, cv) => acc + cv.amount, 0)}</Amount>
+                <Amount>{expenses.reduce((acc, cv) => acc + cv.amount, 0)}</Amount>
               </p>
             </li>
           </ul>

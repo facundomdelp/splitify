@@ -10,13 +10,18 @@ export const getAmountSeparators = (language?: string) => {
   }
 }
 
+const ARABIC_DIGITS = /[٠-٩۰-۹]/g
+
+const toAsciiDigits = (value: string) => value.replace(ARABIC_DIGITS, (digit) => String(digit.charCodeAt(0) & 0xf))
+
 export const sanitizeAmountInput = (value: string, language?: string): string => {
   const { decimal } = getAmountSeparators(language)
 
-  const [whole = '', ...decimals] = value
-    .replace(/[^\d.,]/g, '')
-    .replace(/[.,]/g, decimal)
-    .split(decimal)
+  const digitsOnly = toAsciiDigits(value).replace(/[^\d.,]/g, '')
+  const separator = decimal === '.' ? ',' : '.'
+  const withoutGroups = digitsOnly.includes(decimal) ? digitsOnly.split(separator).join('') : digitsOnly
+
+  const [whole = '', ...decimals] = withoutGroups.replace(/[.,]/g, decimal).split(decimal)
 
   const trimmedWhole = whole.replace(/^0+(?=\d)/, '')
   const sanitized = decimals.length

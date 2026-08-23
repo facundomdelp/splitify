@@ -18,12 +18,14 @@
   },
   "NavBar": {
     "Discover more!": "Узнайте больше!",
-    "General": "Общие",
     "Install App": "Установить приложение",
     "Language": "Язык",
     "Spliti Quick": "Быстрое разделение",
-    "Spliti Collabs": "Совместное разделение",
-    "Add New Group": "Добавить новую группу"
+    "Add New Group": "Добавить новую группу",
+    "Currency": "Валюта",
+    "Spliti Groups": "Spliti Groups",
+    "Settings": "Настройки",
+    "Add it to your home screen": "Добавьте на главный экран"
   },
   "LocaleSelectorModal": {
     "Language": "Язык",
@@ -52,7 +54,8 @@
     "Your friends would be able to easily add expenses to this group": "Ваши друзья смогут легко добавлять расходы в эту группу.",
     "I invite you to collaborate in the group 🤝": "Приглашаю вас к сотрудничеству в группе 🤝",
     "Are you sure you want to remove this group?": "Вы уверены, что хотите удалить эту группу?",
-    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want": "Удаление этой группы не удалит ее, вы просто перестанете ее видеть. Вы можете снова использовать ссылку для доступа к ней в любое время."
+    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want": "Удаление этой группы не удалит ее, вы просто перестанете ее видеть. Вы можете снова использовать ссылку для доступа к ней в любое время.",
+    "Currency": "Валюта"
   },
   "Balances": {
     "Balances": "Балансы",
@@ -159,5 +162,11 @@
     "Yes, you can easily create a group, add your friends, and start splitting expenses together": "Да, вы можете легко создать группу, добавить друзей и начать вместе делить расходы. Это идеально подходит для совместных ужинов, поездок и многого другого!",
     "Can I add details to each expense?": "Могу ли я добавить детали к каждому расходу?",
     "Yes, you can add more details such as the expense date, description, and even categorize the expense for better tracking": "Да, вы можете добавить больше деталей, таких как дата расхода, описание и даже классифицировать расход для лучшего отслеживания."
+  },
+  "CurrencyModal": {
+    "Currency": "Валюта",
+    "Only changes how amounts are shown, nothing is converted": "Меняется только отображение сумм, ничего не конвертируется",
+    "Change the currency to {currency}?": "Изменить валюту на {currency}?",
+    "Amounts stay the same and this changes it for everyone in the group": "Суммы остаются прежними, изменение коснётся всех в группе"
   }
 }

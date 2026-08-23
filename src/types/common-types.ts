@@ -4,6 +4,7 @@ export type Metadata = {
   isLoaded: boolean
   emojiHash?: number
   hideTitleBanner?: boolean
+  currency?: string
 }
 
 export interface GeoLocation {

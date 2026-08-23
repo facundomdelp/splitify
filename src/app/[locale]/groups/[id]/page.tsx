@@ -8,6 +8,7 @@ import { Balance } from '@/types/balance-types'
 
 import GroupsContextMenu from './_components/GroupsContextMenu'
 import BalancesSection from '@/components/BalancesSection'
+import CurrencyProvider from '@/components/CurrencyProvider'
 import ExpensesBalancesTabs from '@/components/ExpensesBalancesTabs'
 import ExpensesSection from '@/components/ExpensesSection'
 import Tooltip from '@/components/Tooltip'
@@ -48,7 +49,7 @@ const GroupPage = () => {
   const t = useTranslations('GroupPage')
 
   return (
-    <>
+    <CurrencyProvider currency={group?.currency}>
       <main className='text-dark my-6 flex w-full max-w-[600px] flex-col space-y-6'>
         {group && ( // Handle Group error
           <>
@@ -64,7 +65,7 @@ const GroupPage = () => {
                 <div className='absolute right-2'>
                   <Tooltip content={t('Collaborate in Group!')} align='end' arrow openOnce>
                     <div>
-                      <GroupsContextMenu groupId={group.id} />
+                      <GroupsContextMenu groupId={group.id} hasExpenses={expenses.length > 0} />
                     </div>
                   </Tooltip>
                 </div>
@@ -97,7 +98,7 @@ const GroupPage = () => {
           </>
         )}
       </main>
-    </>
+    </CurrencyProvider>
   )
 }
 

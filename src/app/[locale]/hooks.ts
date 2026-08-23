@@ -9,6 +9,7 @@ import { useSetMetadata } from '@/store/metadata-store'
 
 import { CustomError } from '@/utils/errors/CustomErrors'
 import { generateId } from '@/utils/functions/generateId'
+import { useGetCurrency } from '@/utils/hooks/useCurrency'
 
 interface useAddExpenseProps {
   setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>
@@ -32,6 +33,8 @@ interface useConvertIntoGroupProps {
 }
 
 export const useConvertIntoGroup = ({ setExpenses, setBalances }: useConvertIntoGroupProps) => {
+  const currency = useGetCurrency()
+
   const [convertToGroupState, setConvertToGroupState] = useState({
     loading: false,
     error: false,
@@ -46,7 +49,7 @@ export const useConvertIntoGroup = ({ setExpenses, setBalances }: useConvertInto
         const addGroupResponse = await fetch('/api/groups', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({}),
+          body: JSON.stringify({ currency }),
         })
 
         if (!addGroupResponse.ok) {
@@ -87,7 +90,7 @@ export const useConvertIntoGroup = ({ setExpenses, setBalances }: useConvertInto
         }, 500)
       }
     },
-    [router, setBalances, setExpenses],
+    [currency, router, setBalances, setExpenses],
   )
 
   return { convertIntoGroup, convertToGroupState }

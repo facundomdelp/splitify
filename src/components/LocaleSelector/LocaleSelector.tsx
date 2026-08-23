@@ -5,7 +5,6 @@ import { useMediaQuery } from 'usehooks-ts'
 import { useState } from 'react'
 
 import { useLocale } from 'next-intl'
-import Image from 'next/image'
 
 import { usePathname, useRouter } from '@/i18n/routing'
 
@@ -39,12 +38,9 @@ const LocaleSelector = () => {
           <SelectValue placeholder='Language' />
         </SelectTrigger>
         <SelectContent>
-          {AVAILABLE_LOCALES.map(({ locale, description, src }) => (
+          {AVAILABLE_LOCALES.map(({ locale, description }) => (
             <SelectItem key={locale} value={locale}>
-              <div className='flex items-center gap-2'>
-                <Image src={src} alt={description} width={16} height={16} className='rounded-full' />
-                <p>{description}</p>
-              </div>
+              {description}
             </SelectItem>
           ))}
         </SelectContent>
@@ -58,18 +54,7 @@ const LocaleSelector = () => {
         onClick={() => setOpen(true)}
         className='border-input flex h-9 w-full items-center gap-2 rounded-md border bg-transparent px-3 py-1 text-sm shadow-xs'
       >
-        {currentLocale && (
-          <>
-            <Image
-              src={currentLocale.src}
-              alt={currentLocale.description}
-              width={16}
-              height={16}
-              className='rounded-full'
-            />
-            <span>{currentLocale.description}</span>
-          </>
-        )}
+        {currentLocale && <span>{currentLocale.description}</span>}
       </button>
 
       <Drawer open={open} onOpenChange={setOpen}>
@@ -79,13 +64,12 @@ const LocaleSelector = () => {
             <DrawerDescription className='sr-only'>Select your preferred language</DrawerDescription>
           </DrawerHeader>
           <div className='flex flex-col px-4'>
-            {AVAILABLE_LOCALES.map(({ locale: loc, description, src }) => (
+            {AVAILABLE_LOCALES.map(({ locale: loc, description }) => (
               <button
                 key={loc}
                 onClick={() => setLocale(loc as Locale)}
                 className='hover:bg-accent flex items-center gap-3 rounded-md px-3 py-2.5 text-left'
               >
-                <Image src={src} alt={description} width={20} height={20} className='rounded-full' />
                 <span className='flex-1 text-sm'>{description}</span>
                 {locale === loc && <Check className='text-primary h-4 w-4' />}
               </button>

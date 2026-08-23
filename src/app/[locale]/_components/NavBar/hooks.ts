@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useRouter } from '@/i18n/routing'
 
 import { CustomError } from '@/utils/errors/CustomErrors'
+import { useGetCurrency } from '@/utils/hooks/useCurrency'
 
 interface useHandleNavigationProps {
   setDrawerOpen: React.Dispatch<React.SetStateAction<boolean>>
@@ -32,6 +33,8 @@ interface useAddNewGroupProps {
 }
 
 export const useAddNewGroup = ({ setDrawerOpen }: useAddNewGroupProps) => {
+  const currency = useGetCurrency()
+
   const [newGroupState, setNewGroupState] = useState({ loading: false, error: false })
 
   const router = useRouter()
@@ -43,7 +46,7 @@ export const useAddNewGroup = ({ setDrawerOpen }: useAddNewGroupProps) => {
       const response = await fetch('/api/groups', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({}),
+        body: JSON.stringify({ currency }),
       })
 
       const data = await response.json()

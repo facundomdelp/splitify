@@ -7,6 +7,8 @@ import Image from 'next/image'
 
 import { cn } from '@/lib/utils'
 
+import Callout from '@/components/Callout'
+import CurrencyModal from '@/components/CurrencyModal'
 import { Button } from '@/components/ui/button'
 import {
   Drawer,
@@ -19,10 +21,11 @@ import {
 
 import { useSetGroups } from '@/store/groups-store'
 
+import { useInitCurrency, useSetCurrency } from '@/utils/hooks/useCurrency'
 import { useGetEmojiFromString } from '@/utils/hooks/useGetEmojiFromString'
 import { usePWAInstall } from '@/utils/hooks/usePWAInstall'
 
-import { Globe, HandCoinsIcon, LucideProps, MenuIcon, RocketIcon } from 'lucide-react'
+import { Coins, Globe, HandCoinsIcon, LucideProps, MenuIcon, RocketIcon } from 'lucide-react'
 
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 
@@ -48,6 +51,10 @@ const NavBar = ({
 
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [localeModalOpen, setLocaleModalOpen] = useState(false)
+  const [currencyModalOpen, setCurrencyModalOpen] = useState(false)
+
+  useInitCurrency()
+  const { currency, setCurrency } = useSetCurrency()
 
   const { handleNavigation } = useHandleNavigation({ setDrawerOpen })
   const { isInstallable, handleInstallClick } = usePWAInstall()
@@ -61,6 +68,12 @@ const NavBar = ({
   return (
     <>
       <LocaleSelectorModal open={localeModalOpen} setOpen={setLocaleModalOpen} />
+      <CurrencyModal
+        open={currencyModalOpen}
+        setOpen={setCurrencyModalOpen}
+        currency={currency}
+        onSelect={setCurrency}
+      />
 
       <Drawer direction={direction} open={drawerOpen} onOpenChange={setDrawerOpen}>
         <DrawerTrigger asChild className={className}>
@@ -92,45 +105,30 @@ const NavBar = ({
           </header>
 
           <main className='flex flex-1 flex-col gap-8 p-8'>
+            {isInstallable && (
+              <Callout
+                icon={RocketIcon}
+                title={t('Install App')}
+                description={t('Add it to your home screen')}
+                onClick={handleInstallClick}
+                disabled={newGroupState.loading}
+              />
+            )}
+
             <nav className='space-y-9'>
-              <NavSection title={t('General')}>
-                {isInstallable && (
-                  <NavItem key='pwa' icon={RocketIcon} onClick={handleInstallClick} disabled={newGroupState.loading}>
-                    {t('Install App')}
-                  </NavItem>
-                )}
+              <NavSection title={t('Spliti Quick')}>
                 <NavItem
-                  key='language'
-                  icon={Globe}
-                  onClick={() => setLocaleModalOpen(true)}
+                  key='spliti-quick'
+                  emoji='⚡'
+                  href='/'
+                  handleNavigation={handleNavigation}
                   disabled={newGroupState.loading}
                 >
-                  {t('Language')}
+                  {t('Spliti Quick')}
                 </NavItem>
               </NavSection>
 
-              <NavSection title='Spliti'>
-                {[
-                  {
-                    slug: 'spliti-quick',
-                    emoji: '⚡',
-                    name: `${t('Spliti Quick')}`,
-                    href: `/`,
-                  },
-                ].map(({ slug, emoji, name, href }) => (
-                  <NavItem
-                    key={slug}
-                    emoji={emoji}
-                    href={href}
-                    handleNavigation={handleNavigation}
-                    disabled={newGroupState.loading}
-                  >
-                    {name}
-                  </NavItem>
-                ))}
-              </NavSection>
-
-              <NavSection title={`${t('Spliti Collabs')} ✈️`}>
+              <NavSection title={`${t('Spliti Groups')} ✈️`}>
                 {[
                   {
                     slug: 'add-new-group',
@@ -153,6 +151,25 @@ const NavBar = ({
                     {name}
                   </NavItem>
                 ))}
+              </NavSection>
+
+              <NavSection title={t('Settings')}>
+                <NavItem
+                  key='language'
+                  icon={Globe}
+                  onClick={() => setLocaleModalOpen(true)}
+                  disabled={newGroupState.loading}
+                >
+                  {t('Language')}
+                </NavItem>
+                <NavItem
+                  key='currency'
+                  icon={Coins}
+                  onClick={() => setCurrencyModalOpen(true)}
+                  disabled={newGroupState.loading}
+                >
+                  {t('Currency')}
+                </NavItem>
               </NavSection>
             </nav>
           </main>

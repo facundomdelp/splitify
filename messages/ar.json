@@ -18,12 +18,14 @@
   },
   "NavBar": {
     "Discover more!": "اكتشف المزيد!",
-    "General": "عام",
     "Install App": "تثبيت التطبيق",
     "Language": "اللغة",
     "Spliti Quick": "تقسيم سريع",
-    "Spliti Collabs": "تقسيم تعاوني",
-    "Add New Group": "إضافة مجموعة جديدة"
+    "Add New Group": "إضافة مجموعة جديدة",
+    "Currency": "العملة",
+    "Spliti Groups": "Spliti Groups",
+    "Settings": "الإعدادات",
+    "Add it to your home screen": "أضفه إلى شاشتك الرئيسية"
   },
   "LocaleSelectorModal": {
     "Language": "اللغة",
@@ -52,7 +54,8 @@
     "Your friends would be able to easily add expenses to this group": "سيتمكن أصدقاؤك من إضافة النفقات إلى هذه المجموعة بسهولة.",
     "I invite you to collaborate in the group 🤝": "أدعوك للتعاون في المجموعة 🤝",
     "Are you sure you want to remove this group?": "هل أنت متأكد أنك تريد إزالة هذه المجموعة؟",
-    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want": "إزالة هذه المجموعة لن تحذفها، ستتوقف فقط عن رؤيتها. يمكنك استخدام الرابط مرة أخرى للوصول إليها متى شئت."
+    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want": "إزالة هذه المجموعة لن تحذفها، ستتوقف فقط عن رؤيتها. يمكنك استخدام الرابط مرة أخرى للوصول إليها متى شئت.",
+    "Currency": "العملة"
   },
   "Balances": {
     "Balances": "الأرصدة",
@@ -159,5 +162,11 @@
     "Yes, you can easily create a group, add your friends, and start splitting expenses together": "نعم، يمكنك بسهولة إنشاء مجموعة وإضافة أصدقائك والبدء في تقسيم النفقات معاً. إنه مثالي للعشاء المشترك والرحلات وغيرها!",
     "Can I add details to each expense?": "هل يمكنني إضافة تفاصيل لكل نفقة؟",
     "Yes, you can add more details such as the expense date, description, and even categorize the expense for better tracking": "نعم، يمكنك إضافة المزيد من التفاصيل مثل تاريخ النفقة والوصف، وحتى تصنيف النفقة لتتبع أفضل."
+  },
+  "CurrencyModal": {
+    "Currency": "العملة",
+    "Only changes how amounts are shown, nothing is converted": "يغيّر طريقة عرض المبالغ فقط، ولا يتم تحويل أي شيء",
+    "Change the currency to {currency}?": "تغيير العملة إلى {currency}؟",
+    "Amounts stay the same and this changes it for everyone in the group": "تبقى المبالغ كما هي ويسري هذا التغيير على الجميع في المجموعة"
   }
 }

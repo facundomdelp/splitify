@@ -18,12 +18,14 @@
   },
   "NavBar": {
     "Discover more!": "Découvrez plus !",
-    "General": "Général",
     "Install App": "Installer l'application",
     "Language": "Langue",
     "Spliti Quick": "Partage rapide",
-    "Spliti Collabs": "Partage collaboratif",
-    "Add New Group": "Ajouter un nouveau groupe"
+    "Add New Group": "Ajouter un nouveau groupe",
+    "Currency": "Devise",
+    "Spliti Groups": "Spliti Groups",
+    "Settings": "Paramètres",
+    "Add it to your home screen": "Ajoutez-le à votre écran d'accueil"
   },
   "LocaleSelectorModal": {
     "Language": "Langue",
@@ -52,7 +54,8 @@
     "Your friends would be able to easily add expenses to this group": "Vos amis pourront facilement ajouter des dépenses à ce groupe.",
     "I invite you to collaborate in the group 🤝": "Je vous invite à collaborer dans le groupe 🤝",
     "Are you sure you want to remove this group?": "Êtes-vous sûr de vouloir supprimer ce groupe ?",
-    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want": "Supprimer ce groupe ne le supprimera pas, vous cesserez simplement de le voir. Vous pouvez utiliser à nouveau le lien pour y accéder quand vous le souhaitez."
+    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want": "Supprimer ce groupe ne le supprimera pas, vous cesserez simplement de le voir. Vous pouvez utiliser à nouveau le lien pour y accéder quand vous le souhaitez.",
+    "Currency": "Devise"
   },
   "Balances": {
     "Balances": "Soldes",
@@ -159,5 +162,11 @@
     "Yes, you can easily create a group, add your friends, and start splitting expenses together": "Oui, vous pouvez facilement créer un groupe, ajouter vos amis et commencer à partager les dépenses ensemble. C'est parfait pour les dîners partagés, les voyages et plus encore !",
     "Can I add details to each expense?": "Puis-je ajouter des détails à chaque dépense ?",
     "Yes, you can add more details such as the expense date, description, and even categorize the expense for better tracking": "Oui, vous pouvez ajouter plus de détails tels que la date de la dépense, la description et même catégoriser la dépense pour un meilleur suivi."
+  },
+  "CurrencyModal": {
+    "Currency": "Devise",
+    "Only changes how amounts are shown, nothing is converted": "Change seulement l'affichage des montants, rien n'est converti",
+    "Change the currency to {currency}?": "Changer la devise pour {currency} ?",
+    "Amounts stay the same and this changes it for everyone in the group": "Les montants restent identiques et cela change pour tout le groupe"
   }
 }

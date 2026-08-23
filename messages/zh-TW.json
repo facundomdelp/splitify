@@ -18,12 +18,14 @@
   },
   "NavBar": {
     "Discover more!": "了解更多！",
-    "General": "一般",
     "Install App": "安裝應用程式",
     "Language": "語言",
     "Spliti Quick": "快速分帳",
-    "Spliti Collabs": "協作分帳",
-    "Add New Group": "新增群組"
+    "Add New Group": "新增群組",
+    "Currency": "貨幣",
+    "Spliti Groups": "Spliti Groups",
+    "Settings": "設定",
+    "Add it to your home screen": "加入主畫面"
   },
   "LocaleSelectorModal": {
     "Language": "語言",
@@ -52,7 +54,8 @@
     "Your friends would be able to easily add expenses to this group": "您的朋友可以輕鬆地向此團體新增費用。",
     "I invite you to collaborate in the group 🤝": "我邀請您在團體中協作 🤝",
     "Are you sure you want to remove this group?": "您確定要刪除此團體嗎？",
-    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want": "刪除此團體不會刪除它，您只是不再看到它。您可以隨時再次使用連結存取它。"
+    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want": "刪除此團體不會刪除它，您只是不再看到它。您可以隨時再次使用連結存取它。",
+    "Currency": "貨幣"
   },
   "Balances": {
     "Balances": "餘額",
@@ -159,5 +162,11 @@
     "Yes, you can easily create a group, add your friends, and start splitting expenses together": "是的，您可以輕鬆建立團體，新增朋友，並開始一起分攤費用。非常適合聚餐、旅行等！",
     "Can I add details to each expense?": "我可以為每筆費用新增詳細資訊嗎？",
     "Yes, you can add more details such as the expense date, description, and even categorize the expense for better tracking": "是的，您可以新增更多詳細資訊，例如費用日期、描述，甚至可以對費用進行分類以便更好地追蹤。"
+  },
+  "CurrencyModal": {
+    "Currency": "貨幣",
+    "Only changes how amounts are shown, nothing is converted": "僅改變金額的顯示方式，不會進行換算",
+    "Change the currency to {currency}?": "將貨幣改為 {currency}？",
+    "Amounts stay the same and this changes it for everyone in the group": "金額保持不變，此變更對群組中的所有人生效"
   }
 }

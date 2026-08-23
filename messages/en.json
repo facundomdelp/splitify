@@ -5,7 +5,7 @@
     "keywords": "bill split calculator, split the bill calculator, split bill calculator, split bill, bill split"
   },
   "Home": {
-    "Simplify your group expenses with Splitify 🤑": "Simplify your group expenses with Splitify\u00A0🤑",
+    "Simplify your group expenses with Splitify 🤑": "Simplify your group expenses with Splitify 🤑",
     "💸 How does it work?": "💸 How does it work?",
     "Just enter each participant's name and how much they spent": "Just enter each participant's name and how much they spent (it can be $0). Then, click \"Calculate Balances\", and Splitify will optimize the number of transfers needed."
   },
@@ -18,12 +18,14 @@
   },
   "NavBar": {
     "Discover more!": "Discover more!",
-    "General": "General",
     "Install App": "Install App",
     "Language": "Language",
     "Spliti Quick": "Spliti Quick",
-    "Spliti Collabs": "Spliti Collabs",
-    "Add New Group": "Add New Group"
+    "Add New Group": "Add New Group",
+    "Currency": "Currency",
+    "Spliti Groups": "Spliti Groups",
+    "Settings": "Settings",
+    "Add it to your home screen": "Add it to your home screen"
   },
   "LocaleSelectorModal": {
     "Language": "Language",
@@ -48,11 +50,12 @@
     "Collaborate in Group": "Collaborate in Group",
     "Remove Group": "Remove Group",
     "Edit Name": "Edit Name",
-    "🤑 Copy this link and share it with your friends! 💸": "🤑 Copy this link and share it with your friends!\u00A0💸",
+    "🤑 Copy this link and share it with your friends! 💸": "🤑 Copy this link and share it with your friends! 💸",
     "Your friends would be able to easily add expenses to this group": "Your friends can easily add expenses to this group.",
     "I invite you to collaborate in the group 🤝": "I invite you to collaborate in the group 🤝",
     "Are you sure you want to remove this group?": "Are you sure you want to remove this group?",
-    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want": "Removing this group won't delete it, you will simply stop seeing it. You can use the link again to access it whenever you want."
+    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want": "Removing this group won't delete it, you will simply stop seeing it. You can use the link again to access it whenever you want.",
+    "Currency": "Currency"
   },
   "Balances": {
     "Balances": "Balances",
@@ -159,5 +162,11 @@
     "Yes, you can easily create a group, add your friends, and start splitting expenses together": "Yes, you can easily create a group, add your friends, and start splitting expenses together. It's perfect for shared dinners, trips, and more!",
     "Can I add details to each expense?": "Can I add details to each expense?",
     "Yes, you can add more details such as the expense date, description, and even categorize the expense for better tracking": "Yes, you can add more details such as the expense date, description, and even categorize the expense for better tracking."
+  },
+  "CurrencyModal": {
+    "Currency": "Currency",
+    "Only changes how amounts are shown, nothing is converted": "Only changes how amounts are shown, nothing is converted",
+    "Change the currency to {currency}?": "Change the currency to {currency}?",
+    "Amounts stay the same and this changes it for everyone in the group": "Amounts stay the same and this changes it for everyone in the group"
   }
 }

@@ -1,7 +1,12 @@
 import { useMemo, useState } from 'react'
 
+import { useLocale } from 'next-intl'
+
 import { ExpenseDraft } from '@/types/expense-types'
 
+import { useResolvedCurrency } from '@/components/CurrencyProvider'
+
+import { getCurrencySymbol } from '@/utils/constants/availableCurrencies'
 import { parseAmount, sanitizeAmountInput, toAmountInput } from '@/utils/functions/parseAmount'
 
 interface useExpensesFormProps {
@@ -19,7 +24,9 @@ export const useExpensesForm = ({
   onSubmit,
   closeModal,
 }: useExpensesFormProps) => {
-  const language = typeof navigator !== 'undefined' ? navigator.language : undefined
+  const language = useLocale()
+  const currency = useResolvedCurrency()
+  const currencySymbol = currency ? getCurrencySymbol(currency, language) : '$'
 
   const [name, setName] = useState(initialValues.name)
   const [amountInput, setAmountInput] = useState(() => toAmountInput(initialValues.amount, language))
@@ -113,6 +120,7 @@ export const useExpensesForm = ({
   }
 
   return {
+    currencySymbol,
     name,
     handleName,
     amountInput,

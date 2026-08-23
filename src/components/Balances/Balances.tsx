@@ -45,7 +45,7 @@ const Balances = ({ balances, rounded, setRounded }: Props) => {
                 <p className='min-w-0 overflow-hidden text-ellipsis whitespace-nowrap'>{balance.debtor}</p>
                 <p className='whitespace-nowrap'>{t('owes')}</p>
                 <strong className='font-semibold whitespace-nowrap'>
-                  $<Amount fractionDigits={rounded ? 0 : 2}>{balance.amount}</Amount>
+                  <Amount fractionDigits={rounded ? 0 : 2}>{balance.amount}</Amount>
                 </strong>
               </div>
               <div className='flex min-w-0 items-center gap-1'>

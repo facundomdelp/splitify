@@ -29,6 +29,7 @@ export async function POST(request: NextRequest) {
     const result = await groupService.addGroup({
       locale,
       name: data.name,
+      currency: data.currency,
     })
 
     return NextResponse.json({ message: 'Group created successfully!', group: result }, { status: 201 })

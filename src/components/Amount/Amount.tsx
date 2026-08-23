@@ -1,5 +1,9 @@
 'use client'
 
+import { useLocale } from 'next-intl'
+
+import { useResolvedCurrency } from '@/components/CurrencyProvider'
+
 import { formatAmount } from '@/utils/functions/formatAmount'
 
 interface Props {
@@ -8,7 +12,10 @@ interface Props {
 }
 
 const Amount = ({ children, fractionDigits }: Props) => {
-  return <>{formatAmount(children, navigator.language || navigator.languages[0], fractionDigits)}</>
+  const locale = useLocale()
+  const currency = useResolvedCurrency()
+
+  return <>{formatAmount(children, { language: locale, fractionDigits, currency })}</>
 }
 
 export default Amount

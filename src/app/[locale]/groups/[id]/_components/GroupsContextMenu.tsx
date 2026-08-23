@@ -6,24 +6,28 @@ import ConfirmationModal from '@/components/ConfirmationModal'
 import ContextMenu from '@/components/ContextMenu'
 import { ContextMenuItem } from '@/components/ContextMenu/ContextMenu'
 import CopyToClipboard from '@/components/CopyToClipboard'
+import CurrencyModal from '@/components/CurrencyModal'
 import EditGroupNameModal from '@/components/EditGroupName/EditGroupNameModal'
 import Modal from '@/components/Modal'
 
-import { Edit3, RadioTower, Trash2 } from 'lucide-react'
+import { Coins, Edit3, RadioTower, Trash2 } from 'lucide-react'
 
-import { useRemoveGroup, useUpdateGroupName } from './hooks'
+import { useRemoveGroup, useUpdateGroupCurrency, useUpdateGroupName } from './hooks'
 
 interface Props {
   groupId: string
+  hasExpenses?: boolean
 }
 
-const GroupsContextMenu = ({ groupId }: Props) => {
+const GroupsContextMenu = ({ groupId, hasExpenses }: Props) => {
   const [openShareModal, setOpenShareModal] = useState(false)
   const [openEditGroupNameModal, setOpenEditGroupNameModal] = useState(false)
   const [openRemoveConfirmationModal, setOpenRemoveConfirmationModal] = useState(false)
+  const [openCurrencyModal, setOpenCurrencyModal] = useState(false)
 
   const { handleRemoveGroup } = useRemoveGroup({ groupId })
   const { handleEditGroupName, groupName } = useUpdateGroupName({ groupId })
+  const { handleEditGroupCurrency, groupCurrency } = useUpdateGroupCurrency({ groupId })
 
   const locale = useLocale()
   const t = useTranslations('GroupsContextMenu')
@@ -60,6 +64,16 @@ const GroupsContextMenu = ({ groupId }: Props) => {
         />
       )}
 
+      {openCurrencyModal && (
+        <CurrencyModal
+          open={openCurrencyModal}
+          setOpen={setOpenCurrencyModal}
+          currency={groupCurrency}
+          onSelect={handleEditGroupCurrency}
+          confirmChange={hasExpenses}
+        />
+      )}
+
       {openRemoveConfirmationModal && (
         <ConfirmationModal
           open={openRemoveConfirmationModal}
@@ -79,6 +93,10 @@ const GroupsContextMenu = ({ groupId }: Props) => {
         </ContextMenuItem>
         <ContextMenuItem key='edit-name' onClick={() => setOpenEditGroupNameModal(true)}>
           <Edit3 /> {t('Edit Name')}
+        </ContextMenuItem>
+        <ContextMenuItem key='currency' onClick={() => setOpenCurrencyModal(true)}>
+          <Coins /> {t('Currency')}
+          {groupCurrency && <span className='ml-auto pl-2 text-gray-400'>{groupCurrency}</span>}
         </ContextMenuItem>
         <ContextMenuItem key='remove-group' onClick={() => setOpenRemoveConfirmationModal(true)}>
           <Trash2 /> {t('Remove Group')}

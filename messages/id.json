@@ -18,12 +18,14 @@
   },
   "NavBar": {
     "Discover more!": "Temukan lebih banyak!",
-    "General": "Umum",
     "Install App": "Pasang Aplikasi",
     "Language": "Bahasa",
     "Spliti Quick": "Pembagian Cepat",
-    "Spliti Collabs": "Pembagian Kolaboratif",
-    "Add New Group": "Tambah Grup Baru"
+    "Add New Group": "Tambah Grup Baru",
+    "Currency": "Mata uang",
+    "Spliti Groups": "Spliti Groups",
+    "Settings": "Pengaturan",
+    "Add it to your home screen": "Tambahkan ke layar utama"
   },
   "LocaleSelectorModal": {
     "Language": "Bahasa",
@@ -52,7 +54,8 @@
     "Your friends would be able to easily add expenses to this group": "Teman-teman Anda dapat dengan mudah menambahkan pengeluaran ke grup ini.",
     "I invite you to collaborate in the group 🤝": "Saya mengundang Anda untuk berkolaborasi dalam grup 🤝",
     "Are you sure you want to remove this group?": "Apakah Anda yakin ingin menghapus grup ini?",
-    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want": "Menghapus grup ini tidak akan menghapusnya, Anda hanya akan berhenti melihatnya. Anda dapat menggunakan tautan lagi untuk mengaksesnya kapan pun Anda mau."
+    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want": "Menghapus grup ini tidak akan menghapusnya, Anda hanya akan berhenti melihatnya. Anda dapat menggunakan tautan lagi untuk mengaksesnya kapan pun Anda mau.",
+    "Currency": "Mata uang"
   },
   "Balances": {
     "Balances": "Saldo",
@@ -159,5 +162,11 @@
     "Yes, you can easily create a group, add your friends, and start splitting expenses together": "Ya, Anda dapat dengan mudah membuat grup, menambahkan teman-teman Anda, dan mulai membagi pengeluaran bersama. Sempurna untuk makan malam bersama, perjalanan, dan banyak lagi!",
     "Can I add details to each expense?": "Bisakah saya menambahkan detail ke setiap pengeluaran?",
     "Yes, you can add more details such as the expense date, description, and even categorize the expense for better tracking": "Ya, Anda dapat menambahkan lebih banyak detail seperti tanggal pengeluaran, deskripsi, dan bahkan mengkategorikan pengeluaran untuk pelacakan yang lebih baik."
+  },
+  "CurrencyModal": {
+    "Currency": "Mata uang",
+    "Only changes how amounts are shown, nothing is converted": "Hanya mengubah tampilan jumlah, tidak ada yang dikonversi",
+    "Change the currency to {currency}?": "Ubah mata uang ke {currency}?",
+    "Amounts stay the same and this changes it for everyone in the group": "Jumlahnya tetap sama dan ini berlaku untuk semua orang di grup"
   }
 }

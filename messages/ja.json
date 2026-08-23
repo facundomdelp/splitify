@@ -18,12 +18,14 @@
   },
   "NavBar": {
     "Discover more!": "もっと見る！",
-    "General": "一般",
     "Install App": "アプリをインストール",
     "Language": "言語",
     "Spliti Quick": "クイック分割",
-    "Spliti Collabs": "コラボ分割",
-    "Add New Group": "新しいグループを追加"
+    "Add New Group": "新しいグループを追加",
+    "Currency": "通貨",
+    "Spliti Groups": "Spliti Groups",
+    "Settings": "設定",
+    "Add it to your home screen": "ホーム画面に追加"
   },
   "LocaleSelectorModal": {
     "Language": "言語",
@@ -52,7 +54,8 @@
     "Your friends would be able to easily add expenses to this group": "友達はこのグループに簡単に支出を追加できます。",
     "I invite you to collaborate in the group 🤝": "グループでの協力にご招待します 🤝",
     "Are you sure you want to remove this group?": "このグループを削除してもよろしいですか？",
-    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want": "このグループを削除しても削除されません。表示されなくなるだけです。いつでもリンクを再度使用してアクセスできます。"
+    "Removing this group won't delete it, you will simply stop seeing it You can use the link again to access it whenever you want": "このグループを削除しても削除されません。表示されなくなるだけです。いつでもリンクを再度使用してアクセスできます。",
+    "Currency": "通貨"
   },
   "Balances": {
     "Balances": "残高",
@@ -159,5 +162,11 @@
     "Yes, you can easily create a group, add your friends, and start splitting expenses together": "はい、簡単にグループを作成し、友達を追加して、一緒に支出を分割し始めることができます。共同の食事、旅行などに最適です！",
     "Can I add details to each expense?": "各支出に詳細を追加できますか？",
     "Yes, you can add more details such as the expense date, description, and even categorize the expense for better tracking": "はい、支出日、説明などの詳細を追加でき、より良い追跡のために支出を分類することもできます。"
+  },
+  "CurrencyModal": {
+    "Currency": "通貨",
+    "Only changes how amounts are shown, nothing is converted": "金額の表示方法が変わるだけで、換算は行われません",
+    "Change the currency to {currency}?": "通貨を {currency} に変更しますか？",
+    "Amounts stay the same and this changes it for everyone in the group": "金額はそのままで、グループ全員に反映されます"
   }
 }

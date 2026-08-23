@@ -1,7 +1,10 @@
 import assert from 'node:assert/strict'
 import { describe, it } from 'node:test'
 
+import { formatAmount } from './formatAmount'
 import { MAX_AMOUNT, getAmountSeparators, parseAmount, sanitizeAmountInput, toAmountInput } from './parseAmount'
+
+const APP_LOCALES = ['en', 'es', 'pt-BR', 'pt-PT', 'zh-CN', 'zh-TW', 'ar', 'fr', 'ja', 'ru', 'de', 'id']
 
 describe('amount input', () => {
   describe('separators by locale', () => {
@@ -71,6 +74,54 @@ describe('amount input', () => {
     it('handles an empty field', () => {
       assert.equal(sanitizeAmountInput('', 'en-US'), '')
       assert.equal(parseAmount('', 'en-US'), 0)
+    })
+  })
+
+  describe('every shipped locale', () => {
+    APP_LOCALES.forEach((locale) => {
+      const { decimal } = getAmountSeparators(locale)
+
+      it(`${locale}: what is displayed can be typed back in`, () => {
+        const displayed = formatAmount(1234.5, { language: locale })
+        const typedBack = parseAmount(sanitizeAmountInput(displayed, locale), locale)
+
+        assert.equal(typedBack, 1234.5, `displayed "${displayed}" parsed back as ${typedBack}`)
+      })
+
+      it(`${locale}: the input and the display agree on the decimal separator`, () => {
+        assert.ok(
+          formatAmount(0.5, { language: locale }).includes(decimal),
+          `formatAmount used a different separator than the input accepts`,
+        )
+      })
+
+      it(`${locale}: typing the locale separator keeps the decimals`, () => {
+        assert.equal(parseAmount(sanitizeAmountInput(`12${decimal}34`, locale), locale), 12.34)
+      })
+    })
+  })
+
+  describe('currency display', () => {
+    it('puts the symbol where the locale wants it', () => {
+      assert.ok(formatAmount(1234.5, { language: 'en', currency: 'USD' }).startsWith('$'))
+      assert.ok(formatAmount(1234.5, { language: 'de', currency: 'EUR' }).trim().endsWith('\u20ac'))
+    })
+
+    it('shows the same currency to every locale', () => {
+      const locales = ['en', 'es', 'de', 'ja']
+      const rendered = locales.map((language) => formatAmount(1000, { language, currency: 'ARS' }))
+
+      rendered.forEach((value) => assert.ok(value.includes('$'), `${value} lost the peso symbol`))
+    })
+
+    it('falls back to a plain number when no currency is set', () => {
+      assert.equal(formatAmount(1234.5, { language: 'en' }), '1,234.50')
+    })
+
+    it('keeps amounts typeable after being displayed with a currency', () => {
+      const displayed = formatAmount(1234.5, { language: 'de', currency: 'EUR' })
+
+      assert.equal(parseAmount(sanitizeAmountInput(displayed, 'de'), 'de'), 1234.5)
     })
   })
 

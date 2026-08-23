@@ -30,7 +30,9 @@ const Expense = ({ optimistic, name, amount, title, date, sharers, action }: Exp
       <div className='flex min-w-0 flex-col'>
         <div className='flex min-w-0 items-center'>
           <p className='min-w-0 overflow-hidden text-ellipsis whitespace-nowrap'>{name}</p>
-          <p className='whitespace-nowrap'>: ${<Amount>{amount}</Amount>}</p>
+          <p className='whitespace-nowrap'>
+            : <Amount>{amount}</Amount>
+          </p>
           {!optimistic && action}
         </div>
         {(title || date) && (
