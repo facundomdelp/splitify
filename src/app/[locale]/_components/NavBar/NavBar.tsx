@@ -92,12 +92,12 @@ const NavBar = ({
         </VisuallyHidden>
         <DrawerContent
           className={cn(
-            'text-foreground me-12 h-full w-[400px] max-w-[90vw] overflow-x-hidden overflow-y-auto border-none',
+            'text-foreground me-12 flex h-full w-[400px] max-w-[90vw] flex-col overflow-hidden border-none',
             direction === 'left' ? 'me-auto rounded-tl-none' : 'ms-auto me-0 rounded-tr-none',
           )}
           aria-describedby={undefined}
         >
-          <header className='bg-chrome flex p-8 pb-6'>
+          <header className='bg-chrome flex shrink-0 p-8 pb-6'>
             <Image
               className='drop-shadow-lg'
               src='/Splitify.png'
@@ -107,7 +107,7 @@ const NavBar = ({
             />
           </header>
 
-          <main className='flex flex-1 flex-col gap-8 p-8'>
+          <main className='flex min-h-0 flex-1 flex-col gap-8 overflow-y-auto overscroll-contain p-8'>
             {isInstallable && (
               <Callout
                 icon={RocketIcon}
@@ -186,7 +186,7 @@ const NavBar = ({
             </nav>
           </main>
 
-          <footer className='text-foreground mt-auto flex h-[118px] justify-end gap-3 p-8'>
+          <footer className='text-foreground flex h-[118px] shrink-0 justify-end gap-3 p-8'>
             <SocialMedia />
           </footer>
         </DrawerContent>
