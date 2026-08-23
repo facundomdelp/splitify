@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import Spinner from '@/components/ui/spinner'
 
-import { ChevronRight, LucideProps } from 'lucide-react'
+import { ChevronRight, LucideProps, Plus } from 'lucide-react'
 
 type NavHref = ComponentProps<typeof Link>['href']
 
@@ -19,36 +19,41 @@ interface Props {
   onClick?: () => void
   strong?: boolean
   loading?: boolean
+  creates?: boolean
   disabled?: boolean
   handleNavigation?: React.MouseEventHandler<HTMLAnchorElement>
 }
 
-type NavChildrenProps = Pick<Props, 'children' | 'icon' | 'emoji' | 'strong' | 'loading' | 'disabled'>
+type NavChildrenProps = Pick<Props, 'children' | 'icon' | 'emoji' | 'strong' | 'loading' | 'disabled' | 'creates'>
 
-const NavChildren = ({ children, icon: Icon, emoji, strong, loading, disabled }: NavChildrenProps) => (
-  <>
-    {Icon ? (
-      <Icon
-        className={cn(
-          'text-brand-muted size-[20px] shrink-0',
-          disabled ? 'text-muted-foreground cursor-not-allowed' : '',
-        )}
-      />
-    ) : (
-      emoji
-    )}
-    <div className='flex min-w-0 gap-2'>
-      <span className={cn('min-w-0 overflow-hidden text-nowrap text-ellipsis', strong ? 'font-bold' : '')}>
-        {children}
-      </span>
-    </div>
-    {!loading ? (
-      <ChevronRight className='ms-auto size-[20px] shrink-0' />
-    ) : (
-      <Spinner className='text-brand ms-auto size-[20px] shrink-0' />
-    )}
-  </>
-)
+const NavChildren = ({ children, icon: Icon, emoji, strong, loading, disabled, creates }: NavChildrenProps) => {
+  const TrailingIcon = creates ? Plus : ChevronRight
+
+  return (
+    <>
+      {Icon ? (
+        <Icon
+          className={cn(
+            'text-brand-muted size-[20px] shrink-0',
+            disabled ? 'text-muted-foreground cursor-not-allowed' : '',
+          )}
+        />
+      ) : (
+        emoji
+      )}
+      <div className='flex min-w-0 gap-2'>
+        <span className={cn('min-w-0 overflow-hidden text-nowrap text-ellipsis', strong ? 'font-bold' : '')}>
+          {children}
+        </span>
+      </div>
+      {!loading ? (
+        <TrailingIcon className='ms-auto size-[20px] shrink-0' />
+      ) : (
+        <Spinner className='text-brand ms-auto size-[20px] shrink-0' />
+      )}
+    </>
+  )
+}
 
 const NavItem = ({
   children,
@@ -58,11 +63,12 @@ const NavItem = ({
   onClick,
   strong,
   loading,
+  creates,
   disabled,
   handleNavigation,
 }: Props) => {
   const navChildren = (
-    <NavChildren icon={Icon} emoji={emoji} strong={strong} loading={loading} disabled={disabled}>
+    <NavChildren icon={Icon} emoji={emoji} strong={strong} loading={loading} disabled={disabled} creates={creates}>
       {children}
     </NavChildren>
   )

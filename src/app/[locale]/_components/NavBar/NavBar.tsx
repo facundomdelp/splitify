@@ -140,6 +140,7 @@ const NavBar = ({
                     onClick: addNewGroup,
                     loading: newGroupState.loading,
                     strong: true,
+                    creates: true,
                   },
                   ...(groups
                     ? groups.map(({ id, name }) => ({
