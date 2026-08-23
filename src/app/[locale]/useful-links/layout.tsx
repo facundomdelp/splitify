@@ -7,18 +7,24 @@ import { SEO_LOCALES } from '../[link]/constants'
 
 const baseUrl = 'https://splitify.me'
 
+const localizedPath = (locale: string) => {
+  const declared = routing.pathnames['/useful-links'] as Record<string, string>
+  const path = declared[locale] ?? '/useful-links'
+
+  return locale === routing.defaultLocale ? `${baseUrl}${path}` : `${baseUrl}/${locale}${path}`
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'UsefulLinksPage' })
 
-  const canonicalUrl =
-    locale === routing.defaultLocale ? `${baseUrl}/useful-links` : `${baseUrl}/${locale}/useful-links`
+  const canonicalUrl = locale === routing.defaultLocale ? localizedPath(routing.defaultLocale) : localizedPath(locale)
 
   const languages: Record<string, string> = {}
   SEO_LOCALES.forEach((loc) => {
-    languages[loc] = loc === routing.defaultLocale ? `${baseUrl}/useful-links` : `${baseUrl}/${loc}/useful-links`
+    languages[loc] = loc === routing.defaultLocale ? localizedPath(routing.defaultLocale) : localizedPath(loc)
   })
-  languages['x-default'] = `${baseUrl}/useful-links`
+  languages['x-default'] = localizedPath(routing.defaultLocale)
 
   return {
     title: t('Useful Links and Guides'),

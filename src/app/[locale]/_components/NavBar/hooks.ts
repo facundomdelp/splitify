@@ -55,7 +55,7 @@ export const useAddNewGroup = ({ setDrawerOpen }: useAddNewGroupProps) => {
         throw new CustomError(response.status, data)
       }
 
-      router.push(`/groups/${data.group}`)
+      router.push({ pathname: '/groups/[id]', params: { id: data.group } })
     } catch {
       setNewGroupState((prev) => ({ ...prev, error: true }))
     } finally {

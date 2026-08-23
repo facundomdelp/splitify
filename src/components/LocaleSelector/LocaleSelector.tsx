@@ -5,6 +5,7 @@ import { useMediaQuery } from 'usehooks-ts'
 import { useState } from 'react'
 
 import { useLocale } from 'next-intl'
+import { useParams } from 'next/navigation'
 
 import { usePathname, useRouter } from '@/i18n/routing'
 
@@ -20,12 +21,13 @@ import { Check } from 'lucide-react'
 const LocaleSelector = () => {
   const locale = useLocale()
   const pathname = usePathname()
+  const params = useParams()
   const router = useRouter()
   const isDesktop = useMediaQuery('(min-width: 768px)')
   const [open, setOpen] = useState(false)
 
   const setLocale = (newLocale: Locale) => {
-    router.replace(pathname, { locale: newLocale })
+    router.replace({ pathname, params } as Parameters<typeof router.replace>[0], { locale: newLocale })
     setOpen(false)
   }
 
@@ -59,7 +61,7 @@ const LocaleSelector = () => {
 
       <Drawer open={open} onOpenChange={setOpen}>
         <DrawerContent className='text-foreground pb-6'>
-          <DrawerHeader className='text-left'>
+          <DrawerHeader className='text-start'>
             <DrawerTitle>Language</DrawerTitle>
             <DrawerDescription className='sr-only'>Select your preferred language</DrawerDescription>
           </DrawerHeader>
@@ -68,7 +70,7 @@ const LocaleSelector = () => {
               <button
                 key={loc}
                 onClick={() => setLocale(loc as Locale)}
-                className='hover:bg-accent flex items-center gap-3 rounded-md px-3 py-2.5 text-left'
+                className='hover:bg-accent flex items-center gap-3 rounded-md px-3 py-2.5 text-start'
               >
                 <span className='flex-1 text-sm'>{description}</span>
                 {locale === loc && <Check className='text-primary h-4 w-4' />}

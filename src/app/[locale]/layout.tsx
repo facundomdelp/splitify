@@ -11,11 +11,16 @@ import { Locale } from '@/types/common-types'
 
 import Footer from './_components/Layout/Footer'
 import Header from './_components/Layout/Header'
+import DirectionProvider from '@/components/DirectionProvider'
 import Splash from '@/components/Splash'
 
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] })
+
+const RTL_LOCALES = ['ar']
+
+const getDirection = (locale: string) => (RTL_LOCALES.includes(locale) ? 'rtl' : 'ltr')
 
 const themeScript = `(function(){try{var m=localStorage.getItem('metadata');var t=m?JSON.parse(m).theme:null;if(!t||t==='system'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}if(t==='dark'){document.documentElement.classList.add('dark')}}catch(e){}})()`
 
@@ -144,7 +149,7 @@ export default async function LocaleLayout({
   }
 
   return (
-    <html lang={locale} className='h-full' suppressHydrationWarning>
+    <html lang={locale} dir={getDirection(locale)} className='h-full' suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }} />
@@ -156,15 +161,17 @@ export default async function LocaleLayout({
         className={`${inter.className} bg-background text-foreground relative flex min-h-dvh flex-col overflow-auto antialiased`}
       >
         <NextIntlClientProvider messages={messages}>
-          <Header />
+          <DirectionProvider dir={getDirection(locale)}>
+            <Header />
 
-          <div className='text-foreground mt-20 flex min-h-[calc(100dvh-5rem)] w-full flex-1 justify-center'>
-            {children}
-          </div>
+            <div className='text-foreground mt-20 flex min-h-[calc(100dvh-5rem)] w-full flex-1 justify-center'>
+              {children}
+            </div>
 
-          <Footer />
+            <Footer />
 
-          <Splash />
+            <Splash />
+          </DirectionProvider>
         </NextIntlClientProvider>
       </body>
     </html>

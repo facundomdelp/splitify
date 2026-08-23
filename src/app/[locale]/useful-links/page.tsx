@@ -50,7 +50,7 @@ const LinkCard = ({ title, description, href }: { title: string; description: st
       <span className='text-muted-foreground text-sm'>{description}</span>
     </span>
 
-    <ArrowRight className='text-brand ml-auto size-5 shrink-0 transition-transform group-hover:translate-x-1' />
+    <ArrowRight className='text-brand ms-auto size-5 shrink-0 transition-transform group-hover:translate-x-1' />
   </Link>
 )
 

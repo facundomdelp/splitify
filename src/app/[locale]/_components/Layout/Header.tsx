@@ -56,7 +56,7 @@ const Header = () => {
         />
       </div>
 
-      <NavBar className='absolute top-1/2 right-4 -translate-y-1/2' />
+      <NavBar className='absolute end-4 top-1/2 -translate-y-1/2' />
     </header>
   )
 }

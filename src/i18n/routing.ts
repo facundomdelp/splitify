@@ -6,6 +6,39 @@ export const routing = defineRouting({
   defaultLocale: 'en',
   localePrefix: 'as-needed',
   localeDetection: true,
+  /* Group links are shared between people in different languages, so /groups/[id] stays untranslated */
+  pathnames: {
+    '/': '/',
+    '/groups/[id]': '/groups/[id]',
+    '/faq': {
+      en: '/faq',
+      es: '/preguntas-frecuentes',
+      'pt-BR': '/perguntas-frequentes',
+      'pt-PT': '/perguntas-frequentes',
+      fr: '/questions-frequentes',
+      de: '/haeufige-fragen',
+      id: '/pertanyaan-umum',
+      ru: '/chasto-zadavaemye-voprosy',
+      ja: '/yoku-aru-shitsumon',
+      'zh-CN': '/changjian-wenti',
+      'zh-TW': '/changjian-wenti',
+      ar: '/alasila-alshaia',
+    },
+    '/useful-links': {
+      en: '/useful-links',
+      es: '/enlaces-utiles',
+      'pt-BR': '/links-uteis',
+      'pt-PT': '/ligacoes-uteis',
+      fr: '/liens-utiles',
+      de: '/nuetzliche-links',
+      id: '/tautan-berguna',
+      ru: '/poleznye-ssylki',
+      ja: '/benri-na-link',
+      'zh-CN': '/shiyong-lianjie',
+      'zh-TW': '/shiyong-lianjie',
+      ar: '/rawabit-mufida',
+    },
+  },
 })
 
 // Lightweight wrappers around Next.js' navigation APIs

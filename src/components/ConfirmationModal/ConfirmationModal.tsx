@@ -35,20 +35,13 @@ const ConfirmationModal = ({ open, onOpenChange, title, description, onConfirm, 
           {title}
         </DialogTitle>
         {description && <DialogDescription className='text-center text-sm'>{description}</DialogDescription>}
+        {/* Dismiss on the left, the action being confirmed on the right and filled */}
         <DialogFooter className='flex-row gap-3 px-6 pt-4'>
-          <Button
-            variant={!destructive ? 'outline' : 'destructive'}
-            onClick={destructive ? handleOnClick : () => onOpenChange(false)}
-            className='flex-1'
-          >
-            {!destructive ? t('No') : t('Yes')}
+          <Button variant='outline' onClick={() => onOpenChange(false)} className='flex-1'>
+            {t('No')}
           </Button>
-          <Button
-            variant='default'
-            onClick={!destructive ? handleOnClick : () => onOpenChange(false)}
-            className='flex-1'
-          >
-            {!destructive ? t('Yes') : t('No')}
+          <Button variant={destructive ? 'destructive-solid' : 'default'} onClick={handleOnClick} className='flex-1'>
+            {t('Yes')}
           </Button>
         </DialogFooter>
       </DialogContent>

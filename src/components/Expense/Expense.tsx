@@ -26,7 +26,7 @@ const Expense = ({ optimistic, name, amount, title, date, sharers, action }: Exp
 
   return (
     <li className={cn('flex min-w-0 items-center', optimistic ? 'text-muted-foreground' : '')}>
-      <p className='mr-2 w-[20px] text-center'>{getEmojiFromString(name)}</p>
+      <p className='me-2 w-[20px] text-center'>{getEmojiFromString(name)}</p>
       <div className='flex min-w-0 flex-col'>
         <div className='flex min-w-0 items-center'>
           <p className='min-w-0 overflow-hidden text-ellipsis whitespace-nowrap'>{name}</p>

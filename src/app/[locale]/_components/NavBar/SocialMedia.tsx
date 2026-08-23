@@ -17,7 +17,7 @@ const SocialMedia = () => {
         <a
           href='https://appgentina.com.ar/producto/splitify?ref=badge'
           title='Splitify | Appgentina'
-          className='mr-auto max-w-[200px] pr-2'
+          className='me-auto max-w-[200px] pe-2'
           target='_blank'
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}

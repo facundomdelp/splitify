@@ -22,7 +22,7 @@ const Callout = ({ icon: Icon, title, description, onClick, disabled, highlighte
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        'group relative w-full overflow-hidden rounded-xl border px-4 py-3 text-left transition-colors disabled:pointer-events-none disabled:opacity-50',
+        'group relative w-full overflow-hidden rounded-xl border px-4 py-3 text-start transition-colors disabled:pointer-events-none disabled:opacity-50',
         highlighted
           ? 'animate-slide-up border-brand-border bg-brand-surface hover:bg-brand-surface-strong shadow-md'
           : 'border-brand-border bg-brand-surface hover:bg-brand-surface-strong',
@@ -43,7 +43,7 @@ const Callout = ({ icon: Icon, title, description, onClick, disabled, highlighte
           {description && <span className='text-brand-muted text-xs leading-4'>{description}</span>}
         </span>
 
-        <ChevronRight className='text-brand ml-auto size-5 shrink-0 transition-transform group-hover:translate-x-1' />
+        <ChevronRight className='text-brand ms-auto size-5 shrink-0 transition-transform group-hover:translate-x-1' />
       </span>
     </button>
   )

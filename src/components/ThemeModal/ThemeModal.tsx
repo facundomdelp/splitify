@@ -33,7 +33,7 @@ const ThemeModal = ({ open, setOpen }: Props) => {
                 setTheme(option)
                 setOpen(false)
               }}
-              className='hover:bg-accent flex items-center gap-3 rounded-md px-3 py-2.5 text-left'
+              className='hover:bg-accent flex items-center gap-3 rounded-md px-3 py-2.5 text-start'
             >
               <Icon className='text-brand size-4 shrink-0' />
               <span className='flex-1 text-sm'>{t(option)}</span>

@@ -55,7 +55,7 @@ const CurrencySelector = ({ currency, onSelect }: Props) => {
 
       <Drawer open={open} onOpenChange={setOpen}>
         <DrawerContent className='text-foreground max-h-[85dvh] pb-6'>
-          <DrawerHeader className='text-left'>
+          <DrawerHeader className='text-start'>
             <DrawerTitle>Currency</DrawerTitle>
             <DrawerDescription className='sr-only'>Select your preferred currency</DrawerDescription>
           </DrawerHeader>
@@ -67,7 +67,7 @@ const CurrencySelector = ({ currency, onSelect }: Props) => {
                   setCurrency(code)
                   setOpen(false)
                 }}
-                className='hover:bg-accent flex items-center gap-3 rounded-md px-3 py-2.5 text-left'
+                className='hover:bg-accent flex items-center gap-3 rounded-md px-3 py-2.5 text-start'
               >
                 <span className='w-8 shrink-0 text-sm font-semibold'>{getCurrencySymbol(code, locale)}</span>
                 <span className='flex-1 text-sm'>{getCurrencyName(code, locale)}</span>

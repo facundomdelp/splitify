@@ -5,17 +5,24 @@ import { routing } from '@/i18n/routing'
 
 const baseUrl = 'https://splitify.me'
 
+const localizedPath = (locale: string) => {
+  const declared = routing.pathnames['/faq'] as Record<string, string>
+  const path = declared[locale] ?? '/faq'
+
+  return locale === routing.defaultLocale ? `${baseUrl}${path}` : `${baseUrl}/${locale}${path}`
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'FaqPage' })
 
-  const canonicalUrl = locale === routing.defaultLocale ? `${baseUrl}/faq` : `${baseUrl}/${locale}/faq`
+  const canonicalUrl = locale === routing.defaultLocale ? localizedPath(routing.defaultLocale) : localizedPath(locale)
 
   const languages: Record<string, string> = {}
   routing.locales.forEach((loc) => {
-    languages[loc] = loc === routing.defaultLocale ? `${baseUrl}/faq` : `${baseUrl}/${loc}/faq`
+    languages[loc] = loc === routing.defaultLocale ? localizedPath(routing.defaultLocale) : localizedPath(loc)
   })
-  languages['x-default'] = `${baseUrl}/faq`
+  languages['x-default'] = localizedPath(routing.defaultLocale)
 
   return {
     title: t('Frequently Asked Questions'),

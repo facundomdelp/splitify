@@ -52,7 +52,7 @@ const GroupsPage = () => {
 
         {groups.map((group) => (
           <Card key={group.id} className={cn('flex', newGroupState.loading ? 'pointer-events-none opacity-40' : '')}>
-            <CardHeader className='min-w-0 flex-1 justify-center space-y-0 pr-0'>
+            <CardHeader className='min-w-0 flex-1 justify-center space-y-0 pe-0'>
               <CardTitle className='text-brand-text flex min-w-0 items-center gap-2 font-medium'>
                 <p>{getEmojiFromString(group.id)}</p>
                 <p className='min-w-0 overflow-hidden text-nowrap text-ellipsis'>{group.name}</p>

@@ -96,7 +96,7 @@ const GroupsContextMenu = ({ groupId, hasExpenses }: Props) => {
         </ContextMenuItem>
         <ContextMenuItem key='currency' onClick={() => setOpenCurrencyModal(true)}>
           <Coins /> {t('Currency')}
-          {groupCurrency && <span className='text-muted-foreground ml-auto pl-2'>{groupCurrency}</span>}
+          {groupCurrency && <span className='text-muted-foreground ms-auto ps-2'>{groupCurrency}</span>}
         </ContextMenuItem>
         <ContextMenuItem key='remove-group' onClick={() => setOpenRemoveConfirmationModal(true)}>
           <Trash2 /> {t('Remove Group')}

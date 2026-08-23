@@ -31,7 +31,7 @@ const Balances = ({ balances, rounded, setRounded }: Props) => {
             {t('Balances')}
           </h2>
 
-          <div className='ml-auto flex gap-1'>
+          <div className='ms-auto flex gap-1'>
             <Switch className='scale-75' onCheckedChange={setRounded} checked={rounded} />
             <p className='text-[12px]'>{t('Round')}</p>
           </div>
@@ -40,8 +40,8 @@ const Balances = ({ balances, rounded, setRounded }: Props) => {
         <ul className='mt-4 flex min-w-0 flex-col gap-3'>
           {balances.map((balance, index) => (
             <li key={index} className='flex min-w-0 flex-wrap items-center'>
-              <div className='mr-1 flex min-w-0 items-center gap-1'>
-                <p className='mr-1 w-[20px] text-center'>{getEmojiFromString(balance.debtor)}</p>
+              <div className='me-1 flex min-w-0 items-center gap-1'>
+                <p className='me-1 w-[20px] text-center'>{getEmojiFromString(balance.debtor)}</p>
                 <p className='min-w-0 overflow-hidden text-ellipsis whitespace-nowrap'>{balance.debtor}</p>
                 <p className='whitespace-nowrap'>{t('owes')}</p>
                 <strong className='font-semibold whitespace-nowrap'>

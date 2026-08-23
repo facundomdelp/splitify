@@ -62,7 +62,7 @@ const GroupPage = () => {
               </h2>
 
               {group && (
-                <div className='absolute right-2'>
+                <div className='absolute end-2'>
                   <Tooltip content={t('Collaborate in Group!')} align='end' arrow openOnce>
                     <div>
                       <GroupsContextMenu groupId={group.id} hasExpenses={expenses.length > 0} />

@@ -40,7 +40,7 @@ const HomeContextMenu = ({ disabled, onTurnIntoGroup }: Props) => {
         </ContextMenuItem>
         <ContextMenuItem onClick={() => setOpenCurrencyModal(true)}>
           <Coins /> {tCurrency('Currency')}
-          {currency && <span className='text-muted-foreground ml-auto pl-2'>{currency}</span>}
+          {currency && <span className='text-muted-foreground ms-auto ps-2'>{currency}</span>}
         </ContextMenuItem>
       </ContextMenu>
     </>

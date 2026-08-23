@@ -2,6 +2,8 @@ import { SEO_LOCALES, SEO_ROUTES, getSeoRouteAlternates } from '@/app/[locale]/[
 
 import type { MetadataRoute } from 'next'
 
+import { routing } from '@/i18n/routing'
+
 const locales = ['en', 'es', 'pt-BR', 'pt-PT', 'zh-CN', 'zh-TW', 'ar', 'fr', 'ja', 'ru', 'de', 'id']
 const defaultLocale = 'en'
 
@@ -11,8 +13,14 @@ const lastModified = new Date('2026-08-22')
 // Static routes
 const staticRoutes = ['', 'faq', 'useful-links']
 
+/* Static routes are translated per locale, so the URL has to come from the routing config */
 function buildUrl(locale: string, route: string) {
-  const path = route ? `/${route}` : ''
+  if (!route) return locale === defaultLocale ? baseUrl : `${baseUrl}/${locale}`
+
+  const pathnames = routing.pathnames as Record<string, string | Record<string, string>>
+  const declared = pathnames[`/${route}`]
+  const path = typeof declared === 'string' ? declared : (declared?.[locale] ?? `/${route}`)
+
   return locale === defaultLocale ? `${baseUrl}${path}` : `${baseUrl}/${locale}${path}`
 }
 

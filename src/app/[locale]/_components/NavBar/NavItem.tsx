@@ -1,4 +1,4 @@
-import { ForwardRefExoticComponent, RefAttributes } from 'react'
+import { ComponentProps, ForwardRefExoticComponent, RefAttributes } from 'react'
 
 import { Link } from '@/i18n/routing'
 
@@ -9,11 +9,13 @@ import Spinner from '@/components/ui/spinner'
 
 import { ChevronRight, LucideProps } from 'lucide-react'
 
+type NavHref = ComponentProps<typeof Link>['href']
+
 interface Props {
   children: string
   icon?: ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>>
   emoji?: string
-  href?: string
+  href?: NavHref
   onClick?: () => void
   strong?: boolean
   loading?: boolean
@@ -41,9 +43,9 @@ const NavChildren = ({ children, icon: Icon, emoji, strong, loading, disabled }:
       </span>
     </div>
     {!loading ? (
-      <ChevronRight className='ml-auto size-[20px] shrink-0' />
+      <ChevronRight className='ms-auto size-[20px] shrink-0' />
     ) : (
-      <Spinner className='text-brand ml-auto size-[20px] shrink-0' />
+      <Spinner className='text-brand ms-auto size-[20px] shrink-0' />
     )}
   </>
 )

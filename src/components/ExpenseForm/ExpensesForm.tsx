@@ -102,13 +102,13 @@ const ExpenseForm = ({
               autoFocus={autoFocus}
             />
 
-            <div className='ml-auto flex flex-1 grow gap-4'>
-              <div className={cn('relative ml-auto min-w-22 flex-1', !fullForm ? 'max-w-24' : '')}>
-                <span className='text-muted-foreground absolute top-1/2 left-2 -translate-y-1/2 text-sm leading-4'>
+            <div className='ms-auto flex flex-1 grow gap-4'>
+              <div className={cn('relative ms-auto min-w-22 flex-1', !fullForm ? 'max-w-24' : '')}>
+                <span className='text-muted-foreground absolute start-2 top-1/2 -translate-y-1/2 text-sm leading-4'>
                   {currencySymbol}
                 </span>
                 <Input
-                  className='pl-6 text-sm'
+                  className='ps-6 text-sm'
                   type='text'
                   inputMode='decimal'
                   name='amount'

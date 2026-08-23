@@ -92,8 +92,8 @@ const NavBar = ({
         </VisuallyHidden>
         <DrawerContent
           className={cn(
-            'text-foreground mr-12 h-full w-[400px] max-w-[90vw] overflow-x-hidden overflow-y-auto border-none',
-            direction === 'left' ? 'mr-auto rounded-tl-none' : 'mr-0 ml-auto rounded-tr-none',
+            'text-foreground me-12 h-full w-[400px] max-w-[90vw] overflow-x-hidden overflow-y-auto border-none',
+            direction === 'left' ? 'me-auto rounded-tl-none' : 'ms-auto me-0 rounded-tr-none',
           )}
           aria-describedby={undefined}
         >
@@ -146,7 +146,7 @@ const NavBar = ({
                         slug: id,
                         emoji: getEmojiFromString(id),
                         name: name,
-                        href: `/groups/${id}`,
+                        href: { pathname: '/groups/[id]' as const, params: { id } },
                       }))
                     : []),
                 ].map(({ slug, name, ...props }) => (

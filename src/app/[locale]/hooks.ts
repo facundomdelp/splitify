@@ -81,7 +81,7 @@ export const useConvertIntoGroup = ({ setExpenses, setBalances }: useConvertInto
         setExpenses([])
         setBalances([])
 
-        router.push(`/groups/${data.group}`)
+        router.push({ pathname: '/groups/[id]', params: { id: data.group } })
       } catch {
         setConvertToGroupState((prev) => ({ ...prev, error: true }))
       } finally {

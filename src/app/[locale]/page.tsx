@@ -58,10 +58,10 @@ export default function Home() {
       {!hideTitleBanner && (
         <article className='border-brand-border bg-brand-surface relative mx-4 rounded-md border p-3'>
           <X
-            className='text-muted-foreground hover:text-foreground absolute top-2 right-2 size-[18px] cursor-pointer'
+            className='text-muted-foreground hover:text-foreground absolute end-2 top-2 size-[18px] cursor-pointer'
             onClick={handleCloseTitle}
           />
-          <h1 className='mt-0 mr-5 mb-1 text-sm font-bold'>{t('Simplify your group expenses with Splitify 🤑')}</h1>
+          <h1 className='me-5 mt-0 mb-1 text-sm font-bold'>{t('Simplify your group expenses with Splitify 🤑')}</h1>
           <p className='text-muted-foreground text-xs'>
             <strong className='font-semibold'>{t('💸 How does it work?')}</strong>{' '}
             {t("Just enter each participant's name and how much they spent")}

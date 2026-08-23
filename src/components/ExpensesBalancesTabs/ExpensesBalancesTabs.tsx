@@ -57,7 +57,7 @@ const ExpensesBalancesTabs = ({
           </TabsTrigger>
         </TabsList>
 
-        <div className='absolute right-2'>{contextMenu}</div>
+        <div className='absolute end-2'>{contextMenu}</div>
       </div>
 
       <TabsContent className='mx-4 flex-1' value='expenses'>

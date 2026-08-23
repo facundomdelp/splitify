@@ -20,8 +20,8 @@ const ParticipantPill = ({ name, onRemove, disabled, className }: Props) => {
   return (
     <li
       className={cn(
-        'border-brand-border bg-brand-surface text-brand-text flex min-w-0 items-center gap-1 rounded-full border py-1 pl-2 text-xs',
-        !onRemove ? 'pr-2' : '',
+        'border-brand-border bg-brand-surface text-brand-text flex min-w-0 items-center gap-1 rounded-full border py-1 ps-2 text-xs',
+        !onRemove ? 'pe-2' : '',
         className,
       )}
     >
@@ -31,7 +31,7 @@ const ParticipantPill = ({ name, onRemove, disabled, className }: Props) => {
       {onRemove && (
         <button
           type='button'
-          className='hover:text-destructive text-muted-foreground pr-2 transition-colors disabled:pointer-events-none disabled:opacity-40'
+          className='hover:text-destructive text-muted-foreground pe-2 transition-colors disabled:pointer-events-none disabled:opacity-40'
           onClick={onRemove}
           disabled={disabled}
           aria-label={t('Remove {name}', { name })}

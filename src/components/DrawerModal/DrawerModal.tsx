@@ -45,12 +45,12 @@ const DrawerModal = ({ open, setOpen, title, description, children, className }:
       // fadeFromIndex={0}
     >
       <DrawerContent className={cn('text-foreground max-h-[85dvh] pb-3', className)}>
-        <DrawerHeader className='px-0 text-left'>
+        <DrawerHeader className='px-0 text-start'>
           <DrawerTitle>{title}</DrawerTitle>
           <DrawerDescription>{description}</DrawerDescription>
         </DrawerHeader>
 
-        <Close className='ring-offset-background focus:ring-ring data-[state=open]:bg-accent data-[state=open]:text-muted-foreground absolute top-4 right-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none'>
+        <Close className='ring-offset-background focus:ring-ring data-[state=open]:bg-accent data-[state=open]:text-muted-foreground absolute end-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none'>
           <X className='h-4 w-4' />
           <span className='sr-only'>Close</span>
         </Close>
