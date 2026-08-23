@@ -29,7 +29,7 @@ const ConfirmationModal = ({ open, onOpenChange, title, description, onConfirm, 
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         onPointerDownOutside={(e) => e.preventDefault()}
-        className='flex w-[80vw] max-w-[400px] min-w-0 flex-col justify-center rounded-xl px-5 text-gray-700'
+        className='text-foreground flex w-[80vw] max-w-[400px] min-w-0 flex-col justify-center rounded-xl px-5'
       >
         <DialogTitle className='mt-5 flex min-w-0 flex-wrap justify-center gap-1 text-center leading-7 font-normal text-balance'>
           {title}

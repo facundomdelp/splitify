@@ -27,7 +27,7 @@ const Balances = ({ balances, rounded, setRounded }: Props) => {
       <section className='min-w-0 text-sm'>
         <div className='flex items-center gap-2'>
           <h2 className='flex flex-nowrap items-center gap-2 text-lg font-bold' id='balances'>
-            <CircleDollarSign className='size-[22px] text-green-700' />
+            <CircleDollarSign className='text-brand-muted size-[22px]' />
             {t('Balances')}
           </h2>
 

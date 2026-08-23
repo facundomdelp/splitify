@@ -1,22 +1,16 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
-export async function GET() {
-  try {
-    const response = await fetch('https://ipapi.co/json/', {
-      headers: {
-        'User-Agent': 'nodejs',
-      },
-    })
+import GeoLocationService from '@/services/geolocation-services'
 
-    if (!response.ok) {
-      console.error(`ipapi.co responded with ${response.status}: ${response.statusText}`)
-      return NextResponse.json(null, { status: response.status })
-    }
+const geoLocationService = new GeoLocationService()
 
-    const data = await response.json()
-    return NextResponse.json(data)
-  } catch (error) {
-    console.error('Geolocation fetch error:', error)
-    return NextResponse.json(null, { status: 500 })
-  }
+export async function GET(request: NextRequest) {
+  const countryCode = request.headers.get('x-vercel-ip-country') || request.headers.get('cf-ipcountry') || undefined
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
+
+  const geoLocation = await geoLocationService.getGeoLocation({ countryCode, ip })
+
+  return NextResponse.json(geoLocation, {
+    headers: { 'Cache-Control': geoLocation ? 'public, max-age=3600' : 'no-store' },
+  })
 }

@@ -17,7 +17,7 @@ const LocaleSelectorModal = ({ open, setOpen }: Props) => {
         <LocaleSelector />
         <p className='text-[10px]'>
           {t('Would you like to select a different language?')}{' '}
-          <a href='splitify.me@gmail.com' className='text-blue-700 hover:underline'>
+          <a href='splitify.me@gmail.com' className='text-brand-muted hover:underline'>
             {t('Send us an email!')}
           </a>
         </p>

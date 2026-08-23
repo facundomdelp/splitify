@@ -13,7 +13,7 @@ const SocialMedia = () => {
 
   return (
     <>
-      {userGeoLocation?.country === COUNTRIES.argentina && (
+      {userGeoLocation?.countryCode === COUNTRIES.argentina && (
         <a
           href='https://appgentina.com.ar/producto/splitify?ref=badge'
           title='Splitify | Appgentina'

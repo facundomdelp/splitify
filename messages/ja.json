@@ -25,7 +25,8 @@
     "Currency": "通貨",
     "Spliti Groups": "Spliti Groups",
     "Settings": "設定",
-    "Add it to your home screen": "ホーム画面に追加"
+    "Add it to your home screen": "ホーム画面に追加",
+    "Appearance": "外観"
   },
   "LocaleSelectorModal": {
     "Language": "言語",
@@ -138,10 +139,13 @@
     "to": "に支払う"
   },
   "SeoPage": {
-    "Get Started": "始める 🚀"
+    "Get Started": "始める 🚀",
+    "Try it now, it is free": "今すぐ無料で試す",
+    "Keep reading": "続きを読む",
+    "Create a Group": "グループを作成",
+    "Create a group and share the link": "グループを作ってリンクを共有"
   },
   "UsefulLinksPage": {
-    "Find answers to common questions and troubleshooting": "よくある質問とトラブルシューティングの答えを見つけましょう。",
     "Useful Links": "便利なリンク",
     "Here are some useful resources to help you navigate and make the most out of Splitify": "以下は、Splitifyをナビゲートして最大限に活用するのに役立つ便利なリソースです。",
     "Useful Links and Guides": "便利なリンクとガイド"
@@ -168,5 +172,11 @@
     "Only changes how amounts are shown, nothing is converted": "金額の表示方法が変わるだけで、換算は行われません",
     "Change the currency to {currency}?": "通貨を {currency} に変更しますか？",
     "Amounts stay the same and this changes it for everyone in the group": "金額はそのままで、グループ全員に反映されます"
+  },
+  "ThemeModal": {
+    "Appearance": "外観",
+    "system": "システム",
+    "light": "ライト",
+    "dark": "ダーク"
   }
 }

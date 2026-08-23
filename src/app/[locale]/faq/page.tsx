@@ -41,15 +41,15 @@ const FaqPage = () => {
   ]
 
   return (
-    <div className='w-full bg-green-50'>
+    <div className='bg-brand-surface w-full'>
       <section className='mx-auto w-full max-w-[600px] px-4 py-8'>
-        <h1 className='mb-6 text-center text-3xl font-bold text-green-700'>{t('Frequently Asked Questions')}</h1>
+        <h1 className='text-brand-muted mb-6 text-center text-3xl font-bold'>{t('Frequently Asked Questions')}</h1>
 
         <div className='space-y-4'>
           {faqs.map((faq, index) => (
-            <div key={index} className='rounded-lg bg-white p-4 shadow-md'>
-              <h2 className='my-1 text-xl font-semibold text-green-600'>{faq.question}</h2>
-              <p className='text-sm text-gray-700'>{faq.answer}</p>
+            <div key={index} className='bg-card rounded-lg p-4 shadow-md'>
+              <h2 className='text-brand-muted my-1 text-xl font-semibold'>{faq.question}</h2>
+              <p className='text-foreground text-sm'>{faq.answer}</p>
             </div>
           ))}
         </div>

@@ -21,7 +21,7 @@ const Modal = ({ open, setOpen, title, children, closeOnBackdropClick = false, c
       <DialogContent
         onPointerDownOutside={!closeOnBackdropClick ? (e) => e.preventDefault() : undefined}
         className={cn(
-          'flex max-h-[50dvh] min-h-[200px] w-[80vw] max-w-[400px] min-w-0 flex-col justify-center rounded-xl px-5 text-gray-700',
+          'text-foreground flex max-h-[50dvh] min-h-[200px] w-[80vw] max-w-[400px] min-w-0 flex-col justify-center rounded-xl px-5',
           className,
         )}
         onOpenAutoFocus={(e) => e.preventDefault()}

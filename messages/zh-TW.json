@@ -25,7 +25,8 @@
     "Currency": "貨幣",
     "Spliti Groups": "Spliti Groups",
     "Settings": "設定",
-    "Add it to your home screen": "加入主畫面"
+    "Add it to your home screen": "加入主畫面",
+    "Appearance": "外觀"
   },
   "LocaleSelectorModal": {
     "Language": "語言",
@@ -138,10 +139,13 @@
     "to": "給"
   },
   "SeoPage": {
-    "Get Started": "開始使用 🚀"
+    "Get Started": "開始使用 🚀",
+    "Try it now, it is free": "立即免費試用",
+    "Keep reading": "繼續閱讀",
+    "Create a Group": "建立群組",
+    "Create a group and share the link": "建立群組並分享連結"
   },
   "UsefulLinksPage": {
-    "Find answers to common questions and troubleshooting": "尋找常見問題的答案和疑難排解。",
     "Useful Links": "實用連結",
     "Here are some useful resources to help you navigate and make the most out of Splitify": "以下是一些有用的資源，可幫助您瀏覽並充分利用 Splitify。",
     "Useful Links and Guides": "實用連結與指南"
@@ -168,5 +172,11 @@
     "Only changes how amounts are shown, nothing is converted": "僅改變金額的顯示方式，不會進行換算",
     "Change the currency to {currency}?": "將貨幣改為 {currency}？",
     "Amounts stay the same and this changes it for everyone in the group": "金額保持不變，此變更對群組中的所有人生效"
+  },
+  "ThemeModal": {
+    "Appearance": "外觀",
+    "system": "跟隨系統",
+    "light": "淺色",
+    "dark": "深色"
   }
 }

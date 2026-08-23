@@ -56,13 +56,13 @@ export default function Home() {
   return (
     <main className='text-dark relative my-6 flex w-full max-w-[600px] flex-col space-y-6'>
       {!hideTitleBanner && (
-        <article className='relative mx-4 rounded-md border border-green-600 bg-green-50 p-3'>
+        <article className='border-brand-border bg-brand-surface relative mx-4 rounded-md border p-3'>
           <X
-            className='absolute top-2 right-2 size-[18px] cursor-pointer text-gray-500 hover:text-gray-700'
+            className='text-muted-foreground hover:text-foreground absolute top-2 right-2 size-[18px] cursor-pointer'
             onClick={handleCloseTitle}
           />
           <h1 className='mt-0 mr-5 mb-1 text-sm font-bold'>{t('Simplify your group expenses with Splitify 🤑')}</h1>
-          <p className='text-xs text-slate-500'>
+          <p className='text-muted-foreground text-xs'>
             <strong className='font-semibold'>{t('💸 How does it work?')}</strong>{' '}
             {t("Just enter each participant's name and how much they spent")}
           </p>
@@ -79,7 +79,7 @@ export default function Home() {
           !convertToGroupState.loading ? (
             <HomeContextMenu disabled={expenses.length === 0} onTurnIntoGroup={() => setOpenTurnIntoGroupModal(true)} />
           ) : (
-            <Spinner className='w-fit px-4 text-green-600' />
+            <Spinner className='text-brand w-fit px-4' />
           )
         }
       >

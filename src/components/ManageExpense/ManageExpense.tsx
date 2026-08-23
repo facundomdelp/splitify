@@ -26,7 +26,7 @@ const ManageExpense = ({ expense, participants, onRemoveExpense, onEditExpense }
   return (
     <>
       <Edit3
-        className='mx-1 size-[15px] shrink-0 cursor-pointer items-center text-gray-500 hover:text-green-600'
+        className='text-muted-foreground hover:text-brand mx-1 size-[15px] shrink-0 cursor-pointer items-center'
         onClick={() => setOpen(true)}
       />
 

@@ -58,7 +58,7 @@ const LocaleSelector = () => {
       </button>
 
       <Drawer open={open} onOpenChange={setOpen}>
-        <DrawerContent className='pb-6 text-gray-700'>
+        <DrawerContent className='text-foreground pb-6'>
           <DrawerHeader className='text-left'>
             <DrawerTitle>Language</DrawerTitle>
             <DrawerDescription className='sr-only'>Select your preferred language</DrawerDescription>

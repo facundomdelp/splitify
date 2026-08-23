@@ -3,6 +3,8 @@ import { getTranslations } from 'next-intl/server'
 
 import { routing } from '@/i18n/routing'
 
+import { SEO_LOCALES } from '../[link]/constants'
+
 const baseUrl = 'https://splitify.me'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -13,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     locale === routing.defaultLocale ? `${baseUrl}/useful-links` : `${baseUrl}/${locale}/useful-links`
 
   const languages: Record<string, string> = {}
-  routing.locales.forEach((loc) => {
+  SEO_LOCALES.forEach((loc) => {
     languages[loc] = loc === routing.defaultLocale ? `${baseUrl}/useful-links` : `${baseUrl}/${loc}/useful-links`
   })
   languages['x-default'] = `${baseUrl}/useful-links`

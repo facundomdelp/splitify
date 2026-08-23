@@ -14,7 +14,7 @@ interface ContextMenuItemProps {
 export const ContextMenuItem = ({ children, onClick, disabled }: ContextMenuItemProps) => {
   return (
     <DropdownMenuItem
-      className='cursor-pointer text-xs text-gray-600 hover:[&>svg]:text-green-600'
+      className='text-foreground hover:[&>svg]:text-brand cursor-pointer text-xs'
       onClick={onClick}
       disabled={disabled}
     >
@@ -33,7 +33,7 @@ const ContextMenu = ({ children, ariaLabel = 'Open menu' }: Props) => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant='ghost' className='p-1' aria-label={ariaLabel}>
-          <EllipsisVertical className='text-gray-600' />
+          <EllipsisVertical className='text-foreground' />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end' alignOffset={16} sideOffset={-8}>

@@ -12,7 +12,7 @@ const NavSection = ({ title, children }: Props) => {
 
   return (
     <section aria-labelledby={titleId}>
-      <h2 id={titleId} className='pb-2 font-bold text-gray-700'>
+      <h2 id={titleId} className='text-foreground pb-2 font-bold'>
         {title}
       </h2>
       <ul className='flex flex-col'>{children}</ul>

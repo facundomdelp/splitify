@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation'
 
 import { routing } from '@/i18n/routing'
 
-import { SEO_ROUTES } from './constants'
+import { findSeoRouteBySlug, getSeoRoute, getSeoRouteAlternates } from './constants'
 
 export async function generateMetadata({
   params,
@@ -13,18 +13,20 @@ export async function generateMetadata({
   const { locale, link } = await params
 
   const baseUrl = 'https://splitify.me'
-  const localeSeoRoutes = SEO_ROUTES[locale as keyof typeof SEO_ROUTES]
 
-  const languages: Record<string, string> = {}
-  routing.locales.forEach((loc) => {
-    languages[loc] = loc === routing.defaultLocale ? `${baseUrl}/${link}` : `${baseUrl}/${loc}/${link}`
-  })
-  languages['x-default'] = `${baseUrl}/${link}`
+  const route = getSeoRoute(locale, link)
+  if (!route) return {}
 
   const canonicalUrl = locale === routing.defaultLocale ? `${baseUrl}/${link}` : `${baseUrl}/${locale}/${link}`
 
-  const route = localeSeoRoutes.find((route) => route.slug === link)
-  if (!route) return {}
+  const languages: Record<string, string> = {}
+  getSeoRouteAlternates(route.key).forEach(({ locale: alternate, slug }) => {
+    const url = alternate === routing.defaultLocale ? `${baseUrl}/${slug}` : `${baseUrl}/${alternate}/${slug}`
+
+    languages[alternate] = url
+
+    if (alternate === routing.defaultLocale) languages['x-default'] = url
+  })
 
   const { title, description } = route
 
@@ -46,7 +48,9 @@ export async function generateMetadata({
       siteName: 'Splitify',
       locale: locale,
       type: 'website',
-      alternateLocale: routing.locales.filter((loc) => loc !== locale),
+      alternateLocale: getSeoRouteAlternates(route.key)
+        .map(({ locale: alternate }) => alternate)
+        .filter((alternate) => alternate !== locale),
       images: [
         {
           url: `${baseUrl}/Splitify-banner.jpg`,
@@ -74,12 +78,15 @@ export default async function SeoRouteLayout({
 }>) {
   const { locale, link: seoRoute } = await params
 
-  const localeSeoRoutes = SEO_ROUTES[locale as keyof typeof SEO_ROUTES]
-  const route = localeSeoRoutes?.find((r: { slug: string }) => r.slug === seoRoute)
+  const route = getSeoRoute(locale, seoRoute)
 
   // notFound no anda por algún motivo!
   if (!route) {
-    redirect('/')
+    /* The slug may belong to another language, so send the reader to this note in theirs */
+    const foreign = findSeoRouteBySlug(seoRoute)
+    const translated = foreign && getSeoRouteAlternates(foreign.route.key).find((entry) => entry.locale === locale)
+
+    redirect(translated ? `/${locale}/${translated.slug}` : '/')
   }
 
   const baseUrl = 'https://splitify.me'

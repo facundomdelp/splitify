@@ -26,7 +26,12 @@ type NavChildrenProps = Pick<Props, 'children' | 'icon' | 'emoji' | 'strong' | '
 const NavChildren = ({ children, icon: Icon, emoji, strong, loading, disabled }: NavChildrenProps) => (
   <>
     {Icon ? (
-      <Icon className={cn('size-[20px] shrink-0 text-green-700', disabled ? 'cursor-not-allowed text-gray-400' : '')} />
+      <Icon
+        className={cn(
+          'text-brand-muted size-[20px] shrink-0',
+          disabled ? 'text-muted-foreground cursor-not-allowed' : '',
+        )}
+      />
     ) : (
       emoji
     )}
@@ -38,7 +43,7 @@ const NavChildren = ({ children, icon: Icon, emoji, strong, loading, disabled }:
     {!loading ? (
       <ChevronRight className='ml-auto size-[20px] shrink-0' />
     ) : (
-      <Spinner className='ml-auto size-[20px] shrink-0 text-green-600' />
+      <Spinner className='text-brand ml-auto size-[20px] shrink-0' />
     )}
   </>
 )
@@ -61,7 +66,7 @@ const NavItem = ({
   )
 
   return (
-    <li className={cn('border-b py-3 text-sm text-gray-600', disabled ? 'cursor-not-allowed' : '')}>
+    <li className={cn('text-foreground border-b py-3 text-sm', disabled ? 'cursor-not-allowed' : '')}>
       {href && !disabled ? (
         <Link href={href} className='flex flex-nowrap items-center gap-4' onClick={handleNavigation}>
           {navChildren}

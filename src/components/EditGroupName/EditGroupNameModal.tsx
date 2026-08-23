@@ -45,7 +45,7 @@ const EditGroupNameModal = ({ initialGroupName, open, setOpen, onSubmit }: Props
             <strong>{t('Name')}</strong>
           </Label>
           <Input
-            className='min-w-36 flex-[2.5] placeholder:text-gray-300'
+            className='placeholder:text-muted-foreground/60 min-w-36 flex-[2.5]'
             name='name'
             maxLength={50}
             onChange={handleGroupName}

@@ -38,10 +38,10 @@ const Header = () => {
       ref={headerRef}
       className='fixed top-0 z-10 flex h-20 w-full shrink-0 items-center justify-center border-b shadow-lg'
       style={{
-        backgroundColor: 'rgb(34 197 94 / calc(1 - 0.4 * var(--glass, 0)))',
+        backgroundColor: 'hsl(var(--header) / calc(1 - 0.4 * var(--glass, 0)))',
         backdropFilter: 'blur(calc(20px * var(--glass, 0))) saturate(calc(100% + 90% * var(--glass, 0)))',
         WebkitBackdropFilter: 'blur(calc(20px * var(--glass, 0))) saturate(calc(100% + 90% * var(--glass, 0)))',
-        borderBottomColor: 'rgb(255 255 255 / calc(0.22 * var(--glass, 0)))',
+        borderBottomColor: 'hsl(var(--header-foreground) / calc(0.22 * var(--glass, 0)))',
       }}
       id='header'
     >

@@ -82,15 +82,15 @@ const ExpenseForm = ({
   return (
     <>
       <section className='flex flex-col gap-2'>
-        <p className='flex flex-nowrap items-center gap-1 text-[12px] text-gray-600'>
-          <UserRound className='size-[12px] text-green-700' />
+        <p className='text-foreground flex flex-nowrap items-center gap-1 text-[12px]'>
+          <UserRound className='text-brand-muted size-[12px]' />
           {t('Add Expense')}
         </p>
 
         <form className='flex flex-col gap-3' onSubmit={handleSubmit}>
           <div className='flex flex-wrap gap-3'>
             <Input
-              className='min-w-36 flex-[2.5] placeholder:text-gray-300'
+              className='placeholder:text-muted-foreground/60 min-w-36 flex-[2.5]'
               name='name'
               aria-label={t('Who paid')}
               ref={nameInputRef}
@@ -104,7 +104,7 @@ const ExpenseForm = ({
 
             <div className='ml-auto flex flex-1 grow gap-4'>
               <div className={cn('relative ml-auto min-w-22 flex-1', !fullForm ? 'max-w-24' : '')}>
-                <span className='absolute top-1/2 left-2 -translate-y-1/2 text-sm leading-4 text-gray-500'>
+                <span className='text-muted-foreground absolute top-1/2 left-2 -translate-y-1/2 text-sm leading-4'>
                   {currencySymbol}
                 </span>
                 <Input
@@ -155,7 +155,7 @@ const ExpenseForm = ({
                   id='date'
                   type='date'
                   name='date'
-                  className={cn(!date ? 'text-gray-300' : 'text-black')}
+                  className={cn(!date ? 'text-muted-foreground/60' : 'text-foreground')}
                   onChange={handleDate}
                   value={date}
                   disabled={disabled}
@@ -169,7 +169,7 @@ const ExpenseForm = ({
                 <Input
                   id='title'
                   name='title'
-                  className='placeholder:text-gray-300'
+                  className='placeholder:text-muted-foreground/60'
                   maxLength={50}
                   onChange={handleTitle}
                   value={title}

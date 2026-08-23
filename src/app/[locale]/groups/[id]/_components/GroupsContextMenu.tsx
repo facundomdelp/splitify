@@ -40,7 +40,7 @@ const GroupsContextMenu = ({ groupId, hasExpenses }: Props) => {
             <p className='text-sm'>{t('🤑 Copy this link and share it with your friends! 💸')} </p>
             <code
               title='Copy this link'
-              className='flex items-center justify-center bg-gray-50 p-2 text-[9px] break-all'
+              className='bg-muted flex items-center justify-center p-2 text-[9px] break-all'
             >{`https://splitify.me/${locale}/groups/${groupId}`}</code>
             <p className='pb-3 text-[10px]'>{t('Your friends would be able to easily add expenses to this group')} </p>
             <CopyToClipboard
@@ -96,7 +96,7 @@ const GroupsContextMenu = ({ groupId, hasExpenses }: Props) => {
         </ContextMenuItem>
         <ContextMenuItem key='currency' onClick={() => setOpenCurrencyModal(true)}>
           <Coins /> {t('Currency')}
-          {groupCurrency && <span className='ml-auto pl-2 text-gray-400'>{groupCurrency}</span>}
+          {groupCurrency && <span className='text-muted-foreground ml-auto pl-2'>{groupCurrency}</span>}
         </ContextMenuItem>
         <ContextMenuItem key='remove-group' onClick={() => setOpenRemoveConfirmationModal(true)}>
           <Trash2 /> {t('Remove Group')}

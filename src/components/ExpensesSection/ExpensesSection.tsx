@@ -53,7 +53,7 @@ const ExpensesSection = ({
         <div className='flex flex-col gap-3'>
           <Button
             variant='outline'
-            className='border border-green-500 text-green-500 hover:bg-inherit hover:text-green-500 hover:opacity-70'
+            className='border-brand-border text-brand-muted hover:text-brand-muted border hover:bg-inherit hover:opacity-70'
             onClick={() => setOpen(true)}
           >
             {t('Add Expense')}

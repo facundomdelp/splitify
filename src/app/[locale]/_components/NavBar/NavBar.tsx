@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils'
 
 import Callout from '@/components/Callout'
 import CurrencyModal from '@/components/CurrencyModal'
+import ThemeModal from '@/components/ThemeModal'
 import { Button } from '@/components/ui/button'
 import {
   Drawer,
@@ -25,7 +26,7 @@ import { useInitCurrency, useSetCurrency } from '@/utils/hooks/useCurrency'
 import { useGetEmojiFromString } from '@/utils/hooks/useGetEmojiFromString'
 import { usePWAInstall } from '@/utils/hooks/usePWAInstall'
 
-import { Coins, Globe, HandCoinsIcon, LucideProps, MenuIcon, RocketIcon } from 'lucide-react'
+import { Coins, Globe, HandCoinsIcon, LucideProps, MenuIcon, RocketIcon, SunMoon } from 'lucide-react'
 
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 
@@ -52,6 +53,7 @@ const NavBar = ({
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [localeModalOpen, setLocaleModalOpen] = useState(false)
   const [currencyModalOpen, setCurrencyModalOpen] = useState(false)
+  const [themeModalOpen, setThemeModalOpen] = useState(false)
 
   useInitCurrency()
   const { currency, setCurrency } = useSetCurrency()
@@ -74,6 +76,7 @@ const NavBar = ({
         currency={currency}
         onSelect={setCurrency}
       />
+      <ThemeModal open={themeModalOpen} setOpen={setThemeModalOpen} />
 
       <Drawer direction={direction} open={drawerOpen} onOpenChange={setDrawerOpen}>
         <DrawerTrigger asChild className={className}>
@@ -89,12 +92,12 @@ const NavBar = ({
         </VisuallyHidden>
         <DrawerContent
           className={cn(
-            'mr-12 h-full w-[400px] max-w-[90vw] overflow-x-hidden overflow-y-auto border-none text-black',
+            'text-foreground mr-12 h-full w-[400px] max-w-[90vw] overflow-x-hidden overflow-y-auto border-none',
             direction === 'left' ? 'mr-auto rounded-tl-none' : 'mr-0 ml-auto rounded-tr-none',
           )}
           aria-describedby={undefined}
         >
-          <header className='flex bg-green-700 p-8 pb-6'>
+          <header className='bg-chrome flex p-8 pb-6'>
             <Image
               className='drop-shadow-lg'
               src='/Splitify.png'
@@ -170,11 +173,19 @@ const NavBar = ({
                 >
                   {t('Currency')}
                 </NavItem>
+                <NavItem
+                  key='appearance'
+                  icon={SunMoon}
+                  onClick={() => setThemeModalOpen(true)}
+                  disabled={newGroupState.loading}
+                >
+                  {t('Appearance')}
+                </NavItem>
               </NavSection>
             </nav>
           </main>
 
-          <footer className='mt-auto flex h-[118px] justify-end gap-3 p-8 text-gray-700'>
+          <footer className='text-foreground mt-auto flex h-[118px] justify-end gap-3 p-8'>
             <SocialMedia />
           </footer>
         </DrawerContent>

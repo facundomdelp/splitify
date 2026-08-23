@@ -1,4 +1,4 @@
-import { SEO_ROUTES } from '@/app/[locale]/[link]/constants'
+import { SEO_LOCALES, SEO_ROUTES, getSeoRouteAlternates } from '@/app/[locale]/[link]/constants'
 
 import type { MetadataRoute } from 'next'
 
@@ -18,11 +18,14 @@ function buildUrl(locale: string, route: string) {
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticEntries = staticRoutes.flatMap((route) => {
-    return locales.map((locale) => {
+    /* Useful Links only exists where there are notes to list */
+    const routeLocales = route === 'useful-links' ? locales.filter((locale) => SEO_LOCALES.includes(locale)) : locales
+
+    return routeLocales.map((locale) => {
       const url = buildUrl(locale, route)
 
       // Generate alternate links for all locales + x-default
-      const alternates = locales.reduce(
+      const alternates = routeLocales.reduce(
         (acc, altLocale) => {
           acc[altLocale] = buildUrl(altLocale, route)
           return acc
@@ -49,11 +52,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
     return routes.map((route) => {
       const url = locale === defaultLocale ? `${baseUrl}/${route.slug}` : `${baseUrl}/${locale}/${route.slug}`
 
+      /* Each language publishes this note under its own slug, so alternates resolve through the shared key */
+      const translations = getSeoRouteAlternates(route.key)
+
+      const languages = translations.reduce<Record<string, string>>(
+        (acc, translation) => ({
+          ...acc,
+          [translation.locale]:
+            translation.locale === defaultLocale
+              ? `${baseUrl}/${translation.slug}`
+              : `${baseUrl}/${translation.locale}/${translation.slug}`,
+        }),
+        {},
+      )
+
+      const fallback = translations.find((translation) => translation.locale === defaultLocale)
+
+      if (fallback) languages['x-default'] = `${baseUrl}/${fallback.slug}`
+
       return {
         url,
         lastModified,
         changeFrequency: 'weekly' as const,
         priority: 0.7,
+        alternates: { languages },
       }
     })
   })

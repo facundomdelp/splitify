@@ -51,12 +51,15 @@ const TurnIntoGroupCta = ({ visible, onClick, disabled }: Props) => {
       description={
         <span className='flex flex-wrap items-center gap-x-2 gap-y-1'>
           {FEATURES.map(({ key, icon: Icon }) => (
-            <span key={key} className='flex items-center gap-1 rounded-full bg-green-100 px-2 py-[3px] text-[11px]'>
+            <span
+              key={key}
+              className='bg-brand-surface-strong flex items-center gap-1 rounded-full px-2 py-[3px] text-[11px]'
+            >
               <Icon className='size-3 shrink-0' />
               {t(key)}
             </span>
           ))}
-          <span className='text-green-700/70'>{t('and more')}</span>
+          <span className='text-brand-muted'>{t('and more')}</span>
         </span>
       }
       onClick={onClick}

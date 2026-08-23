@@ -27,7 +27,7 @@ const GroupsPage = () => {
       <section className='flex flex-col gap-4'>
         <div className='flex items-center'>
           <h2 className='flex flex-nowrap items-center gap-2 text-lg font-bold' id='expenses'>
-            <HandCoinsIcon className='size-[22px] text-green-700' />
+            <HandCoinsIcon className='text-brand-muted size-[22px]' />
             My Groups
           </h2>
         </div>
@@ -41,19 +41,19 @@ const GroupsPage = () => {
           onClick={addNewGroup}
         >
           <CardHeader className='flex-1 space-y-0'>
-            <CardTitle className='flex flex-row items-center gap-3 text-lg text-green-800'>
-              <PlusCircleIcon className='shrink-0 text-green-500' /> Add New Group
+            <CardTitle className='text-brand-text flex flex-row items-center gap-3 text-lg'>
+              <PlusCircleIcon className='text-brand shrink-0' /> Add New Group
             </CardTitle>
           </CardHeader>
           <CardContent className='flex items-center p-6'>
-            {!newGroupState.loading ? <p>🤑</p> : <Spinner className='text-green-600' />}
+            {!newGroupState.loading ? <p>🤑</p> : <Spinner className='text-brand' />}
           </CardContent>
         </Card>
 
         {groups.map((group) => (
           <Card key={group.id} className={cn('flex', newGroupState.loading ? 'pointer-events-none opacity-40' : '')}>
             <CardHeader className='min-w-0 flex-1 justify-center space-y-0 pr-0'>
-              <CardTitle className='flex min-w-0 items-center gap-2 font-medium text-green-800'>
+              <CardTitle className='text-brand-text flex min-w-0 items-center gap-2 font-medium'>
                 <p>{getEmojiFromString(group.id)}</p>
                 <p className='min-w-0 overflow-hidden text-nowrap text-ellipsis'>{group.name}</p>
               </CardTitle>

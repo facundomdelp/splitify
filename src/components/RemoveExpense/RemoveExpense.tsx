@@ -18,7 +18,7 @@ const RemoveExpense = ({ id, name, onRemoveExpense }: Props) => {
   return (
     <>
       <X
-        className='mx-1 size-[18px] h-[20px] shrink-0 cursor-pointer items-center text-gray-500 hover:text-red-800'
+        className='text-muted-foreground hover:text-destructive mx-1 size-[18px] h-[20px] shrink-0 cursor-pointer items-center'
         onClick={() => setOpen(true)}
       />
 

@@ -25,7 +25,8 @@
     "Currency": "Currency",
     "Spliti Groups": "Spliti Groups",
     "Settings": "Settings",
-    "Add it to your home screen": "Add it to your home screen"
+    "Add it to your home screen": "Add it to your home screen",
+    "Appearance": "Appearance"
   },
   "LocaleSelectorModal": {
     "Language": "Language",
@@ -138,10 +139,13 @@
     "to": "to"
   },
   "SeoPage": {
-    "Get Started": "Get Started 🚀"
+    "Get Started": "Get Started 🚀",
+    "Try it now, it is free": "Try it now, it is free",
+    "Keep reading": "Keep reading",
+    "Create a Group": "Create a Group",
+    "Create a group and share the link": "Create a group and share the link"
   },
   "UsefulLinksPage": {
-    "Find answers to common questions and troubleshooting": "Encuentra respuestas a preguntas comunes y solución de problemas.",
     "Useful Links": "Useful Links",
     "Here are some useful resources to help you navigate and make the most out of Splitify": "Here are some useful resources to help you navigate and make the most out of Splitify.",
     "Useful Links and Guides": "Useful Links and Guides"
@@ -168,5 +172,11 @@
     "Only changes how amounts are shown, nothing is converted": "Only changes how amounts are shown, nothing is converted",
     "Change the currency to {currency}?": "Change the currency to {currency}?",
     "Amounts stay the same and this changes it for everyone in the group": "Amounts stay the same and this changes it for everyone in the group"
+  },
+  "ThemeModal": {
+    "Appearance": "Appearance",
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark"
   }
 }

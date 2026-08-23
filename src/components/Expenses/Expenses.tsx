@@ -29,15 +29,15 @@ const Expenses = ({ expenses, participants, onRemoveExpense, onEditExpense, load
       <section className='flex min-h-[300px] min-w-0 flex-1 flex-col text-sm'>
         <div className='flex items-center'>
           <h2 className='flex flex-nowrap items-center gap-2 text-lg font-bold' id='expenses'>
-            <UsersRound className='size-[22px] text-green-700' />
+            <UsersRound className='text-brand-muted size-[22px]' />
             {t('Expenses')}
           </h2>
           {expenses && expenses.length > 0 && <ChangeEmojisButton />}
         </div>
 
         {loading ? (
-          <p className='m-auto text-center text-gray-500'>
-            <Spinner className='text-green-600' />
+          <p className='text-muted-foreground m-auto text-center'>
+            <Spinner className='text-brand' />
           </p>
         ) : expenses && Object.keys(expenses).length ? (
           <ul className='mt-4 flex min-w-0 flex-col gap-3'>
@@ -68,7 +68,7 @@ const Expenses = ({ expenses, participants, onRemoveExpense, onEditExpense, load
             </li>
           </ul>
         ) : (
-          <p className='m-auto text-center text-gray-500'>🤑 {t('Enter an Expense to get started!')} 💸</p>
+          <p className='text-muted-foreground m-auto text-center'>🤑 {t('Enter an Expense to get started!')} 💸</p>
         )}
       </section>
     </>

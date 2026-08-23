@@ -25,7 +25,8 @@
     "Currency": "Devise",
     "Spliti Groups": "Spliti Groups",
     "Settings": "Paramètres",
-    "Add it to your home screen": "Ajoutez-le à votre écran d'accueil"
+    "Add it to your home screen": "Ajoutez-le à votre écran d'accueil",
+    "Appearance": "Apparence"
   },
   "LocaleSelectorModal": {
     "Language": "Langue",
@@ -138,10 +139,13 @@
     "to": "à"
   },
   "SeoPage": {
-    "Get Started": "Commencer 🚀"
+    "Get Started": "Commencer 🚀",
+    "Try it now, it is free": "Essayez-le, c'est gratuit",
+    "Keep reading": "Continuer la lecture",
+    "Create a Group": "Créer un groupe",
+    "Create a group and share the link": "Créez un groupe et partagez le lien"
   },
   "UsefulLinksPage": {
-    "Find answers to common questions and troubleshooting": "Trouvez des réponses aux questions courantes et au dépannage.",
     "Useful Links": "Liens utiles",
     "Here are some useful resources to help you navigate and make the most out of Splitify": "Voici quelques ressources utiles pour vous aider à naviguer et à tirer le meilleur parti de Splitify.",
     "Useful Links and Guides": "Liens et guides utiles"
@@ -168,5 +172,11 @@
     "Only changes how amounts are shown, nothing is converted": "Change seulement l'affichage des montants, rien n'est converti",
     "Change the currency to {currency}?": "Changer la devise pour {currency} ?",
     "Amounts stay the same and this changes it for everyone in the group": "Les montants restent identiques et cela change pour tout le groupe"
+  },
+  "ThemeModal": {
+    "Appearance": "Apparence",
+    "system": "Système",
+    "light": "Clair",
+    "dark": "Sombre"
   }
 }

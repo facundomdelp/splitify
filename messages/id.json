@@ -25,7 +25,8 @@
     "Currency": "Mata uang",
     "Spliti Groups": "Spliti Groups",
     "Settings": "Pengaturan",
-    "Add it to your home screen": "Tambahkan ke layar utama"
+    "Add it to your home screen": "Tambahkan ke layar utama",
+    "Appearance": "Tampilan"
   },
   "LocaleSelectorModal": {
     "Language": "Bahasa",
@@ -138,10 +139,13 @@
     "to": "kepada"
   },
   "SeoPage": {
-    "Get Started": "Mulai Sekarang 🚀"
+    "Get Started": "Mulai Sekarang 🚀",
+    "Try it now, it is free": "Coba sekarang, gratis",
+    "Keep reading": "Lanjut membaca",
+    "Create a Group": "Buat Grup",
+    "Create a group and share the link": "Buat grup dan bagikan tautannya"
   },
   "UsefulLinksPage": {
-    "Find answers to common questions and troubleshooting": "Temukan jawaban untuk pertanyaan umum dan pemecahan masalah.",
     "Useful Links": "Tautan Berguna",
     "Here are some useful resources to help you navigate and make the most out of Splitify": "Berikut adalah beberapa sumber daya berguna untuk membantu Anda menavigasi dan memanfaatkan Splitify sebaik-baiknya.",
     "Useful Links and Guides": "Tautan dan panduan berguna"
@@ -168,5 +172,11 @@
     "Only changes how amounts are shown, nothing is converted": "Hanya mengubah tampilan jumlah, tidak ada yang dikonversi",
     "Change the currency to {currency}?": "Ubah mata uang ke {currency}?",
     "Amounts stay the same and this changes it for everyone in the group": "Jumlahnya tetap sama dan ini berlaku untuk semua orang di grup"
+  },
+  "ThemeModal": {
+    "Appearance": "Tampilan",
+    "system": "Sistem",
+    "light": "Terang",
+    "dark": "Gelap"
   }
 }

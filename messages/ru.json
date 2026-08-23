@@ -25,7 +25,8 @@
     "Currency": "Валюта",
     "Spliti Groups": "Spliti Groups",
     "Settings": "Настройки",
-    "Add it to your home screen": "Добавьте на главный экран"
+    "Add it to your home screen": "Добавьте на главный экран",
+    "Appearance": "Оформление"
   },
   "LocaleSelectorModal": {
     "Language": "Язык",
@@ -138,10 +139,13 @@
     "to": "кому"
   },
   "SeoPage": {
-    "Get Started": "Начать 🚀"
+    "Get Started": "Начать 🚀",
+    "Try it now, it is free": "Попробуйте, это бесплатно",
+    "Keep reading": "Читать дальше",
+    "Create a Group": "Создать группу",
+    "Create a group and share the link": "Создайте группу и поделитесь ссылкой"
   },
   "UsefulLinksPage": {
-    "Find answers to common questions and troubleshooting": "Найдите ответы на распространенные вопросы и устранение неполадок.",
     "Useful Links": "Полезные ссылки",
     "Here are some useful resources to help you navigate and make the most out of Splitify": "Вот несколько полезных ресурсов, которые помогут вам ориентироваться и максимально эффективно использовать Splitify.",
     "Useful Links and Guides": "Полезные ссылки и руководства"
@@ -168,5 +172,11 @@
     "Only changes how amounts are shown, nothing is converted": "Меняется только отображение сумм, ничего не конвертируется",
     "Change the currency to {currency}?": "Изменить валюту на {currency}?",
     "Amounts stay the same and this changes it for everyone in the group": "Суммы остаются прежними, изменение коснётся всех в группе"
+  },
+  "ThemeModal": {
+    "Appearance": "Оформление",
+    "system": "Системная",
+    "light": "Светлая",
+    "dark": "Тёмная"
   }
 }

@@ -33,13 +33,13 @@ const ExpenseSharing = ({ sharedWith, suggestions, onAdd, onRemove, disabled }: 
     <section className='flex flex-col'>
       <button
         type='button'
-        className='flex w-fit items-center gap-1 text-[12px] text-gray-600'
+        className='text-foreground flex w-fit items-center gap-1 text-[12px]'
         onClick={toggleOpen}
         aria-expanded={open}
       >
-        <ChevronRight className={cn('size-[12px] text-green-700 transition-transform', open ? 'rotate-90' : '')} />
+        <ChevronRight className={cn('text-brand-muted size-[12px] transition-transform', open ? 'rotate-90' : '')} />
         {t('Shared with')}
-        <span className='text-gray-400'>
+        <span className='text-muted-foreground'>
           {suggestions.length ? `${sharedWith.length}/${sharedWith.length + suggestions.length}` : t('Everyone')}
         </span>
       </button>
@@ -56,10 +56,10 @@ const ExpenseSharing = ({ sharedWith, suggestions, onAdd, onRemove, disabled }: 
             open ? 'opacity-100' : 'invisible opacity-0',
           )}
         >
-          <div className='mt-2 flex flex-col gap-3 rounded-md border border-gray-100 bg-gray-50 p-2'>
+          <div className='border-border bg-muted mt-2 flex flex-col gap-3 rounded-md border p-2'>
             <div className='flex gap-2'>
               <Input
-                className='h-8 placeholder:text-gray-300'
+                className='placeholder:text-muted-foreground/60 h-8'
                 name='participant'
                 list={suggestionsId}
                 maxLength={50}
@@ -101,7 +101,7 @@ const ExpenseSharing = ({ sharedWith, suggestions, onAdd, onRemove, disabled }: 
                 ))}
               </ul>
             ) : (
-              <p className='px-1 pb-1 text-xs text-gray-400'>{t('Add the people sharing this expense')}</p>
+              <p className='text-muted-foreground px-1 pb-1 text-xs'>{t('Add the people sharing this expense')}</p>
             )}
           </div>
         </div>

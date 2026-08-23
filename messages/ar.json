@@ -25,7 +25,8 @@
     "Currency": "العملة",
     "Spliti Groups": "Spliti Groups",
     "Settings": "الإعدادات",
-    "Add it to your home screen": "أضفه إلى شاشتك الرئيسية"
+    "Add it to your home screen": "أضفه إلى شاشتك الرئيسية",
+    "Appearance": "المظهر"
   },
   "LocaleSelectorModal": {
     "Language": "اللغة",
@@ -138,10 +139,13 @@
     "to": "لـ"
   },
   "SeoPage": {
-    "Get Started": "ابدأ الآن 🚀"
+    "Get Started": "ابدأ الآن 🚀",
+    "Try it now, it is free": "جرّبه الآن، إنه مجاني",
+    "Keep reading": "تابع القراءة",
+    "Create a Group": "إنشاء مجموعة",
+    "Create a group and share the link": "أنشئ مجموعة وشارك الرابط"
   },
   "UsefulLinksPage": {
-    "Find answers to common questions and troubleshooting": "ابحث عن إجابات للأسئلة الشائعة وحل المشاكل.",
     "Useful Links": "روابط مفيدة",
     "Here are some useful resources to help you navigate and make the most out of Splitify": "فيما يلي بعض الموارد المفيدة لمساعدتك على التنقل وتحقيق أقصى استفادة من Splitify.",
     "Useful Links and Guides": "روابط وأدلة مفيدة"
@@ -168,5 +172,11 @@
     "Only changes how amounts are shown, nothing is converted": "يغيّر طريقة عرض المبالغ فقط، ولا يتم تحويل أي شيء",
     "Change the currency to {currency}?": "تغيير العملة إلى {currency}؟",
     "Amounts stay the same and this changes it for everyone in the group": "تبقى المبالغ كما هي ويسري هذا التغيير على الجميع في المجموعة"
+  },
+  "ThemeModal": {
+    "Appearance": "المظهر",
+    "system": "النظام",
+    "light": "فاتح",
+    "dark": "داكن"
   }
 }

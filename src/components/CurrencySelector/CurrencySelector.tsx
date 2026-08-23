@@ -54,7 +54,7 @@ const CurrencySelector = ({ currency, onSelect }: Props) => {
       </button>
 
       <Drawer open={open} onOpenChange={setOpen}>
-        <DrawerContent className='max-h-[85dvh] pb-6 text-gray-700'>
+        <DrawerContent className='text-foreground max-h-[85dvh] pb-6'>
           <DrawerHeader className='text-left'>
             <DrawerTitle>Currency</DrawerTitle>
             <DrawerDescription className='sr-only'>Select your preferred currency</DrawerDescription>

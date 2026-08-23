@@ -25,7 +25,7 @@ const Expense = ({ optimistic, name, amount, title, date, sharers, action }: Exp
   const getEmojiFromString = useGetEmojiFromString()
 
   return (
-    <li className={cn('flex min-w-0 items-center', optimistic ? 'text-gray-400' : '')}>
+    <li className={cn('flex min-w-0 items-center', optimistic ? 'text-muted-foreground' : '')}>
       <p className='mr-2 w-[20px] text-center'>{getEmojiFromString(name)}</p>
       <div className='flex min-w-0 flex-col'>
         <div className='flex min-w-0 items-center'>
@@ -36,15 +36,15 @@ const Expense = ({ optimistic, name, amount, title, date, sharers, action }: Exp
           {!optimistic && action}
         </div>
         {(title || date) && (
-          <div className='flex min-w-0 items-center gap-1 text-xs text-gray-500'>
+          <div className='text-muted-foreground flex min-w-0 items-center gap-1 text-xs'>
             {date && <p>{formatTimestampToDate(date)}</p>}
             {title && date && <p>-</p>}
             <p className='min-w-0 overflow-hidden text-ellipsis whitespace-nowrap'>{title}</p>
           </div>
         )}
         {sharers && (
-          <div className='flex min-w-0 items-center gap-1 text-xs text-gray-500'>
-            <UsersRound className='size-3 shrink-0 text-green-700' />
+          <div className='text-muted-foreground flex min-w-0 items-center gap-1 text-xs'>
+            <UsersRound className='text-brand-muted size-3 shrink-0' />
             <p className='min-w-0 overflow-hidden text-ellipsis whitespace-nowrap'>{sharers.join(', ')}</p>
           </div>
         )}

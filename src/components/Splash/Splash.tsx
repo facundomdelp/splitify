@@ -17,7 +17,7 @@ const Splash = () => {
 
   return (
     !metadata.isLoaded && (
-      <div className='absolute inset-0 z-50 flex items-center justify-center bg-green-950 text-white'>
+      <div className='bg-chrome text-chrome-foreground absolute inset-0 z-50 flex items-center justify-center'>
         <div className='animate-slide-up text-center opacity-0'>
           <Image
             className='drop-shadow-lg'

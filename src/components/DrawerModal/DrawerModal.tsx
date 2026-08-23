@@ -24,7 +24,7 @@ const DrawerModal = ({ open, setOpen, title, description, children, className }:
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className={cn('max-h-[85dvh] overflow-y-auto text-gray-700 sm:max-w-[425px]', className)}>
+        <DialogContent className={cn('text-foreground max-h-[85dvh] overflow-y-auto sm:max-w-[425px]', className)}>
           <DialogHeader>
             <DialogTitle>{title}</DialogTitle>
             <DialogDescription>{description}</DialogDescription>
@@ -44,7 +44,7 @@ const DrawerModal = ({ open, setOpen, title, description, children, className }:
       // setActiveSnapPoint={setActiveSnapPoint}
       // fadeFromIndex={0}
     >
-      <DrawerContent className={cn('max-h-[85dvh] pb-3 text-gray-700', className)}>
+      <DrawerContent className={cn('text-foreground max-h-[85dvh] pb-3', className)}>
         <DrawerHeader className='px-0 text-left'>
           <DrawerTitle>{title}</DrawerTitle>
           <DrawerDescription>{description}</DrawerDescription>
