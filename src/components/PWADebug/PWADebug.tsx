@@ -21,24 +21,38 @@ const readProbe = (probe: HTMLElement | null): Record<string, string> => {
   return { probe14px: size, boosted: size === '14px' ? 'no' : 'YES' }
 }
 
+const rect = (el: Element | null) => {
+  if (!el) return 'missing'
+
+  const r = el.getBoundingClientRect()
+
+  return `${Math.round(r.x)},${Math.round(r.y)} ${Math.round(r.width)}x${Math.round(r.height)}`
+}
+
 const readCallout = (panel: HTMLElement | null): Record<string, string> => {
   const node = panel?.nextElementSibling
 
   if (!(node instanceof HTMLElement)) return { callout: 'NOT FOUND' }
 
   const strong = node.querySelector('strong')
+  const icon = node.querySelector('svg')
+  const desc = strong?.nextElementSibling ?? null
   const styles = getComputedStyle(node)
   const titleStyles = strong ? getComputedStyle(strong) : null
+  const box = node.getBoundingClientRect()
+  const hit = document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2)
 
   return {
-    callout: node.tagName.toLowerCase(),
     svgs: String(node.querySelectorAll('svg').length),
-    lines: String(node.innerText.split('\n').length),
-    text: node.innerText.replace(/\n/g, ' / '),
     align: styles.textAlign,
-    radius: styles.borderRadius,
     titleSize: titleStyles ? titleStyles.fontSize : 'n/a',
-    titleDecoration: titleStyles ? titleStyles.textDecorationLine : 'n/a',
+    btnBox: rect(node),
+    iconBox: rect(icon),
+    titleBox: rect(strong),
+    descBox: rect(desc),
+    iconOpacity: icon ? getComputedStyle(icon).opacity + '/' + getComputedStyle(icon).color : 'n/a',
+    hitTest: hit ? hit.tagName.toLowerCase() + '.' + String(hit.className).slice(0, 40) : 'none',
+    zoom: String(Math.round((window.outerWidth / window.innerWidth) * 100) / 100),
   }
 }
 
@@ -50,13 +64,13 @@ const PWADebug = () => {
   useEffect(() => {
     const update = () => setState({ ...readState(), ...readProbe(probeRef.current), ...readCallout(panelRef.current) })
 
-    const timer = window.setTimeout(update, 400)
+    const timer = window.setInterval(update, 1000)
 
     window.addEventListener('pwainstallchange', update)
     window.addEventListener('beforeinstallprompt', update)
 
     return () => {
-      window.clearTimeout(timer)
+      window.clearInterval(timer)
       window.removeEventListener('pwainstallchange', update)
       window.removeEventListener('beforeinstallprompt', update)
     }

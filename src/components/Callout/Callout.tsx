@@ -22,7 +22,7 @@ const Callout = ({ icon: Icon, title, description, onClick, disabled, highlighte
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        'group relative w-full overflow-hidden rounded-xl border px-4 py-3 text-start transition-colors disabled:pointer-events-none disabled:opacity-50',
+        'group relative w-full shrink-0 overflow-hidden rounded-xl border px-4 py-3 text-start transition-colors disabled:pointer-events-none disabled:opacity-50',
         highlighted
           ? 'animate-slide-up border-brand-border bg-brand-surface hover:bg-brand-surface-strong shadow-md'
           : 'border-brand-border bg-brand-surface hover:bg-brand-surface-strong',

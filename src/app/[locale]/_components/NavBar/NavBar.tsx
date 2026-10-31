@@ -132,7 +132,7 @@ const NavBar = ({
               />
             )}
 
-            <nav className='space-y-9'>
+            <nav className='shrink-0 space-y-9'>
               <NavSection title={t('Spliti Quick')}>
                 <NavItem
                   key='spliti-quick'
