@@ -182,7 +182,7 @@
   "InstallInstructionsModal": {
     "Install Splitify": "Installer Splitify",
     "Tap the Share button": "Touchez le bouton Partager",
-    "Choose \"Add to Home Screen\"": "Choisissez « Sur l’écran d’accueil »",
+    "Scroll down and choose \"Add to Home Screen\"": "Faites défiler et choisissez « Sur l’écran d’accueil »",
     "Tap \"Add\" to finish": "Touchez « Ajouter » pour terminer"
   }
 }

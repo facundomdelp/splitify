@@ -181,8 +181,8 @@
   },
   "InstallInstructionsModal": {
     "Install Splitify": "安装 Splitify",
-    "Tap the Share button": "点击“分享”按钮",
-    "Choose \"Add to Home Screen\"": "选择“添加到主屏幕”",
-    "Tap \"Add\" to finish": "点击“添加”完成"
+    "Tap the Share button": "轻点“共享”按钮",
+    "Scroll down and choose \"Add to Home Screen\"": "向下滚动并选择“添加到主屏幕”",
+    "Tap \"Add\" to finish": "轻点“添加”完成"
   }
 }

@@ -8,7 +8,7 @@ import { Check, Share, SquarePlus } from 'lucide-react'
 
 const STEPS = [
   { key: 'Tap the Share button', icon: Share },
-  { key: 'Choose "Add to Home Screen"', icon: SquarePlus },
+  { key: 'Scroll down and choose "Add to Home Screen"', icon: SquarePlus },
   { key: 'Tap "Add" to finish', icon: Check },
 ] as const
 
