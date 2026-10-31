@@ -1,6 +1,6 @@
 'use client'
 
-import { ForwardRefExoticComponent, ReactNode, RefAttributes, useState, useSyncExternalStore } from 'react'
+import { ForwardRefExoticComponent, ReactNode, RefAttributes, useState } from 'react'
 
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
@@ -10,7 +10,6 @@ import { cn } from '@/lib/utils'
 import Callout from '@/components/Callout'
 import CurrencyModal from '@/components/CurrencyModal'
 import InstallInstructionsModal from '@/components/InstallInstructionsModal'
-import PWADebug from '@/components/PWADebug'
 import ThemeModal from '@/components/ThemeModal'
 import { Button } from '@/components/ui/button'
 import {
@@ -40,12 +39,6 @@ import { useAddNewGroup, useHandleNavigation } from './hooks'
 
 const LOGO_WIDTH = 120
 
-const subscribeNever = () => () => {}
-
-const getDebugFlag = () => new URLSearchParams(window.location.search).has('pwadebug')
-
-const getDebugFlagServer = () => false
-
 const NavBar = ({
   direction = 'right',
   className,
@@ -63,8 +56,6 @@ const NavBar = ({
   const [currencyModalOpen, setCurrencyModalOpen] = useState(false)
   const [themeModalOpen, setThemeModalOpen] = useState(false)
   const [installModalOpen, setInstallModalOpen] = useState(false)
-
-  const debugOpen = useSyncExternalStore(subscribeNever, getDebugFlag, getDebugFlagServer)
 
   useInitCurrency()
   const { currency, setCurrency } = useSetCurrency()
@@ -120,8 +111,6 @@ const NavBar = ({
           </header>
 
           <main className='flex min-h-0 flex-1 flex-col gap-8 overflow-y-auto overscroll-contain p-8'>
-            {debugOpen && <PWADebug />}
-
             {isInstallable && (
               <Callout
                 icon={RocketIcon}
