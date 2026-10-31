@@ -82,9 +82,16 @@ export const usePWAInstall = () => {
     const event = getPrompt()
     if (!event) return
 
-    window.__pwaInstallPrompt = null
-    Promise.resolve(event.prompt()).catch(() => undefined)
-    emitChange()
+    const settle = () => {
+      window.__pwaInstallPrompt = null
+      emitChange()
+    }
+
+    try {
+      Promise.resolve(event.prompt()).then(settle, settle)
+    } catch {
+      settle()
+    }
   }, [])
 
   return {
