@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils'
 
 import Callout from '@/components/Callout'
 import CurrencyModal from '@/components/CurrencyModal'
+import InstallInstructionsModal from '@/components/InstallInstructionsModal'
 import ThemeModal from '@/components/ThemeModal'
 import { Button } from '@/components/ui/button'
 import {
@@ -54,12 +55,13 @@ const NavBar = ({
   const [localeModalOpen, setLocaleModalOpen] = useState(false)
   const [currencyModalOpen, setCurrencyModalOpen] = useState(false)
   const [themeModalOpen, setThemeModalOpen] = useState(false)
+  const [installModalOpen, setInstallModalOpen] = useState(false)
 
   useInitCurrency()
   const { currency, setCurrency } = useSetCurrency()
 
   const { handleNavigation } = useHandleNavigation({ setDrawerOpen })
-  const { isInstallable, handleInstallClick } = usePWAInstall()
+  const { isInstallable, needsInstructions, handleInstallClick } = usePWAInstall()
 
   const { addNewGroup, newGroupState } = useAddNewGroup({ setDrawerOpen })
 
@@ -77,6 +79,7 @@ const NavBar = ({
         onSelect={setCurrency}
       />
       <ThemeModal open={themeModalOpen} setOpen={setThemeModalOpen} />
+      <InstallInstructionsModal open={installModalOpen} setOpen={setInstallModalOpen} />
 
       <Drawer direction={direction} open={drawerOpen} onOpenChange={setDrawerOpen}>
         <DrawerTrigger asChild className={className}>
@@ -113,7 +116,7 @@ const NavBar = ({
                 icon={RocketIcon}
                 title={t('Install App')}
                 description={t('Add it to your home screen')}
-                onClick={handleInstallClick}
+                onClick={needsInstructions ? () => setInstallModalOpen(true) : handleInstallClick}
                 disabled={newGroupState.loading}
               />
             )}

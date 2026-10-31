@@ -178,5 +178,11 @@
     "system": "Системная",
     "light": "Светлая",
     "dark": "Тёмная"
+  },
+  "InstallInstructionsModal": {
+    "Install Splitify": "Установить Splitify",
+    "Tap the Share button": "Нажмите кнопку «Поделиться»",
+    "Choose \"Add to Home Screen\"": "Выберите «На экран „Домой“»",
+    "Tap \"Add\" to finish": "Нажмите «Добавить», чтобы завершить"
   }
 }

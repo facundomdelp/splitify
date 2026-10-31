@@ -1,5 +1,7 @@
 import type { MetadataRoute } from 'next'
 
+import { BASE_URL } from '@/utils/constants/baseUrl'
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
@@ -9,7 +11,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/groups/'],
       },
     ],
-    sitemap: 'https://splitify.me/sitemap.xml',
-    host: 'https://splitify.me',
+    sitemap: `${BASE_URL}/sitemap.xml`,
+    host: BASE_URL,
   }
 }

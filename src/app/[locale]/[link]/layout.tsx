@@ -3,6 +3,8 @@ import { redirect } from 'next/navigation'
 
 import { routing } from '@/i18n/routing'
 
+import { BASE_URL } from '@/utils/constants/baseUrl'
+
 import { findSeoRouteBySlug, getSeoRoute, getSeoRouteAlternates } from './constants'
 
 export async function generateMetadata({
@@ -12,16 +14,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, link } = await params
 
-  const baseUrl = 'https://splitify.me'
-
   const route = getSeoRoute(locale, link)
   if (!route) return {}
 
-  const canonicalUrl = locale === routing.defaultLocale ? `${baseUrl}/${link}` : `${baseUrl}/${locale}/${link}`
+  const canonicalUrl = locale === routing.defaultLocale ? `${BASE_URL}/${link}` : `${BASE_URL}/${locale}/${link}`
 
   const languages: Record<string, string> = {}
   getSeoRouteAlternates(route.key).forEach(({ locale: alternate, slug }) => {
-    const url = alternate === routing.defaultLocale ? `${baseUrl}/${slug}` : `${baseUrl}/${alternate}/${slug}`
+    const url = alternate === routing.defaultLocale ? `${BASE_URL}/${slug}` : `${BASE_URL}/${alternate}/${slug}`
 
     languages[alternate] = url
 
@@ -36,7 +36,7 @@ export async function generateMetadata({
       default: title,
     },
     description: description,
-    metadataBase: new URL(baseUrl),
+    metadataBase: new URL(BASE_URL),
     alternates: {
       canonical: canonicalUrl,
       languages,
@@ -53,7 +53,7 @@ export async function generateMetadata({
         .filter((alternate) => alternate !== locale),
       images: [
         {
-          url: `${baseUrl}/Splitify-banner.jpg`,
+          url: `${BASE_URL}/Splitify-banner.jpg`,
           width: 1200,
           height: 630,
           alt: title,
@@ -64,7 +64,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: `${title} | Splitify`,
       description: description,
-      images: [`${baseUrl}/Splitify-banner.jpg`],
+      images: [`${BASE_URL}/Splitify-banner.jpg`],
     },
   }
 }
@@ -89,8 +89,8 @@ export default async function SeoRouteLayout({
     redirect(translated ? `/${locale}/${translated.slug}` : '/')
   }
 
-  const baseUrl = 'https://splitify.me'
-  const canonicalUrl = locale === routing.defaultLocale ? `${baseUrl}/${seoRoute}` : `${baseUrl}/${locale}/${seoRoute}`
+  const canonicalUrl =
+    locale === routing.defaultLocale ? `${BASE_URL}/${seoRoute}` : `${BASE_URL}/${locale}/${seoRoute}`
 
   const articleJsonLd = {
     '@context': 'https://schema.org',
@@ -101,10 +101,10 @@ export default async function SeoRouteLayout({
     publisher: {
       '@type': 'Organization',
       name: 'Splitify',
-      url: baseUrl,
+      url: BASE_URL,
       logo: {
         '@type': 'ImageObject',
-        url: `${baseUrl}/splitify-512x512.png`,
+        url: `${BASE_URL}/splitify-512x512.png`,
       },
     },
     mainEntityOfPage: {

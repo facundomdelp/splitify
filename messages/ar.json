@@ -178,5 +178,11 @@
     "system": "النظام",
     "light": "فاتح",
     "dark": "داكن"
+  },
+  "InstallInstructionsModal": {
+    "Install Splitify": "تثبيت Splitify",
+    "Tap the Share button": "اضغط على زر المشاركة",
+    "Choose \"Add to Home Screen\"": "اختر \"إضافة إلى الشاشة الرئيسية\"",
+    "Tap \"Add\" to finish": "اضغط على \"إضافة\" للإنهاء"
   }
 }

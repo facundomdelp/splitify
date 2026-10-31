@@ -178,5 +178,11 @@
     "system": "Sistema",
     "light": "Claro",
     "dark": "Oscuro"
+  },
+  "InstallInstructionsModal": {
+    "Install Splitify": "Instalar Splitify",
+    "Tap the Share button": "Tocá el botón Compartir",
+    "Choose \"Add to Home Screen\"": "Elegí \"Agregar a inicio\"",
+    "Tap \"Add\" to finish": "Tocá \"Agregar\" para finalizar"
   }
 }

@@ -178,5 +178,11 @@
     "system": "跟随系统",
     "light": "浅色",
     "dark": "深色"
+  },
+  "InstallInstructionsModal": {
+    "Install Splitify": "安装 Splitify",
+    "Tap the Share button": "点击“分享”按钮",
+    "Choose \"Add to Home Screen\"": "选择“添加到主屏幕”",
+    "Tap \"Add\" to finish": "点击“添加”完成"
   }
 }

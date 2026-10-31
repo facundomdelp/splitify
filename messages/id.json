@@ -178,5 +178,11 @@
     "system": "Sistem",
     "light": "Terang",
     "dark": "Gelap"
+  },
+  "InstallInstructionsModal": {
+    "Install Splitify": "Instal Splitify",
+    "Tap the Share button": "Ketuk tombol Bagikan",
+    "Choose \"Add to Home Screen\"": "Pilih \"Tambah ke Layar Utama\"",
+    "Tap \"Add\" to finish": "Ketuk \"Tambahkan\" untuk selesai"
   }
 }

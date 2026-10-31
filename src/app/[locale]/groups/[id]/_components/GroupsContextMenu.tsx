@@ -10,6 +10,8 @@ import CurrencyModal from '@/components/CurrencyModal'
 import EditGroupNameModal from '@/components/EditGroupName/EditGroupNameModal'
 import Modal from '@/components/Modal'
 
+import { BASE_URL } from '@/utils/constants/baseUrl'
+
 import { Coins, Edit3, RadioTower, Trash2 } from 'lucide-react'
 
 import { useRemoveGroup, useUpdateGroupCurrency, useUpdateGroupName } from './hooks'
@@ -41,14 +43,12 @@ const GroupsContextMenu = ({ groupId, hasExpenses }: Props) => {
             <code
               title='Copy this link'
               className='bg-muted flex items-center justify-center p-2 text-[9px] break-all'
-            >{`https://splitify.me/${locale}/groups/${groupId}`}</code>
+            >{`${BASE_URL}/${locale}/groups/${groupId}`}</code>
             <p className='pb-3 text-[10px]'>{t('Your friends would be able to easily add expenses to this group')} </p>
             <CopyToClipboard
               onClick={() => setTimeout(() => setOpenShareModal(false), 1000)}
               copyString={
-                t('I invite you to collaborate in the group 🤝') +
-                '\n\n' +
-                `https://splitify.me/${locale}/groups/${groupId}`
+                t('I invite you to collaborate in the group 🤝') + '\n\n' + `${BASE_URL}/${locale}/groups/${groupId}`
               }
             />
           </div>

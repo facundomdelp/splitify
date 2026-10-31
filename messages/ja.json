@@ -178,5 +178,11 @@
     "system": "システム",
     "light": "ライト",
     "dark": "ダーク"
+  },
+  "InstallInstructionsModal": {
+    "Install Splitify": "Splitify をインストール",
+    "Tap the Share button": "「共有」ボタンをタップ",
+    "Choose \"Add to Home Screen\"": "「ホーム画面に追加」を選択",
+    "Tap \"Add\" to finish": "「追加」をタップして完了"
   }
 }

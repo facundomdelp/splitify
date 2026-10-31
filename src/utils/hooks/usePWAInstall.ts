@@ -1,47 +1,95 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useSyncExternalStore } from 'react'
 
 interface BeforeInstallPromptEvent extends Event {
-  prompt: () => void
-  userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>
+  prompt: () => Promise<{ outcome: 'accepted' | 'dismissed'; platform: string }>
 }
 
 declare global {
   interface WindowEventMap {
     beforeinstallprompt: BeforeInstallPromptEvent
+    pwainstallchange: Event
+  }
+
+  interface Window {
+    __pwaInstallPrompt?: BeforeInstallPromptEvent | null
+    __pwaInstalled?: boolean
   }
 }
 
+const CHANGE_EVENT = 'pwainstallchange'
+
+const emitChange = () => window.dispatchEvent(new Event(CHANGE_EVENT))
+
+const getPrompt = () => (typeof window === 'undefined' ? null : (window.__pwaInstallPrompt ?? null))
+
+const isRunningStandalone = () =>
+  window.matchMedia('(display-mode: standalone)').matches ||
+  (window.navigator as Navigator & { standalone?: boolean }).standalone === true
+
+const isIOSDevice = () =>
+  /iPad|iPhone|iPod/.test(window.navigator.userAgent) ||
+  (window.navigator.platform === 'MacIntel' && window.navigator.maxTouchPoints > 1)
+
+const subscribe = (onStoreChange: () => void) => {
+  window.addEventListener(CHANGE_EVENT, onStoreChange)
+  window.addEventListener('appinstalled', onStoreChange)
+
+  return () => {
+    window.removeEventListener(CHANGE_EVENT, onStoreChange)
+    window.removeEventListener('appinstalled', onStoreChange)
+  }
+}
+
+type InstallMode = 'none' | 'prompt' | 'instructions'
+
+const getSnapshot = (): InstallMode => {
+  if (typeof window === 'undefined') return 'none'
+  if (window.__pwaInstalled || isRunningStandalone()) return 'none'
+  if (getPrompt()) return 'prompt'
+  if (isIOSDevice()) return 'instructions'
+
+  return 'none'
+}
+
+const getServerSnapshot = (): InstallMode => 'none'
+
 export const usePWAInstall = () => {
-  const [isInstallable, setIsInstallable] = useState(false)
-  const [installPromptEvent, setInstallPromptEvent] = useState<BeforeInstallPromptEvent | null>(null)
+  const installMode = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
 
   useEffect(() => {
-    const beforeInstallPromptListener = (event: BeforeInstallPromptEvent) => {
+    const captureListener = (event: BeforeInstallPromptEvent) => {
       event.preventDefault()
-      setIsInstallable(true)
-      setInstallPromptEvent(event)
+      window.__pwaInstallPrompt = event
+      emitChange()
     }
 
-    window.addEventListener('beforeinstallprompt', beforeInstallPromptListener)
+    const installedListener = () => {
+      window.__pwaInstallPrompt = null
+      window.__pwaInstalled = true
+      emitChange()
+    }
+
+    window.addEventListener('beforeinstallprompt', captureListener)
+    window.addEventListener('appinstalled', installedListener)
 
     return () => {
-      window.removeEventListener('beforeinstallprompt', beforeInstallPromptListener)
+      window.removeEventListener('beforeinstallprompt', captureListener)
+      window.removeEventListener('appinstalled', installedListener)
     }
   }, [])
 
-  const handleInstallClick = () => {
-    if (installPromptEvent) {
-      installPromptEvent.prompt()
-      installPromptEvent.userChoice.then((/* choiceResult */) => {
-        // if (choiceResult.outcome === 'accepted') {
-        //   console.log('User accepted the PWA installation')
-        // } else {
-        //   console.log('User dismissed the PWA installation')
-        // }
-        setIsInstallable(false)
-      })
-    }
-  }
+  const handleInstallClick = useCallback(() => {
+    const event = getPrompt()
+    if (!event) return
 
-  return { isInstallable, handleInstallClick }
+    window.__pwaInstallPrompt = null
+    Promise.resolve(event.prompt()).catch(() => undefined)
+    emitChange()
+  }, [])
+
+  return {
+    isInstallable: installMode !== 'none',
+    needsInstructions: installMode === 'instructions',
+    handleInstallClick,
+  }
 }

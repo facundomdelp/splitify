@@ -14,6 +14,8 @@ import Header from './_components/Layout/Header'
 import DirectionProvider from '@/components/DirectionProvider'
 import Splash from '@/components/Splash'
 
+import { BASE_URL } from '@/utils/constants/baseUrl'
+
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] })
@@ -24,6 +26,8 @@ const getDirection = (locale: string) => (RTL_LOCALES.includes(locale) ? 'rtl' :
 
 const themeScript = `(function(){try{var m=localStorage.getItem('metadata');var t=m?JSON.parse(m).theme:null;if(!t||t==='system'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}if(t==='dark'){document.documentElement.classList.add('dark')}}catch(e){}})()`
 
+const installPromptScript = `(function(){try{window.__pwaInstallPrompt=null;window.__pwaInstalled=false;window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();window.__pwaInstallPrompt=e;window.dispatchEvent(new Event('pwainstallchange'))});window.addEventListener('appinstalled',function(){window.__pwaInstallPrompt=null;window.__pwaInstalled=true;window.dispatchEvent(new Event('pwainstallchange'))})}catch(e){}})()`
+
 export const viewport: Viewport = {
   themeColor: '#22C55E',
   colorScheme: 'light dark',
@@ -32,26 +36,25 @@ export const viewport: Viewport = {
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params
-  const baseUrl = 'https://splitify.me'
   const t = await getTranslations({ locale, namespace: 'Metadata' })
 
   const languages: Record<Locale, string> = {} as Record<Locale, string>
   routing.locales.forEach((loc) => {
-    languages[loc] = loc === routing.defaultLocale ? `${baseUrl}/` : `${baseUrl}/${loc}`
+    languages[loc] = loc === routing.defaultLocale ? `${BASE_URL}/` : `${BASE_URL}/${loc}`
   })
 
-  const canonicalUrl = locale === routing.defaultLocale ? `${baseUrl}/` : `${baseUrl}/${locale}`
+  const canonicalUrl = locale === routing.defaultLocale ? `${BASE_URL}/` : `${BASE_URL}/${locale}`
 
   return {
     title: { template: `%s | Splitify`, default: t('title') },
     description: t('description'),
     keywords: t('keywords'),
-    metadataBase: new URL(baseUrl),
+    metadataBase: new URL(BASE_URL),
     applicationName: 'Splitify',
     authors: [{ name: 'Splitify' }],
     creator: 'Splitify',
     formatDetection: { telephone: false },
-    alternates: { canonical: canonicalUrl, languages: { ...languages, 'x-default': `${baseUrl}/` } },
+    alternates: { canonical: canonicalUrl, languages: { ...languages, 'x-default': `${BASE_URL}/` } },
     openGraph: {
       title: t('title'),
       description: t('description'),
@@ -62,7 +65,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       alternateLocale: routing.locales.filter((loc) => loc !== locale),
       images: [
         {
-          url: `${baseUrl}/Splitify-banner.jpg`,
+          url: `${BASE_URL}/Splitify-banner.jpg`,
           width: 1200,
           height: 630,
           alt: 'Splitify - Simplify your group expenses',
@@ -73,7 +76,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       card: 'summary_large_image',
       title: t('title'),
       description: t('description'),
-      images: [`${baseUrl}/Splitify-banner.jpg`],
+      images: [`${BASE_URL}/Splitify-banner.jpg`],
     },
     robots: {
       index: true,
@@ -101,8 +104,7 @@ export default async function LocaleLayout({
 
   const messages = await getMessages()
 
-  const baseUrl = 'https://splitify.me'
-  const canonicalUrl = locale === routing.defaultLocale ? `${baseUrl}/` : `${baseUrl}/${locale}`
+  const canonicalUrl = locale === routing.defaultLocale ? `${BASE_URL}/` : `${BASE_URL}/${locale}`
 
   const webAppJsonLd = {
     '@context': 'https://schema.org',
@@ -114,7 +116,7 @@ export default async function LocaleLayout({
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
     description:
       'Simplify your group expenses with Splitify. Add participants, calculate balances, and share costs fairly.',
-    image: `${baseUrl}/Splitify-banner.jpg`,
+    image: `${BASE_URL}/Splitify-banner.jpg`,
     inLanguage: locale,
     isAccessibleForFree: true,
     browserRequirements: 'Requires JavaScript',
@@ -125,7 +127,7 @@ export default async function LocaleLayout({
       'Collaborative groups you can share with a link',
       'Works without creating an account',
     ],
-    screenshot: `${baseUrl}/SplitiQuick-en.png`,
+    screenshot: `${BASE_URL}/SplitiQuick-en.png`,
   }
 
   const webSiteJsonLd = {
@@ -133,17 +135,17 @@ export default async function LocaleLayout({
     '@type': 'WebSite',
     name: 'Splitify',
     alternateName: ['Splitify me', 'Splitify app', 'splitify.me'],
-    url: baseUrl,
+    url: BASE_URL,
     inLanguage: locale,
-    publisher: { '@type': 'Organization', name: 'Splitify', url: baseUrl },
+    publisher: { '@type': 'Organization', name: 'Splitify', url: BASE_URL },
   }
 
   const organizationJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Splitify',
-    url: baseUrl,
-    logo: `${baseUrl}/splitify-512x512.png`,
+    url: BASE_URL,
+    logo: `${BASE_URL}/splitify-512x512.png`,
     email: 'splitify.me@gmail.com',
     sameAs: ['https://x.com/splitify_me', 'https://www.tiktok.com/@.splitify'],
   }
@@ -152,6 +154,7 @@ export default async function LocaleLayout({
     <html lang={locale} dir={getDirection(locale)} className='h-full' suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script dangerouslySetInnerHTML={{ __html: installPromptScript }} />
         <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }} />
         <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }} />
         <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />

@@ -4,10 +4,11 @@ import type { MetadataRoute } from 'next'
 
 import { routing } from '@/i18n/routing'
 
+import { BASE_URL } from '@/utils/constants/baseUrl'
+
 const locales = ['en', 'es', 'pt-BR', 'pt-PT', 'zh-CN', 'zh-TW', 'ar', 'fr', 'ja', 'ru', 'de', 'id']
 const defaultLocale = 'en'
 
-const baseUrl = 'https://splitify.me'
 const lastModified = new Date('2026-08-22')
 
 // Static routes
@@ -15,13 +16,13 @@ const staticRoutes = ['', 'faq', 'useful-links']
 
 /* Static routes are translated per locale, so the URL has to come from the routing config */
 function buildUrl(locale: string, route: string) {
-  if (!route) return locale === defaultLocale ? baseUrl : `${baseUrl}/${locale}`
+  if (!route) return locale === defaultLocale ? BASE_URL : `${BASE_URL}/${locale}`
 
   const pathnames = routing.pathnames as Record<string, string | Record<string, string>>
   const declared = pathnames[`/${route}`]
   const path = typeof declared === 'string' ? declared : (declared?.[locale] ?? `/${route}`)
 
-  return locale === defaultLocale ? `${baseUrl}${path}` : `${baseUrl}/${locale}${path}`
+  return locale === defaultLocale ? `${BASE_URL}${path}` : `${BASE_URL}/${locale}${path}`
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -58,7 +59,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const seoRoutesEntries = Object.entries(SEO_ROUTES).flatMap(([locale, routes]) => {
     return routes.map((route) => {
-      const url = locale === defaultLocale ? `${baseUrl}/${route.slug}` : `${baseUrl}/${locale}/${route.slug}`
+      const url = locale === defaultLocale ? `${BASE_URL}/${route.slug}` : `${BASE_URL}/${locale}/${route.slug}`
 
       /* Each language publishes this note under its own slug, so alternates resolve through the shared key */
       const translations = getSeoRouteAlternates(route.key)
@@ -68,15 +69,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
           ...acc,
           [translation.locale]:
             translation.locale === defaultLocale
-              ? `${baseUrl}/${translation.slug}`
-              : `${baseUrl}/${translation.locale}/${translation.slug}`,
+              ? `${BASE_URL}/${translation.slug}`
+              : `${BASE_URL}/${translation.locale}/${translation.slug}`,
         }),
         {},
       )
 
       const fallback = translations.find((translation) => translation.locale === defaultLocale)
 
-      if (fallback) languages['x-default'] = `${baseUrl}/${fallback.slug}`
+      if (fallback) languages['x-default'] = `${BASE_URL}/${fallback.slug}`
 
       return {
         url,

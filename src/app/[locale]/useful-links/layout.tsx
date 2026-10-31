@@ -3,15 +3,15 @@ import { getTranslations } from 'next-intl/server'
 
 import { routing } from '@/i18n/routing'
 
-import { SEO_LOCALES } from '../[link]/constants'
+import { BASE_URL } from '@/utils/constants/baseUrl'
 
-const baseUrl = 'https://splitify.me'
+import { SEO_LOCALES } from '../[link]/constants'
 
 const localizedPath = (locale: string) => {
   const declared = routing.pathnames['/useful-links'] as Record<string, string>
   const path = declared[locale] ?? '/useful-links'
 
-  return locale === routing.defaultLocale ? `${baseUrl}${path}` : `${baseUrl}/${locale}${path}`
+  return locale === routing.defaultLocale ? `${BASE_URL}${path}` : `${BASE_URL}/${locale}${path}`
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       type: 'website',
       images: [
         {
-          url: `${baseUrl}/Splitify-banner.jpg`,
+          url: `${BASE_URL}/Splitify-banner.jpg`,
           width: 1200,
           height: 630,
           alt: 'Splitify - Simplify your group expenses',

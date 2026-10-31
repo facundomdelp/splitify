@@ -6,6 +6,7 @@ import { Balance } from '@/types/balance-types'
 
 import { useResolvedCurrency } from '@/components/CurrencyProvider'
 
+import { BASE_URL } from '../constants/baseUrl'
 import { formatAmount } from '../functions/formatAmount'
 import { useGetEmojiFromString } from './useGetEmojiFromString'
 
@@ -27,7 +28,7 @@ export const useCopyString = ({ balances, rounded }: useCopyStringProps) => {
           (balance) =>
             `${getEmojiFromString(balance.debtor)} ${balance.debtor} ${t('owes')} ${formatAmount(balance.amount, { language: locale, fractionDigits: rounded ? 0 : 2, currency })} ${t('to')} ${getEmojiFromString(balance.creditor)} ${balance.creditor}`,
         ),
-        '\nhttps://splitify.me',
+        `\n${BASE_URL}`,
       ].join('\n'),
     [balances, getEmojiFromString, t, rounded, locale, currency],
   )
