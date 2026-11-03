@@ -8,6 +8,8 @@ import { Link } from '@/i18n/routing'
 import TiktokLogo from '@/components/icons/TiktokLogo'
 import XLogo from '@/components/icons/XLogo'
 
+import { STUDIO_CREDIT } from '@/utils/constants/studioCredit'
+
 import { MailIcon } from 'lucide-react'
 
 import { hasSeoRoutes } from '../../[link]/constants'
@@ -85,6 +87,17 @@ const Footer = () => {
         <div className='text-chrome-foreground/60 border-brand-border/40/15 mt-8 flex flex-col items-center gap-1 border-t pt-5 text-[11px] sm:flex-row sm:justify-between'>
           <p>© {new Date().getFullYear()} Splitify</p>
           <p>{t('All rights reserved')}</p>
+          <p>
+            {t('Site by')}{' '}
+            <a
+              href={STUDIO_CREDIT.href}
+              target='_blank'
+              rel='noopener'
+              className='hover:text-chrome-foreground underline underline-offset-2 transition-colors'
+            >
+              {STUDIO_CREDIT.linkText}
+            </a>
+          </p>
         </div>
       </div>
     </footer>
